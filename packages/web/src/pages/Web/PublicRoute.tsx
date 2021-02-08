@@ -133,6 +133,9 @@ const Night = styled(Typography)`
 const StyledFormControl = styled(FormControl)`
   &&& {
     margin-right: 3rem;
+    fieldset {
+    border: none;
+    }
     .MuiInputBase-input {
       color: ${({ theme }) => theme.palette.secondary.main};
       padding-right: 16px;

@@ -50,10 +50,10 @@ export function Portfolio() {
       desc: t("react.smallBang.desc"),
     },
     {
-      name: t("react.prayogi.title"),
+      name: t("react.prayogiBooking.title"),
       url:
         "https://5f2c3d5d67743e0813a841be--trusting-noether-620b6c.netlify.app/dashboard",
-      desc: t("react.prayogi.desc"),
+      desc: t("react.prayogiBooking.desc"),
     },
   ];
 
