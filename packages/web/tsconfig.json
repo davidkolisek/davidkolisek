@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "pretty": true,
+    "outDir": "./dist",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "target": "ES5",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "esModuleInterop": true,
+    "module": "esnext"
+  },
+  "include": [
+    "src"
+  ]
+}

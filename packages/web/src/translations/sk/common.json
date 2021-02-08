@@ -1,0 +1,45 @@
+{
+  "trans": {
+    "current": "sk"
+  },
+  "static": {
+    "title": "Statické weby",
+    "ceko": {
+      "title": "CEKO Interier",
+      "desc": "Stránka pre výrobcov vstavaných skrín, nábytku ..."
+    },
+    "prayogi": {
+      "title": "Prayogi",
+      "desc": "Statická stránka pre učiteľku jógy"
+    },
+    "villa": {
+      "title": "Villa perle de la mer",
+      "desc": "Staticka informačná stránka pre majitela domčeku, ktorý prenajíma"
+    }
+  },
+  "react": {
+    "title": "ReactJS & GraphQL",
+    "vedr": {
+      "title": "Vedr",
+      "desc": "Predpoveď počasia (API z Openweathermap, themoviedb)"
+    },
+    "smallBang": {
+      "title": "Small bang",
+      "desc": "Môj prvý GraphQL/Apollo server projekt (backend MongoDB & deploynutý na Heroku)"
+    },
+    "prayogiBooking": {
+      "title": "Prayogi booking",
+      "desc": "Booking system pre učiteľku jógy"
+    }
+  },
+  "angular": {
+    "title": "Angular & Firebase",
+    "mymatch": {
+      "title": "MyMatch",
+      "desc": "Vytvor si svoj team, počítadlo gólov"
+    }
+  },
+  "footer": {
+    "allRights": "Všetky práva vyhradené"
+  }
+}

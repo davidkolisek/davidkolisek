@@ -1,0 +1,23 @@
+.idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+node_modules
+yarn-error.log
+__diff_output__
+coverage
+.serverless
+dist
+build
+*.tsbuildinfo
+
+packages/api/src/schema.types.ts
+packages/frontend/src/graphql
+packages/web/src/graphql
+
+.history
+.DS_Store
+# Local Netlify folder
+.netlify

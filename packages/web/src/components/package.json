@@ -1,0 +1,16 @@
+{
+  "name": "@app/components",
+  "description": "Layout components",
+  "version": "1.0.0",
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "tsc": "tsc"
+  },
+  "peerDependencies": {
+    "react": "^16.7.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.7.0"
+  }
+}

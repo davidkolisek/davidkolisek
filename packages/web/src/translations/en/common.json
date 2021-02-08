@@ -1,0 +1,45 @@
+{
+  "trans": {
+    "current": "en"
+  },
+  "static": {
+    "title": "Static websites",
+    "ceko": {
+      "title": "CEKO Interier",
+      "desc": "Static furniture website"
+    },
+    "prayogi": {
+      "title": "Prayogi",
+      "desc": "Static one page website about yoga teacher"
+    },
+    "villa": {
+      "title": "Villa perle de la mer",
+      "desc": "One page for hotel"
+    }
+  },
+  "react": {
+    "title": "ReactJS & GraphQL",
+    "vedr": {
+      "title": "Vedr",
+      "desc": "Weather forecast (API from Openweathermap, themoviedb)"
+    },
+    "smallBang": {
+      "title": "Small bang",
+      "desc": "My first GraphQL/Apollo server project (backend MongoDB & deployed on Heroku)"
+    },
+    "prayogiBooking": {
+      "title": "Prayogi booking",
+      "desc": "Booking system for yoga teacher"
+    }
+  },
+  "angular": {
+    "title": "Angular & Firebase",
+    "mymatch": {
+      "title": "MyMatch",
+      "desc": "Make your team, goals counter"
+    }
+  },
+  "footer": {
+    "allRights": "All rights reserved"
+  }
+}
