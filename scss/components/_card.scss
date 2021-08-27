@@ -1,10 +1,9 @@
 .main-card{
   width: 100%;
-  @include box-shadows($primary-box-shadow);
+  @include box-shadows(0 3px 8px 0 rgb(15 15 20 / 20%));
   background: #fff;
   padding: 30px;
 
-  border-radius: 10px;
   @media(max-width:991px){
     margin-bottom: 2rem;
   }

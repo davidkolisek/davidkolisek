@@ -74,3 +74,5 @@ const counterAnim = (qSelector, start = 0, end, duration = 1000) => {
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+  document.getElementById("year").innerHTML = (new Date).getFullYear();

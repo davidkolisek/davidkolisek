@@ -2604,6 +2604,28 @@ input:-webkit-autofill:active {
   content: "";
 }
 
+footer {
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+  background: linear-gradient(159deg, white 0%, rgba(255, 255, 255, 0.95) 100%);
+  box-shadow: 0 1px 4px 0 rgba(15, 15, 20, 0.1);
+  margin-top: 2rem;
+  justify-content: space-between;
+}
+footer p {
+  margin: 0;
+  font-size: 12px;
+}
+footer p a {
+  text-decoration: none;
+  color: #272727;
+}
+footer p a:hover {
+  color: #272727;
+  opacity: 0.9;
+}
+
 a[name] {
   top: -55px;
   position: absolute;
@@ -2751,6 +2773,8 @@ main {
   position: relative;
   padding: 16px;
   border-radius: 10px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 @media (max-width: 991px) {
   main {
@@ -2781,7 +2805,8 @@ main:after {
 }
 
 .info-wrapper {
-  position: fixed;
+  position: sticky;
+  top: 16px;
   left: 16px;
   max-height: calc(100vh - 32px);
   width: 280px;
@@ -2801,18 +2826,18 @@ main:after {
 }
 @media (max-width: 991px) {
   .info-wrapper {
+    position: fixed;
     left: -280px;
-    top: 0;
     bottom: 0;
+    top: 0;
     max-height: 100vh;
   }
 }
 
 .content-wrapper {
-  padding: 32px;
+  padding: 32px 32px 0;
   background: #f0f0f5;
   width: 100%;
-  margin-left: 280px;
   min-height: calc(100vh - 32px);
 }
 @media (max-width: 991px) {
@@ -2957,12 +2982,11 @@ main:after {
 
 .main-card {
   width: 100%;
-  -webkit-box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  -moz-box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: 0 3px 8px 0 rgba(15, 15, 20, 0.2);
+  -moz-box-shadow: 0 3px 8px 0 rgba(15, 15, 20, 0.2);
+  box-shadow: 0 3px 8px 0 rgba(15, 15, 20, 0.2);
   background: #fff;
   padding: 30px;
-  border-radius: 10px;
 }
 @media (max-width: 991px) {
   .main-card {
@@ -3586,6 +3610,7 @@ main:after {
 
 .tab-content {
   padding-top: 16px;
+  min-height: calc(100vh - 200px);
 }
 
 hr {
