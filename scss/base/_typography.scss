@@ -1,0 +1,89 @@
+$primary-font: 'Poppins', sans-serif;
+// 300
+// 400
+// 700
+// 900
+
+//basic FONT SIZES
+$fs-09: .9rem;
+$fs-1: 1rem;
+
+h1, h2, h3, h4, h5, h6, p, small, strong, ul, li {
+  position: relative;
+}
+
+p {
+  margin-bottom: 10px;
+  color: #5c5c6f;
+  letter-spacing: .25px;
+}
+h2 {
+  font-size: 1.25rem;
+}
+h3 {
+  font-size: 1.1rem;
+}
+//FYI FONT SIZE CLASSES
+//f.e.: .fs-12 /// fs-lg-12 /// 12 = 1.2rem
+$font-sizes-rem: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+$font-sizes-rem-2: (9, 8, 7, 6, 5, 4, 3, 2, 1, 0);
+$unit: 'rem' !important;
+$dot: '.';
+
+@each $size in $font-sizes-rem {
+  @each $size-2 in $font-sizes-rem-2 {
+    .fs-#{$size}#{$size-2} {
+      font-size: #{$size}#{$dot}#{$size-2}#{$unit};
+    }
+  }
+}
+
+@media(max-width: 1200px) {
+  @each $size in $font-sizes-rem {
+    @each $size-2 in $font-sizes-rem-2 {
+      .fs-lg-#{$size}#{$size-2} {
+        font-size: #{$size}#{$dot}#{$size-2}#{$unit};
+      }
+    }
+  }
+}
+
+@media(max-width: 991px) {
+  @each $size in $font-sizes-rem {
+    @each $size-2 in $font-sizes-rem-2 {
+      .fs-md-#{$size}#{$size-2} {
+        font-size: #{$size}#{$dot}#{$size-2}#{$unit};
+      }
+    }
+  }
+}
+
+@media(max-width: 767px) {
+  @each $size in $font-sizes-rem {
+    @each $size-2 in $font-sizes-rem-2 {
+      .fs-sm-#{$size}#{$size-2} {
+        font-size: #{$size}#{$dot}#{$size-2}#{$unit};
+      }
+    }
+  }
+}
+
+@media(max-width: 576px) {
+  @each $size in $font-sizes-rem {
+    @each $size-2 in $font-sizes-rem-2 {
+      .fs-xs-#{$size}#{$size-2} {
+        font-size: #{$size}#{$dot}#{$size-2}#{$unit};
+      }
+    }
+  }
+}
+
+//FONT-WEIGHT
+//FYI
+//f.e.: .fw-400 /// 400 = 400
+$font-weights: (100, 200, 300, 400, 500, 600, 700, 800, 900);
+@each $font-weight in $font-weights {
+  .fw-#{$font-weight} {
+    font-weight: #{$font-weight}!important;
+  }
+}

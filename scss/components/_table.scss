@@ -1,0 +1,15 @@
+.main-table {
+    padding: 16px;
+  .table-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .table-cell {
+          &:nth-child(1){
+              p {
+                  color: $c_1;
+              }
+          }
+      }
+  }
+}

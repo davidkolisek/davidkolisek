@@ -1,0 +1,38 @@
+.portfolio-card{
+  padding: 0;
+  overflow: hidden;
+  height: 300px;
+  position: relative;
+  margin-bottom: 2rem;
+  img  {
+    width: 100%;
+    position: relative;
+    transition: all ease 150ms;
+  }
+  .info {
+    padding: 16px;
+    background: rgba(0,0,0, .8);
+    z-index: 2;
+    bottom: -50px;
+    right: 0;
+    left: 0;
+    position: absolute;
+    transition: all ease 250ms;
+    h3 {
+      color: $white_c;
+      font-size: 1.1rem;
+      margin: 0;
+      text-transform: uppercase;
+    }
+  }
+  &:hover{
+    img {
+      transform: scale(1.05,1.05);
+      transition: all ease 250ms;
+    }
+    .info {
+      bottom: 0;
+      transition: all ease 250ms;
+    }
+  }
+}

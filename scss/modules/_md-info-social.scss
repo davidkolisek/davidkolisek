@@ -1,0 +1,37 @@
+.main-info-social {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(
+      159deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(255, 255, 255, 0.98) 100%
+    );
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    padding: 16px;
+    z-index: 2;
+    box-shadow: 0 1px 4px 0 rgb(15 15 20 / 10%);
+  ul {
+    list-style-type: none;
+    li {
+      margin: 0 0.25rem;
+      display: inline-block;
+      a {
+        font-size: 1.1rem;
+        padding: 0 0.25rem;
+        transition: all ease 150ms;
+        text-decoration: none;
+        color: $secondary-font-color;
+        i {
+
+        }
+        &:hover {
+          opacity: 0.9;
+          transition: all ease 150ms;
+        }
+      }
+    }
+  }
+}
