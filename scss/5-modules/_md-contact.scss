@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+.md-contact {
+    h2 {
+      color: $c-dark-200;
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+      
+    }
+    background: $c-dark-900;
+  ul {
+    li {
+      a {
+        font-size: 2rem;
+        color: $white_c;
+        text-decoration: none;
+        margin-bottom: 3rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        i {
+          font-size: 3rem;
+          padding: 1.5rem;
+          border-radius: 99px;
+          margin-right: 2rem;
+          background: $c-dark-800;
+          color: $c-dark-200;
+          @include transition($primary-transition);
+        }
+        span {
+          font-weight: 700;
+        }
+        &:hover{
+          i {
+            background: $white_c;
+            color: $c-dark-900;
+            @include transition($primary-transition);
+          }
+        }
+      }
+    }
+  }
+}

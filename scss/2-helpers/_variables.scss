@@ -1,0 +1,87 @@
+//theme colors
+$warn-color: #d33741;
+
+//primary
+$c-primary-50: #dcf3ff;
+$c-primary-100: #aed7ff;
+$c-primary-200: #7dbcff;
+$c-primary-300: #4aa1ff;
+$c-primary-400: #1a86ff;
+$c-primary-500: #006ce6;
+$c-primary-600: #0054b4;
+$c-primary-700: #003c82;
+$c-primary-800: #002451;
+$c-primary-900: #000d21;
+
+
+
+
+// //primary purple
+// $c-primary-50: #f2e8ff;
+// $c-primary-100: #d3bef7;
+// $c-primary-200: #b493ec;
+// $c-primary-300: #9669e3;
+// $c-primary-400: #783fda;
+// $c-primary-500: #5f25c0;
+// $c-primary-600: #4a1c97;
+// $c-primary-700: #35146d;
+// $c-primary-800: #200a43;
+// $c-primary-900: #0d021b;
+
+//secondary
+$c-secondary-50: #ffeadf;
+$c-secondary-100: #ffc6b1;
+$c-secondary-200: #ffa180;
+$c-secondary-300: #fe7d4e;
+$c-secondary-400: #fe581d;
+$c-secondary-500: #e53f04;
+$c-secondary-600: #b23001;
+$c-secondary-700: #802200;
+$c-secondary-800: #4e1300;
+$c-secondary-900: #1f0400;
+
+//dark
+$c-dark-50: #f2f2f2;
+$c-dark-100: #d9d9d9;
+$c-dark-200: #bfbfbf;
+$c-dark-300: #a6a6a6;
+$c-dark-400: #8c8c8c;
+$c-dark-500: #737373;
+$c-dark-600: #595959;
+$c-dark-700: #404040;
+$c-dark-800: #262626;
+$c-dark-900: #0d0d0d;
+$c-dark-1000: #070707;
+
+//other colors
+$white_c: #fff;
+$black_c: #000;
+$c_1: #ccc;
+
+//breakpoints
+$bp-phone-small: 576px;
+$bp-phone: 768px;
+$bp-tablet: 991px;
+$bp-laptop: 1199px;
+
+//fonts
+$default-fs: 16px;
+$primary-font-family: "Roboto", sans-serif;
+
+//transition
+$primary-transition: all 0.15s ease-in-out;
+
+//box shadow
+$primary-box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+  0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+//border-radius
+$primary-radius: 5px;
+$secondary-radius: 12px;
+$circle-radius: 999px;
+$zero-radius: 0;
+
+
+.c-secondary{
+  color: $c-secondary-300;
+}

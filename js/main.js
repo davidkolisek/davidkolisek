@@ -1,8 +1,12 @@
+AOS.init({once: true});
+
+//year
+document.getElementById("year").innerHTML = (new Date).getFullYear();
 
 //scroll down add class in to body
 document.addEventListener('DOMContentLoaded', function () {
     let scrollPos = window.scrollY;
-    let body = document.getElementById('body');
+    let body = document.querySelector('.ly-body');
 
     function add_class_on_scroll() {
         body.classList.add('scrolling');
@@ -34,45 +38,33 @@ document.addEventListener('click', function () {
     }
 }, false);
 
-const fab = document.querySelector(".fab-btn");
-const aside = document.querySelector(".info-wrapper");
-const main = document.querySelector("body");
-function show(){
-    aside.classList.add("show-me");
-    main.classList.add("overlay");
-}
-function hide(){
-    aside.classList.remove("show-me");
-    main.classList.remove("overlay");
-}
+//remove show class on phone breakpoint
+const anchorScrools = document.querySelectorAll('.nav-link');
+const collapse = document.querySelector('.navbar-collapse');
+Array.from(anchorScrools).map((anchorScrool) => {
+    anchorScrool.addEventListener('click', function () {
+        collapse.classList.remove('show');
+    });
+});
 
 
-//#region - start of - number counter animation
-const counterAnim = (qSelector, start = 0, end, duration = 1000) => {
-    const target = document.querySelector(qSelector);
-    let startTimestamp = null;
-    const step = (timestamp) => {
-     if (!startTimestamp) startTimestamp = timestamp;
-     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-     target.innerText = Math.floor(progress * (end - start) + start);
-     if (progress < 1) {
-      window.requestAnimationFrame(step);
-     }
-    };
-    window.requestAnimationFrame(step);
-   };
-   //#endregion - end of - number counter animation
-   
-//    document.addEventListener("DOMContentLoaded", () => {
-    sleep(3000).then(() => counterAnim("#count1", 0, 5, 1500));
-    sleep(3000).then(() => counterAnim("#count2", 2, 40, 1000));
-    sleep(3000).then(() => counterAnim("#count3", 1, 10, 1200));
-    
-//    });
-   
+var isInViewport = function (elem) {
+	var distance = elem.getBoundingClientRect();
+    console.log(distance.top )
+	return (
+		distance.top >= 0 &&
+		distance.left >= 0 &&
+		distance.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+		distance.right <= (window.innerWidth || document.documentElement.clientWidth)
+	);
+};
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+var findMe = document.querySelector('.md-about p');
+
+window.addEventListener('scroll', function (event) {
+	if (isInViewport(findMe)) {
+		console.log('In viewport!');
+	} else {
+    console.log('Nope...');
   }
-
-  document.getElementById("year").innerHTML = (new Date).getFullYear();
+}, false);

@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+.main-btn {
+  text-decoration: none;
+  border-radius: 99px;
+  &-primary {
+    background-color: $c-primary-500;
+    color: $white_c;
+
+    &:hover {
+      background-color: $c-primary-400;
+      color: $white_c;
+      @include transition($primary-transition);
+    }
+
+    &:active {
+      background-color: $c-primary-600;
+      color: $white_c;
+      @include transition($primary-transition);
+    }
+  }
+
+  &-secondary {
+    background-color: $c-secondary-300;
+    color: $c-primary-900;
+
+    &:hover {
+      background-color: $c-secondary-200;
+      @include transition($primary-transition);
+    }
+
+    &:active {
+      background-color: $c-secondary-400;
+      @include transition($primary-transition);
+    }
+  }
+  &-dark {
+    background-color: $c-dark-800;
+    color: $white_c;
+
+    &:hover {
+      background-color: $c-dark-600;
+      color: $white_c;
+      @include transition($primary-transition);
+    }
+
+    &:active {
+      background-color: $c-dark-700;
+      color: $white_c;
+      @include transition($primary-transition);
+    }
+  }
+  &-ghost {
+    border: 2px solid $c-dark-50;
+    background: transparent;
+    color: $c-dark-50;
+    border-radius: 99px;
+
+    &:hover {
+      background-color: $c-dark-50;
+      color: $c-dark-900;
+      @include transition($primary-transition);
+    }
+
+    &:active {
+      background-color: $c-primary-900;
+      color: $c-dark-900;
+      @include transition($primary-transition);
+    }
+  }
+
+  &-link {
+    &-primary {
+      background: transparent;
+      color: $c-primary-800;
+
+      &:hover {
+        color: $c-primary-900;
+        text-decoration: none;
+        @include transition($primary-transition);
+      }
+    }
+    &-secondary {
+      background: transparent;
+      color: $c-secondary-100;
+
+      &:hover {
+        color: $c-secondary-200;
+        text-decoration: none;
+        @include transition($primary-transition);
+      }
+    }
+  }
+  &.btn-size {
+    width: 100%;
+    &-sm {
+      padding: 0.25rem 1rem;
+    }
+    &-md {
+      padding: 0.5rem 1.25rem;
+    }
+    &-lg {
+      padding: 1rem 1.5rem;
+      @media (max-width: $bp-tablet) {
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}

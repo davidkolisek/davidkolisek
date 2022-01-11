@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+.md-about {
+  background: $c-dark-900;
+  h2 {
+    color: $c-dark-200;
+    font-size: 1.5rem;
+    @media(max-width: $bp-phone){
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+  }
+  p {
+    font-size: 2.625rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: $c-dark-50;
+    margin-bottom: 40px;
+    @media(max-width: $bp-phone){
+      font-size: 1.5rem;
+    }
+  }
+}

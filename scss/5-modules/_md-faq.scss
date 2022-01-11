@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+.md-faq {
+  h2 {
+    color: $c-dark-200;
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+
+    @media(max-width: $bp-tablet){
+      font-size: 2rem;
+    }
+    
+  }
+  h3 {
+    color: $white_c;
+    font-size: 2.5rem;
+    font-weight: 700;
+
+    @media(max-width: $bp-tablet){
+      font-size: 1.5rem;
+    }
+  }
+  .container{
+  }
+  .row{
+    .col-12{
+      &:first-child{
+        padding-right: 30px;
+        @media(max-width: $bp-tablet){
+          padding-right: 15px;
+        }
+      }
+      &:last-child{
+        padding-left: 30px;
+        @media(max-width: $bp-tablet){
+          padding-left: 15px;
+          margin-top: 40px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,297 @@
+.main-bar-progress {
+  padding: 16px;
+  .progress-item {
+      margin-bottom: 24px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    .progress-head {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      p {
+        margin-bottom: 4px;
+      }
+      .title {
+        p {
+          color: $secondary-font-color;
+        }
+      }
+      .perc {
+        p {
+          color: $c_1;
+        }
+      }
+    }
+    .simple-progress-bar {
+      width: 100%;
+      background: $backColor;
+      height: 4px;
+      position: relative;
+      &:before {
+        content: "";
+        background: $themeColor;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        height: 4px;
+      }
+    }
+    &:nth-child(1) {
+      .simple-progress-bar {
+        &:before {
+          width: 90%;
+          animation: l90 1s linear 0s 1;
+          animation-delay: 3s;
+        }
+      }
+    }
+    &:nth-child(2) {
+      .simple-progress-bar {
+        &:before {
+          width: 90%;
+          animation: l90 1s linear 0s 1;
+          animation-delay: 3s;
+        }
+      }
+    }
+    &:nth-child(3) {
+      .simple-progress-bar {
+        &:before {
+          width: 70%;
+          animation: l70 1s linear 0s 1;
+          animation-delay: 3s;
+        }
+      }
+    }
+    &:nth-child(4) {
+      .simple-progress-bar {
+        &:before {
+          width: 50%;
+          animation: l50 1s linear 0s 1;
+          animation-delay: 3s;
+        }
+      }
+    }
+    &:nth-child(5) {
+      .simple-progress-bar {
+        &:before {
+          width: 80%;
+          animation: l80 1s linear 0s 1;
+          animation-delay: 3s;
+        }
+      }
+    }
+    &:nth-child(6) {
+      .simple-progress-bar {
+        &:before {
+          animation: l50 1s linear 0s 1;
+          animation-delay: 3s;
+          width: 50%;
+        }
+      }
+    }
+    &:nth-child(7) {
+      .simple-progress-bar {
+        &:before {
+          width: 20%;
+          animation: l20 1s linear 0s 1;
+          animation-delay: 3s;
+        }
+      }
+    }
+    &:nth-child(8) {
+      .simple-progress-bar {
+        &:before {
+          width: 65%;
+          animation: l65 1s linear 0s 1;
+          animation-delay: 3s;
+        }
+      }
+    }
+    &:nth-child(9) {
+      .simple-progress-bar {
+        &:before {
+          width: 33%;
+          animation: l35 1s linear 0s 1;
+          animation-delay: 3s;
+        }
+      }
+    }
+    &:nth-child(10) {
+      .simple-progress-bar {
+        &:before {
+          width: 33%;
+          animation: l35 1s linear 0s 1;
+          animation-delay: 3s;
+        }
+      }
+    }
+    &:nth-child(11) {
+      .simple-progress-bar {
+        &:before {
+          width: 40%;
+          animation: l40 1s linear 0s 1;
+          animation-delay: 3s;
+        }
+      }
+    }
+    &:nth-child(12) {
+      .simple-progress-bar {
+        &:before {
+          width: 40%;
+          animation: l40 1s linear 0s 1;
+          animation-delay: 3s;
+        }
+      }
+    }
+    &:nth-child(13) {
+      .simple-progress-bar {
+        &:before {
+          width: 35%;
+          animation: l35 1s linear 0s 1;
+          animation-delay: 3s;
+        }
+      }
+    }
+    &:nth-child(14) {
+      .simple-progress-bar {
+        &:before {
+          width: 80%;
+          animation: l80 1s linear 0s 1;
+          animation-delay: 3s;
+        }
+      }
+    }
+    &:nth-child(15) {
+      .simple-progress-bar {
+        &:before {
+          width: 45%;
+          animation-delay: 3s;
+          animation: l45 1s linear 0s 1;
+        }
+      }
+    }
+    &:nth-child(16) {
+      .simple-progress-bar {
+        &:before {
+          width: 40%;
+          animation: l40 1s linear 0s 1;
+          animation-delay: 3s;
+        }
+      }
+    }
+  }
+}
+
+
+@keyframes l10 {
+  from {
+    width: 0%;
+  
+  }
+  to {
+    width: 10%;
+  }
+}
+
+@keyframes l20 {
+  from {
+    width: 0%;
+  
+  }
+  to {
+    width: 20%;
+  }
+}
+@keyframes l30 {
+  from {
+    width: 0%;
+  
+  }
+  to {
+    width: 30%;
+  }
+}
+@keyframes l40 {
+  from {
+    width: 0%;
+  
+  }
+  to {
+    width: 40%;
+  }
+}
+@keyframes l50 {
+  from {
+    width: 0%;
+  
+  }
+  to {
+    width: 50%;
+  }
+}
+@keyframes l60 {
+  from {
+    width: 0%;
+  
+  }
+  to {
+    width: 60%;
+  }
+}
+@keyframes l70 {
+  from {
+    width: 0%;
+  
+  }
+  to {
+    width: 70%;
+  }
+}
+@keyframes l80 {
+  from {
+    width: 0%;
+  
+  }
+  to {
+    width: 80%;
+  }
+}
+@keyframes l90 {
+  from {
+    width: 0%;
+  
+  }
+  to {
+    width: 90%;
+  }
+}
+@keyframes l65 {
+  from {
+    width: 0%;
+  
+  }
+  to {
+    width: 65%;
+  }
+}
+@keyframes l35 {
+  from {
+    width: 0%;
+  
+  }
+  to {
+    width: 35%;
+  }
+}
+@keyframes l45 {
+  from {
+    width: 0%;
+  
+  }
+  to {
+    width: 35%;
+  }
+}
