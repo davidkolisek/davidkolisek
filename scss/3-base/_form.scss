@@ -1,51 +1,57 @@
 @charset "UTF-8";
 
 form {
-    label {
-        display: block;
+    text-align: right;
+    .input-wrapper {
+        margin-bottom: 38px;
+        @media(max-width: $bp-phone){
+            margin-bottom: 24px;
+        }
+    }
+    input, textarea {
+        color: $c-secondary-500;
+        padding: 16px;
+        width: 100%;
+        border: 1px solid #ebebeb;
+        font-size: .9rem;
+        letter-spacing: 0;
+        background: #f0f0f0;
+        border-radius: 5px;
+        font-weight: 600;
+        &:focus {
+            outline: 2px solid $c-primary-100;
+        }
+    }
 
-    }
-    span {
-        display: block;
-        margin-top: 30px;
-        color: $c-dark-100;
-        font-size: 1rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
-    input {
-        display: block;
-        width: 100%;
-        background: $c-dark-800;
-        padding: 1rem .5rem;
-        border: 2px solid transparent;
-        color: $c-dark-50;
-        &:focus {
-            outline: 0;
-            box-shadow: none;
-            border: 2px solid $c-primary-300;
-        }
-    }
-    textarea{
-        width: 100%;
-        background: $c-dark-800;
-        padding: 1rem .5rem;
-        border: 2px solid transparent;
-        color: $c-dark-50;
-        min-height: 150px;
-        &:focus {
-            outline: 0;
-            box-shadow: none;
-            border: 2px solid $c-primary-300;
-        }
+    label {
+        letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 0;
+    display: block;
+    text-align: left;
+    color: $c-secondary-500;
+    font-size: .9rem;
+    margin-bottom: 4px;
     }
     button {
-        margin-top: 30px;
-        padding: .5rem 2rem;
-        border-radius: 99px;
-        background: $c-primary-500;
         border: none;
-        color: $c-dark-50;
-        text-align: center;
+        @media(max-width: $bp-phone){
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
+
+.form-container {
+    box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
+    background: #fff;
+    padding: 3rem;
+    max-width: 750px;
+    width: 95%;
+    border-radius: 5px;
+    margin: 0 auto 0 auto;
+    @media(max-width: $bp-phone){
+        padding: 1.5rem;
     }
 }

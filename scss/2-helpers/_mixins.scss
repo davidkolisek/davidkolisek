@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@mixin transition($trans) {
+@mixin smooth-transition($trans) {
   -webkit-transition: $trans;
   -moz-transition: $trans;
   -o-transition: $trans;
