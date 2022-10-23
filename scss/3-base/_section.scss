@@ -1,6 +1,186 @@
 @charset "UTF-8";
 
 section {
-    min-height: 100vh;
-    padding: 4rem 0;
+    padding: 7rem 0;
+
+    @media(max-width: $bp-phone) {
+        padding: 3rem 0;
+    }
+
+    .section-heading-wrapper {
+        margin-bottom: 6rem;
+
+        @media(max-width: $bp-phone) {
+            margin-bottom: 4rem;
+        }
+
+        p {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            color: $c-secondary-500;
+            font-size: 1.2rem;
+
+            @media(max-width: $bp-phone) {
+                font-size: 1rem;
+            }
+        }
+
+        .section-heading {
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 56px;
+            color: $c-secondary-900;
+
+            @media(max-width: $bp-phone) {
+                margin-bottom: 37px;
+            }
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: calc(100% + 1.5rem);
+                height: 5px;
+                width: 2rem;
+                background: $c-primary-500;
+                left: 50%;
+                transform: translateX(-50%);
+                border-radius: 5px;
+
+                @media(max-width: $bp-phone) {
+                    top: calc(100% + 1rem);
+                }
+            }
+        }
+    }
+
+    &#home {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to right, rgba(245, 245, 245, .8), rgba(245, 245, 245, .8)), url(/images/bg-home.svg);
+
+        @media(max-width: $bp-tablet) {
+            height: auto;
+            padding: 8rem 0 6rem;
+        }
+
+        h1 {
+            margin-bottom: 36px;
+            text-transform: uppercase;
+        }
+
+
+        p {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        a {
+            margin: 36px auto 0;
+            display: inline-block;
+        }
+
+        .col-12 {
+            text-align: center;
+        }
+    }
+
+    &#about {
+        background: #fafafa;
+
+
+        .col-lg-6 {
+            h3 {
+                margin-bottom: 36px;
+            }
+
+            p {}
+
+            &:nth-child(2) {
+                .content-wrapper {
+                    padding: 0 56px 0 0;
+                    font-weight: 400;
+
+                    @media(max-width: $bp-tablet) {
+                        padding: 0;
+                    }
+
+                    p {
+                        color: $c-secondary-600;
+                        line-height: 1.6;
+                    }
+
+                    a {
+                        display: inline-block;
+                        margin-top: 24px;
+                    }
+                }
+            }
+
+            &:nth-child(3) {
+                .content-wrapper {
+                    padding: 0 0 0 56px;
+
+                    @media(max-width: $bp-tablet) {
+                        padding: 48px 0 0 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &#projects {
+        .project-item {
+
+            .col-12 {
+                display: flex;
+                align-items: center;
+            }
+
+            .img-wrapper {
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            .project-info {
+                @media(max-width: $bp-tablet) {
+                    text-align: center;
+                    padding: 0rem 0 2rem;
+                }
+
+                h3,
+                p,
+                a {
+                    margin-bottom: 24px;
+                    display: inline-block;
+                }
+
+                p {
+                    color: $c-secondary-600;
+                }
+            }
+        }
+    }
+
+    &#contact {
+        background: linear-gradient(to right, rgba(245, 245, 245, .8), rgba(245, 245, 245, .8)), url(/images/bg-home.svg);
+
+        .section-heading-wrapper {
+            p {
+                color: $c-secondary-700;
+                font-weight: 400;
+
+                @media(max-width: $bp-phone) {
+                    font-size: 1rem;
+                    line-height: 1.5;
+                }
+            }
+        }
+    }
 }

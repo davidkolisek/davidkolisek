@@ -1,5 +1,3 @@
-AOS.init({once: true});
-
 //year
 document.getElementById("year").innerHTML = (new Date).getFullYear();
 
@@ -47,24 +45,3 @@ Array.from(anchorScrools).map((anchorScrool) => {
     });
 });
 
-
-var isInViewport = function (elem) {
-	var distance = elem.getBoundingClientRect();
-    console.log(distance.top )
-	return (
-		distance.top >= 0 &&
-		distance.left >= 0 &&
-		distance.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-		distance.right <= (window.innerWidth || document.documentElement.clientWidth)
-	);
-};
-
-var findMe = document.querySelector('.md-about p');
-
-window.addEventListener('scroll', function (event) {
-	if (isInViewport(findMe)) {
-		console.log('In viewport!');
-	} else {
-    console.log('Nope...');
-  }
-}, false);

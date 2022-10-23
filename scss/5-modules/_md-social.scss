@@ -1,0 +1,40 @@
+.md-social {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
+    padding: 0.5rem;
+    @media(max-width: $bp-tablet){
+        display: none;
+    }
+    li {
+        span {
+            display: none;
+        }
+        a {
+            font-size: 1.7rem;
+            text-decoration: none;
+            line-height: normal;
+            color: $c-secondary-900;
+            padding: .5rem;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @include smooth-transition($primary-transition);
+            border-radius: 3px;
+            &:hover{
+                @include smooth-transition($primary-transition);
+                background: $c-primary-50;
+                color: $c-secondary-900;
+            }
+            i {
+
+
+            }
+        }
+    }
+}

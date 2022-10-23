@@ -1,63 +1,75 @@
 @charset "UTF-8";
 
-.ly-footer {
-  background: $c-dark-900;
-  padding: 3rem 0 2rem;
-  .img-wrapper {
-    img {
-      width: 120px;
-    }
-  }
-  h3 {
-    color: $c-dark-50;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-  }
-  ul {
-    li {
-      a {
-        font-size: 1rem;
-        color: $c-dark-400;
-        text-decoration: none;
-        margin-bottom: 1rem;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        @include transition($primary-transition);
-        i {
-          font-size: 1.25rem;
-          padding: 0.5rem;
-          border-radius: 99px;
-          margin-right: 1rem;
-          background: $c-dark-800;
-          color: $c-dark-400;
-          @include transition($primary-transition);
-        }
-        span {
-        }
-        &:hover {
-          opacity: 0.9;
-          color: $c-dark-50;
-          @include transition($primary-transition);
-          i {
-            background: $white_c;
-            color: $c-dark-900;
-            @include transition($primary-transition);
-          }
-        }
-      }
-    }
-  }
-  p {
-    padding-top: 1rem;
-    margin: 1rem 0 0;
-    width: 100%;
-    font-size: 0.9rem;
-    color: $c-dark-700;
-  }
-}
+.ly-footer{
+    background: $c-secondary-1000;
+    color: $c-secondary-50;
+    hr {
+        margin: 0;
+        padding: 0;
 
-.viewpoint {
-    color: red!important;
+    }
+    h3 {
+        text-transform: uppercase;
+        font-size: 1.25rem;
+        margin-bottom: 16px;
+    }
+    .row {
+        &:first-child {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            @media(max-width: $bp-phone){
+                padding-top: 3rem;
+                padding-bottom: 2rem;
+            }
+            p {
+                max-width: 400px;
+                line-height: 1.75;
+            }
+        }
+        &:last-child {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            @media(max-width: $bp-phone){
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+            p {
+                font-size: .7rem;
+                text-align: center;
+                a {
+                    font-weight: 900;
+                    color: $c-secondary-100;
+                }
+            }
+        }
+    }
+    .md-social {
+        padding: 0;
+        position: relative;
+        background: transparent;
+        flex-direction: row;
+        box-shadow: none;
+        transform: none;
+        top: 0;
+        left: 0;
+        display: flex;
+        @media(max-width: $bp-phone){
+            margin-bottom: 42px;
+        }
+        li {
+            a {
+                font-size: 1.5rem;
+                display: inline-block;
+                color: $c-secondary-50;
+                padding: 0!important;
+                width: auto;
+                height: auto;
+                margin-right: 16px;
+                &:hover{
+                    background: transparent;
+                    color: $c-secondary-100;
+                }
+            }
+        }
+    }
 }

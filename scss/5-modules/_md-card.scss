@@ -3,5 +3,5 @@
 .md-card{
   width: 100%;
   @include box-shadows($primary-box-shadow);
-  background: $white-c;
+  background: $c-white;
 }
