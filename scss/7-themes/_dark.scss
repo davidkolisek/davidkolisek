@@ -1,0 +1,149 @@
+$p-dark: #6b32cd !important;
+
+.dark-theme {
+    background: #272727;
+
+    .md-navbar {
+        background: #000;
+        .navbar-brand {
+            span {
+                color: #fff;
+            }
+        }
+        .navbar-toggler{
+            span {
+                background: #fff;
+            }
+        }
+
+        .logo-wrapper{
+            background-color: $p-dark;
+        }
+        .social-nav {
+            border-top-color: #333!important;
+        }
+    }
+    .ly-header:before {
+        background: #333;
+    }
+
+    .mouse-icon {
+        border-color: #fff;
+
+        .mouse-wheel {
+            background-color: #fff;
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    small,
+    strong,
+    ul,
+    li,
+    label,
+    a {
+        color: #fff !important;
+    }
+
+
+    a.main-btn-primary,
+    button.main-btn-primary {
+        background: $p-dark;
+    }
+
+    section {
+
+        &#home,
+        &#contact,&#pricing {
+            position: relative;
+
+            &:before {
+                content: '';
+                z-index: 1;
+                inset: 0;
+                background: rgba(0, 0, 0, .9);
+                position: absolute;
+            }
+
+
+            .container {
+                z-index: 3;
+                position: relative;
+            }
+        }
+
+        &#about {
+            background: #111;
+        }
+        .md-pricing-cards{
+            .pc {
+                background: #333;
+                box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
+                .price{
+                    span {
+                        &:nth-child(2){
+                            color: $warn-color;
+                        }
+                    }
+                }
+                ul {
+                    li {
+                        span {
+
+                        color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .md-social {
+        z-index: 999;
+        background: #111;
+
+        a {
+            &:hover {
+                background: #171717;
+            }
+        }
+    }
+
+    .md-badges {
+        li {
+            p {
+                background: #333 !important;
+                color: #999 !important;
+            }
+        }
+    }
+
+    footer {
+        .md-social {
+            background: transparent;
+        }
+    }
+
+    .section-heading {
+        &:before {
+            background: $p-dark;
+        }
+    }
+    .form-container{
+        background: #111;
+        input, textarea {
+            background: #444;
+            border-color: #444;
+            color: #fff;
+            &:focus{
+                outline: 1px solid #fff;
+            }
+        }
+    }
+}

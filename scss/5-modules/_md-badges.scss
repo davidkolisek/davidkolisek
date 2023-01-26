@@ -18,15 +18,43 @@
     p {
       padding: .3rem 1.1rem;
       background: $c-secondary-100;
+      color: $c-secondary-600;
       border-radius: 5px;
       font-weight: 600;
       margin: 0;
       font-size: 1rem;
-      color: $c-secondary-600;
 
       @media(max-width: $bp-tablet) {
         font-size: .9rem;
       }
+    }
+  }
+}
+
+.skills-list{
+  padding: 60px 40px 0;
+  z-index: 4;
+  li {
+    width: 90px;
+    height: 90px;
+    background: #fff;
+    padding: 8px;
+    border-radius: 99px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    &:nth-child(even){
+      margin: 0 0 0 auto;
+    }
+    &:nth-child(odd){
+      margin: 0 auto 0 0;
+    }
+    img {
+      height: 50px;
+      width: auto;
     }
   }
 }

@@ -1,0 +1,156 @@
+@charset "UTF-8";
+
+.md-work-availability {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    animation: fadeIn 2s ease-out;
+    @media(max-width: $bp-tablet){
+        display: none;
+    }
+//classa na busy status
+    &.off {
+        .pulse {
+
+            border: 3px solid #ff4242;
+        }
+
+        a {
+            background: #ff4242;
+
+            img {
+                -webkit-filter: grayscale(100%);
+                /* Safari 6.0 - 9.0 */
+                filter: grayscale(100%);
+            }
+
+            &:hover {
+                &+p {
+                    display: block;
+
+                    span {
+
+                        &:nth-child(1) {
+                            display: none;
+                        }
+
+                        &:nth-child(2) {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    p {
+        display: none;
+
+        span {
+
+            &:nth-child(1),
+            &:nth-child(2) {
+                display: none;
+                strong {
+                    font-weight: 600;}
+            }
+            &:nth-child(1){
+                strong {
+                    color: #7bed1b;
+                }
+            }
+            &:nth-child(2){
+                strong {
+                    color: #ff4242;
+                }
+            }
+        }
+
+        position: absolute;
+        box-shadow: 0 0 15px rgb(0 0 0 / 30%);
+        width: 200px;
+        border-radius: 15px;
+        border-bottom-right-radius: 0;
+        background: #fff;
+        left: -175px;
+        top: -80px;
+        padding: 12px;
+        font-size: .9rem;
+        line-height: 1.5;
+        color: $c-secondary-600;
+    }
+
+    .pulse {
+        border: 3px solid #7bed1b;
+        border-radius: 99px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 50px;
+        animation: pulsate 2s ease-out;
+        -webkit-animation: pulsate 2s ease-out;
+        -webkit-animation-iteration-count: infinite;
+        opacity: 0.0;
+        z-index: 997;
+    }
+
+    a {
+        background: #fff;
+        display: block;
+        width: 50px;
+        height: 50px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 99px;
+        z-index: 998;
+        background: #7bed1b;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        &:hover {
+            &+p {
+                display: block;
+
+                span {
+                    &:nth-child(1) {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes pulsate {
+    0% {
+        -webkit-transform: scale(0.1, 0.1);
+        opacity: 0.0;
+    }
+
+    50% {
+        opacity: 1.0;
+    }
+
+    100% {
+        -webkit-transform: scale(1.2, 1.2);
+        opacity: 0.0;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

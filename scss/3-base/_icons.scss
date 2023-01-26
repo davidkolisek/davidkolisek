@@ -37,6 +37,40 @@ $i-example: "\e900";
   }
 }
 
+
+.icon-help-circle:before {
+  content: "\e917";
+}
+.icon-alert-circle:before {
+  content: "\e915";
+}
+.icon-info:before {
+  content: "\e916";
+}
+.icon-minus:before {
+  content: "\e914";
+}
+.icon-plus:before {
+  content: "\e911";
+}
+.icon-close:before {
+  content: "\e912";
+}
+.icon-remove:before {
+  content: "\e912";
+}
+.icon-times:before {
+  content: "\e912";
+}
+.icon-check:before {
+  content: "\e913";
+}
+.icon-sun:before {
+  content: "\e910";
+}
+.icon-moon:before {
+  content: "\e90f";
+}
 .icon-user:before {
   content: "\e900";
 }

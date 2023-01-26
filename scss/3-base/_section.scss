@@ -2,16 +2,30 @@
 
 section {
     padding: 7rem 0;
-
+    scroll-margin-top: 70px;
+    height: auto;
     @media(max-width: $bp-phone) {
         padding: 3rem 0;
     }
+    .row {
+
+    }
+    div[data-hs*="f"], div[data-hs^="f"] {
+
+        @media(max-width: $bp-tablet) {
+            overflow: hidden;
+        }
+    } 
+
 
     .section-heading-wrapper {
         margin-bottom: 6rem;
 
-        @media(max-width: $bp-phone) {
+        @media(max-width: $bp-tablet) {
             margin-bottom: 4rem;
+        }
+        @media(max-width: $bp-phone) {
+            margin-bottom: 3rem;
         }
 
         p {
@@ -54,6 +68,26 @@ section {
         }
     }
 
+    &#faq{
+        .img-faq-wrapper{
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            @media(max-width: $bp-tablet){
+                display: none;
+            }
+            img {
+                width: 100%;
+                max-width: 380px;
+                filter: grayscale(100%);
+                opacity: .2;
+
+            }
+        }
+    }
+
     &#home {
         position: relative;
         height: 100vh;
@@ -65,7 +99,7 @@ section {
 
         @media(max-width: $bp-tablet) {
             height: auto;
-            padding: 8rem 0 6rem;
+            padding: 10rem 0 6rem;
         }
 
         h1 {
@@ -126,7 +160,7 @@ section {
                     padding: 0 0 0 56px;
 
                     @media(max-width: $bp-tablet) {
-                        padding: 48px 0 0 0;
+                        padding: 56px 0 0 0;
                     }
                 }
             }
@@ -139,12 +173,24 @@ section {
             .col-12 {
                 display: flex;
                 align-items: center;
+                @media(max-width: $bp-tablet) {
+                    display: block;
+                }
             }
 
+
             .img-wrapper {
+                padding:  5rem 0;
+                margin: 0 auto; 
+                width: 100%;
+                text-align: center;
+                @media(max-width: $bp-tablet) {
+                    padding: 0 0 3rem;
+                }
                 img {
                     width: 100%;
                     height: auto;
+                    max-width: 500px;
                 }
             }
 
@@ -159,6 +205,22 @@ section {
                 a {
                     margin-bottom: 24px;
                     display: inline-block;
+                    @media(max-width: $bp-tablet) {
+                        display: block;
+                        text-align: center;
+                    }
+
+                }
+                h3, p {
+                    display: block;
+                }
+
+                a {
+                    
+                    @media(max-width: $bp-tablet) {
+                        width: fit-content;
+                        margin: 0 auto 2rem;
+                    }
                 }
 
                 p {
@@ -168,7 +230,7 @@ section {
         }
     }
 
-    &#contact {
+    &#pricing {
         background: linear-gradient(to right, rgba(245, 245, 245, .8), rgba(245, 245, 245, .8)), url(/images/bg-home.svg);
 
         .section-heading-wrapper {
@@ -182,5 +244,6 @@ section {
                 }
             }
         }
+
     }
 }

@@ -1,0 +1,40 @@
+$font-path: "../fonts/Galano" !default;
+
+@font-face {
+    font-family: 'GalanoGrotesque-Bold';
+    src: url("#{$font-path}/GalanoGrotesque-Bold.eot");
+    src: url("#{$font-path}/GalanoGrotesque-Bold.woff2") format('woff2'),
+    /* Super Modern Browsers */
+    url("#{$font-path}/GalanoGrotesque-Bold.woff") format('woff'),
+    /* Pretty Modern Browsers */
+    url("#{$font-path}/GalanoGrotesque-Bold.ttf") format('truetype');
+    /* Safari, Android, iOS */
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GalanoGrotesque-Medium';
+    src: url("#{$font-path}/GalanoGrotesque-Medium.eot");
+    src: url("#{$font-path}/GalanoGrotesque-Medium.woff2") format('woff2'),
+    /* Super Modern Browsers */
+    url("#{$font-path}/GalanoGrotesque-Medium.woff") format('woff'),
+    /* Pretty Modern Browsers */
+    url("#{$font-path}/GalanoGrotesque-Medium.ttf") format('truetype');
+    /* Safari, Android, iOS */
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GalanoGrotesque-Light';
+    src: url("#{$font-path}/GalanoGrotesque-Light.eot");
+    src: url("#{$font-path}/GalanoGrotesque-Light.woff2") format('woff2'),
+    /* Super Modern Browsers */
+    url("#{$font-path}/GalanoGrotesque-Light.woff") format('woff'),
+    /* Pretty Modern Browsers */
+    url("#{$font-path}/GalanoGrotesque-Light.ttf") format('truetype');
+    /* Safari, Android, iOS */
+    font-weight: 300;
+    font-style: normal;
+}
