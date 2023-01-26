@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+.md-pricing-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    @media (max-width: $bp-phone) {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pc {
+        position: relative;
+        text-align: center;
+        width: 100%;
+        max-width: 320px;
+        background: #fff;
+        padding: 40px 20px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+    
+        @include box-shadows($primary-box-shadow);
+
+        @media (max-width: $bp-phone) {
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 1.15rem;
+        }
+        .action {
+            width: max-content;
+            align-self: center;
+            justify-self: flex-end;
+            display: flex;
+            height: 100%;
+        }
+        a {
+            display: flex;
+    align-self: flex-end;
+        }
+
+        p.price {
+            margin: 0;
+            text-align: center;
+            padding: 1.5rem 0;
+
+            span {
+                font-size: .9rem;
+                color: $c-f-primary-600;
+
+                &:nth-child(2) {
+                    font-size: 2.25rem;
+                    font-weight: 600;
+                    color: $c-primary-500;
+                }
+
+                &:nth-child(1) {
+                    display: inline-block;
+                    margin-right: .25rem;
+                }
+
+                &:nth-child(3) {
+                    display: inline-block;
+                    margin-left: .25rem;
+                }
+            }
+        }
+
+        ul {
+            padding-bottom: 40px;
+
+            li {
+                padding: .75rem 0 0;
+
+                i {
+                    color: $c-primary-300;
+                    display: inline-block;
+                    margin-right: .5rem;
+
+                    &.icon-check {}
+
+                    &.icon-close {
+                        opacity: .3;
+
+                        &+span {
+                            opacity: .3;
+                        }
+                    }
+
+                }
+
+                span {
+                    font-size: 1rem;
+                    color: $c-f-primary-600;
+                }
+            }
+        }
+
+        &-primary {
+            z-index: 2;
+            transform: scale(1.1, 1.1);
+            position: relative;
+            overflow: hidden;
+            @media (max-width: $bp-phone) {
+                transform: unset;
+                z-index: 1;
+            }
+
+            .popular-label {
+                text-transform: uppercase;
+                font-weight: 600;
+                color: #fff;
+                background: $c-tertialy-300;
+                font-size: 1.05rem;
+                transform: rotate(45deg);
+                position: absolute;
+                z-index: 3;
+                right: -33px;
+                top: 21px;
+                padding: 0 2rem;
+            }
+        }
+
+        &-secondary {
+            z-index: 1;
+        }
+    }
+}

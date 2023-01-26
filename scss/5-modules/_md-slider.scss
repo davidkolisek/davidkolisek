@@ -1,5 +1,16 @@
 @charset "UTF-8";
 
 .md-slider{
-    
+    .carousel-indicators {
+        margin-bottom: 0;
+        position: relative;
+        button {
+            background: $c-primary-500;
+            width: 16px;
+            height: 16px;
+            border: none;
+            border-radius: 99px;
+            margin: 0 8px;
+        }
+    }
 }

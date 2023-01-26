@@ -23,7 +23,7 @@
       left: 0;
       right: 0;
       top: 76px;
-      background: $c-secondary-100;
+      background: #eee;
       cursor: pointer;
     }
   }
@@ -31,14 +31,10 @@
 
 .scrolling {
   .ly-header {
-    max-width: 100%;
     top: 0;
     transition: $primary-transition;
 
     .container {
-      width: 100% !important;
-      max-width: 100% !important;
-      padding: 0 !important;
       transition: $primary-transition;
     }
   }

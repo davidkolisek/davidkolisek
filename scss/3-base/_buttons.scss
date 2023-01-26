@@ -3,12 +3,11 @@
 .main-btn {
   text-decoration: none;
   letter-spacing: 1px;
-  box-shadow: 0 5px 15px 0 rgb(0 0 0 / 15%);
   display: inline-block;
   border-radius: 5px;
-  font-weight: 600;
-  text-transform: uppercase;
+  font-weight: 500;
   line-height: normal;
+  font-family: $f-primary-medium;
   @include smooth-transition($primary-transition);
   &:focus {
     outline: 0 !important;
@@ -20,35 +19,40 @@
     @include smooth-transition($primary-transition);
   }
   &-primary {
-    background-color: $c-primary-500;
+    background-color: $c-primary-400;
     color: $c-white;
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 15%);
     @include smooth-transition($primary-transition);
 
     &:hover {
-      background-color: $c-primary-400;
+      background-color: $c-primary-300;
       color: $c-white;
       @include smooth-transition($primary-transition);
     }
 
     &:active {
-      background-color: $c-primary-600;
+      background-color: $c-primary-500;
       color: $c-white;
       @include smooth-transition($primary-transition);
     }
   }
 
   &-secondary {
-    background-color: $c-secondary-500;
-    color: $c-white;
+    background-color: $c-secondary-400;
+    color: $c-black;
+    letter-spacing: 0;
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 15%);
     @include smooth-transition($primary-transition);
 
     &:hover {
-      background-color: $c-secondary-400;
+      background-color: $c-secondary-300;
+      color: $c-black;
       @include smooth-transition($primary-transition);
     }
 
     &:active {
-      background-color: $c-secondary-600;
+      background-color: $c-secondary-500;
+      color: $c-black;
       @include smooth-transition($primary-transition);
     }
   }
@@ -58,6 +62,7 @@
       background: transparent;
       border: 1px solid $c-primary-500;
       color: $c-white;
+      box-shadow: 0 5px 15px 0 rgb(0 0 0 / 15%);
       @include smooth-transition($primary-transition);
 
       &:hover {
@@ -76,6 +81,7 @@
       background: transparent;
       border: 1px solid $c-primary-500;
       color: $c-white;
+      box-shadow: 0 5px 15px 0 rgb(0 0 0 / 15%);
       @include smooth-transition($primary-transition);
 
       &:hover {
@@ -172,5 +178,50 @@
   100% {
     margin-top: 20px;
     opacity: 0;
+  }
+}
+
+.theme-switcher {
+  margin-left: 16px;
+  &:before{
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background: $c-secondary-50;
+    left: -8px;
+    @media (max-width: $bp-tablet){
+      display: none;
+    }
+  }
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: $bp-tablet){
+    margin: 0 0 0 auto;
+  }
+  @include smooth-transition($primary-transition);
+  i {
+    @include smooth-transition($primary-transition);
+    color: $c-secondary-800;
+    font-size: 1.5rem;
+    &.icon-sun {
+      color: #fff;
+    }
+  }
+  &:hover{
+    @include smooth-transition($primary-transition);
+    i {
+      @include smooth-transition($primary-transition);
+      color: $c-primary-600;
+      &.icon-sun {
+        color: #6b32cd;
+      }
+    }
   }
 }

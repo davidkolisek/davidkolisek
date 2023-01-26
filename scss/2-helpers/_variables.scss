@@ -2,29 +2,55 @@
 $warn-color: #d33741;
 
 //primary
-$c-primary-50: #d9f9ff;
-$c-primary-100: #ace8ff;
-$c-primary-200: #7dd9fe;
-$c-primary-300: #4cc8fc;
-$c-primary-400: #1eb8fa;
-$c-primary-500: #059fe1;
-$c-primary-600: #007cb0;
-$c-primary-700: #00587f;
-$c-primary-800: #00364f;
-$c-primary-900: #00141f;
+$c-primary-50: #ffe7e0;
+$c-primary-100: #ffbfb0;
+$c-primary-200: #ff977f;
+$c-primary-300: #fe6e4d;
+$c-primary-400: #fd461c;
+$c-primary-500: #e32c02;
+$c-primary-600: #b22101;
+$c-primary-700: #7f1700;
+$c-primary-800: #4f0b00;
+$c-primary-900: #200100;
 
 //secondary
-$c-secondary-50: #f2f2f2;
-$c-secondary-100: #e7e7e7;
-$c-secondary-200: #bfbfbf;
-$c-secondary-300: #a6a6a6;
-$c-secondary-400: #8c8c8c;
-$c-secondary-500: #737373;
-$c-secondary-600: #555;
-$c-secondary-700: #333;
-$c-secondary-800: #262626;
-$c-secondary-900: #111;
-$c-secondary-1000: #000;
+$c-secondary-50: #fffada;
+$c-secondary-100: #fff1ad;
+$c-secondary-200: #ffe87d;
+$c-secondary-300: #ffdf4b;
+$c-secondary-400: #ffd61a;
+$c-secondary-500: #e6bc00;
+$c-secondary-600: #b39200;
+$c-secondary-700: #806900;
+$c-secondary-800: #4d3f00;
+$c-secondary-900: #1c1500;
+
+//tertialy
+$c-tertialy-50: #e3e6ff;
+$c-tertialy-100: #b2b8ff;
+$c-tertialy-200: #7f89ff;
+$c-tertialy-300: #4d5aff;
+$c-tertialy-400: #1d2bfe;
+$c-tertialy-500: #0513e5;
+$c-tertialy-600: #000eb3;
+$c-tertialy-700: #000a81;
+$c-tertialy-800: #000550;
+$c-tertialy-900: #000120;
+
+//font colors
+$c-f-primary-50: #f8f0f2;
+$c-f-primary-100: #d9d9d9;
+$c-f-primary-200: #bfbfbf;
+$c-f-primary-300: #a6a6a6;
+$c-f-primary-400: #8c8c8c;
+$c-f-primary-500: #737373;
+$c-f-primary-600: #595959;
+$c-f-primary-700: #404040;
+$c-f-primary-800: #262626;
+$c-f-primary-900: #081121;
+
+//warn
+$c-warn-500: #ff5100;
 
 //other colors
 $c-white: #fff;
@@ -35,11 +61,14 @@ $bp-phone-small: 576px;
 $bp-phone: 768px;
 $bp-tablet: 991px;
 $bp-laptop: 1199px;
+$bp-desktop: 1399px;
 
 //fonts
 $default-fs: 16px;
-$f-primary: "Source Sans Pro", sans-serif;
-$f-secondary: "Times New Roman", sans-serif;
+$f-primary-bold: "Poppins", sans-serif;
+$f-primary-medium: "Poppins", sans-serif;
+$f-primary-light: "Poppins", sans-serif;
+// $f-secondary: "Times New Roman", sans-serif;
 
 //transition
 $primary-transition: all 0.3s;

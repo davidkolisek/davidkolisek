@@ -3,6 +3,22 @@ document.getElementById("year").innerHTML = (new Date).getFullYear();
 
 //scroll down add class in to body
 document.addEventListener('DOMContentLoaded', function () {
+    //humble
+
+const scroll = new HumbleScroll({
+    enableCallback: true,
+    repeat: false,
+    mirror: true,
+    threshold: 0.25,
+    offset: {
+      top: -200,
+      bottom: -200,
+    },
+  })
+  
+  
+    //end humble
+
     let scrollPos = window.scrollY;
     let body = document.querySelector('.ly-body');
 
@@ -22,6 +38,22 @@ document.addEventListener('DOMContentLoaded', function () {
             remove_class_on_scroll();
         }
     });
+
+    //theme switcher
+// document.querySelector('.theme-switcher').addEventListener('click', function () {
+//     let b = document.querySelector('body');
+//     let icon = document.querySelector('.theme-switcher i');
+//     if (b.classList.contains('dark-theme')){
+//         b.classList.remove('dark-theme')
+//         icon.classList.remove('icon-sun');
+//         icon.classList.add('icon-moon');
+//     }
+//     else {
+//         b.classList.add("dark-theme")
+//         icon.classList.add('icon-sun');
+//         icon.classList.remove('icon-moon');
+//     }
+// });
 });
 
 //if page is one-page
@@ -39,9 +71,11 @@ document.addEventListener('click', function () {
 //remove show class on phone breakpoint
 const anchorScrools = document.querySelectorAll('.nav-link');
 const collapse = document.querySelector('.navbar-collapse');
+const brgr = document.querySelector('.navbar-toggler');
 Array.from(anchorScrools).map((anchorScrool) => {
     anchorScrool.addEventListener('click', function () {
         collapse.classList.remove('show');
+        brgr.classList.add('collapse');
     });
 });
 
