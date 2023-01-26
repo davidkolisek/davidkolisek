@@ -88,7 +88,7 @@ $p-dark: #6b32cd !important;
                 .price{
                     span {
                         &:nth-child(2){
-                            color: $c-warn-500;
+                            color: $warn-color;
                         }
                     }
                 }

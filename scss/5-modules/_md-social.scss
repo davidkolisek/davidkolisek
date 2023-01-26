@@ -1,15 +1,11 @@
 .md-social {
     position: fixed;
     left: 0;
-    top: 20%;
+    top: 40%;
     transform: translateY(-50%);
     background: #fff;
     box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
     padding: 0.5rem;
-    z-index: 99;
-    @media(max-width: $bp-laptop){
-        top: 200px
-    }
     @media(max-width: $bp-tablet){
         display: none;
     }

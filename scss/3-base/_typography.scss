@@ -14,38 +14,31 @@ li {
   position: relative;
 }
 
-h1,.h1,
-h2,.h2,
-h3,.h3,
-h4,.h4,
-h5,.h5,
-h6,.h6{
-  font-family: $f-primary-bold;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  letter-spacing: 3px;
 }
 
-strong {
-  font-family: $f-primary-bold;
-}
 h1,
 .h1 {
-  font-size: 5.5rem;
-  @media (max-width: $bp-desktop) {
-    font-size: 4rem;
-  }
+  font-size: 3.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
   @media (max-width: $bp-laptop) {
     font-size: 4rem;
   }
   @media (max-width: $bp-tablet) {
     font-size: 3rem;
   }
-  @media (max-width: $bp-phone) {
-    font-size: 2.5rem;
-  }
 }
 h2,
 .h2 {
   font-size: 2.7rem;
-  font-weight: 600;
+  font-weight: 700;
   @media (max-width: $bp-tablet) {
     font-size: 2.5rem;
   }
@@ -56,6 +49,7 @@ h2,
 h3,
 .h3 {
   font-size: 1.7rem;
+  font-weight: 700;
   letter-spacing: 0;
   @media (max-width: $bp-tablet) {
     font-size: 1.7rem;
@@ -79,10 +73,9 @@ h6,
 
 p,.p-regular {
   font-size: 1.125rem;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.02rem;
   line-height: 32px;
-  font-family: $f-primary-medium;
   @media(max-width: $bp-tablet){
     font-size: 1rem;
   }
@@ -91,7 +84,6 @@ p,.p-regular {
 .p-large {
   font-size: 1.3rem;
   line-height: 1.75;
-  font-family: $f-primary-medium;
   @media (max-width: $bp-tablet) {
     font-size: 1.15rem;
   }
@@ -99,7 +91,6 @@ p,.p-regular {
 
 .p-small {
   font-size: 0.9rem;
-  font-family: $f-primary-medium;
 }
 
 .overline-large {
@@ -107,7 +98,6 @@ p,.p-regular {
   letter-spacing: 0.01rem;
   font-size: 1.25rem;
   font-weight: 300;
-  font-family: $f-primary-medium;
   @media (max-width: $bp-tablet) {
     font-size: 1rem;
   }
@@ -116,28 +106,16 @@ p,.p-regular {
   text-transform: uppercase;
   letter-spacing: 0.01rem;
   font-size: 1rem;
-  font-family: $f-primary-medium;
   font-weight: 300;
 }
 .overline-small {
   text-transform: uppercase;
-  font-family: $f-primary-medium;
   letter-spacing: 0.01rem;
   font-size: 0.9rem;
   font-weight: 300;
   @media (max-width: $bp-tablet) {
     font-size: 0.8rem;
   }
-}
-
-.f-primary-bold{
-  font-family: $f-primary-bold;
-}
-.f-primary-medium{
-  font-family: $f-primary-medium;
-}
-.f-primary-light{
-  font-family: $f-primary-light;
 }
 
 //FONT-WEIGHT

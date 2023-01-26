@@ -3,11 +3,12 @@
 .main-btn {
   text-decoration: none;
   letter-spacing: 1px;
+  box-shadow: 0 5px 15px 0 rgb(0 0 0 / 15%);
   display: inline-block;
   border-radius: 5px;
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
   line-height: normal;
-  font-family: $f-primary-medium;
   @include smooth-transition($primary-transition);
   &:focus {
     outline: 0 !important;
@@ -19,40 +20,35 @@
     @include smooth-transition($primary-transition);
   }
   &-primary {
-    background-color: $c-primary-400;
+    background-color: $c-primary-500;
     color: $c-white;
-    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 15%);
     @include smooth-transition($primary-transition);
 
     &:hover {
-      background-color: $c-primary-300;
+      background-color: $c-primary-400;
       color: $c-white;
       @include smooth-transition($primary-transition);
     }
 
     &:active {
-      background-color: $c-primary-500;
+      background-color: $c-primary-600;
       color: $c-white;
       @include smooth-transition($primary-transition);
     }
   }
 
   &-secondary {
-    background-color: $c-secondary-400;
-    color: $c-black;
-    letter-spacing: 0;
-    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 15%);
+    background-color: $c-secondary-500;
+    color: $c-white;
     @include smooth-transition($primary-transition);
 
     &:hover {
-      background-color: $c-secondary-300;
-      color: $c-black;
+      background-color: $c-secondary-400;
       @include smooth-transition($primary-transition);
     }
 
     &:active {
-      background-color: $c-secondary-500;
-      color: $c-black;
+      background-color: $c-secondary-600;
       @include smooth-transition($primary-transition);
     }
   }
@@ -62,7 +58,6 @@
       background: transparent;
       border: 1px solid $c-primary-500;
       color: $c-white;
-      box-shadow: 0 5px 15px 0 rgb(0 0 0 / 15%);
       @include smooth-transition($primary-transition);
 
       &:hover {
@@ -81,7 +76,6 @@
       background: transparent;
       border: 1px solid $c-primary-500;
       color: $c-white;
-      box-shadow: 0 5px 15px 0 rgb(0 0 0 / 15%);
       @include smooth-transition($primary-transition);
 
       &:hover {
@@ -223,5 +217,18 @@
         color: #6b32cd;
       }
     }
+  }
+}
+
+.btn-disabled{
+  background: $c-secondary-200!important;
+  color: $c-secondary-50!important;
+  &:hover{
+    background: $c-secondary-200!important;
+    color: $c-secondary-50!important;
+    cursor: pointer;
+    transform: none!important;
+    box-shadow: none!important;
+
   }
 }
