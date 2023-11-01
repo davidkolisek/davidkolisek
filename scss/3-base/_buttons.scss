@@ -36,6 +36,23 @@
       @include smooth-transition($primary-transition);
     }
   }
+  &-dark {
+    background-color: #272727;
+    color: $c-white;
+    @include smooth-transition($primary-transition);
+
+    &:hover {
+      background-color: #272727;
+      color: $c-white;
+      @include smooth-transition($primary-transition);
+    }
+
+    &:active {
+      background-color: #272727;
+      color: $c-white;
+      @include smooth-transition($primary-transition);
+    }
+  }
 
   &-secondary {
     background-color: $c-secondary-500;

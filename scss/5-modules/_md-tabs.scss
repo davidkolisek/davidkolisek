@@ -1,0 +1,24 @@
+.md-tabs {
+  .nav-tabs {
+    border: none;
+    justify-content: center;
+    li {
+      button {
+
+        &.main-btn {
+          background: #272727;
+          color: #fff;
+          border: none;
+          margin: 0 8px;
+          &.active {
+
+          }
+        }
+      }
+    }
+  }
+
+  .tab-content {
+
+  }
+}
