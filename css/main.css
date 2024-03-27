@@ -1435,6 +1435,7 @@ ul, ol {
   background: #fff;
   padding: 24px;
   border-radius: 15px;
+  height: 100%;
 }
 
 .md-navbar {
