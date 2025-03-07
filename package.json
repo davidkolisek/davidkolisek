@@ -10,8 +10,5 @@
   "bugs": {
     "url": "https://github.com/davidkolisek/start_template/issues"
   },
-  "homepage": "https://github.com/davidkolisek/start_template#readme",
-  "dependencies": {
-    "bootstrap": "^5.0.0-alpha1"
-  }
+  "homepage": "https://github.com/davidkolisek/start_template#readme"
 }

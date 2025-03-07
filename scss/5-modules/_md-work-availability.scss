@@ -57,7 +57,7 @@
             }
             &:nth-child(1){
                 strong {
-                    color: #7bed1b;
+                    color: #007c18;
                 }
             }
             &:nth-child(2){
@@ -68,7 +68,7 @@
         }
 
         position: absolute;
-        box-shadow: 0 0 15px rgb(0 0 0 / 30%);
+        box-shadow: $primary-box-shadow;
         width: 200px;
         border-radius: 15px;
         border-bottom-right-radius: 0;

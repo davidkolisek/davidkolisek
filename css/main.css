@@ -934,7 +934,21 @@ h3,
 
 h4,
 .h4 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+@media (max-width: 991px) {
+  h4,
+  .h4 {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 768px) {
+  h4,
+  .h4 {
+    font-size: 1.1rem;
+  }
 }
 
 h5,
@@ -951,7 +965,7 @@ p, .p-regular {
   font-size: 1.125rem;
   font-weight: 500;
   letter-spacing: 0.02rem;
-  line-height: 32px;
+  line-height: 1.8;
 }
 @media (max-width: 991px) {
   p, .p-regular {
@@ -1895,7 +1909,7 @@ a[name] {
 .md-work-availability p {
   display: none;
   position: absolute;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   width: 200px;
   border-radius: 15px;
   border-bottom-right-radius: 0;
@@ -1914,7 +1928,7 @@ a[name] {
   font-weight: 600;
 }
 .md-work-availability p span:nth-child(1) strong {
-  color: #7bed1b;
+  color: #007c18;
 }
 .md-work-availability p span:nth-child(2) strong {
   color: #ff4242;
