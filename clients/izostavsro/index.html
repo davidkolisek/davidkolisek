@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IZOSTAV, spol. s r. o. — spracovanie guľatiny na stavebné rezivo, paletové rezivo, štiepku a krovy na mieru v Borskom Svätom Jure.">
+    <title>IZOSTAV, spol. s r. o. — stavebné rezivo a spracovanie dreva</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Poppins:wght@100..900&amp;family=Fira+Code:wght@300..700&amp;family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    <style type="text/tailwindcss">
+      @import "tailwindcss";
+      @theme inline {
+        --color-background: var(--background);
+        --color-foreground: var(--foreground);
+        --color-primary: var(--primary);
+        --color-primary-foreground: var(--primary-foreground);
+        --color-secondary: var(--secondary);
+        --color-secondary-foreground: var(--secondary-foreground);
+        --color-tertiary: var(--tertiary);
+        --color-muted: var(--muted);
+        --color-muted-foreground: var(--muted-foreground);
+        --color-accent: var(--accent);
+        --color-destructive: var(--destructive);
+        --color-card: var(--card);
+        --color-card-foreground: var(--card-foreground);
+        --color-border: var(--border);
+        --color-input: var(--input);
+        --color-ring: var(--ring);
+        --radius-sm: calc(var(--radius) - 4px);
+        --radius-md: calc(var(--radius) - 2px);
+        --radius-lg: var(--radius);
+        --font-family-sans: var(--font-sans);
+        --font-family-heading: var(--font-heading);
+        --font-family-mono: var(--font-mono);
+      }
+      :root {
+        --background: #f7f2ea;
+        --foreground: #2f241d;
+        --primary: #4a3728;
+        --primary-foreground: #f8f4ee;
+        --secondary: #efe6da;
+        --secondary-foreground: #3b2d24;
+        --tertiary: #a67c52;
+        --muted: #f2ebe2;
+        --muted-foreground: #746457;
+        --accent: #c98b4a;
+        --accent-foreground: #1C1917;
+        --card: #fffaf4;
+        --card-foreground: #2f241d;
+        --destructive: #EF4444;
+        --border: #e5d7c7;
+        --input: #dccbbb;
+        --ring: #c98b4a;
+        --radius: 1rem;
+        --font-sans: Inter,sans-serif;
+        --font-heading: Inter,sans-serif;
+        --font-mono: JetBrains Mono, monospace;
+        --shadow-offset-x: 0;
+        --shadow-offset-y: 10;
+        --shadow-blur: 30;
+        --shadow-spread: -8;
+        --shadow-color: rgba(15, 23, 42, 0.12);
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div data-page="vod-slu-by-industrial-b2b-portal">
+
+<div class="min-h-screen w-full bg-background flex flex-col relative text-foreground font-sans">
+  <header class="sticky top-0 z-40 bg-background/95 border-b border-border backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-6 py-2 relative">
+      <div class="flex items-center justify-between gap-4">
+        <a href="#uvod" class="flex items-center shrink-0 min-w-0">
+          <img src="logo.png" alt="IZOSTAV, spol. s r. o." class="header-logo">
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8 text-sm text-foreground">
+          <a href="#uvod" class="hover:text-primary transition-colors">Úvod</a>
+          <a href="#sluzby" class="hover:text-primary transition-colors">Služby</a>
+          <a href="#cennik" class="hover:text-primary transition-colors">Cenník</a>
+          <a href="#projekty" class="hover:text-primary transition-colors">Projekty</a>
+          <a href="#kontakt" class="hover:text-primary transition-colors">Kontakt</a>
+        </nav>
+
+        <div class="hidden md:flex items-center gap-3">
+          <a href="#cennik" class="inline-flex min-h-11 items-center justify-center rounded-full bg-primary text-primary-foreground px-5 py-3 text-sm font-medium shadow-md hover:bg-secondary hover:text-secondary-foreground transition-colors whitespace-nowrap">Vyžiadať ponuku</a>
+        </div>
+
+        <button type="button" id="mobile-menu-button" class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl border border-border bg-card text-foreground hover:bg-muted transition-colors" aria-label="Otvoriť navigáciu" aria-expanded="false" aria-controls="mobile-menu">
+          <iconify-icon icon="lucide:menu" class="text-2xl" id="mobile-menu-icon"></iconify-icon>
+        </button>
+      </div>
+
+      <nav id="mobile-menu" class="hidden lg:hidden absolute left-4 right-4 top-[calc(100%+0.5rem)] z-50 rounded-2xl border border-border bg-white shadow-lg p-3">
+        <div class="flex flex-col gap-1 text-sm font-medium">
+          <a href="#uvod" class="mobile-menu-link rounded-xl px-4 py-3 hover:bg-muted transition-colors">Úvod</a>
+          <a href="#sluzby" class="mobile-menu-link rounded-xl px-4 py-3 hover:bg-muted transition-colors">Služby</a>
+          <a href="#cennik" class="mobile-menu-link rounded-xl px-4 py-3 hover:bg-muted transition-colors">Cenník</a>
+          <a href="#projekty" class="mobile-menu-link rounded-xl px-4 py-3 hover:bg-muted transition-colors">Projekty</a>
+          <a href="#kontakt" class="mobile-menu-link rounded-xl px-4 py-3 hover:bg-muted transition-colors">Kontakt</a>
+          <a href="#cennik" class="mobile-menu-link mt-2 inline-flex min-h-11 items-center justify-center rounded-full bg-primary text-primary-foreground px-5 py-3 text-sm font-semibold shadow-md">Vyžiadať ponuku</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <section id="uvod" class="py-16 md:py-24 bg-background">
+      <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center rounded-full bg-secondary text-secondary-foreground px-4 py-2 text-sm">Vlastná výroba v Borskom Svätom Jure</div>
+          <h1 class="text-2xl md:text-5xl font-heading font-bold text-foreground leading-tight">IZOSTAV, spol. s r. o. — od roku 2002 spracovávame guľatinu vo vlastnej prevádzke na stavebné rezivo.</h1>
+          <p class="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">Spracovávame guľatinu priamo vo vlastnom areáli na stavebné rezivo, paletové rezivo, štiepku a krovy na mieru. Pre firemných odberateľov je dôležité vedieť, čo vyrábame, aké úpravy vieme zabezpečiť a ako rýchlo sa dostanú k naceneniu — preto je táto stránka postavená presne týmto spôsobom.</p>
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="#cennik" class="inline-flex min-h-11 items-center justify-center rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-medium shadow-md hover:bg-secondary hover:text-secondary-foreground transition-colors">Vyžiadať ponuku</a>
+            <a href="#sluzby" class="inline-flex min-h-11 items-center justify-center rounded-full bg-card text-card-foreground border border-border px-6 py-3 text-sm font-medium hover:bg-secondary transition-colors">Pozrieť sortiment</a>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+            <div class="rounded-xl bg-card border border-border p-4 shadow-sm">
+              <div class="text-sm text-muted-foreground">Založené</div>
+              <div class="text-2xl font-heading font-semibold text-primary">2002</div>
+            </div>
+            <div class="rounded-xl bg-card border border-border p-4 shadow-sm">
+              <div class="text-sm text-muted-foreground">Typ prevádzky</div>
+              <div class="text-lg font-heading font-semibold text-primary">Vlastná píla a spracovanie</div>
+            </div>
+            <div class="rounded-xl bg-card border border-border p-4 shadow-sm">
+              <div class="text-sm text-muted-foreground">Dosah</div>
+              <div class="text-lg font-heading font-semibold text-primary">SK · CZ · AT</div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="rounded-3xl overflow-hidden bg-card border border-border shadow-md">
+            <img src="../assets/images/image-001.jpg" alt="Výrobná prevádzka IZOSTAV v Borskom Svätom Jure" class="w-full h-80 object-cover">
+            <div class="p-5 bg-card text-card-foreground">
+              <div class="text-sm font-medium text-primary">Dôkaz výrobnej kapacity</div>
+              <p class="text-sm text-muted-foreground leading-relaxed mt-2">Jeden reálny záber z prevádzky používame zámerne ako dôkaz vlastného spracovania dreva — nie ako dekoráciu. Ďalšie fotografie je možné doplniť neskôr ako dôkazové bloky pre areál, sklad alebo hotové produkty.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sluzby" class="py-16 md:py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-6 space-y-10">
+        <div class="max-w-3xl space-y-3">
+          <div class="text-sm text-primary font-medium">Služby a sortiment</div>
+          <h2 class="text-2xl md:text-4xl font-heading font-bold text-foreground">Jasne rozdelený katalóg pre nákup, výstavbu a zákazkovú výrobu</h2>
+          <p class="text-base text-muted-foreground leading-relaxed">Ponuku nechávame čitateľnú a vecnú. Namiesto dekoratívnych kariet je obsah rozdelený do samostatných produktových blokov, aby si nákupca vedel rýchlo vybrať relevantnú kategóriu a nadviazať dopyt.</p>
+        </div>
+
+        <div class="rounded-3xl bg-card border border-border shadow-md overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-0 border-b border-border">
+            <div class="p-5 bg-muted text-sm font-medium text-muted-foreground">Kategória</div>
+            <div class="p-5 bg-muted text-sm font-medium text-muted-foreground">Obsah</div>
+            <div class="p-5 bg-muted text-sm font-medium text-muted-foreground">Možnosť úpravy</div>
+            <div class="p-5 bg-muted text-sm font-medium text-muted-foreground">Vhodné pre</div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-0 border-b border-border">
+            <div class="p-6 text-lg font-heading font-semibold text-primary">Stavebné rezivo</div>
+            <div class="p-6 text-sm text-foreground leading-relaxed">Hranoly, fošne, dosky, strešné laty</div>
+            <div class="p-6 text-sm text-muted-foreground leading-relaxed">Rezanie podľa požiadaviek zákazníka a dostupného vstupného materiálu</div>
+            <div class="p-6 text-sm text-muted-foreground leading-relaxed">Stavebné firmy, tesári, výrobcovia drevených konštrukcií</div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-0 border-b border-border">
+            <div class="p-6 text-lg font-heading font-semibold text-primary">Štiepka a piliny</div>
+            <div class="p-6 text-sm text-foreground leading-relaxed">Vedľajšie produkty vznikajúce pri spracovaní dreva</div>
+            <div class="p-6 text-sm text-muted-foreground leading-relaxed">Dostupnosť podľa aktuálnej výroby a skladových zásob</div>
+            <div class="p-6 text-sm text-muted-foreground leading-relaxed">Ďalšie spracovanie, vykurovanie, priemyselné použitie</div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-0 border-b border-border">
+            <div class="p-6 text-lg font-heading font-semibold text-primary">Rezivo na výrobu paliet</div>
+            <div class="p-6 text-sm text-foreground leading-relaxed">Paletové prírezy a rezivo podľa požiadaviek zákazníka</div>
+            <div class="p-6 text-sm text-muted-foreground leading-relaxed">Formáty a skladba podľa odberu a výrobného zadania</div>
+            <div class="p-6 text-sm text-muted-foreground leading-relaxed">Výrobcovia paliet, logistické a obalové firmy</div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-0 border-b border-border">
+            <div class="p-6 text-lg font-heading font-semibold text-primary">Krov na mieru</div>
+            <div class="p-6 text-sm text-foreground leading-relaxed">Krov podľa požiadaviek zákazníka a projektovej dokumentácie</div>
+            <div class="p-6 text-sm text-muted-foreground leading-relaxed">Presné zákazkové spracovanie podľa projektovej dokumentácie a požiadaviek zákazníka</div>
+            <div class="p-6 text-sm text-muted-foreground leading-relaxed">Tesárske partie, stavebné firmy, developeri</div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-0">
+            <div class="p-6 text-lg font-heading font-semibold text-primary">Obchodovanie s drevom</div>
+            <div class="p-6 text-sm text-foreground leading-relaxed">Obchod s drevom a drevnými sortimentmi nad rámec vlastnej výroby</div>
+            <div class="p-6 text-sm text-muted-foreground leading-relaxed">Podľa aktuálnej ponuky a dopytu trhu</div>
+            <div class="p-6 text-sm text-muted-foreground leading-relaxed">Traders, veľkoodber, regionálne zásobovanie</div>
+          </div>
+        </div>
+
+        <div class="rounded-3xl bg-background border border-border p-6 md:p-8 shadow-sm grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+          <div class="lg:col-span-2 space-y-3">
+            <h3 class="text-lg font-heading font-semibold text-foreground">Potrebujete vlastný rozmer alebo zákazkové riešenie?</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">Hlavná výhoda vlastného spracovania je schopnosť reagovať na presnejšie požiadavky. Pri krove na mieru, paletovom rezive alebo atypických formátoch je vhodné poslať dopyt s rozmermi, množstvom a termínom.</p>
+          </div>
+          <div class="flex lg:justify-end">
+            <a href="#cennik" class="inline-flex min-h-11 items-center justify-center rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-medium shadow-md hover:bg-secondary hover:text-secondary-foreground transition-colors">Kontaktovať výrobu</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-20 bg-background">
+      <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-5 space-y-4">
+          <div class="text-sm text-primary font-medium">Poloha a logistika</div>
+          <h2 class="text-2xl md:text-4xl font-heading font-bold text-foreground">Borský Svätý Jur ako prirodzený uzol pre Slovensko, Rakúsko a Česko</h2>
+          <p class="text-base text-muted-foreground leading-relaxed">Lokalita je praktický argument, nie marketingová ozdoba. Pri nákupe dreva a polotovarov rozhoduje aj dostupnosť pre dopravu a obsluhu regiónu. Preto zvýrazňujeme polohu prevádzky a jej cezhraničný dosah.</p>
+          <div class="rounded-3xl overflow-hidden border border-border shadow-md">
+            <img src="../assets/images/image-002.jpg" alt="Areál a prevádzka IZOSTAV" class="w-full h-56 md:h-64 object-cover">
+          </div>
+        </div>
+        <div class="lg:col-span-7 rounded-3xl bg-card border border-border shadow-md p-6 md:p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="rounded-2xl bg-secondary p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center"><iconify-icon icon="lucide:map-pin" class="text-lg"></iconify-icon></div>
+                <div class="text-lg font-heading font-semibold text-primary">Výrobná lokalita</div>
+              </div>
+              <p class="text-sm text-muted-foreground leading-relaxed">Borský Svätý Jur, v priestore medzi Rakúskom, Českou republikou, Slovenskom a regiónom Záhoria. Výhodné pre regionálnu obsluhu aj cezhraničné obchodné vzťahy.</p>
+            </div>
+            <div class="rounded-2xl bg-secondary p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center"><iconify-icon icon="lucide:truck" class="text-lg"></iconify-icon></div>
+                <div class="text-lg font-heading font-semibold text-primary">Logistické otázky</div>
+              </div>
+              <p class="text-sm text-muted-foreground leading-relaxed">Dodacie rádiusy, vlastná doprava a expedičné možnosti riešime individuálne podľa konkrétnej objednávky, množstva a miesta dodania.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+            <div class="rounded-2xl border border-border bg-background p-5">
+              <div class="text-sm text-muted-foreground">Slovensko</div>
+              <div class="text-lg font-heading font-semibold text-primary">Záhorie a širší región</div>
+            </div>
+            <div class="rounded-2xl border border-border bg-background p-5">
+              <div class="text-sm text-muted-foreground">Rakúsko</div>
+              <div class="text-lg font-heading font-semibold text-primary">Cezhraničný dosah</div>
+            </div>
+            <div class="rounded-2xl border border-border bg-background p-5">
+              <div class="text-sm text-muted-foreground">Česká republika</div>
+              <div class="text-lg font-heading font-semibold text-primary">Napojenie na Moravu</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-6 space-y-4">
+          <div class="text-sm text-primary font-medium">Tím a flexibilita</div>
+          <h2 class="text-2xl md:text-4xl font-heading font-bold text-foreground">Skúsený personál a presnejšia reakcia na zákazkové požiadavky</h2>
+          <p class="text-base text-muted-foreground leading-relaxed">Skúsenosti od roku 2002 a interné spracovanie sú najdôležitejším dôvodom dôvery. Zvýrazňujeme to, čo je potvrdené: skúsený tím, spoľahlivú výrobu a schopnosť reagovať na špecifické zadania.</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="rounded-2xl overflow-hidden border border-border shadow-sm h-40">
+              <img src="../assets/images/image-004.jpg" alt="Spracovanie dreva v prevádzke IZOSTAV" class="w-full h-full object-cover">
+            </div>
+            <div class="rounded-2xl overflow-hidden border border-border shadow-sm h-40">
+              <img src="../assets/images/image-005.jpg" alt="Výrobný areál IZOSTAV" class="w-full h-full object-cover">
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-6 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="rounded-3xl bg-card border border-border p-6 shadow-sm">
+            <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center mb-4 text-primary"><iconify-icon icon="lucide:users" class="text-xl"></iconify-icon></div>
+            <h3 class="text-lg font-heading font-semibold text-foreground">Skúsený a spoľahlivý tím</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed mt-2">Krížovo zaškolený personál pomáha reagovať pružnejšie na odlišné typy objednávok a na požiadavky profesionálnych odberateľov.</p>
+          </div>
+          <div class="rounded-3xl bg-card border border-border p-6 shadow-sm">
+            <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center mb-4 text-primary"><iconify-icon icon="lucide:settings" class="text-xl"></iconify-icon></div>
+            <h3 class="text-lg font-heading font-semibold text-foreground">Vlastné spracovanie</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed mt-2">Spracovanie guľatiny prebieha vo vlastnom areáli, čo umožňuje lepšiu kontrolu nad výstupom a úpravou sortimentu.</p>
+          </div>
+          <div class="rounded-3xl bg-card border border-border p-6 shadow-sm md:col-span-2">
+            <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center mb-4 text-primary"><iconify-icon icon="lucide:file-text" class="text-xl"></iconify-icon></div>
+            <h3 class="text-lg font-heading font-semibold text-foreground">Pripravené na presné dopyty</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed mt-2">Pri krovoch na mieru, paletovom rezive a špecifických formátoch je ideálny proces jednoduchý: pošlete zadanie, rozmery a požadovaný objem, my pripravíme podklady pre nacenenie.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cennik" class="py-16 md:py-20 bg-background">
+      <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-5 space-y-4">
+          <div class="text-sm text-primary font-medium">Cenník / dopyt</div>
+          <h2 class="text-2xl md:text-4xl font-heading font-bold text-foreground">Vyžiadať cenovú ponuku podľa sortimentu a objemu</h2>
+          <p class="text-base text-muted-foreground leading-relaxed">Ceny sa líšia podľa druhu reziva, rozmerov, množstva a spôsobu dodania. Namiesto všeobecného cenníka ponúkame rýchlu cestu k individuálnemu naceneniu cez dopytový formulár.</p>
+          <div class="rounded-2xl bg-secondary border border-border p-5">
+            <div class="text-sm font-medium text-foreground">Ako pripraviť dopyt</div>
+            <p class="text-sm text-muted-foreground leading-relaxed mt-2">Uveďte typ produktu, rozmery, požadované množstvo, termín dodania a miesto vyloženia. Čím presnejšie zadanie, tým rýchlejšie vieme pripraviť ponuku.</p>
+          </div>
+        </div>
+        <div class="lg:col-span-7 rounded-3xl bg-card border border-border shadow-md p-6 md:p-8">
+          <h3 class="text-lg font-heading font-semibold text-foreground mb-6">Dopyt na nacenenie</h3>
+          <form class="space-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm text-muted-foreground mb-2">Názov firmy alebo meno</label>
+                <input type="text" placeholder="Napr. Stavebniny Morava s.r.o." class="w-full rounded-2xl border border-input bg-background px-4 py-3 text-sm text-foreground outline-none focus:ring-2 focus:ring-ring">
+              </div>
+              <div>
+                <label class="block text-sm text-muted-foreground mb-2">E-mail</label>
+                <input type="email" placeholder="nakup@firma.sk" class="w-full rounded-2xl border border-input bg-background px-4 py-3 text-sm text-foreground outline-none focus:ring-2 focus:ring-ring">
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm text-muted-foreground mb-2">Telefón</label>
+                <input type="text" placeholder="+421 900 000 000" class="w-full rounded-2xl border border-input bg-background px-4 py-3 text-sm text-foreground outline-none focus:ring-2 focus:ring-ring">
+              </div>
+              <div>
+                <label class="block text-sm text-muted-foreground mb-2">Typ dopytu</label>
+                <select class="w-full rounded-2xl border border-input bg-background px-4 py-3 text-sm text-foreground outline-none focus:ring-2 focus:ring-ring">
+                  <option>Stavebné rezivo</option>
+                  <option>Paletové rezivo</option>
+                  <option>Krov na mieru</option>
+                  <option>Štiepka a piliny</option>
+                  <option>Obchodovanie s drevom</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm text-muted-foreground mb-2">Špecifikácia požiadavky</label>
+              <textarea rows="5" placeholder="Uveďte rozmery, množstvo, požadovaný termín a miesto dodania." class="w-full rounded-3xl border border-input bg-background px-4 py-3 text-sm text-foreground outline-none focus:ring-2 focus:ring-ring"></textarea>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between rounded-2xl bg-secondary p-4">
+              <p class="text-sm text-muted-foreground sm:max-w-md">Po odoslaní formulára má nasledovať individuálne nacenenie podľa zadaného sortimentu a objemu.</p>
+              <button type="submit" class="inline-flex shrink-0 min-h-11 items-center justify-center rounded-full bg-primary text-primary-foreground px-8 py-3 text-sm font-medium shadow-md hover:bg-secondary-foreground hover:text-secondary transition-colors whitespace-nowrap">Odoslať dopyt</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="projekty" class="py-16 md:py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-6 space-y-10">
+        <div class="max-w-3xl space-y-4">
+          <div class="text-sm text-primary font-medium">Projekty</div>
+          <h2 class="text-2xl md:text-4xl font-heading font-bold text-foreground">Realizácie, projekty a prevádzkové fotografie</h2>
+          <p class="text-base text-muted-foreground leading-relaxed">Prezentujeme skutočné zábery z areálu, výroby a projektov, ktoré súvisia s činnosťou firmy. Sekcia je pripravená na doplnenie ďalších referencií podľa dostupných podkladov od klienta.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <article class="rounded-3xl overflow-hidden bg-card border border-border shadow-sm">
+            <img src="../assets/images/image-004.jpg" alt="Projektová realizácia IZOSTAV" class="w-full h-52 object-cover">
+            <div class="p-5">
+              <div class="text-sm font-medium text-primary">Výrobná prevádzka</div>
+              <p class="text-sm text-muted-foreground mt-2 leading-relaxed">Spracovanie dreva vo vlastnom areáli s dôrazom na stavebné a paletové rezivo.</p>
+            </div>
+          </article>
+          <article class="rounded-3xl overflow-hidden bg-card border border-border shadow-sm">
+            <img src="../assets/images/image-005.jpg" alt="Areál IZOSTAV" class="w-full h-52 object-cover">
+            <div class="p-5">
+              <div class="text-sm font-medium text-primary">Areál a logistika</div>
+              <p class="text-sm text-muted-foreground mt-2 leading-relaxed">Poloha v Borskom Svätom Jure vhodná pre obsluhu regiónu Záhorie a cezhraničný obchod.</p>
+            </div>
+          </article>
+          <article class="rounded-3xl overflow-hidden bg-card border border-border shadow-sm">
+            <img src="../assets/images/image-006.jpg" alt="Projekty EÚ IZOSTAV" class="w-full h-52 object-cover">
+            <div class="p-5">
+              <div class="text-sm font-medium text-primary">Projekty EÚ</div>
+              <p class="text-sm text-muted-foreground mt-2 leading-relaxed">Dokumentácia a projekty súvisiace s rozvojom a modernizáciou prevádzky.</p>
+            </div>
+          </article>
+          <article class="rounded-3xl overflow-hidden bg-card border border-border shadow-sm sm:col-span-2 lg:col-span-1">
+            <img src="../assets/images/image-007.jpg" alt="Investičný projekt IZOSTAV" class="w-full h-52 object-cover">
+            <div class="p-5">
+              <div class="text-sm font-medium text-primary">Investičné projekty</div>
+              <p class="text-sm text-muted-foreground mt-2 leading-relaxed">Rozvoj výrobných kapacít a súvisiaca projektová dokumentácia.</p>
+            </div>
+          </article>
+          <article class="rounded-3xl overflow-hidden bg-card border border-border shadow-sm sm:col-span-2">
+            <img src="../assets/images/image-008.jpg" alt="Pila a spracovanie guľatiny IZOSTAV" class="w-full h-52 object-cover">
+            <div class="p-5">
+              <div class="text-sm font-medium text-primary">Pila a spracovanie guľatiny</div>
+              <p class="text-sm text-muted-foreground mt-2 leading-relaxed">Hlavná činnosť firmy od roku 2002 — výroba stavebného reziva, paletového reziva a krovov na mieru.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt" class="py-16 md:py-20 bg-background border-t border-border">
+      <div class="max-w-7xl mx-auto px-6 space-y-10">
+        <div class="max-w-3xl space-y-3">
+          <div class="text-sm text-primary font-medium">Kontakt</div>
+          <h2 class="text-2xl md:text-4xl font-heading font-bold text-foreground">Kontaktujte výrobu a požiadajte o ponuku</h2>
+          <p class="text-base text-muted-foreground leading-relaxed">Nájdete nás v Borskom Svätom Jure. Pre dopyt na rezivo, krov alebo logistiku využite formulár vyššie alebo nás kontaktujte priamo.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-5 space-y-4">
+            <div class="rounded-3xl bg-white border border-border shadow-sm p-6 md:p-8 space-y-5">
+              <div>
+                <div class="text-xs uppercase tracking-wider text-muted-foreground">Firma</div>
+                <div class="text-xl font-heading font-semibold text-primary mt-1">IZOSTAV, spol. s r. o.</div>
+                <div class="inline-flex items-center gap-2 mt-3 text-sm text-muted-foreground">
+                  <iconify-icon icon="lucide:star" class="text-accent"></iconify-icon>
+                  <span>4,7 · Pila · Borský Svätý Jur</span>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-primary shrink-0">
+                    <iconify-icon icon="lucide:map-pin" class="text-lg"></iconify-icon>
+                  </div>
+                  <div>
+                    <div class="text-sm text-muted-foreground">Adresa</div>
+                    <div class="text-base font-medium text-foreground mt-1">SNP 79, 908 79 Borský Svätý Jur, Slovensko</div>
+                    <div class="text-sm text-muted-foreground mt-1">J26M+H7 Borský Svätý Jur</div>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-primary shrink-0">
+                    <iconify-icon icon="lucide:phone" class="text-lg"></iconify-icon>
+                  </div>
+                  <div>
+                    <div class="text-sm text-muted-foreground">Telefón</div>
+                    <a href="tel:+421347772034" class="text-base font-medium text-primary mt-1 hover:text-accent transition-colors">+421 34 777 20 34</a>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-primary shrink-0">
+                    <iconify-icon icon="lucide:globe" class="text-lg"></iconify-icon>
+                  </div>
+                  <div>
+                    <div class="text-sm text-muted-foreground">Web</div>
+                    <a href="https://www.izostavsro.sk" target="_blank" rel="noopener noreferrer" class="text-base font-medium text-primary mt-1 hover:text-accent transition-colors">izostavsro.sk</a>
+                  </div>
+                </div>
+              </div>
+
+              <a href="#cennik" class="inline-flex min-h-11 items-center justify-center rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-medium shadow-md hover:bg-secondary hover:text-secondary-foreground transition-colors whitespace-nowrap">Vyžiadať cenovú ponuku</a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7">
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=SNP+79,+908+79+Borsk%C3%BD+Sv%C3%A4t%C3%BD+Jur,+Slovensko" target="_blank" rel="noopener noreferrer" class="block group">
+              <div class="rounded-3xl overflow-hidden border border-border shadow-md bg-white">
+                <div class="relative aspect-[16/10] bg-[linear-gradient(135deg,#efe6da_0%,#f7f2ea_45%,#e5d7c7_100%)]">
+                  <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 30%, rgba(74,55,40,0.12) 0, transparent 35%), radial-gradient(circle at 80% 70%, rgba(201,139,74,0.15) 0, transparent 30%);"></div>
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center px-6">
+                      <div class="w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center mx-auto shadow-lg group-hover:scale-105 transition-transform">
+                        <iconify-icon icon="lucide:map-pin" class="text-2xl"></iconify-icon>
+                      </div>
+                      <div class="mt-4 text-lg font-heading font-semibold text-primary">Mapa prevádzky</div>
+                      <p class="text-sm text-muted-foreground mt-2 max-w-sm mx-auto">Kliknutím otvoríte polohu IZOSTAV, spol. s r. o. v Borskom Svätom Jure v Mapách Google.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="px-5 py-4 border-t border-border bg-card flex flex-wrap items-center justify-between gap-3">
+                  <div class="text-sm text-foreground font-medium">SNP 79, Borský Svätý Jur</div>
+                  <span class="inline-flex items-center gap-2 text-sm text-primary font-medium">
+                    Otvoriť v Mapách
+                    <iconify-icon icon="lucide:external-link" class="text-base"></iconify-icon>
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-primary text-primary-foreground py-8 border-t border-primary-foreground/10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm">
+      <div>
+        <div class="font-heading font-semibold">IZOSTAV, spol. s r. o.</div>
+        <div class="text-primary-foreground/70 mt-1">Spracovanie guľatiny na stavebné rezivo od roku 2002</div>
+      </div>
+      <div class="text-primary-foreground/70">© 2002 – 2026 IZOSTAV, spol. s r. o.</div>
+    </div>
+  </footer>
+</div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
