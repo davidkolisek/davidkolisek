@@ -89,3 +89,14 @@ img {
 [data-page="dipos-homepage"] #dopyt .section-kicker + h2 {
   margin-top: 0.75rem;
 }
+
+[data-page="dipos-homepage"] #kontakt .section-kicker + h2 {
+  margin-top: 0.75rem;
+}
+
+[data-page="dipos-homepage"] .contact-map-grid {
+  background-image:
+    linear-gradient(90deg, var(--border) 1px, transparent 1px),
+    linear-gradient(var(--border) 1px, transparent 1px);
+  background-size: 32px 32px;
+}

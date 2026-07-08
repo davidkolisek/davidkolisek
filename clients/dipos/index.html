@@ -419,61 +419,130 @@
     </div>
   </section>
 
-  <!-- Inquiry Form & Contact Section -->
+  <!-- Contact & Location Section -->
+  <section id="kontakt" class="py-16 bg-muted/30 border-b border-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-3xl space-y-4 mb-10">
+        <span class="section-kicker text-xs font-bold tracking-wider text-primary uppercase">Kontakt</span>
+        <h2 class="text-3xl font-heading font-extrabold text-foreground">Navštívte našu prevádzku v Dobšinej</h2>
+        <p class="text-muted-foreground text-sm leading-relaxed">
+          DIPOS spája veľkoobchod, maloobchod a vlastnú výrobu papiera pod jednou strechou. Pre bežný nákup školských a kancelárskych potrieb nás nájdete priamo na prevádzke v Dobšinej; pre B2B spoluprácu alebo vlastnú výrobu nás kontaktujte telefonicky alebo e-mailom.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-5 space-y-5">
+          <div class="bg-card rounded-lg border border-border p-6 space-y-5 shadow-sm">
+            <div class="flex gap-4 items-start">
+              <div class="bg-primary/10 text-primary p-2.5 rounded shrink-0">
+                <iconify-icon icon="lucide:store" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-muted-foreground uppercase tracking-wider">Prevádzka a maloobchod</p>
+                <p class="text-sm font-semibold text-foreground mt-1">Ing. Anna Gallová – DIPOS</p>
+                <p class="text-sm text-muted-foreground leading-relaxed mt-1">
+                  Budovateľská 1162<br>
+                  049 25 Dobšiná
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+              <div class="flex gap-3 items-start">
+                <div class="bg-muted text-primary p-2 rounded shrink-0">
+                  <iconify-icon icon="lucide:phone" class="text-lg"></iconify-icon>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-muted-foreground uppercase tracking-wider">Telefón</p>
+                  <a href="tel:+421905515021" class="text-sm font-semibold text-foreground hover:text-primary transition-colors">+421 905 515 021</a>
+                  <p class="text-xs text-muted-foreground mt-0.5">mobil</p>
+                </div>
+              </div>
+              <div class="flex gap-3 items-start">
+                <div class="bg-muted text-primary p-2 rounded shrink-0">
+                  <iconify-icon icon="lucide:mail" class="text-lg"></iconify-icon>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-muted-foreground uppercase tracking-wider">E-mail</p>
+                  <a href="mailto:dipos@dipos.sk" class="text-sm font-semibold text-foreground hover:text-primary transition-colors">dipos@dipos.sk</a>
+                  <p class="text-xs text-muted-foreground mt-0.5">
+                    <a href="https://www.dipos.sk" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">www.dipos.sk</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="border-t border-border pt-4">
+              <div class="flex gap-3 items-start">
+                <div class="bg-muted text-primary p-2 rounded shrink-0">
+                  <iconify-icon icon="lucide:clock" class="text-lg"></iconify-icon>
+                </div>
+                <div class="w-full">
+                  <p class="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Otváracie hodiny</p>
+                  <div class="grid grid-cols-2 gap-x-6 gap-y-1 text-sm">
+                    <span class="text-muted-foreground">Po – Pia</span>
+                    <span class="font-semibold text-foreground">8:00 – 16:00</span>
+                    <span class="text-muted-foreground">So</span>
+                    <span class="font-semibold text-foreground">9:00 – 13:00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-primary text-primary-foreground rounded-lg p-5 flex items-start gap-4">
+            <iconify-icon icon="lucide:shopping-bag" class="text-3xl shrink-0 opacity-90"></iconify-icon>
+            <div>
+              <h3 class="text-sm font-bold">Maloobchodný nákup na prevádzke</h3>
+              <p class="text-xs text-primary-foreground/85 leading-relaxed mt-1">
+                Papier, školské a kancelárske potreby si môžete zakúpiť priamo v predajni v Dobšinej počas otváracích hodín. Pre väčšie objemy alebo vlastnú výrobu odporúčame kontakt vopred.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="bg-card rounded-lg overflow-hidden border border-border shadow-sm">
+            <div class="contact-map-placeholder h-72 sm:h-80 bg-muted relative flex items-center justify-center">
+              <div class="absolute inset-0 opacity-25 contact-map-grid"></div>
+              <div class="relative text-center space-y-3 px-6">
+                <div class="mx-auto bg-primary text-primary-foreground w-14 h-14 rounded-full flex items-center justify-center shadow-md">
+                  <iconify-icon icon="lucide:map-pin" class="text-3xl"></iconify-icon>
+                </div>
+                <div>
+                  <p class="font-bold text-foreground text-lg">Tu bude mapa prevádzky</p>
+                  <p class="text-sm text-muted-foreground">Budovateľská 1162, 049 25 Dobšiná</p>
+                  <p class="text-xs text-muted-foreground mt-1 font-mono">GPS: 48°49'38.65"N, 20°22'30.22"E</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-t border-border">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-wider text-muted-foreground">Adresa prevádzky</p>
+                <p class="font-semibold text-foreground text-sm">Budovateľská 1162, Dobšiná</p>
+              </div>
+              <a href="https://www.google.com/maps/search/?api=1&query=48.8274028%2C20.3750611" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2.5 rounded font-semibold text-sm transition-all">
+                Otvoriť mapu
+                <iconify-icon icon="lucide:external-link" class="text-base"></iconify-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inquiry Form -->
   <section id="dopyt" class="py-16 bg-card">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
-      <!-- Contact Details -->
-      <div class="lg:col-span-5 space-y-8">
+      <div class="lg:col-span-5 space-y-6">
         <div class="space-y-4">
-          <span class="section-kicker text-xs font-bold tracking-wider text-primary uppercase">Máte otázky?</span>
-          <h2 class="text-3xl font-heading font-extrabold text-foreground">Sme tu pre vás</h2>
+          <span class="section-kicker text-xs font-bold tracking-wider text-primary uppercase">Dopyt</span>
+          <h2 class="text-3xl font-heading font-extrabold text-foreground">Potrebujete ponuku alebo vlastnú výrobu?</h2>
           <p class="text-muted-foreground text-sm leading-relaxed">
-            Kontaktujte náš tím pre zistenie skladovej dostupnosti, špecifické požiadavky na vlastnú výrobu papiera alebo pre nastavenie B2B veľkoobchodných podmienok.
+            Kontaktujte náš tím pre skladovú dostupnosť, špecifické požiadavky na vlastnú výrobu papiera alebo nastavenie B2B veľkoobchodných podmienok.
           </p>
         </div>
-
-        <div class="space-y-4">
-          <!-- Address -->
-          <div class="flex gap-4 items-start">
-            <div class="bg-muted p-2 rounded text-primary">
-              <iconify-icon icon="lucide:map-pin" class="text-xl"></iconify-icon>
-            </div>
-            <div>
-              <p class="text-xs font-bold text-muted-foreground uppercase tracking-wider">Sídlo spoločnosti</p>
-              <p class="text-sm font-medium text-foreground">DIPOS, s.r.o.</p>
-              <p class="text-sm text-muted-foreground">Slovenská republika</p>
-            </div>
-          </div>
-
-          <!-- Phone -->
-          <div class="flex gap-4 items-start">
-            <div class="bg-muted p-2 rounded text-primary">
-              <iconify-icon icon="lucide:phone" class="text-xl"></iconify-icon>
-            </div>
-            <div>
-              <p class="text-xs font-bold text-muted-foreground uppercase tracking-wider">Telefonický kontakt</p>
-              <p class="text-sm font-medium text-foreground hover:text-primary transition-colors">
-                <a href="tel:+421000000000">+421 (0) 900 000 000</a>
-              </p>
-              <p class="text-xs text-muted-foreground">Pondelok - Piatok: 7:30 - 16:00</p>
-            </div>
-          </div>
-
-          <!-- Email -->
-          <div class="flex gap-4 items-start">
-            <div class="bg-muted p-2 rounded text-primary">
-              <iconify-icon icon="lucide:mail" class="text-xl"></iconify-icon>
-            </div>
-            <div>
-              <p class="text-xs font-bold text-muted-foreground uppercase tracking-wider">E-mailová adresa</p>
-              <p class="text-sm font-medium text-foreground hover:text-primary transition-colors">
-                <a href="mailto:dipos@dipos.sk">dipos@dipos.sk</a>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Trust Badge -->
         <div class="p-4 bg-muted rounded border border-border flex items-center gap-4">
           <iconify-icon icon="lucide:shield" class="text-3xl text-secondary"></iconify-icon>
           <div>
@@ -483,10 +552,9 @@
         </div>
       </div>
 
-      <!-- Inquiry Form -->
-      <div id="kontakt" class="lg:col-span-7 bg-muted p-8 rounded-lg border border-border">
+      <div class="lg:col-span-7 bg-muted p-8 rounded-lg border border-border">
         <h3 class="text-xl font-heading font-bold text-foreground mb-2">Rýchly dopytový formulár</h3>
-        <p class="text-xs text-muted-foreground mb-6">Máte záujem o veľkoobchodnú ponuku alebo vlastnú výrobu? Zanechajte nám kontakt a my sa vám ozveme späť s cenovou ponukou.</p>
+        <p class="text-xs text-muted-foreground mb-6">Máte záujem o veľkoobchodnú ponuku alebo vlastnú výrobu? Zanechajte nám kontakt a ozveme sa vám s cenovou ponukou.</p>
 
         <form class="space-y-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -576,12 +644,20 @@
       </div>
 
       <div>
-        <h4 class="text-xs font-bold uppercase tracking-wider text-primary-foreground/50 mb-4">Právne informácie</h4>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-primary-foreground/50 mb-4">Kontakt</h4>
         <ul class="space-y-2 text-xs text-primary-foreground/75">
-          <li>Ochrana osobných údajov</li>
-          <li>Všeobecné obchodné podmienky</li>
-          <li>© 1992 - 2024 DIPOS, s.r.o. Všetky práva vyhradené.</li>
+          <li>Budovateľská 1162, 049 25 Dobšiná</li>
+          <li><a href="tel:+421905515021" class="hover:text-primary-foreground transition-colors">+421 905 515 021</a></li>
+          <li><a href="mailto:dipos@dipos.sk" class="hover:text-primary-foreground transition-colors">dipos@dipos.sk</a></li>
+          <li>Po – Pia: 8:00 – 16:00, So: 9:00 – 13:00</li>
         </ul>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 pb-8 flex flex-col sm:flex-row justify-between gap-3 text-xs text-primary-foreground/50 border-t border-primary-foreground/10 pt-6">
+      <span>© 1992 – 2024 DIPOS, s.r.o. Všetky práva vyhradené.</span>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-primary-foreground transition-colors">Ochrana osobných údajov</a>
+        <a href="#" class="hover:text-primary-foreground transition-colors">Všeobecné obchodné podmienky</a>
       </div>
     </div>
   </footer>
