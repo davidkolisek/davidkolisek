@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zložky farebných papierov DIPOS - detail produktu">
+  <title>DIPOS | Zložky farebných papierov</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+  <style type="text/tailwindcss">
+    @import "tailwindcss";
+    @theme inline {
+      --color-background: var(--background);
+      --color-foreground: var(--foreground);
+      --color-primary: var(--primary);
+      --color-primary-foreground: var(--primary-foreground);
+      --color-secondary: var(--secondary);
+      --color-muted: var(--muted);
+      --color-muted-foreground: var(--muted-foreground);
+      --color-card: var(--card);
+      --color-border: var(--border);
+      --font-family-sans: var(--font-sans);
+      --font-family-heading: var(--font-heading);
+    }
+    :root {
+      --background: #FAFAF9;
+      --foreground: #1C1917;
+      --primary: #0F4C81;
+      --primary-foreground: #FFFFFF;
+      --secondary: #15803D;
+      --muted: #F5F5F4;
+      --muted-foreground: #807E7D;
+      --card: #FFFFFF;
+      --border: #E7E5E4;
+      --font-sans: Inter, sans-serif;
+      --font-heading: Inter, sans-serif;
+    }
+  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-background text-foreground font-sans">
+  <div class="min-h-screen flex flex-col">
+    <div class="bg-primary text-primary-foreground text-xs py-2 px-4 text-center font-medium tracking-wide">
+      <span class="opacity-80">Tradičný slovenský výrobca a veľkoobchod s papierom.</span>
+      <span class="mx-2 font-bold">•</span> Od roku <span class="underline decoration-2 decoration-secondary font-bold">1992</span>
+    </div>
+
+    <header class="bg-card border-b border-border sticky top-0 z-50 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4 relative">
+        <a href="index.html" class="flex items-center gap-3 shrink-0">
+          <div class="bg-primary text-primary-foreground p-2.5 rounded flex items-center justify-center">
+            <iconify-icon icon="lucide:package-check" class="text-2xl"></iconify-icon>
+          </div>
+          <span class="text-xl font-heading font-black tracking-[0.28em] text-primary leading-none">D I P O S</span>
+        </a>
+
+        <nav class="hidden xl:flex items-center gap-5 text-sm font-medium whitespace-nowrap">
+          <a href="index.html#o-nas" class="hover:text-primary transition-colors">O nás</a>
+          <a href="produkty.html" class="text-primary font-bold">Produkty</a>
+          <a href="index.html#nase-produkty" class="hover:text-primary transition-colors">Výroba</a>
+          <a href="index.html#pre-odberatelov" class="hover:text-primary transition-colors">B2B</a>
+          <a href="index.html#kontakt" class="hover:text-primary transition-colors">Kontakt</a>
+        </nav>
+
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+          <a href="index.html#dopyt" class="hidden sm:flex bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-semibold px-5 py-2.5 rounded shadow transition-all items-center gap-2">
+            <iconify-icon icon="lucide:file-clipboard" class="text-lg"></iconify-icon>
+            <span>Ponuka</span>
+          </a>
+          <button type="button" id="mobile-menu-button" class="xl:hidden inline-flex items-center justify-center w-10 h-10 rounded border border-border bg-card hover:bg-muted transition-colors" aria-label="Otvoriť navigáciu" aria-expanded="false" aria-controls="mobile-menu">
+            <iconify-icon icon="lucide:menu" class="text-2xl" id="mobile-menu-icon"></iconify-icon>
+          </button>
+        </div>
+
+        <nav id="mobile-menu" class="hidden xl:hidden absolute right-4 left-4 top-full mt-2 bg-card border border-border rounded-lg shadow-lg p-3">
+          <div class="flex flex-col text-sm font-semibold">
+            <a href="index.html#o-nas" class="px-3 py-3 rounded hover:bg-muted hover:text-primary transition-colors">O nás</a>
+            <a href="produkty.html" class="px-3 py-3 rounded bg-muted text-primary">Produkty</a>
+            <a href="index.html#nase-produkty" class="px-3 py-3 rounded hover:bg-muted hover:text-primary transition-colors">Výroba</a>
+            <a href="index.html#pre-odberatelov" class="px-3 py-3 rounded hover:bg-muted hover:text-primary transition-colors">B2B</a>
+            <a href="index.html#kontakt" class="px-3 py-3 rounded hover:bg-muted hover:text-primary transition-colors">Kontakt</a>
+            <a href="index.html#dopyt" class="mt-2 bg-primary hover:bg-primary/90 text-primary-foreground text-center px-4 py-3 rounded transition-colors">Chcem ponuku</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <section class="py-6 border-b border-border bg-muted/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-sm text-muted-foreground">
+          <a href="produkty.html" class="hover:text-primary font-medium">Produkty</a>
+          <span class="mx-2">/</span>
+          <span>Zložky farebných papierov</span>
+        </div>
+      </section>
+
+      <section class="bg-card border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <div class="lg:col-span-6">
+            <div class="bg-muted rounded-2xl border border-border p-6 sm:p-10">
+              <div class="aspect-[4/3] bg-card rounded-xl border border-border p-6 flex items-center justify-center">
+                <div class="relative w-full max-w-md aspect-[4/3]">
+                  <div class="absolute inset-8 -rotate-6 bg-white rounded-lg border border-border shadow-sm"></div>
+                  <div class="absolute left-10 top-12 w-32 h-44 bg-red-300 rounded"></div>
+                  <div class="absolute left-20 top-10 w-32 h-44 bg-yellow-300 rounded"></div>
+                  <div class="absolute left-30 top-8 w-32 h-44 bg-green-400 rounded"></div>
+                  <div class="absolute left-40 top-6 w-32 h-44 bg-sky-400 rounded"></div>
+                  <div class="absolute right-10 bottom-10 bg-white rounded-lg border border-border px-5 py-4 shadow-sm">
+                    <p class="text-xs font-bold text-primary uppercase tracking-wider">Farebné papiere</p>
+                    <p class="text-sm font-extrabold text-foreground">8 listov A4</p>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-4 text-sm text-muted-foreground text-center">Aktuálny vzor nahradený čistým moderným produktovým vizuálom.</p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 space-y-7">
+            <div class="space-y-4">
+              <span class="inline-flex items-center gap-2 bg-muted border border-border px-3 py-1 rounded text-xs font-bold text-primary uppercase tracking-wider">
+                <iconify-icon icon="lucide:palette" class="text-sm"></iconify-icon>
+                Zložky
+              </span>
+              <h1 class="text-4xl lg:text-5xl font-heading font-extrabold tracking-tight leading-tight">
+                Zložky farebných papierov
+              </h1>
+              <p class="text-lg text-muted-foreground leading-relaxed">
+                Praktická sada farebných papierov pre školy, tvorivé dielne, kancelárie a maloobchodný predaj.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div class="bg-muted/60 border border-border rounded-lg p-4">
+                <p class="text-xs text-muted-foreground font-bold uppercase tracking-wider">Formát</p>
+                <p class="mt-1 text-lg font-extrabold">A4</p>
+              </div>
+              <div class="bg-muted/60 border border-border rounded-lg p-4">
+                <p class="text-xs text-muted-foreground font-bold uppercase tracking-wider">Obsah</p>
+                <p class="mt-1 text-lg font-extrabold">8 listov</p>
+              </div>
+              <div class="bg-muted/60 border border-border rounded-lg p-4">
+                <p class="text-xs text-muted-foreground font-bold uppercase tracking-wider">Papier</p>
+                <p class="mt-1 text-lg font-extrabold">80 g/m2</p>
+              </div>
+            </div>
+
+            <div class="bg-card border border-border rounded-xl p-6 space-y-4">
+              <h2 class="text-xl font-heading font-extrabold">Popis</h2>
+              <ul class="space-y-3 text-sm text-muted-foreground">
+                <li class="flex gap-3">
+                  <iconify-icon icon="lucide:check" class="mt-0.5 text-secondary text-lg"></iconify-icon>
+                  <span>Formát: A4</span>
+                </li>
+                <li class="flex gap-3">
+                  <iconify-icon icon="lucide:check" class="mt-0.5 text-secondary text-lg"></iconify-icon>
+                  <span>8 farebných listov z 80 g/m2 papiera</span>
+                </li>
+                <li class="flex gap-3">
+                  <iconify-icon icon="lucide:check" class="mt-0.5 text-secondary text-lg"></iconify-icon>
+                  <span>Balenie: 30 ks v celofáne</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a href="index.html#dopyt" class="bg-primary hover:bg-primary/90 text-primary-foreground text-center font-bold px-6 py-3 rounded shadow transition-all">
+                Dopytovať produkt
+              </a>
+              <a href="produkty.html" class="bg-muted hover:bg-muted/80 text-foreground text-center font-semibold px-6 py-3 rounded border border-border transition-all">
+                Späť na produkty
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-foreground text-primary-foreground/90 mt-auto">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="bg-primary text-primary-foreground p-2 rounded flex items-center justify-center">
+            <iconify-icon icon="lucide:package-check" class="text-xl"></iconify-icon>
+          </div>
+          <span class="text-lg font-heading font-bold tracking-[0.28em]">D I P O S</span>
+        </div>
+        <p class="text-xs text-primary-foreground/60">© 1992 - 2024 DIPOS, s.r.o.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+
+    function setMobileMenuOpen(isOpen) {
+      mobileMenu.classList.toggle('hidden', !isOpen);
+      mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
+      mobileMenuIcon.setAttribute('icon', isOpen ? 'lucide:x' : 'lucide:menu');
+    }
+
+    mobileMenuButton.addEventListener('click', () => setMobileMenuOpen(mobileMenu.classList.contains('hidden')));
+    mobileMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMobileMenuOpen(false)));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setMobileMenuOpen(false);
+    });
+  </script>
+</body>
+</html>

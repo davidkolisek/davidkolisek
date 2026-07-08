@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DIPOS Homepage — Exported from UXMagic Copilot">
+    <title>DIPOS Homepage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Poppins:wght@100..900&amp;family=Fira+Code:wght@300..700&amp;family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    <style type="text/tailwindcss">
+      @import "tailwindcss";
+      @theme inline {
+        --color-background: var(--background);
+        --color-foreground: var(--foreground);
+        --color-primary: var(--primary);
+        --color-primary-foreground: var(--primary-foreground);
+        --color-secondary: var(--secondary);
+        --color-secondary-foreground: var(--secondary-foreground);
+        --color-tertiary: var(--tertiary);
+        --color-muted: var(--muted);
+        --color-muted-foreground: var(--muted-foreground);
+        --color-accent: var(--accent);
+        --color-destructive: var(--destructive);
+        --color-card: var(--card);
+        --color-card-foreground: var(--card-foreground);
+        --color-border: var(--border);
+        --color-input: var(--input);
+        --color-ring: var(--ring);
+        --radius-sm: calc(var(--radius) - 4px);
+        --radius-md: calc(var(--radius) - 2px);
+        --radius-lg: var(--radius);
+        --font-family-sans: var(--font-sans);
+        --font-family-heading: var(--font-heading);
+        --font-family-mono: var(--font-mono);
+      }
+      :root {
+        --background: #FAFAF9;
+        --foreground: #1C1917;
+        --primary: #0F4C81;
+        --primary-foreground: #FFFFFF;
+        --secondary: #15803D;
+        --secondary-foreground: #1C1917;
+        --tertiary: #0F4C81;
+        --muted: #F5F5F4;
+        --muted-foreground: #807E7D;
+        --accent: #D4DEE6;
+        --accent-foreground: #1C1917;
+        --card: #FFFFFF;
+        --card-foreground: #1C1917;
+        --destructive: #EF4444;
+        --border: #E7E5E4;
+        --input: #E7E5E4;
+        --ring: #0F4C81;
+        --radius: 0.375rem;
+        --font-sans: Inter, sans-serif;
+        --font-heading: Inter, sans-serif;
+        --font-mono: JetBrains Mono, monospace;
+        --shadow-offset-x: 0;
+        --shadow-offset-y: 10;
+        --shadow-blur: 30;
+        --shadow-spread: -8;
+        --shadow-color: rgba(15, 23, 42, 0.12);
+        }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 112px;
+      }
+      [id] {
+        scroll-margin-top: 112px;
+      }
+      @media (max-width: 1023px) {
+        html {
+          scroll-padding-top: 104px;
+        }
+        [id] {
+          scroll-margin-top: 104px;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div data-page="dipos-homepage">
+
+<div class="min-h-screen w-full bg-background flex flex-col relative text-foreground font-sans">
+  <!-- Top Announcement Bar -->
+  <div class="bg-primary text-primary-foreground text-xs py-2 px-4 text-center font-medium tracking-wide border-b border-border/10">
+    <span class="opacity-80">Tradičný slovenský výrobca a veľkoobchod s papierom.</span> 
+    <span class="mx-2 font-bold">•</span> Od roku <span class="underline decoration-2 decoration-secondary font-bold">1992</span>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="bg-card border-b border-border sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4 relative">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 shrink-0">
+        <div class="bg-primary text-primary-foreground p-2.5 rounded flex items-center justify-center">
+          <iconify-icon icon="lucide:package-check" class="text-2xl"></iconify-icon>
+        </div>
+        <div>
+          <span class="text-xl font-heading font-black tracking-[0.28em] text-primary block leading-none">D I P O S</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden xl:flex items-center gap-5 text-sm font-medium whitespace-nowrap">
+        <a href="#o-nas" class="text-foreground hover:text-primary transition-colors">O nás</a>
+        <a href="produkty.html" class="text-foreground hover:text-primary transition-colors">Produkty</a>
+        <a href="#nase-produkty" class="text-foreground hover:text-primary transition-colors">Výroba</a>
+        <a href="#pre-odberatelov" class="text-foreground hover:text-primary transition-colors">B2B</a>
+        <a href="#kontakt" class="text-foreground hover:text-primary transition-colors">Kontakt</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <a href="#kontakt" class="hidden md:inline-flex text-sm font-semibold text-foreground hover:text-primary px-3 py-2.5 transition-all">
+          Kontakt
+        </a>
+        <a href="#dopyt" class="hidden sm:flex bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-semibold px-4 sm:px-5 py-2.5 rounded shadow transition-all items-center gap-2 whitespace-nowrap">
+          <iconify-icon icon="lucide:file-clipboard" class="text-lg"></iconify-icon>
+          <span>Ponuka</span>
+        </a>
+        <button type="button" id="mobile-menu-button" class="xl:hidden inline-flex items-center justify-center w-10 h-10 rounded border border-border bg-card text-foreground hover:bg-muted transition-colors" aria-label="Otvoriť navigáciu" aria-expanded="false" aria-controls="mobile-menu">
+          <iconify-icon icon="lucide:menu" class="text-2xl" id="mobile-menu-icon"></iconify-icon>
+        </button>
+      </div>
+      <nav id="mobile-menu" class="hidden xl:hidden absolute right-4 left-4 top-full mt-2 bg-card border border-border rounded-lg shadow-lg p-3">
+        <div class="flex flex-col text-sm font-semibold">
+          <a href="#o-nas" class="px-3 py-3 rounded hover:bg-muted hover:text-primary transition-colors">O nás</a>
+          <a href="produkty.html" class="px-3 py-3 rounded hover:bg-muted hover:text-primary transition-colors">Produkty</a>
+          <a href="#nase-produkty" class="px-3 py-3 rounded hover:bg-muted hover:text-primary transition-colors">Výroba</a>
+          <a href="#pre-odberatelov" class="px-3 py-3 rounded hover:bg-muted hover:text-primary transition-colors">B2B</a>
+          <a href="#kontakt" class="px-3 py-3 rounded hover:bg-muted hover:text-primary transition-colors">Kontakt</a>
+          <a href="#dopyt" class="mt-2 bg-primary hover:bg-primary/90 text-primary-foreground text-center px-4 py-3 rounded transition-colors">Chcem ponuku</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="o-nas" class="relative bg-card border-b border-border overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      <!-- Hero Left Text Content -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 bg-muted border border-border px-3 py-1 rounded text-xs font-semibold text-primary">
+          <iconify-icon icon="lucide:shield" class="text-sm"></iconify-icon>
+          <span>Založené v roku 1992</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold tracking-tight text-foreground leading-tight max-w-3xl">
+          Slovenský veľkoobchod, výrobca a spoľahlivý distribútor papiera
+        </h1>
+        <p class="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+          Firma DIPOS vznikla v roku 1992 ako veľkoobchod-maloobchod so školskými a kancelárskymi potrebami. Spájame stabilný veľkoobchodný predaj so špecializovanou vlastnou výrobou a flexibilnou distribúciou.
+        </p>
+        
+        <!-- Key Trust Badges -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+          <div class="flex items-center gap-3 p-3 bg-muted/50 rounded border border-border/60">
+            <iconify-icon icon="lucide:check" class="text-secondary text-xl"></iconify-icon>
+            <div>
+              <p class="text-xs font-bold text-foreground">Vlastná výroba</p>
+              <p class="text-[11px] text-muted-foreground">Spracovanie papiera u nás</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-3 bg-muted/50 rounded border border-border/60">
+            <iconify-icon icon="lucide:globe" class="text-primary text-xl"></iconify-icon>
+            <div>
+              <p class="text-xs font-bold text-foreground">B2B aj maloobchod</p>
+              <p class="text-[11px] text-muted-foreground">Pre firmy aj domácnosti</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-3 bg-muted/50 rounded border border-border/60">
+            <iconify-icon icon="lucide:zap" class="text-secondary text-xl"></iconify-icon>
+            <div>
+              <p class="text-xs font-bold text-foreground">Doplnková tlač</p>
+              <p class="text-[11px] text-muted-foreground">Polygrafické služby</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero CTAs -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+          <a href="#dopyt" class="bg-primary hover:bg-primary/95 text-primary-foreground text-center font-bold px-8 py-3.5 rounded shadow-md transition-all flex items-center justify-center gap-2">
+            <span>Chcem ponuku</span>
+            <iconify-icon icon="lucide:arrow-right" class="text-lg"></iconify-icon>
+          </a>
+          <a href="#kontakt" class="bg-muted hover:bg-muted/80 text-foreground text-center font-semibold px-8 py-3.5 rounded border border-border transition-all flex items-center justify-center gap-2">
+            <iconify-icon icon="lucide:phone" class="text-lg"></iconify-icon>
+            <span>Kontakt</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Right Image / Visual -->
+      <div class="lg:col-span-5 relative">
+        <div class="aspect-[4/3] rounded-lg overflow-hidden border border-border shadow-lg relative bg-muted">
+          <img src="https://uxmagic.blob.core.windows.net/public/agent-images/hero-paper-production-1783506842246-5rre18ge2d.png" alt="DIPOS výroba a veľkoobchod" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/50 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 bg-background/95 backdrop-blur-sm p-4 rounded border border-border shadow-md">
+            <div class="flex items-center gap-3">
+              <div class="bg-secondary/10 text-secondary p-2 rounded">
+                <iconify-icon icon="lucide:activity" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-foreground">Spracovanie &amp; Výroba</p>
+                <p class="text-[11px] text-muted-foreground">Krepový papier, zložky a poznámkové kocky</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Assortment & In-House Production Showcase -->
+  <section id="nase-produkty" class="py-16 bg-muted/40 border-b border-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-12">
+        <span class="text-xs font-bold tracking-wider text-secondary uppercase">Priamo z našich výrobných dielní</span>
+        <h2 class="text-3xl font-heading font-extrabold text-foreground">
+          Vlastná výroba a spracovanie papiera
+        </h2>
+        <p class="text-muted-foreground">
+          Sme hrdí na to, že okrem distribúcie popredných svetových značiek prinášame na trh aj vlastné, vysoko kvalitné produkty spracované priamo v našich prevádzkach.
+        </p>
+      </div>
+
+      <!-- Products Grid -->
+      <div id="sortiment" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Product 1 -->
+        <div class="bg-card rounded-lg border border-border overflow-hidden shadow-sm flex flex-col hover:shadow-md transition-all">
+          <div class="aspect-video bg-muted relative overflow-hidden">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/crepe-paper-production-1783506852426-prumy8mw1re.png" alt="Krepový dekoračný papier" class="w-full h-full object-cover">
+            <span class="absolute top-3 left-3 bg-secondary text-primary-foreground text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Vlastná výroba</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <h3 class="text-lg font-heading font-bold text-foreground">Krepový dekoračný papier</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                Široká škála farieb, gramáží a pružností. Ideálny pre dekoratívne účely, kvetinárstva, školy, tvorivé dielne a kreatívnu tvorbu.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
+              <span>Rôzne balenia &amp; rozmery</span>
+              <span class="font-bold text-primary">Veľkoobchodný odber</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <a href="produkt-zlozky.html" class="bg-card rounded-lg border border-border overflow-hidden shadow-sm flex flex-col hover:shadow-md transition-all group">
+          <div class="aspect-video bg-muted relative overflow-hidden">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/memo-cubes-folders-1783506860320-gtlmlu22er8.png" alt="Zložky farebných papierov" class="w-full h-full object-cover">
+            <span class="absolute top-3 left-3 bg-secondary text-primary-foreground text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Vlastná výroba</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <h3 class="text-lg font-heading font-bold text-foreground group-hover:text-primary transition-colors">Zložky farebných papierov</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                Kompletné sady farebných papierov pre školské a kreatívne aktivity. Presné rezanie, sýte farby a bezpečné uloženie v obaloch.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
+              <span>Školské &amp; kancelárske sady</span>
+              <span class="font-bold text-primary">Priama distribúcia</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Product 3 -->
+        <div class="bg-card rounded-lg border border-border overflow-hidden shadow-sm flex flex-col hover:shadow-md transition-all">
+          <div class="aspect-video bg-muted relative overflow-hidden">
+            <div class="w-full h-full bg-primary/5 flex items-center justify-center p-6 text-center">
+              <div class="space-y-2">
+                <iconify-icon icon="lucide:clipboard" class="text-4xl text-primary"></iconify-icon>
+                <p class="text-xs text-muted-foreground">Detailný záber produktu</p>
+              </div>
+            </div>
+            <span class="absolute top-3 left-3 bg-secondary text-primary-foreground text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Vlastná výroba</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <h3 class="text-lg font-heading font-bold text-foreground">Lepené poznámkové kocky</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                Praktické stolové kocky pre rýchle poznámky. Dostupné v bielej, farebnej alebo mix verzii, lepené na jednej strane pre pohodlné odtrhávanie.
+              </p>
+            </div>
+            <div class="pt-2 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
+              <span>Možnosť potlače loga</span>
+              <span class="font-bold text-primary">B2B kancelársky štandard</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B2B Wholesale / Buyer Fit Section -->
+  <section id="pre-odberatelov" class="py-16 bg-card border-b border-border">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Left: Text and benefits -->
+      <div class="space-y-6">
+        <span class="block mb-3 text-xs font-bold tracking-wider text-primary uppercase">Komplexné B2B partnerstvo</span>
+        <h2 class="text-3xl font-heading font-extrabold text-foreground">
+          Prečo spolupracovať s DIPOS?
+        </h2>
+        <p class="text-muted-foreground leading-relaxed">
+          Už viac ako 30 rokov dodávame papier a kancelárske potreby maloobchodným predajniam, veľkoobchodom, štátnym inštitúciám a firemným kanceláriám po celom Slovensku. Naša flexibilita a vlastná výroba nám umožňujú ponúkať podmienky, ktoré bežní distribútori nedokážu splniť.
+        </p>
+
+        <!-- Benefits checklist -->
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="mt-1 bg-primary/10 text-primary p-1 rounded-full flex items-center justify-center">
+              <iconify-icon icon="lucide:check" class="text-sm"></iconify-icon>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-foreground">Výhodné veľkoobchodné ceny</h4>
+              <p class="text-xs text-muted-foreground">Individuálne cenové hladiny na základe ročných odberov.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="mt-1 bg-primary/10 text-primary p-1 rounded-full flex items-center justify-center">
+              <iconify-icon icon="lucide:check" class="text-sm"></iconify-icon>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-foreground">Vlastná logistika a distribúcia</h4>
+              <p class="text-xs text-muted-foreground">Rýchle dodanie vlastným vozovým parkom po celom území SR.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="mt-1 bg-primary/10 text-primary p-1 rounded-full flex items-center justify-center">
+              <iconify-icon icon="lucide:check" class="text-sm"></iconify-icon>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-foreground">Polygrafické a tlačové služby</h4>
+              <p class="text-xs text-muted-foreground">Možnosť personalizovanej potlače a prispôsobenia produktov.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Target Customer Cards -->
+      <div class="bg-muted p-8 rounded-lg border border-border space-y-6">
+        <h3 class="text-lg font-heading font-bold text-foreground">Pre koho sme ideálnym partnerom?</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-card p-4 rounded border border-border">
+            <iconify-icon icon="lucide:shopping-cart" class="text-2xl text-secondary mb-2"></iconify-icon>
+            <h4 class="text-sm font-bold text-foreground">Maloobchodné predajne</h4>
+            <p class="text-xs text-muted-foreground mt-1">Papiernictvá, školské potreby a kreatívne obchody.</p>
+          </div>
+
+          <div class="bg-card p-4 rounded border border-border">
+            <iconify-icon icon="lucide:monitor" class="text-2xl text-primary mb-2"></iconify-icon>
+            <h4 class="text-sm font-bold text-foreground">Kancelárie a firmy</h4>
+            <p class="text-xs text-muted-foreground mt-1">Kompletné administratívne a kancelárske vybavenie.</p>
+          </div>
+
+          <div class="bg-card p-4 rounded border border-border">
+            <iconify-icon icon="lucide:layers" class="text-2xl text-primary mb-2"></iconify-icon>
+            <h4 class="text-sm font-bold text-foreground">Veľkoobchodní odberatelia</h4>
+            <p class="text-xs text-muted-foreground mt-1">Distribútori a nákupcovia veľkých objemov papiera.</p>
+          </div>
+
+          <div class="bg-card p-4 rounded border border-border">
+            <iconify-icon icon="lucide:user" class="text-2xl text-secondary mb-2"></iconify-icon>
+            <h4 class="text-sm font-bold text-foreground">Maloobchodní klienti</h4>
+            <p class="text-xs text-muted-foreground mt-1">Nákup priamo z našich pobočiek alebo na dopyt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ordering Process Step-by-Step -->
+  <section class="py-16 bg-muted/20 border-b border-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+        <h2 class="text-2xl font-heading font-extrabold text-foreground">Jednoduchý proces objednávania</h2>
+        <p class="text-sm text-muted-foreground">Ako prebieha veľkoobchodná spolupráca a vybavenie vašej požiadavky.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+        <!-- Step 1 -->
+        <div class="bg-card p-6 rounded border border-border relative">
+          <span class="absolute -top-4 left-6 bg-primary text-primary-foreground font-bold px-3 py-1 text-xs rounded">1</span>
+          <h4 class="text-sm font-bold text-foreground mt-2 mb-1">Dopyt / Kontakt</h4>
+          <p class="text-xs text-muted-foreground">Vyplňte náš rýchly formulár alebo nás kontaktujte telefonicky.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-card p-6 rounded border border-border relative">
+          <span class="absolute -top-4 left-6 bg-primary text-primary-foreground font-bold px-3 py-1 text-xs rounded">2</span>
+          <h4 class="text-sm font-bold text-foreground mt-2 mb-1">Cenová ponuka</h4>
+          <p class="text-xs text-muted-foreground">Pripravíme vám cenový návrh na mieru s ohľadom na požadované objemy.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-card p-6 rounded border border-border relative">
+          <span class="absolute -top-4 left-6 bg-primary text-primary-foreground font-bold px-3 py-1 text-xs rounded">3</span>
+          <h4 class="text-sm font-bold text-foreground mt-2 mb-1">Výroba a balenie</h4>
+          <p class="text-xs text-muted-foreground">Spracujeme vašu objednávku, zabalíme a pripravíme na expedíciu.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-card p-6 rounded border border-border relative">
+          <span class="absolute -top-4 left-6 bg-secondary text-primary-foreground font-bold px-3 py-1 text-xs rounded">4</span>
+          <h4 class="text-sm font-bold text-foreground mt-2 mb-1">Distribúcia a dodanie</h4>
+          <p class="text-xs text-muted-foreground">Doručíme tovar vlastnou dopravou priamo na adresu vašej prevádzky.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inquiry Form & Contact Section -->
+  <section id="dopyt" class="py-16 bg-card">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Contact Details -->
+      <div class="lg:col-span-5 space-y-8">
+        <div class="space-y-4">
+          <span class="section-kicker text-xs font-bold tracking-wider text-primary uppercase">Máte otázky?</span>
+          <h2 class="text-3xl font-heading font-extrabold text-foreground">Sme tu pre vás</h2>
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            Kontaktujte náš tím pre zistenie skladovej dostupnosti, špecifické požiadavky na vlastnú výrobu papiera alebo pre nastavenie B2B veľkoobchodných podmienok.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Address -->
+          <div class="flex gap-4 items-start">
+            <div class="bg-muted p-2 rounded text-primary">
+              <iconify-icon icon="lucide:map-pin" class="text-xl"></iconify-icon>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-muted-foreground uppercase tracking-wider">Sídlo spoločnosti</p>
+              <p class="text-sm font-medium text-foreground">DIPOS, s.r.o.</p>
+              <p class="text-sm text-muted-foreground">Slovenská republika</p>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="flex gap-4 items-start">
+            <div class="bg-muted p-2 rounded text-primary">
+              <iconify-icon icon="lucide:phone" class="text-xl"></iconify-icon>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-muted-foreground uppercase tracking-wider">Telefonický kontakt</p>
+              <p class="text-sm font-medium text-foreground hover:text-primary transition-colors">
+                <a href="tel:+421000000000">+421 (0) 900 000 000</a>
+              </p>
+              <p class="text-xs text-muted-foreground">Pondelok - Piatok: 7:30 - 16:00</p>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="flex gap-4 items-start">
+            <div class="bg-muted p-2 rounded text-primary">
+              <iconify-icon icon="lucide:mail" class="text-xl"></iconify-icon>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-muted-foreground uppercase tracking-wider">E-mailová adresa</p>
+              <p class="text-sm font-medium text-foreground hover:text-primary transition-colors">
+                <a href="mailto:dipos@dipos.sk">dipos@dipos.sk</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust Badge -->
+        <div class="p-4 bg-muted rounded border border-border flex items-center gap-4">
+          <iconify-icon icon="lucide:shield" class="text-3xl text-secondary"></iconify-icon>
+          <div>
+            <h4 class="text-xs font-bold text-foreground">Stabilný partner od r. 1992</h4>
+            <p class="text-[11px] text-muted-foreground">Viac než 30 rokov skúseností v odbore.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inquiry Form -->
+      <div id="kontakt" class="lg:col-span-7 bg-muted p-8 rounded-lg border border-border">
+        <h3 class="text-xl font-heading font-bold text-foreground mb-2">Rýchly dopytový formulár</h3>
+        <p class="text-xs text-muted-foreground mb-6">Máte záujem o veľkoobchodnú ponuku alebo vlastnú výrobu? Zanechajte nám kontakt a my sa vám ozveme späť s cenovou ponukou.</p>
+
+        <form class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-foreground mb-1">Meno a priezvisko / Firma *</label>
+              <input type="text" placeholder="Názov spoločnosti alebo meno" class="w-full bg-card border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary" required="">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-foreground mb-1">IČO (ak nakupujete na firmu)</label>
+              <input type="text" placeholder="Napr. 12345678" class="w-full bg-card border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-foreground mb-1">E-mailová adresa *</label>
+              <input type="email" placeholder="vas@email.sk" class="w-full bg-card border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary" required="">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-foreground mb-1">Telefónne číslo *</label>
+              <input type="tel" placeholder="+421..." class="w-full bg-card border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary" required="">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-foreground mb-1">Typ požiadavky</label>
+            <select class="w-full bg-card border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary">
+              <option>Záujem o veľkoobchodnú spoluprácu</option>
+              <option>Dopyt na vlastnú výrobu (Krepový papier / Zložky / Kocky)</option>
+              <option>Maloobchodný odber / Dostupnosť tovaru</option>
+              <option>Iné / Všeobecná otázka</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-foreground mb-1">Vaša správa / Špecifikácia dopytu *</label>
+            <textarea rows="4" placeholder="Uveďte prosím predpokladané množstvá a typy produktov, o ktoré máte záujem..." class="w-full bg-card border border-border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary" required=""></textarea>
+          </div>
+
+          <div class="flex items-start gap-2 pt-2">
+            <input type="checkbox" id="privacy" class="mt-1" required="">
+            <label for="privacy" class="text-[11px] text-muted-foreground">Súhlasím so spracovaním osobných údajov pre účely vybavenia dopytu.</label>
+          </div>
+
+          <button type="submit" class="w-full bg-primary hover:bg-primary/95 text-primary-foreground font-bold py-3 px-6 rounded shadow transition-all text-sm flex items-center justify-center gap-2">
+            <iconify-icon icon="lucide:send" class="text-base"></iconify-icon>
+            <span>Odoslať dopyt</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-foreground text-primary-foreground/90 border-t border-border/10 mt-auto">
+    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="bg-primary text-primary-foreground p-2 rounded flex items-center justify-center">
+            <iconify-icon icon="lucide:package-check" class="text-xl"></iconify-icon>
+          </div>
+          <span class="text-lg font-heading font-bold tracking-[0.28em] text-primary-foreground">D I P O S</span>
+        </div>
+        <p class="text-xs text-primary-foreground/60 leading-relaxed">
+          Firma DIPOS vznikla v roku 1992 ako veľkoobchod-maloobchod so školskými a kancelárskymi potrebami. Sme vaším stabilným partnerom pre papier a výrobu.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-primary-foreground/50 mb-4">Naša výroba</h4>
+        <ul class="space-y-2 text-xs text-primary-foreground/75">
+          <li>Krepový dekoračný papier</li>
+          <li>Zložky farebných papierov</li>
+          <li>Lepené poznámkové kocky</li>
+          <li>Spracovanie a rezanie papiera</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-primary-foreground/50 mb-4">Rýchle odkazy</h4>
+        <ul class="space-y-2 text-xs text-primary-foreground/75">
+          <li><a href="#o-nas" class="hover:text-primary-foreground transition-colors">O spoločnosti</a></li>
+          <li><a href="produkty.html" class="hover:text-primary-foreground transition-colors">Produkty</a></li>
+          <li><a href="#dopyt" class="hover:text-primary-foreground transition-colors">Žiadosť o ponuku</a></li>
+          <li><a href="#kontakt" class="hover:text-primary-foreground transition-colors">Kontakt a otváracie hodiny</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-primary-foreground/50 mb-4">Právne informácie</h4>
+        <ul class="space-y-2 text-xs text-primary-foreground/75">
+          <li>Ochrana osobných údajov</li>
+          <li>Všeobecné obchodné podmienky</li>
+          <li>© 1992 - 2024 DIPOS, s.r.o. Všetky práva vyhradené.</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</div>
+
+    </div>
+    <script>
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+
+      function setMobileMenuOpen(isOpen) {
+        mobileMenu.classList.toggle('hidden', !isOpen);
+        mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
+        mobileMenuButton.setAttribute('aria-label', isOpen ? 'Zatvoriť navigáciu' : 'Otvoriť navigáciu');
+        mobileMenuIcon.setAttribute('icon', isOpen ? 'lucide:x' : 'lucide:menu');
+      }
+
+      mobileMenuButton.addEventListener('click', () => {
+        setMobileMenuOpen(mobileMenu.classList.contains('hidden'));
+      });
+
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMobileMenuOpen(false));
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          setMobileMenuOpen(false);
+        }
+      });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
