@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KOVOŠROT VAŠIN Homepage Redesign — Exported from UXMagic Copilot">
+    <title>KOVOŠROT VAŠIN Homepage Redesign</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Poppins:wght@100..900&amp;family=Fira+Code:wght@300..700&amp;family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Archivo+Black:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    <style type="text/tailwindcss">
+      @import "tailwindcss";
+      @theme inline {
+        --color-background: var(--background);
+        --color-foreground: var(--foreground);
+        --color-primary: var(--primary);
+        --color-primary-foreground: var(--primary-foreground);
+        --color-secondary: var(--secondary);
+        --color-secondary-foreground: var(--secondary-foreground);
+        --color-tertiary: var(--tertiary);
+        --color-muted: var(--muted);
+        --color-muted-foreground: var(--muted-foreground);
+        --color-accent: var(--accent);
+        --color-accent-foreground: var(--accent-foreground);
+        --color-destructive: var(--destructive);
+        --color-card: var(--card);
+        --color-card-foreground: var(--card-foreground);
+        --color-border: var(--border);
+        --color-input: var(--input);
+        --color-ring: var(--ring);
+        --radius-sm: calc(var(--radius) - 4px);
+        --radius-md: calc(var(--radius) - 2px);
+        --radius-lg: var(--radius);
+        --font-family-sans: var(--font-sans);
+        --font-family-heading: var(--font-heading);
+        --font-family-mono: var(--font-mono);
+      }
+      :root {
+        --background: #ffffff;
+        --foreground: #000000;
+        --primary: #1e75a3;
+        --primary-foreground: #ffffff;
+        --secondary: #3382ab;
+        --secondary-foreground: #ffffff;
+        --tertiary: #1e75a3;
+        --muted: #f5f5f5;
+        --muted-foreground: #555555;
+        --accent: #abc806;
+        --accent-foreground: #111111;
+        --card: #ffffff;
+        --card-foreground: #000000;
+        --destructive: #EF4444;
+        --border: #e0e0e0;
+        --input: #e0e0e0;
+        --ring: #1e75a3;
+        --radius: 0.375rem;
+        --font-sans: Inter, sans-serif;
+        --font-heading: Archivo Black, Impact, sans-serif;
+        --font-mono: JetBrains Mono, monospace;
+        --shadow-offset-x: 0;
+        --shadow-offset-y: 10;
+        --shadow-blur: 30;
+        --shadow-spread: -8;
+        --shadow-color: rgba(15, 23, 42, 0.12);
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div data-page="kovo-rot-va-in-homepage-redesign">
+
+<div class="min-h-screen w-full bg-background text-foreground font-sans flex flex-col relative selection:bg-primary selection:text-primary-foreground">
+  <!-- Top Bar / Urgent CTA -->
+  <div class="bg-primary text-primary-foreground py-2.5 px-4 md:px-8 text-sm font-semibold tracking-wide">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="bg-accent text-accent-foreground text-xs px-2 py-0.5 rounded font-bold uppercase animate-pulse">AUTOVRAKY ČÁRY</span>
+        <span>Zber, výkup a ekologické spracovanie autovrakov s potvrdením o likvidácii.</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="tel:+421905478441" class="flex items-center gap-1.5 hover:underline font-bold">
+          <iconify-icon icon="lucide:phone" class="text-base"></iconify-icon>
+          +421 905 478 441
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="bg-primary text-primary-foreground p-2 rounded-md flex items-center justify-center transition-transform group-hover:rotate-6">
+          <iconify-icon icon="lucide:zap" class="text-2xl font-bold"></iconify-icon>
+        </div>
+        <div>
+          <span class="block text-xl font-heading font-black tracking-tight uppercase text-primary group-hover:text-secondary transition-colors">KOVOŠROT VAŠIN</span>
+          <span class="block text-xs text-muted-foreground tracking-widest uppercase -mt-1">s.r.o. — ČÁRY</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center gap-7">
+        <a href="#o-nas" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">O nás</a>
+        <a href="#sluzby" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Služby</a>
+        <a href="#vykupujeme" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Čo vykupujeme</a>
+        <a href="#proces" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Ako to prebieha</a>
+        <a href="#galeria" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Fotogaléria</a>
+        <a href="#kontakt" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Kontakt</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="#kalkulacka" class="hidden sm:inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-bold px-4 py-2 rounded text-sm transition-colors uppercase tracking-wider">
+          <iconify-icon icon="lucide:clipboard" class="text-base"></iconify-icon>
+          Nezáväzná cenová ponuka
+        </a>
+        <button class="lg:hidden text-foreground/80 hover:text-primary p-2">
+          <iconify-icon icon="lucide:menu" class="text-2xl"></iconify-icon>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section with Integrated Inquiry Form -->
+  <section class="relative bg-background overflow-hidden border-b border-border">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://uxmagic.blob.core.windows.net/public/agent-images/industrial-scrap-yard-1783693409679-jq8bix62ow9.png" alt="Kovošrot Vašin Autovraky" class="w-full h-full object-cover opacity-25">
+      <div class="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-8 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- Left Hero Text Column -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 px-3 py-1 rounded-full text-primary text-xs font-semibold uppercase tracking-wider">
+          <iconify-icon icon="lucide:check" class="text-sm"></iconify-icon> Autorizovaný spracovateľ autovrakov
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-black tracking-tight text-foreground uppercase leading-none">
+          EKOLOGICKÁ LIKVIDÁCIA <br>
+          <span class="text-accent">A VÝKUP AUTOVRAKOV</span>
+        </h1>
+        <p class="text-foreground/80 text-lg max-w-xl leading-relaxed">
+          Zabezpečíme pre Vás kompletné služby spojené s výkupom a likvidáciou starých vozidiel v obci Čáry a okolí. Vystavíme úradné potvrdenie o likvidácii, odtiahneme váš vrak úplne zadarmo a vyplatíme najlepšiu možnú cenu na ruku.
+        </p>
+
+        <!-- Bullet Highlights -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+          <div class="flex items-start gap-2.5">
+            <div class="bg-primary text-primary-foreground p-1 rounded-full flex items-center justify-center mt-0.5">
+              <iconify-icon icon="lucide:check" class="text-sm font-bold"></iconify-icon>
+            </div>
+            <div>
+              <h4 class="font-bold text-foreground text-sm uppercase">ODŤAH ZADARMO</h4>
+              <p class="text-xs text-muted-foreground">Pre nepojazdné autovraky prídeme priamo k vám.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <div class="bg-primary text-primary-foreground p-1 rounded-full flex items-center justify-center mt-0.5">
+              <iconify-icon icon="lucide:check" class="text-sm font-bold"></iconify-icon>
+            </div>
+            <div>
+              <h4 class="font-bold text-foreground text-sm uppercase">ÚRADNÉ POTVRDENIE</h4>
+              <p class="text-xs text-muted-foreground">Okamžité vystavenie dokladu pre odhlásenie z evidencie.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <div class="bg-primary text-primary-foreground p-1 rounded-full flex items-center justify-center mt-0.5">
+              <iconify-icon icon="lucide:check" class="text-sm font-bold"></iconify-icon>
+            </div>
+            <div>
+              <h4 class="font-bold text-foreground text-sm uppercase">VÝKUP ŽELEZNÉHO ŠROTU</h4>
+              <p class="text-xs text-muted-foreground">Moderná váha a rýchle vyplacenie druhotných surovín.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <div class="bg-primary text-primary-foreground p-1 rounded-full flex items-center justify-center mt-0.5">
+              <iconify-icon icon="lucide:check" class="text-sm font-bold"></iconify-icon>
+            </div>
+            <div>
+              <h4 class="font-bold text-foreground text-sm uppercase">LOKÁLNY PARTNER</h4>
+              <p class="text-xs text-muted-foreground">Tradičná rodinná firma s dlhoročným pôsobením v regióne Čáry.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Quick Inquiry Form Column -->
+      <div id="kalkulacka" class="lg:col-span-5 bg-card border border-border p-6 md:p-8 rounded-lg shadow-theme relative">
+        <div class="absolute -top-3 left-6 bg-accent text-accent-foreground text-xs font-extrabold uppercase px-3 py-1 rounded tracking-wider">
+          RÝCHLY NACENENIE VRAKU
+        </div>
+        <h3 class="text-xl font-heading font-bold text-foreground uppercase mb-2">Zistite výkupnú cenu</h3>
+        <p class="text-xs text-muted-foreground mb-6">Vyplňte základné údaje a naši špecialisti sa vám ozvú s presnou cenovou ponukou.</p>
+
+        <form class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-muted-foreground uppercase mb-1.5">Značka a model vozidla *</label>
+            <input type="text" placeholder="napr. Škoda Octavia 1.9 TDI" class="w-full bg-background border border-border text-foreground rounded px-3 py-2.5 text-sm focus:outline-none focus:border-primary">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-muted-foreground uppercase mb-1.5">Rok výroby</label>
+              <input type="text" placeholder="napr. 2008" class="w-full bg-background border border-border text-foreground rounded px-3 py-2.5 text-sm focus:outline-none focus:border-primary">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-muted-foreground uppercase mb-1.5">Stav vozidla</label>
+              <select class="w-full bg-background border border-border text-foreground/80 rounded px-3 py-2.5 text-sm focus:outline-none focus:border-primary">
+                <option>Kompletné / Nepojazdné</option>
+                <option>Havarované / Vrak</option>
+                <option>Neúplné vozidlo</option>
+                <option>Iba staré železo</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-muted-foreground uppercase mb-1.5">Vaše telefónne číslo *</label>
+            <input type="tel" placeholder="napr. +421 905 123 456" class="w-full bg-background border border-border text-foreground rounded px-3 py-2.5 text-sm focus:outline-none focus:border-primary">
+          </div>
+          <div class="flex items-center gap-2 pt-1">
+            <input type="checkbox" id="gdpr-agree" class="rounded border-border bg-background text-accent focus:ring-primary h-4 w-4">
+            <label for="gdpr-agree" class="text-xs text-muted-foreground select-none">Súhlasím so spracovaním <a href="#gdpr" class="text-primary underline">osobných údajov</a> (GDPR)</label>
+          </div>
+          <button type="submit" class="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-extrabold py-3 rounded text-sm transition-colors uppercase tracking-wider mt-2 flex items-center justify-center gap-2">
+            <iconify-icon icon="lucide:send" class="text-base"></iconify-icon>
+            Odoslať dopyt na cenu
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Services Section -->
+  <section id="sluzby" class="py-16 md:py-24 bg-muted border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-extrabold uppercase text-primary tracking-widest block">NAŠE PORTFÓLIO SLUŽIEB</span>
+        <h2 class="text-3xl md:text-4xl font-heading font-black tracking-tight text-foreground uppercase">ČO PRE VÁS ZABEZPEČUJEME</h2>
+        <div class="h-1 w-20 bg-accent mx-auto rounded"></div>
+        <p class="text-muted-foreground text-sm md:text-base">
+          Sme spoľahlivým partnerom pre ekologickú likvidáciu vozidiel a výkup kovových druhotných surovín. Postaráme sa o všetku byrokraciu a ťažkú prácu.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Service 1: Autovraky -->
+        <div class="bg-card border border-border hover:border-primary/50 rounded-lg p-6 shadow-sm flex flex-col justify-between transition-all group">
+          <div>
+            <div class="bg-primary/10 text-primary w-12 h-12 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-foreground transition-all">
+              <iconify-icon icon="lucide:trash-2" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-foreground uppercase mb-3">Výkup a zber autovrakov</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed mb-6">
+              Vykupujeme všetky typy starých, poškodených, nepojazdných či havarovaných vozidiel. Postaráme sa o ekologické rozobratie a bezpečné zneškodnenie nebezpečných kvapalín.
+            </p>
+            <ul class="space-y-2 text-xs text-foreground/80 mb-6">
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon> Certifikovaná likvidácia vozidiel
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon> Okamžité vystavenie úradného dokladu
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon> Najlepšie výkupné ceny v regióne Čáry
+              </li>
+            </ul>
+          </div>
+          <a href="#kalkulacka" class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-primary/80 uppercase tracking-wider">
+            Získať cenu vrakoviska <iconify-icon icon="lucide:arrow-right" class="text-base"></iconify-icon>
+          </a>
+        </div>
+
+        <!-- Service 2: Odťahová Služba -->
+        <div class="bg-card border border-border hover:border-primary/50 rounded-lg p-6 shadow-sm flex flex-col justify-between transition-all group">
+          <div>
+            <div class="bg-primary/10 text-primary w-12 h-12 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-foreground transition-all">
+              <iconify-icon icon="lucide:activity" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-foreground uppercase mb-3">Odťah autovrakov zadarmo</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed mb-6">
+              Máte doma nepojazdné auto bez STK a neviete ako ho dopraviť k nám? Žiadny problém. Naša odťahová služba pre neho bezplatne príde a naloží ho.
+            </p>
+            <ul class="space-y-2 text-xs text-foreground/80 mb-6">
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon> Profesionálna technika a nakládka
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon> Pokrytie celého okolia obce Čáry
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon> 100% bezplatná služba pri odovzdaní vraku
+              </li>
+            </ul>
+          </div>
+          <a href="tel:+421905478441" class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-primary/80 uppercase tracking-wider">
+            Zavolať odťahovku <iconify-icon icon="lucide:arrow-right" class="text-base"></iconify-icon>
+          </a>
+        </div>
+
+        <!-- Service 3: Železný šrot -->
+        <div class="bg-card border border-border hover:border-primary/50 rounded-lg p-6 shadow-sm flex flex-col justify-between transition-all group">
+          <div>
+            <div class="bg-primary/10 text-primary w-12 h-12 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-foreground transition-all">
+              <iconify-icon icon="lucide:layers" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-foreground uppercase mb-3">Výkup železa a druhotných surovín</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed mb-6">
+              Okrem vozidiel vykupujeme aj bežný železný šrot, plechy, oceľové konštrukcie, staré akumulátory a batérie. Ponúkame presné váženie a okamžitú platbu.
+            </p>
+            <ul class="space-y-2 text-xs text-foreground/80 mb-6">
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon> Presné certifikované váhy
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon> Výkup farebných kovov a batérií
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon> Rýchly a bezproblémový výkup na prevádzke
+              </li>
+            </ul>
+          </div>
+          <a href="#kontakt" class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-primary/80 uppercase tracking-wider">
+            Zistiť aktuálne ceny <iconify-icon icon="lucide:arrow-right" class="text-base"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Info Section -->
+  <section id="proces" class="py-16 md:py-24 bg-background border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Process Image -->
+        <div class="lg:col-span-5 relative">
+          <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-lg"></div>
+          <img src="https://uxmagic.blob.core.windows.net/public/agent-images/tow-truck-car-wreck-1783693418602-8kpy2w6ic4.png" alt="Proces likvidácie autovrakov" class="w-full h-auto rounded-lg border border-border object-cover shadow-xl">
+          <div class="absolute -bottom-6 -right-6 bg-accent text-accent-foreground px-6 py-4 rounded shadow-lg hidden sm:block">
+            <span class="block text-3xl font-heading font-black">100%</span>
+            <span class="block text-xs uppercase tracking-wider font-semibold">Legálna likvidácia</span>
+          </div>
+        </div>
+
+        <!-- Process steps -->
+        <div class="lg:col-span-7 space-y-8">
+          <div>
+            <span class="text-xs font-extrabold uppercase text-primary tracking-widest block">JEDNODUCHÝ POSTUP</span>
+            <h2 class="text-3xl md:text-4xl font-heading font-black tracking-tight text-foreground uppercase mt-1">AKO PREBIEHA LIKVIDÁCIA VRAKU?</h2>
+            <p class="text-muted-foreground text-sm mt-3 leading-relaxed">
+              Celý proces sme navrhli tak, aby vás stál čo najmenej času a úsilia. Všetko vybavíme v 4 jednoduchých krokoch.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <!-- Step 1 -->
+            <div class="flex gap-4">
+              <div class="bg-muted border border-border text-primary font-heading font-black text-xl w-12 h-12 flex items-center justify-center rounded-full shrink-0">
+                01
+              </div>
+              <div>
+                <h4 class="font-bold text-foreground uppercase text-base">Kontaktujte nás</h4>
+                <p class="text-muted-foreground text-sm mt-1">Zavolajte na +421 905 478 441 alebo pošlite vyplnený rýchly formulár s informáciami o vašom autovraku.</p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flex gap-4">
+              <div class="bg-muted border border-border text-primary font-heading font-black text-xl w-12 h-12 flex items-center justify-center rounded-full shrink-0">
+                02
+              </div>
+              <div>
+                <h4 class="font-bold text-foreground uppercase text-base">Dohodneme odťah a cenu</h4>
+                <p class="text-muted-foreground text-sm mt-1">Navrhneme vám férovú výkupnú cenu a dohodneme si presný čas odťahu nepojazdného vozidla zadarmo.</p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flex gap-4">
+              <div class="bg-muted border border-border text-primary font-heading font-black text-xl w-12 h-12 flex items-center justify-center rounded-full shrink-0">
+                03
+              </div>
+              <div>
+                <h4 class="font-bold text-foreground uppercase text-base">Odovzdanie vozidla a vyplatenie peňazí</h4>
+                <p class="text-muted-foreground text-sm mt-1">Pri preberaní vozidla skontrolujeme potrebné doklady (technický preukaz, občiansky preukaz) a ihneď vám vyplatíme dohodnutú cenu.</p>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="flex gap-4">
+              <div class="bg-muted border border-border text-primary font-heading font-black text-xl w-12 h-12 flex items-center justify-center rounded-full shrink-0">
+                04
+              </div>
+              <div>
+                <h4 class="font-bold text-foreground uppercase text-base">Vystavenie potvrdenia</h4>
+                <p class="text-muted-foreground text-sm mt-1">Odovzdáme vám oficiálne Potvrdenie o prevzatí vozidla na spracovanie, ktoré slúži na trvalé vyradenie auta z evidencie na polícii.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery Section -->
+  <section id="galeria" class="py-16 md:py-24 bg-muted border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-extrabold uppercase text-primary tracking-widest block font-heading">FOTOGALÉRIA PREVÁDZKY</span>
+        <h2 class="text-3xl md:text-4xl font-heading font-black tracking-tight text-foreground uppercase">REÁLNE ZÁBERY Z RECYKLÁCIE</h2>
+        <div class="h-1 w-20 bg-accent mx-auto rounded"></div>
+        <p class="text-muted-foreground text-sm">
+          Pozrite sa, ako vyzerá ekologické spracovanie autovrakov a naša prevádzka v obci Čáry. Používame špičkovú certifikovanú techniku.
+        </p>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Photo 1 -->
+        <div class="group relative overflow-hidden rounded-lg border border-border bg-background aspect-video">
+          <img src="https://scontent-lax3-1.xx.fbcdn.net/v/t39.30808-6/493024786_1208446657955627_7270910110998484022_n.jpg?stp=cp6_dst-jpg_s228x119_tt6&amp;_nc_cat=108&amp;ccb=1-7&amp;_nc_sid=e21142&amp;_nc_ohc=AqF5Hm2ypdwQ7kNvwHWJ9PP&amp;_nc_oc=AdoZEWiAR_zVCJY_fKuWfDoOipprkWGwSnnaky_JfR1cnJ60s7aIjypatRvq-oZYCUA&amp;_nc_zt=23&amp;_nc_ht=scontent-lax3-1.xx&amp;_nc_gid=0Y_2MMWHr95BydMjVVuWCA&amp;_nc_ss=7b289&amp;oh=00_AQAz8fAefHJQ9w75f6aam-MFHxRfEuq2p29B89cb6R3D6w&amp;oe=6A55A6EB" alt="Autovraky Kovošrot Vašin" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+            <span class="text-xs font-bold text-accent-foreground uppercase tracking-wider">Výkup autovrakov Čáry</span>
+          </div>
+        </div>
+
+        <!-- Photo 2 -->
+        <div class="group relative overflow-hidden rounded-lg border border-border bg-background aspect-video">
+          <img src="https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/493519879_1208446944622265_4353237024535512736_n.jpg?stp=cp6_dst-jpg_s296x100_tt6&amp;_nc_cat=106&amp;ccb=1-7&amp;_nc_sid=e21142&amp;_nc_ohc=N3ejWpVTHUIQ7kNvwHn0FoE&amp;_nc_oc=AdpbjcSmYt9g38XlBMJCYkAmzQjkAhGD1z0ImmT2d4JM9JTOkcdBqKJNzhu2Ay9voJg&amp;_nc_zt=23&amp;_nc_ht=scontent-lax3-2.xx&amp;_nc_gid=0Y_2MMWHr95BydMjVVuWCA&amp;_nc_ss=7b289&amp;oh=00_AQBzjoiV8PBm-onattmogAsaLW73ACdkVfkRtSboyTXOhQ&amp;oe=6A55BFE6" alt="Spracovanie autovrakov" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+            <span class="text-xs font-bold text-accent-foreground uppercase tracking-wider">Ekologická recyklácia</span>
+          </div>
+        </div>
+
+        <!-- Photo 3 -->
+        <div class="group relative overflow-hidden rounded-lg border border-border bg-background aspect-video">
+          <img src="https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/492348243_1208446654622294_1926049071007277709_n.jpg?stp=cp6_dst-jpg_s206x206_tt6&amp;_nc_cat=111&amp;ccb=1-7&amp;_nc_sid=e21142&amp;_nc_ohc=-uYDOrxeKjQQ7kNvwFGFYCF&amp;_nc_oc=AdpI6i8-YamqhFXPGo11sHKEd7S6xUsXo1SAjYO8EqOFhCchG8XsxkvBzuKtHhFTojI&amp;_nc_zt=23&amp;_nc_ht=scontent-lax3-2.xx&amp;_nc_gid=0Y_2MMWHr95BydMjVVuWCA&amp;_nc_ss=7b289&amp;oh=00_AQD5GBs_8U2G3VGwFTRp3p0-8teS05bBROmEm7HthpoUqw&amp;oe=6A558A6B" alt="Kovošrot areál" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+            <span class="text-xs font-bold text-accent-foreground uppercase tracking-wider">Areál zberného dvora</span>
+          </div>
+        </div>
+
+        <!-- Photo 4 -->
+        <div class="group relative overflow-hidden rounded-lg border border-border bg-background aspect-video">
+          <img src="https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/493364678_1208603141273312_8412791521666908874_n.jpg?stp=cp6_dst-jpg_s100x100_tt6&amp;_nc_cat=106&amp;ccb=1-7&amp;_nc_sid=e21142&amp;_nc_ohc=5j8uw9U4X-4Q7kNvwEJV_BS&amp;_nc_oc=AdrnzCqB1v5_22GJ1XHLU319FwK9BNtS8ygpW2c_H84FWlUx4bnlxgVpxTrIjgSwLXI&amp;_nc_zt=23&amp;_nc_ht=scontent-lax3-2.xx&amp;_nc_gid=0Y_2MMWHr95BydMjVVuWCA&amp;_nc_ss=7b289&amp;oh=00_AQByWm1K2IQckRGA9d_qXdmHX_XuWDBopry7M5rvVvOLPA&amp;oe=6A55A316" alt="Kovošrot nakládka" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+            <span class="text-xs font-bold text-accent-foreground uppercase tracking-wider">Manipulačná technika</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal / GDPR / Certifications Banner -->
+  <section class="py-12 bg-background border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-6 text-center md:text-left">
+      <div class="flex flex-col sm:flex-row items-center gap-4 border-r border-border last:border-0 pr-4">
+        <iconify-icon icon="lucide:shield" class="text-3xl text-primary shrink-0"></iconify-icon>
+        <div>
+          <h4 class="font-bold text-sm uppercase text-foreground">Úradné rozhodnutia</h4>
+          <p class="text-xs text-muted-foreground">Plne certifikovaný prevádzkovateľ na spracovanie odpadov.</p>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center gap-4 border-r border-border last:border-0 pr-4">
+        <iconify-icon icon="lucide:globe" class="text-3xl text-primary shrink-0"></iconify-icon>
+        <div>
+          <h4 class="font-bold text-sm uppercase text-foreground">Ekologický prístup</h4>
+          <p class="text-xs text-muted-foreground">Všetky nebezpečné odpady zhodnocujeme v súlade so zákonmi SR.</p>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center gap-4 border-r border-border last:border-0 pr-4">
+        <iconify-icon icon="lucide:lock" class="text-3xl text-primary shrink-0"></iconify-icon>
+        <div>
+          <h4 class="font-bold text-sm uppercase text-foreground">Bezpečné spracovanie</h4>
+          <p class="text-xs text-muted-foreground">Spracovanie osobných údajov prebieha striktne podľa GDPR.</p>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center gap-4">
+        <iconify-icon icon="lucide:refresh-cw" class="text-3xl text-primary shrink-0"></iconify-icon>
+        <div>
+          <h4 class="font-bold text-sm uppercase text-foreground">Rýchle vybavenie</h4>
+          <p class="text-xs text-muted-foreground">Od dopytu po odhlásenie vozidla z evidencie do 24 hodín.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact, Map & Opening Hours Section -->
+  <section id="kontakt" class="py-16 md:py-24 bg-muted">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Contact Information & Hours -->
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <span class="text-xs font-extrabold uppercase text-primary tracking-widest block">KONTAKTNÉ ÚDAJE</span>
+            <h2 class="text-3xl md:text-4xl font-heading font-black tracking-tight text-foreground uppercase mt-1">KDE NÁS NÁJDETE?</h2>
+            <p class="text-muted-foreground text-sm mt-3 leading-relaxed">
+              Navštívte našu prevádzku v Čárach alebo nás kontaktujte telefonicky. Sme pripravení zodpovedať akékoľvek otázky týkajúce sa výkupu.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <!-- Address -->
+            <div class="flex items-start gap-4">
+              <div class="bg-background border border-border text-primary p-3 rounded">
+                <iconify-icon icon="lucide:map-pin" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-muted-foreground uppercase">Sídlo a prevádzka</h4>
+                <p class="text-foreground font-bold text-base mt-0.5">KOVOŠROT VAŠIN, s.r.o.</p>
+                <p class="text-foreground/80 text-sm">Čáry č. 556, 908 43 Čáry, Slovensko</p>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="flex items-start gap-4">
+              <div class="bg-background border border-border text-primary p-3 rounded">
+                <iconify-icon icon="lucide:phone" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-muted-foreground uppercase">Telefónny kontakt</h4>
+                <p class="text-foreground font-bold text-lg mt-0.5">
+                  <a href="tel:+421905478441" class="hover:text-primary transition-colors">+421 905 478 441</a>
+                </p>
+                <p class="text-muted-foreground text-xs">Zavolajte nám pre rýchle ocenenie autovraku</p>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="flex items-start gap-4">
+              <div class="bg-background border border-border text-primary p-3 rounded">
+                <iconify-icon icon="lucide:mail" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-muted-foreground uppercase">E-mailová adresa</h4>
+                <p class="text-foreground font-bold text-base mt-0.5">
+                  <a href="mailto:kovosrotvasin@gmail.com" class="hover:text-primary transition-colors">kovosrotvasin@gmail.com</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Opening Hours -->
+          <div class="bg-background border border-border rounded-lg p-6">
+            <h4 class="font-heading font-bold text-foreground uppercase text-base mb-4 flex items-center gap-2">
+              <iconify-icon icon="lucide:clock" class="text-primary"></iconify-icon>
+              OTVÁRACIE HODINY
+            </h4>
+            <div class="space-y-2 text-sm text-foreground/80">
+              <div class="flex justify-between border-b border-border pb-1.5">
+                <span>Pondelok - Piatok:</span>
+                <span class="font-bold text-foreground">08:00 - 16:00</span>
+              </div>
+              <div class="flex justify-between border-b border-border pb-1.5">
+                <span>Sobota:</span>
+                <span class="font-bold text-foreground">08:00 - 12:00</span>
+              </div>
+              <div class="flex justify-between text-muted-foreground">
+                <span>Nedeľa:</span>
+                <span class="uppercase text-xs font-bold">Zatvorené</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Map Placeholder / Contact Form -->
+        <div class="lg:col-span-7 space-y-6">
+          <!-- Map placeholder -->
+          <div class="w-full h-80 bg-background border border-border rounded-lg overflow-hidden relative">
+            <!-- Simulated stylized dark map -->
+            <div class="absolute inset-0 bg-muted flex flex-col items-center justify-center p-6 text-center">
+              <iconify-icon icon="lucide:map-pin" class="text-5xl text-primary mb-3 animate-bounce"></iconify-icon>
+              <h4 class="font-heading font-bold text-foreground uppercase text-lg">KOVOŠROT VAŠIN, s.r.o. — ČÁRY</h4>
+              <p class="text-xs text-muted-foreground max-w-sm mt-1 mb-4">Nájdete nás na hlavnom ťahu v obci Čáry, smerom na zberný dvor a autovrakovisko.</p>
+              <a href="https://maps.google.com" target="_blank" class="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-xs font-bold px-4 py-2 rounded transition-colors uppercase tracking-wider flex items-center gap-1.5">
+                <iconify-icon icon="lucide:external-link" class="text-sm"></iconify-icon>
+                Otvoriť v Google Maps
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Message Form -->
+          <div class="bg-card border border-border p-6 rounded-lg shadow-sm">
+            <h4 class="font-heading font-bold text-foreground uppercase text-base mb-4">Máte otázku? Napíšte nám správu</h4>
+            <form class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <input type="text" placeholder="Vaše meno" class="w-full bg-muted border border-border text-foreground rounded px-3 py-2.5 text-sm focus:outline-none focus:border-primary">
+                </div>
+                <div>
+                  <input type="email" placeholder="Váš e-mail" class="w-full bg-muted border border-border text-foreground rounded px-3 py-2.5 text-sm focus:outline-none focus:border-primary">
+                </div>
+              </div>
+              <div>
+                <textarea rows="3" placeholder="Vaša správa alebo otázka..." class="w-full bg-muted border border-border text-foreground rounded px-3 py-2.5 text-sm focus:outline-none focus:border-primary"></textarea>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-[10px] text-muted-foreground">Chránené systémom reCAPTCHA.</span>
+                <button type="submit" class="bg-accent hover:bg-accent/90 text-accent-foreground font-extrabold px-6 py-2.5 rounded text-xs transition-colors uppercase tracking-wider">
+                  Odoslať správu
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-background border-t border-border pt-12 pb-6 text-xs text-muted-foreground">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <!-- About / Brand Column -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-2">
+          <div class="bg-primary text-primary-foreground p-1.5 rounded flex items-center justify-center">
+            <iconify-icon icon="lucide:zap" class="text-lg font-bold"></iconify-icon>
+          </div>
+          <span class="text-base font-heading font-black text-foreground uppercase tracking-tight">KOVOŠROT VAŠIN</span>
+        </div>
+        <p class="text-muted-foreground leading-relaxed">
+          Autorizovaný spracovateľ starých vozidiel v zmysle platnej legislatívy SR. Zabezpečujeme ekologickú recykláciu kovových odpadov a autovrakov.
+        </p>
+        <div class="flex gap-3">
+          <a href="https://facebook.com" class="bg-muted hover:bg-primary hover:text-primary-foreground w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground transition-all">
+            <iconify-icon icon="lucide:thumbs-up" class="text-base"></iconify-icon>
+          </a>
+          <a href="#" class="bg-muted hover:bg-primary hover:text-primary-foreground w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground transition-all">
+            <iconify-icon icon="lucide:info" class="text-base"></iconify-icon>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links Column -->
+      <div class="space-y-4">
+        <h4 class="font-bold text-foreground uppercase tracking-wider text-sm">RÝCHLE ODKAZY</h4>
+        <ul class="space-y-2 text-muted-foreground">
+          <li><a href="#o-nas" class="hover:text-primary transition-colors">O nás</a></li>
+          <li><a href="#sluzby" class="hover:text-primary transition-colors">Naše služby</a></li>
+          <li><a href="#proces" class="hover:text-primary transition-colors">Ako to prebieha</a></li>
+          <li><a href="#galeria" class="hover:text-primary transition-colors">Fotogaléria prevádzky</a></li>
+          <li><a href="#kontakt" class="hover:text-primary transition-colors">Kontaktné informácie</a></li>
+        </ul>
+      </div>
+
+      <!-- Services Column -->
+      <div class="space-y-4">
+        <h4 class="font-bold text-foreground uppercase tracking-wider text-sm">NAŠE SLUŽBY</h4>
+        <ul class="space-y-2 text-muted-foreground">
+          <li><a href="#sluzby" class="hover:text-primary transition-colors">Výkup autovrakov</a></li>
+          <li><a href="#sluzby" class="hover:text-primary transition-colors">Bezplatný odťah vraku</a></li>
+          <li><a href="#sluzby" class="hover:text-primary transition-colors">Výkup železného šrotu</a></li>
+          <li><a href="#sluzby" class="hover:text-primary transition-colors">Výkup farebných kovov</a></li>
+          <li><a href="#sluzby" class="hover:text-primary transition-colors">Zber starých batérií</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal & GDPR Info Column -->
+      <div class="space-y-4">
+        <h4 class="font-bold text-foreground uppercase tracking-wider text-sm">PRÁVNE INFORMÁCIE</h4>
+        <p class="text-muted-foreground leading-relaxed">
+          Spracovanie osobných údajov je v súlade s nariadením GDPR. Všetky povolenia a rozhodnutia na spracovanie odpadov sú k nahliadnutiu na našej prevádzke.
+        </p>
+        <ul class="space-y-2 text-muted-foreground">
+          <li><a href="#gdpr" class="hover:text-primary transition-colors">Ochrana osobných údajov (GDPR)</a></li>
+          <li><a href="#cookies" class="hover:text-primary transition-colors">Nastavenie cookies</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright Bar -->
+    <div class="max-w-7xl mx-auto px-4 md:px-8 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4 text-center">
+      <p>© 2025 KOVOŠROT VAŠIN, s.r.o. Všetky práva vyhradené. Výkup autovrakov Čáry.</p>
+      <p class="text-[10px] text-muted-foreground/70">Vytvorené v súlade s najvyššími štandardmi pre ekologickú likvidáciu.</p>
+    </div>
+  </footer>
+</div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
