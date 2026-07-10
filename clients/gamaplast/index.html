@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMAPLAST — Výroba plastových uzáverov a vstrekovaných dielov</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  /* Brand palette */
+  --primary:         #6b21a8;
+  --primary-fg:      #ffffff;
+  --secondary:       #fcb349;
+  --secondary-fg:    #111111;
+  --accent:          #8b358f;
+  --accent-fg:       #ffffff;
+  --background:      #ffffff;
+
+  /* Semantic tokens */
+  --ink:        #3f1560;   /* dark primary — hero / footer */
+  --ink-2:      #4c186e;   /* raised panel on dark */
+  --ink-3:      #5c2278;   /* hairline on dark */
+  --blue:       var(--primary);
+  --blue-2:     var(--accent);
+  --steel:      #7a6285;   /* muted text on light */
+  --paper:      var(--background);
+  --paper-2:    var(--background);
+  --line:       #e9dff0;   /* hairline on light */
+  --text:       #111111;
+  --text-soft:  #5a5160;
+  --on-dark:    var(--primary-fg);
+  --on-dark-soft: rgba(255,255,255,0.78);
+  --amber:      var(--secondary); /* signal accent / CTAs */
+
+  --display: 'Archivo', sans-serif;
+  --body:    'Inter', sans-serif;
+  --mono:    'IBM Plex Mono', monospace;
+
+  --edge: 1px solid var(--line);
+  --edge-dark: 1px solid var(--ink-3);
+
+  --section-pad: clamp(64px, 9vw, 128px);
+  --gutter: clamp(20px, 5vw, 64px);
+  --wrap: 1240px;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family: var(--body);
+  color: var(--text);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img{display:block; max-width:100%; height:100%; object-fit:cover;}
+a{color:inherit; text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit; cursor:pointer;}
+
+.wrap{
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+}
+
+:focus-visible{
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+/* eyebrow / mono label style used throughout as the signature "data plate" language */
+.eyebrow{
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{
+  content:"";
+  width:18px; height:1px;
+  background: var(--amber);
+  display:inline-block;
+}
+
+h1,h2,h3{
+  font-family: var(--display);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.section-head{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  max-width: 640px;
+  margin-bottom: clamp(36px, 5vw, 64px);
+}
+.section-head h2{ font-size: clamp(28px, 3.6vw, 44px); color: var(--text); }
+.section-head p{ color: var(--text-soft); font-size:16.5px; line-height:1.6; max-width:56ch;}
+.section-head.on-dark h2{ color: var(--on-dark); }
+.section-head.on-dark p{ color: var(--on-dark-soft); }
+
+/* ---- photo module with unifying duotone treatment ----
+   All photography gets the same cool graphite/blue grade so a set of
+   stock shots reads as one coherent, art-directed system. */
+.photo{
+  position:relative;
+  overflow:hidden;
+  background: var(--ink);
+}
+.photo img{
+  width:100%; height:100%;
+  filter: grayscale(0.35) contrast(1.08) brightness(0.92);
+  transform: scale(1.001);
+}
+.photo::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(155deg, rgba(107,33,168,0.5), rgba(63,21,96,0.28) 55%, rgba(63,21,96,0.06));
+  mix-blend-mode: multiply;
+  pointer-events:none;
+}
+.photo.warm::after{
+  background: linear-gradient(155deg, rgba(107,33,168,0.32), rgba(63,21,96,0.16) 60%, transparent);
+}
+.plate-caption{
+  position:absolute; left:0; right:0; bottom:0;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px;
+  padding: 14px clamp(14px,2.4vw,22px);
+  background: linear-gradient(0deg, rgba(47,14,71,0.85), transparent);
+  color: var(--on-dark);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  z-index:2;
+}
+.plate-caption span:last-child{ color: var(--amber); }
+
+/* rivet corner treatment used on data-plate UI blocks — nods to the
+   engraved spec plates bolted to real injection-molding machines */
+.plate{
+  position:relative;
+  background: var(--ink-2);
+  border: var(--edge-dark);
+  padding: 20px 22px;
+}
+.plate::before,.plate::after,
+.plate .rivet{
+  content:"";
+  position:absolute;
+  width:6px; height:6px;
+  border-radius:50%;
+  background: #6a5080;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.5), 0 0.5px 0 rgba(255,255,255,0.06);
+}
+.plate::before{ top:8px; left:8px; }
+.plate::after{ top:8px; right:8px; }
+.plate .rivet:nth-of-type(1){ bottom:8px; left:8px; }
+.plate .rivet:nth-of-type(2){ bottom:8px; right:8px; }
+.plate.on-light{ background: var(--paper-2); border-color: var(--line); }
+.plate.on-light::before,.plate.on-light::after,.plate.on-light .rivet{ background:#ddd0e4; }
+
+.plate-label{
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color: var(--on-dark-soft);
+  margin-bottom:6px;
+}
+.plate.on-light .plate-label{ color: var(--text-soft); }
+.plate-value{
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--on-dark);
+  line-height:1.5;
+}
+.plate.on-light .plate-value{ color: var(--text); }
+
+/* buttons */
+.btn{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  padding: 15px 26px;
+  border: 1px solid transparent;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  white-space:nowrap;
+}
+.btn-primary{
+  background: var(--secondary);
+  color: var(--secondary-fg);
+  border-color: var(--secondary);
+}
+.btn-primary:hover{ background:#fdc96a; border-color:#fdc96a; }
+.btn-ghost{
+  background: transparent;
+  color: var(--on-dark);
+  border-color: rgba(255,255,255,0.35);
+}
+.btn-ghost:hover{ border-color: var(--on-dark); background: rgba(255,255,255,0.08); }
+.btn-ghost.on-light{ color: var(--text); border-color: var(--line); }
+.btn-ghost.on-light:hover{ border-color: var(--text); background: rgba(0,0,0,0.03); }
+.btn-arrow{ font-size:16px; transition: transform 0.2s ease; }
+.btn:hover .btn-arrow{ transform: translateX(3px); }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 100;
+  padding: 18px 0;
+  transition: background 0.25s ease, padding 0.25s ease, border-color 0.25s ease;
+  border-bottom: 1px solid transparent;
+}
+.site-header.is-scrolled{
+  background: rgba(63,21,96,0.94);
+  backdrop-filter: blur(8px);
+  padding: 12px 0;
+  border-bottom-color: var(--ink-3);
+}
+.site-header .wrap{
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+}
+.logo{
+  font-family: var(--display);
+  font-weight:900;
+  font-size: 19px;
+  letter-spacing: 0.01em;
+  color: var(--on-dark);
+  display:flex; align-items:center;
+}
+.logo .mark{
+  width:100%; 
+  height:30px;
+}
+.logo small{
+  display:block;
+  font-family:var(--mono); font-weight:500;
+  font-size:9.5px; letter-spacing:0.14em;
+  color: var(--on-dark-soft);
+  margin-top:2px;
+}
+.main-nav{ display:flex; align-items:center; gap:34px; }
+.main-nav a{
+  font-family: var(--mono);
+  font-size:12.5px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color: var(--on-dark-soft);
+  transition: color 0.2s ease;
+}
+.main-nav a:hover{ color: var(--on-dark); }
+.header-cta{ display:flex; align-items:center; gap:16px; }
+.nav-toggle{ display:none; }
+
+@media (max-width: 900px){
+  .main-nav{ display:none; }
+  .header-cta .btn-ghost{ display:none; }
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position: relative;
+  display:grid;
+  grid-template-columns: minmax(320px, 44%) 1fr;
+  min-height: 100vh;
+  background: var(--ink);
+}
+.hero-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap: 26px;
+  padding: 140px var(--gutter) 60px clamp(24px, 5vw, 72px);
+}
+.hero-copy h1{
+  font-size: clamp(34px, 4.6vw, 58px);
+  color: var(--on-dark);
+  max-width: 13ch;
+}
+.hero-copy .lede{
+  font-size: 17px;
+  line-height:1.65;
+  color: var(--on-dark-soft);
+  max-width: 46ch;
+}
+.hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-top:6px; }
+.hero-plate{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:1px;
+  background: var(--ink-3);
+  border: var(--edge-dark);
+  margin-top: 18px;
+  max-width: 480px;
+}
+.hero-plate div{
+  background: var(--ink-2);
+  padding: 14px 16px;
+}
+.hero-plate .plate-label{ margin-bottom:4px; }
+.hero-plate .plate-value{ font-size:13.5px; }
+
+.hero-photo{ position:relative; }
+.hero-photo .photo{ position:absolute; inset:0; }
+.hero-photo .photo img{ filter: grayscale(0.3) contrast(1.1) brightness(0.88); }
+
+@media (max-width: 980px){
+  .hero{ grid-template-columns: 1fr; min-height:auto; }
+  .hero-photo{ height: 46vh; order:-1; }
+  .hero-copy{ padding-top:118px; }
+}
+
+/* ============================================================
+   CAPABILITY TICKER
+   ============================================================ */
+.ticker{
+  background: var(--blue);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  overflow:hidden;
+  white-space:nowrap;
+  padding: 15px 0;
+}
+.ticker-track{
+  display:inline-flex;
+  gap: 48px;
+  animation: ticker 34s linear infinite;
+}
+.ticker-track span{
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color: rgba(255,255,255,0.85);
+}
+.ticker-track span em{ color: var(--secondary); font-style:normal; margin-right:48px; }
+@keyframes ticker{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+
+/* ============================================================
+   GENERIC SECTION WRAPPER
+   ============================================================ */
+section.block{ padding: var(--section-pad) 0; }
+.block.on-dark{ background: var(--ink); }
+.block.on-blue{ background: var(--blue); }
+
+/* ============================================================
+   PRODUCTS — bento of real product photography
+   ============================================================ */
+.product-grid{
+  display:grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 130px;
+  gap: 14px;
+}
+.p-card{ position:relative; border-radius:2px; }
+.p-card .photo{ position:absolute; inset:0; }
+.p-card .cat-no{
+  position:absolute; top:14px; left:14px; z-index:2;
+  font-family:var(--mono); font-size:11px; color: rgba(255,255,255,0.55);
+  letter-spacing:0.1em;
+}
+.p1{ grid-column: span 4; grid-row: span 4; }
+.p2{ grid-column: span 2; grid-row: span 4; }
+.p3{ grid-column: span 3; grid-row: span 3; }
+.p4{ grid-column: span 3; grid-row: span 3; }
+
+@media (max-width: 860px){
+  .product-grid{ grid-template-columns: 1fr 1fr; grid-auto-rows:150px; }
+  .p1{ grid-column: 1 / -1; grid-row: span 4; }
+  .p2{ grid-column: 1 / -1; grid-row: span 3; }
+  .p3, .p4{ grid-column: span 1; grid-row: span 3; }
+}
+
+/* ============================================================
+   MANUFACTURING — alternating photo / spec rows
+   ============================================================ */
+.mfg-row{
+  display:grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(24px, 5vw, 64px);
+  align-items:center;
+}
+.mfg-row + .mfg-row{ margin-top: clamp(48px, 7vw, 96px); }
+.mfg-row.reverse .mfg-photo{ order:2; }
+.mfg-photo{ aspect-ratio: 4/3; }
+.mfg-copy .eyebrow{ margin-bottom:16px; }
+.mfg-copy h3{ font-size: clamp(22px, 2.6vw, 30px); color: var(--on-dark); margin-bottom:14px; max-width:20ch; }
+.mfg-copy p{ color: var(--on-dark-soft); line-height:1.7; font-size:15.5px; max-width:48ch; margin-bottom:22px; }
+.spec-list{ display:flex; flex-direction:column; gap:0; border-top: var(--edge-dark); }
+.spec-list li{
+  display:flex; justify-content:space-between; gap:16px;
+  padding: 13px 0;
+  border-bottom: var(--edge-dark);
+  font-family: var(--mono);
+  font-size:13px;
+  color: var(--on-dark-soft);
+}
+.spec-list li b{ color: var(--on-dark); font-weight:500; }
+
+@media (max-width: 860px){
+  .mfg-row, .mfg-row.reverse{ grid-template-columns:1fr; }
+  .mfg-row.reverse .mfg-photo{ order:0; }
+}
+
+/* ============================================================
+   QUALITY
+   ============================================================ */
+.quality{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px,5vw,64px);
+  align-items:center;
+}
+.quality-photo{ aspect-ratio: 5/4; }
+.quality-copy h2{ font-size: clamp(28px,3.4vw,42px); margin-bottom:18px; max-width:14ch; }
+.quality-copy p{ color: var(--text-soft); line-height:1.7; font-size:16px; max-width:50ch; margin-bottom:26px; }
+.quality-points{ display:grid; gap:16px; }
+.quality-points .point{ display:flex; gap:14px; align-items:flex-start; }
+.quality-points .num{ font-family:var(--mono); font-size:13px; color:var(--amber); padding-top:2px; }
+.quality-points .txt b{ display:block; font-size:15px; margin-bottom:3px; }
+.quality-points .txt span{ font-size:14px; color:var(--text-soft); }
+
+@media (max-width: 860px){ .quality{ grid-template-columns:1fr; } }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px,5vw,64px);
+  align-items:stretch;
+}
+.about-photo{ min-height:420px; }
+.about-copy{ display:flex; flex-direction:column; justify-content:center; }
+.about-copy h2{ color:var(--on-dark); font-size:clamp(26px,3vw,38px); margin-bottom:20px; max-width:16ch; }
+.about-copy p{ color:var(--on-dark-soft); line-height:1.75; font-size:15.5px; max-width:50ch; }
+.about-copy p + p{ margin-top:16px; }
+.about-plate{ margin-top:28px; max-width:420px; }
+
+@media (max-width: 860px){ .about{ grid-template-columns:1fr; } .about-photo{ min-height:280px; order:-1; } }
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+.gallery-grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 190px;
+  gap:12px;
+}
+.g-item{ position:relative; }
+.g1{ grid-column: span 2; grid-row: span 2; }
+.g2{ grid-column: span 2; grid-row: span 1; }
+.g3{ grid-column: span 1; grid-row: span 1; }
+.g4{ grid-column: span 1; grid-row: span 1; }
+.g5{ grid-column: span 2; grid-row: span 1; }
+.g6{ grid-column: span 2; grid-row: span 2; }
+
+@media (max-width: 860px){
+  .gallery-grid{ grid-template-columns: 1fr 1fr; grid-auto-rows:150px; }
+  .g1,.g6{ grid-column: span 2; grid-row: span 2; }
+  .g2,.g3,.g4,.g5{ grid-column: span 1; grid-row: span 1; }
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-wrap{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px,5vw,80px);
+}
+.contact-info h2{ color:var(--on-dark); font-size:clamp(28px,3.4vw,42px); margin-bottom:18px; max-width:14ch; }
+.contact-info > p{ color:var(--on-dark-soft); font-size:16px; line-height:1.7; max-width:44ch; margin-bottom:32px; }
+.addr-plate{ max-width:420px; margin-bottom:20px; }
+.addr-plate .plate-value{ font-size:16px; line-height:1.7; }
+.contact-links{ display:flex; gap:22px; flex-wrap:wrap; }
+.contact-links a{
+  font-family:var(--mono); font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--on-dark); border-bottom:1px solid var(--amber); padding-bottom:3px;
+}
+
+.inquiry-form{ background:var(--ink-2); border:var(--edge-dark); padding: clamp(24px,3vw,36px); }
+.inquiry-form .plate-label{ margin-bottom:20px; }
+.field{ margin-bottom:18px; display:flex; flex-direction:column; gap:8px; }
+.field label{ font-family:var(--mono); font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--on-dark-soft); }
+.field input, .field textarea{
+  background: var(--ink);
+  border: 1px solid var(--ink-3);
+  color: var(--on-dark);
+  padding: 12px 14px;
+  font-family: var(--body);
+  font-size: 14.5px;
+  resize: vertical;
+}
+.field input:focus, .field textarea:focus{ outline:2px solid var(--amber); outline-offset:0; border-color:var(--amber); }
+.field-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.inquiry-form .btn-primary{ width:100%; justify-content:center; margin-top:6px; }
+
+@media (max-width: 860px){ .contact-wrap{ grid-template-columns:1fr; } .field-row{ grid-template-columns:1fr; } }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{
+  background: var(--ink);
+  border-top: var(--edge-dark);
+  padding: 28px 0;
+}
+.site-footer .wrap{
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+}
+.site-footer p{
+  font-family:var(--mono); font-size:11.5px; letter-spacing:0.05em; color:var(--on-dark-soft);
+}
+.site-footer .foot-links{ display:flex; gap:20px; }
+.site-footer .foot-links a{ font-family:var(--mono); font-size:11.5px; color:var(--on-dark-soft); }
+.site-footer .foot-links a:hover{ color:var(--on-dark); }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="site-header" id="siteHeader">
+  <div class="wrap">
+    <a href="#top" class="logo">
+      <span class="mark">
+        <img src="logo.svg" alt="GAMAPLAST">
+      </span>
+      <span>GAMAPLAST<small>VÝROBA Z PLASTOV · SK</small></span>
+    </a>
+    <nav class="main-nav">
+      <a href="#vyrobky">Výrobky</a>
+      <a href="#vyroba">Výroba</a>
+      <a href="#kvalita">Kvalita</a>
+      <a href="#o-nas">O nás</a>
+      <a href="#galeria">Galéria</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="header-cta">
+      <a href="#kontakt" class="btn btn-ghost">Odoslať dopyt</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="top">
+  <div class="hero-copy">
+    <span class="eyebrow">Vstrekovanie plastov / Trnavský kraj</span>
+    <h1>Plastové uzávery a výlisky z vlastnej výrobnej haly.</h1>
+    <p class="lede">GAMAPLAST, s.r.o. vyrába plastové uzávery, viečka a vstrekované diely pre priemyselných odberateľov. Vlastné formy, vlastné stroje, plná zodpovednosť za každú dávku.</p>
+    <div class="hero-ctas">
+      <a href="#kontakt" class="btn btn-primary">Odoslať dopyt <span class="btn-arrow">→</span></a>
+      <a href="#vyrobky" class="btn btn-ghost">Prezrieť výrobný program</a>
+    </div>
+    <div class="hero-plate">
+      <div><div class="plate-label">Proces</div><div class="plate-value">Vstrekovanie</div></div>
+      <div><div class="plate-label">Materiály</div><div class="plate-value">HDPE·PP·PA</div></div>
+      <div><div class="plate-label">Segment</div><div class="plate-value">B2B priemysel</div></div>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <div class="photo">
+      <img src="https://images.unsplash.com/photo-1730705788367-dbd288c40ee7?fm=jpg&q=80&w=1600&auto=format&fit=crop" alt="Výrobná hala s priemyselnými strojmi">
+    </div>
+    <div class="plate-caption"><span>Výrobná hala / stroj č. 04</span><span>Live floor</span></div>
+  </div>
+</section>
+
+<!-- CAPABILITY TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span><em>·</em>Vstrekovanie plastov<em>·</em>Viacdutinové formy<em>·</em>Vlastná nástrojáreň<em>·</em>Uzávery a viečka<em>·</em>Technické výlisky<em>·</em>Kontrola kvality<em>·</em>Sériová aj zákazková výroba</span>
+    <span><em>·</em>Vstrekovanie plastov<em>·</em>Viacdutinové formy<em>·</em>Vlastná nástrojáreň<em>·</em>Uzávery a viečka<em>·</em>Technické výlisky<em>·</em>Kontrola kvality<em>·</em>Sériová aj zákazková výroba</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PRODUCTS
+     ============================================================ -->
+<section class="block" id="vyrobky">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">01 / Výrobný program</span>
+      <h2>Čo z našej haly ide von.</h2>
+      <p>Štyri hlavné kategórie výroby — od bežných uzáverov po diely podľa zákazníckej dokumentácie a vlastných foriem.</p>
+    </div>
+    <div class="product-grid">
+      <div class="p-card p1">
+        <span class="cat-no">01</span>
+        <div class="photo"><img src="http://www.gamaplast.sk/images/cola.jpg" alt="Plastový uzáver z produkcie GAMAPLAST — detail povrchu"></div>
+        <div class="plate-caption"><span>Uzávery a viečka</span><span>PP / HDPE</span></div>
+      </div>
+      <div class="p-card p2">
+        <span class="cat-no">02</span>
+        <div class="photo"><img src="http://www.gamaplast.sk/images/guitar.jpg" alt="Vstrekovacia forma — detail nástroja"></div>
+        <div class="plate-caption"><span>Formy a nástroje</span><span>Vlastná výroba</span></div>
+      </div>
+      <div class="p-card p3">
+        <span class="cat-no">03</span>
+        <div class="photo"><img src="https://images.unsplash.com/photo-1625465838249-1afc776f7138?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Technický plastový výlisok"></div>
+        <div class="plate-caption"><span>Technické výlisky</span><span>Na mieru</span></div>
+      </div>
+      <div class="p-card p4">
+        <span class="cat-no">04</span>
+        <div class="photo"><img src="https://images.unsplash.com/photo-1625465587968-dc7b4a2366cf?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Obalový plastový komponent"></div>
+        <div class="plate-caption"><span>Obalové komponenty</span><span>Sériová výroba</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MANUFACTURING
+     ============================================================ -->
+<section class="block on-dark" id="vyroba">
+  <div class="wrap">
+    <div class="section-head on-dark">
+      <span class="eyebrow">02 / Výroba</span>
+      <h2 style="color:var(--on-dark)">Vlastná hala. Vlastný proces.</h2>
+      <p>Celá výroba prebieha priamo u nás — od nastavenia formy po výstupnú kontrolu.</p>
+    </div>
+
+    <div class="mfg-row">
+      <div class="mfg-photo photo">
+        <img src="https://images.unsplash.com/photo-1764185800646-f75f7e16e465?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Výrobná linka vo výrobnej hale GAMAPLAST">
+        <div class="plate-caption"><span>Výrobná linka</span><span>Hala A</span></div>
+      </div>
+      <div class="mfg-copy">
+        <span class="eyebrow">Vstrekovanie</span>
+        <h3>Vstrekovacie stroje riadené priamo na mieste výroby.</h3>
+        <p>Výrobu nastavujeme a sledujeme priamo v hale, nie z kancelárie. Parametre procesu sa ladia podľa konkrétneho dielu a materiálu, nie podľa univerzálneho postupu.</p>
+        <ul class="spec-list">
+          <li><span>Proces</span><b>Vstrekovanie termoplastov</b></li>
+          <li><span>Formy</span><b>Jedno- aj viacdutinové</b></li>
+          <li><span>Výstup</span><b>Sériová aj zákazková dávka</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mfg-row reverse">
+      <div class="mfg-photo photo">
+        <img src="https://images.unsplash.com/photo-1777464375799-768774f30542?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Interiér výrobnej haly s technológiou">
+        <div class="plate-caption"><span>Strojová hala</span><span>Hala B</span></div>
+      </div>
+      <div class="mfg-copy">
+        <span class="eyebrow">Kapacita</span>
+        <h3>Priestor pre bežnú aj nadrozmernú zákazku.</h3>
+        <p>Rozloženie hál umožňuje bežať sériovú produkciu a zároveň pripravovať novú formu na susednom stroji — bez zastavenia rozbehnutej výroby.</p>
+        <ul class="spec-list">
+          <li><span>Prevádzka</span><b>Viaczmenná</b></li>
+          <li><span>Sklad</span><b>Vlastný, na mieste</b></li>
+          <li><span>Logistika</span><b>Priama expedícia partnerom</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     QUALITY
+     ============================================================ -->
+<section class="block" id="kvalita">
+  <div class="wrap">
+    <div class="quality">
+      <div class="quality-photo photo warm">
+        <img src="https://images.unsplash.com/photo-1676646606766-f8325cac7faf?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="Detailná kontrola presnosti dielu">
+        <div class="plate-caption"><span>Výstupná kontrola</span><span>Detail</span></div>
+      </div>
+      <div class="quality-copy">
+        <span class="eyebrow">03 / Kvalita</span>
+        <h2>Presnosť sa kontroluje priamo pri stroji.</h2>
+        <p>Každá dávka prechádza vizuálnou aj rozmerovou kontrolou priamo vo výrobe. Stabilita formy a procesu je základ toho, že diel číslo jedna sedí rovnako ako diel číslo desaťtisíc.</p>
+        <div class="quality-points">
+          <div class="point">
+            <span class="num">01</span>
+            <div class="txt"><b>Kontrola pri stroji</b><span>Vizuálna a rozmerová kontrola priamo počas behu výroby.</span></div>
+          </div>
+          <div class="point">
+            <span class="num">02</span>
+            <div class="txt"><b>Stabilita formy</b><span>Nastavenie a údržba foriem pod dohľadom vlastnej nástrojárne.</span></div>
+          </div>
+          <div class="point">
+            <span class="num">03</span>
+            <div class="txt"><b>Opakovateľnosť dávky</b><span>Rovnaký parameter procesu pri opakovanej objednávke.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section class="block on-blue" id="o-nas">
+  <div class="wrap">
+    <div class="about">
+      <div class="about-copy">
+        <span class="eyebrow">04 / O spoločnosti</span>
+        <h2>Slovenský výrobca so sídlom v Trnavskom kraji.</h2>
+        <p>GAMAPLAST, s.r.o. je slovenská výrobná spoločnosť zameraná na spracovanie plastov vstrekovaním. Pracujeme pre priemyselných partnerov, ktorí potrebujú spoľahlivého dodávateľa plastových uzáverov, viečok a technických výliskov.</p>
+        <p>Sme výrobný podnik, nie obchodný sprostredkovateľ — dopyt, formu aj samotnú výrobu riešime priamo u nás v hale.</p>
+        <div class="plate about-plate">
+          <div class="rivet"></div><div class="rivet"></div>
+          <div class="plate-label">Právna forma</div>
+          <div class="plate-value">GAMAPLAST, s.r.o. — spoločnosť s ručením obmedzeným</div>
+        </div>
+      </div>
+      <div class="about-photo photo">
+        <img src="https://images.unsplash.com/photo-1625465838283-36cec8a78e01?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="Detail výrobného nástroja v hale GAMAPLAST">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GALLERY
+     ============================================================ -->
+<section class="block" id="galeria">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">05 / Z výroby</span>
+      <h2>Hala, stroje, diely.</h2>
+      <p>Výber zábery z bežnej prevádzky — bez štylizácie, presne tak, ako vyzerá výroba v praxi.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item g1 photo"><img src="https://images.unsplash.com/photo-1730705788367-dbd288c40ee7?fm=jpg&q=75&w=1000&auto=format&fit=crop" alt="Výrobná hala — celkový pohľad"></div>
+      <div class="g-item g2 photo"><img src="https://images.unsplash.com/photo-1764185800646-f75f7e16e465?fm=jpg&q=75&w=900&auto=format&fit=crop" alt="Výrobná linka s bezpečnostným značením"></div>
+      <div class="g-item g3 photo"><img src="https://images.unsplash.com/photo-1625465404484-448f58e5c5d9?fm=jpg&q=75&w=600&auto=format&fit=crop" alt="Nástroj formy — detail"></div>
+      <div class="g-item g4 photo"><img src="https://images.unsplash.com/photo-1606206886378-e49a19ad0933?fm=jpg&q=75&w=600&auto=format&fit=crop" alt="Ručný nástroj používaný pri údržbe formy"></div>
+      <div class="g-item g5 photo"><img src="https://images.unsplash.com/photo-1625465838249-1afc776f7138?fm=jpg&q=75&w=900&auto=format&fit=crop" alt="Plastový diel — detail povrchu"></div>
+      <div class="g-item g6 photo"><img src="https://images.unsplash.com/photo-1777464375799-768774f30542?fm=jpg&q=75&w=1000&auto=format&fit=crop" alt="Interiér strojovej haly"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section class="block on-dark" id="kontakt">
+  <div class="wrap">
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <span class="eyebrow">06 / Kontakt</span>
+        <h2>Pripravíme ponuku na mieru vášmu dielu.</h2>
+        <p>Pošlite nám špecifikáciu, výkres alebo vzorku — ozveme sa s reálnym termínom a cenou na základe možností našej výroby.</p>
+        <div class="plate addr-plate">
+          <div class="rivet"></div><div class="rivet"></div>
+          <div class="plate-label">Sídlo spoločnosti</div>
+          <div class="plate-value">GAMAPLAST, s.r.o.<br>M. Kollára 329, 908&nbsp;43 Čáry<br>Trnavský kraj, Slovensko</div>
+        </div>
+        <div class="contact-links">
+          <a href="https://www.gamaplast.sk" target="_blank" rel="noopener">gamaplast.sk</a>
+          <a href="#kontakt">Obchodný register SR ↗</a>
+        </div>
+      </div>
+
+      <form class="inquiry-form" onsubmit="event.preventDefault();">
+        <div class="plate-label">Formulár dopytu</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-name">Meno a priezvisko</label>
+            <input id="f-name" type="text" placeholder="Jozef Novák" required>
+          </div>
+          <div class="field">
+            <label for="f-company">Spoločnosť</label>
+            <input id="f-company" type="text" placeholder="Názov firmy">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-email">E-mail</label>
+            <input id="f-email" type="email" placeholder="meno@firma.sk" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Telefón</label>
+            <input id="f-phone" type="tel" placeholder="+421 9__ ___ ___">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-msg">Popis dopytu</label>
+          <textarea id="f-msg" rows="4" placeholder="Materiál, množstvo, prípadne výkres alebo odkaz na dokumentáciu"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Odoslať dopyt <span class="btn-arrow">→</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 GAMAPLAST, s.r.o. — Výroba z plastov</p>
+    <div class="foot-links">
+      <a href="#vyrobky">Výrobky</a>
+      <a href="#vyroba">Výroba</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('is-scrolled', window.scrollY > 20);
+  }, { passive: true });
+</script>
+
+</body>
+</html>
