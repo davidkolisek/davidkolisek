@@ -92,38 +92,63 @@
 
   <!-- Main Navigation Header -->
   <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
-    <div class="max-w-7xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
-      <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="bg-primary text-primary-foreground p-2 rounded-md flex items-center justify-center transition-transform group-hover:rotate-6">
-          <iconify-icon icon="lucide:zap" class="text-2xl font-bold"></iconify-icon>
-        </div>
-        <div>
-          <span class="block text-xl font-heading font-black tracking-tight uppercase text-primary group-hover:text-secondary transition-colors">KOVOŠROT VAŠIN</span>
-          <span class="block text-xs text-muted-foreground tracking-widest uppercase -mt-1">s.r.o. — ČÁRY</span>
-        </div>
-      </a>
-
-      <!-- Desktop Navigation Menu -->
-      <nav class="hidden lg:flex items-center gap-7">
-        <a href="#o-nas" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">O nás</a>
-        <a href="#sluzby" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Služby</a>
-        <a href="#vykupujeme" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Čo vykupujeme</a>
-        <a href="#proces" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Ako to prebieha</a>
-        <a href="#galeria" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Fotogaléria</a>
-        <a href="#kontakt" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Kontakt</a>
-      </nav>
-
-      <!-- Action Buttons -->
-      <div class="flex items-center gap-3">
-        <a href="#kalkulacka" class="hidden sm:inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-bold px-4 py-2 rounded text-sm transition-colors uppercase tracking-wider">
-          <iconify-icon icon="lucide:clipboard" class="text-base"></iconify-icon>
-          Nezáväzná cenová ponuka
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="flex justify-between items-center py-3 lg:py-4 gap-4">
+        <!-- Brand Logo -->
+        <a href="#" class="shrink-0 flex items-center group">
+          <img
+            src="logo.png"
+            alt="KOVOŠROT VAŠIN — s.r.o. Čáry"
+            class="site-logo object-contain object-left transition-opacity group-hover:opacity-90"
+            style="height: 28px; width: auto; max-height: 28px; max-width: 100px;"
+          >
         </a>
-        <button class="lg:hidden text-foreground/80 hover:text-primary p-2">
-          <iconify-icon icon="lucide:menu" class="text-2xl"></iconify-icon>
-        </button>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-7 flex-1 justify-center" aria-label="Hlavná navigácia">
+          <a href="#o-nas" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">O nás</a>
+          <a href="#sluzby" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Služby</a>
+          <a href="#vykupujeme" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Čo vykupujeme</a>
+          <a href="#proces" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Ako to prebieha</a>
+          <a href="#galeria" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Fotogaléria</a>
+          <a href="#kontakt" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">Kontakt</a>
+        </nav>
+
+        <!-- Desktop CTA + Mobile Toggle -->
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+          <a href="#kalkulacka" class="hidden lg:inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-bold px-4 py-2 rounded text-sm transition-colors uppercase tracking-wider">
+            <iconify-icon icon="lucide:clipboard" class="text-base"></iconify-icon>
+            Nezáväzná cenová ponuka
+          </a>
+          <button
+            type="button"
+            id="nav-toggle"
+            class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md border border-border text-foreground hover:text-primary hover:border-primary transition-colors"
+            aria-label="Otvoriť menu"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+          >
+            <iconify-icon icon="lucide:menu" id="nav-icon-menu" class="text-2xl"></iconify-icon>
+            <iconify-icon icon="lucide:x" id="nav-icon-close" class="text-2xl hidden"></iconify-icon>
+          </button>
+        </div>
       </div>
+
+      <!-- Mobile Navigation Dropdown -->
+      <nav id="mobile-nav" class="lg:hidden hidden border-t border-border" aria-label="Mobilná navigácia">
+        <div class="flex flex-col gap-1 py-4">
+          <a href="#o-nas" class="nav-mobile-link px-3 py-2.5 rounded-md text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted transition-colors">O nás</a>
+          <a href="#sluzby" class="nav-mobile-link px-3 py-2.5 rounded-md text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted transition-colors">Služby</a>
+          <a href="#vykupujeme" class="nav-mobile-link px-3 py-2.5 rounded-md text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted transition-colors">Čo vykupujeme</a>
+          <a href="#proces" class="nav-mobile-link px-3 py-2.5 rounded-md text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted transition-colors">Ako to prebieha</a>
+          <a href="#galeria" class="nav-mobile-link px-3 py-2.5 rounded-md text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted transition-colors">Fotogaléria</a>
+          <a href="#kontakt" class="nav-mobile-link px-3 py-2.5 rounded-md text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted transition-colors">Kontakt</a>
+          <a href="#kalkulacka" class="nav-mobile-link mt-2 inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-bold px-4 py-3 rounded text-sm transition-colors uppercase tracking-wider">
+            <iconify-icon icon="lucide:clipboard" class="text-base"></iconify-icon>
+            Nezáväzná cenová ponuka
+          </a>
+        </div>
+      </nav>
     </div>
   </header>
 
