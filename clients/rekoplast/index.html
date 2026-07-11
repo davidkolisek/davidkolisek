@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homepage Redesign — Exported from UXMagic Copilot">
+    <title>Homepage Redesign</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Poppins:wght@100..900&amp;family=Fira+Code:wght@300..700&amp;family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    <style type="text/tailwindcss">
+      @import "tailwindcss";
+      @theme inline {
+        --color-background: var(--background);
+        --color-foreground: var(--foreground);
+        --color-primary: var(--primary);
+        --color-primary-foreground: var(--primary-foreground);
+        --color-secondary: var(--secondary);
+        --color-secondary-foreground: var(--secondary-foreground);
+        --color-tertiary: var(--tertiary);
+        --color-muted: var(--muted);
+        --color-muted-foreground: var(--muted-foreground);
+        --color-accent: var(--accent);
+        --color-destructive: var(--destructive);
+        --color-card: var(--card);
+        --color-card-foreground: var(--card-foreground);
+        --color-border: var(--border);
+        --color-input: var(--input);
+        --color-ring: var(--ring);
+        --radius-sm: calc(var(--radius) - 4px);
+        --radius-md: calc(var(--radius) - 2px);
+        --radius-lg: var(--radius);
+        --font-family-sans: var(--font-sans);
+        --font-family-heading: var(--font-heading);
+        --font-family-mono: var(--font-mono);
+      }
+      :root {
+        --background: #ffffff;
+        --foreground: #212529;
+        --primary: #008bcf;
+        --primary-foreground: #ffffff;
+        --secondary: #6c757d;
+        --secondary-foreground: #ffffff;
+        --tertiary: #008bcf;
+        --muted: #f8f9fa;
+        --muted-foreground: #6c757d;
+        --accent: #3490dc;
+        --accent-foreground: #ffffff;
+        --card: #ffffff;
+        --card-foreground: #212529;
+        --destructive: #EF4444;
+        --border: #dee2e6;
+        --input: #ced4da;
+        --ring: #008bcf;
+        --radius: 0.5rem;
+        --font-sans: Inter, sans-serif;
+        --font-heading: Inter, sans-serif;
+        --font-mono: JetBrains Mono, monospace;
+        --shadow-offset-x: 0;
+        --shadow-offset-y: 10;
+        --shadow-blur: 30;
+        --shadow-spread: -8;
+        --shadow-color: rgba(15, 23, 42, 0.12);
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div data-page="homepage-redesign">
+
+<div class="min-h-screen w-full bg-background flex flex-col relative text-foreground font-sans">
+  
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="inline-flex shrink-0 items-center group">
+        <img
+          src="logo.svg"
+          alt="REKOPLAST — vstrekovanie plastov"
+          class="site-logo transition-opacity group-hover:opacity-90"
+        >
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#o-nas" class="text-sm font-semibold text-foreground/80 hover:text-primary transition-colors">O NÁS</a>
+        <a href="#technologia" class="text-sm font-semibold text-foreground/80 hover:text-primary transition-colors">TECHNOLÓGIE</a>
+        <a href="#produkty" class="text-sm font-semibold text-foreground/80 hover:text-primary transition-colors">PRODUKTY</a>
+        <a href="#faq" class="text-sm font-semibold text-foreground/80 hover:text-primary transition-colors">ČASTÉ OTÁZKY</a>
+        <a href="#kontakt" class="text-sm font-semibold text-foreground/80 hover:text-primary transition-colors">KONTAKT</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-4">
+        <a href="#kontakt" class="hidden sm:inline-flex h-11 items-center justify-center px-6 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors shadow-sm">
+          Nezáväzný dopyt
+        </a>
+        <button class="lg:hidden p-2 text-foreground hover:text-primary transition-colors" aria-label="Menu">
+          <iconify-icon icon="lucide:menu" class="text-2xl"></iconify-icon>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative bg-muted py-20 lg:py-32 overflow-hidden border-b border-border">
+    <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#008bcf_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+          <iconify-icon icon="lucide:shield-check" class="text-sm"></iconify-icon>
+          Slovenská priemyselná výroba od roku 1994
+        </div>
+        <h1 class="text-4xl lg:text-5xl font-heading font-extrabold text-foreground tracking-tight leading-tight">
+          Precízne vstrekovanie plastov a technická výroba
+        </h1>
+        <p class="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+          Sme stabilný partner pre priemyselné lisovanie plastov, ručnú montáž dielov a tampónovú potlač. Už viac ako 30 rokov dodávame certifikované plastové komponenty s dôrazom na maximálnu rozmerovú presnosť a kvalitu.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+          <a href="#kontakt" class="h-12 inline-flex items-center justify-center px-8 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors shadow-md">
+            Kontaktovať špecialistu
+          </a>
+          <a href="#produkty" class="h-12 inline-flex items-center justify-center px-8 rounded-lg border border-border bg-background text-foreground font-semibold hover:bg-muted transition-colors">
+            Prezrieť produkty
+          </a>
+        </div>
+        
+        <!-- Trust Indicators -->
+        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-border">
+          <div>
+            <div class="text-3xl font-heading font-extrabold text-primary">1994</div>
+            <div class="text-xs text-muted-foreground uppercase tracking-wider font-semibold mt-1">Rok založenia</div>
+          </div>
+          <div>
+            <div class="text-3xl font-heading font-extrabold text-primary">Battenfeld</div>
+            <div class="text-xs text-muted-foreground uppercase tracking-wider font-semibold mt-1">Špičkové vstrekolisy</div>
+          </div>
+          <div>
+            <div class="text-3xl font-heading font-extrabold text-primary">100%</div>
+            <div class="text-xs text-muted-foreground uppercase tracking-wider font-semibold mt-1">Slovenský kapitál</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Graphic/Image Container -->
+      <div class="lg:col-span-5 relative">
+        <div class="aspect-square w-full rounded-2xl bg-card border border-border shadow-xl overflow-hidden p-4 relative group">
+          <div class="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent z-10"></div>
+          <img src="http://www.rekoplast.sk/images/400x300-rekoplast-7.jpg" alt="Vstrekovanie plastov REKOPLAST" class="w-full h-full object-cover rounded-xl shadow-inner transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute bottom-6 left-6 right-6 bg-background/95 backdrop-blur-md p-4 rounded-xl border border-border shadow-lg z-20">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                <iconify-icon icon="lucide:activity" class="text-lg"></iconify-icon>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-muted-foreground uppercase tracking-wider">Aktuálne vo výrobe</div>
+                <div class="text-sm font-bold text-foreground">Technické výlisky &amp; montážne celky</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O nás Section -->
+  <section id="o-nas" class="py-24 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        <!-- Text details -->
+        <div class="lg:col-span-7 space-y-6 order-2 lg:order-1">
+          <div class="inline-flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest">
+            <span class="w-8 h-[2px] bg-primary inline-block"></span>
+            O SPOLOČNOSTI
+          </div>
+          <h2 class="text-3xl lg:text-4xl font-heading font-bold text-foreground tracking-tight">
+            Tradícia, odbornosť a spoľahlivosť vo výrobe plastov
+          </h2>
+          <p class="text-muted-foreground leading-relaxed">
+            Spoločnosť REKOPLAST, s.r.o. (pôvodne fungujúca ako v.o.s.) bola založená v roku 1994 v Borskom Svätom Jure. Zaoberáme sa hlavne vstrekovaním plastov, ručnou montážou a narážaním štetín. Pracujeme na moderných a spoľahlivých vstrekolisoch, čo nám umožňuje garantovať stabilnú kvalitu každého jedného kusu.
+          </p>
+          <p class="text-muted-foreground leading-relaxed">
+            Naším hlavným cieľom je ponúkať komplexné riešenia od technického návrhu, cez optimalizáciu výrobných procesov až po finálne balenie a logistiku. Flexibilne reagujeme na požiadavky našich odberateľov z rôznych odvetví priemyslu.
+          </p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-muted border border-border">
+              <iconify-icon icon="lucide:check-circle" class="text-primary text-xl mt-0.5"></iconify-icon>
+              <div>
+                <h4 class="font-bold text-foreground text-sm">Vlastná nástrojáreň a údržba</h4>
+                <p class="text-xs text-muted-foreground mt-1">Zabezpečujeme bezproblémový chod a servis lisovacích foriem.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-muted border border-border">
+              <iconify-icon icon="lucide:check-circle" class="text-primary text-xl mt-0.5"></iconify-icon>
+              <div>
+                <h4 class="font-bold text-foreground text-sm">Ručná montáž a finalizácia</h4>
+                <p class="text-xs text-muted-foreground mt-1">Kompletizácia dielov, balenie a doprava priamo k zákazníkovi.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual / Image Grid -->
+        <div class="lg:col-span-5 order-1 lg:order-2 space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="rounded-xl overflow-hidden border border-border shadow-md aspect-[4/3]">
+              <img src="http://www.rekoplast.sk/images/400x300-rekoplast-1.jpg" alt="Výrobná hala REKOPLAST" class="w-full h-full object-cover">
+            </div>
+            <div class="rounded-xl overflow-hidden border border-border shadow-md aspect-[4/3] mt-4">
+              <img src="http://www.rekoplast.sk/images/400x300-rekoplast-2.jpg" alt="Vstrekolisy Battenfeld" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <div class="p-6 rounded-xl bg-primary text-primary-foreground shadow-lg">
+            <div class="text-lg font-bold font-heading">Lokalita prevádzky</div>
+            <p class="text-sm opacity-90 mt-1">ul. SNP, 908 79 Borský Svätý Jur, Slovenská republika. Strategické napojenie pre strednú Európu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technológia Section -->
+  <section id="technologia" class="py-24 bg-muted border-y border-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div class="inline-flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest justify-center">
+          <span class="w-8 h-[2px] bg-primary inline-block"></span>
+          VÝROBNÉ TECHNOLÓGIE
+          <span class="w-8 h-[2px] bg-primary inline-block"></span>
+        </div>
+        <h2 class="text-3xl lg:text-4xl font-heading font-bold text-foreground tracking-tight">
+          Špičkové technické vybavenie pre precíznu výrobu
+        </h2>
+        <p class="text-muted-foreground">
+          Vlastníme moderný strojový park zameraný na vysokú efektivitu, opakovateľnosť procesov a šetrnosť k životnému prostrediu.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Vstrekovanie plastov -->
+        <div class="bg-card rounded-2xl border border-border shadow-sm overflow-hidden flex flex-col justify-between">
+          <div class="p-8 space-y-6">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+              <iconify-icon icon="lucide:layers" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-foreground">Vstrekovanie plastov</h3>
+            <p class="text-muted-foreground leading-relaxed text-sm">
+              Spôsob tvarovania plastov technológiou vstrekovania je typický pre veľkosériovú výrobu. Predstavuje vysoko efektívny spôsob spracovania polymérov. Vlastníme vstrekolisy prevažne renomovanej značky <strong>Battenfeld</strong>, ktoré zaručujú stálu kvalitu a rozmerovú stabilitu dielov. Sme schopní lisovať diely do hmotnosti cca 250g.
+            </p>
+            <ul class="space-y-2 text-sm text-muted-foreground">
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                Vstrekolisy Battenfeld
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                Hmotnosť výlisku do 250 gramov
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                Spracovanie PP, PE, PS, ABS, PA, POM a ďalších
+              </li>
+            </ul>
+          </div>
+          <div class="h-64 overflow-hidden border-t border-border">
+            <img src="http://www.rekoplast.sk/images/400x300-rekoplast-3.jpg" alt="Vstrekovanie plastov" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+          </div>
+        </div>
+
+        <!-- Tampoprintová potlač -->
+        <div class="bg-card rounded-2xl border border-border shadow-sm overflow-hidden flex flex-col justify-between">
+          <div class="p-8 space-y-6">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+              <iconify-icon icon="lucide:type" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-foreground">Tampoprintová potlač</h3>
+            <p class="text-muted-foreground leading-relaxed text-sm">
+              Technológia vhodná na potlač dielcov a výrobkov z plastu už od veľmi malých plôch. Používame profesionálne stroje, ktoré umožňujú presné umiestnenie loga, technických symbolov, mierok alebo popiskov priamo na hotové plastové výlisky v rámci finálnej kompletizácie.
+            </p>
+            <ul class="space-y-2 text-sm text-muted-foreground">
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                Vysoká ostrosť a trvácnosť tlače
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                Vhodné pre zložité a zakrivené povrchy
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                Jednofarebná aj viacfarebná potlač
+              </li>
+            </ul>
+          </div>
+          <div class="h-64 overflow-hidden border-t border-border">
+            <img src="http://www.rekoplast.sk/images/400x300-rekoplast-5.jpg" alt="Tampoprintová potlač" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Produkty Section -->
+  <section id="produkty" class="py-24 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest">
+            <span class="w-8 h-[2px] bg-primary inline-block"></span>
+            PRODUKTOVÉ PORTFÓLIO
+          </div>
+          <h2 class="text-3xl lg:text-4xl font-heading font-bold text-foreground tracking-tight">
+            Ukážky našej priemyselnej produkcie
+          </h2>
+        </div>
+        
+        <!-- Filter Controls -->
+        <div class="flex flex-wrap gap-2">
+          <button class="px-4 py-2 rounded-lg bg-primary text-primary-foreground font-semibold text-xs uppercase tracking-wider shadow-sm">Všetko</button>
+          <button class="px-4 py-2 rounded-lg bg-muted text-muted-foreground font-semibold text-xs uppercase tracking-wider hover:bg-border transition-colors">Technické výlisky</button>
+          <button class="px-4 py-2 rounded-lg bg-muted text-muted-foreground font-semibold text-xs uppercase tracking-wider hover:bg-border transition-colors">Spotrebný tovar</button>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Product 1 -->
+        <div class="bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+          <div class="aspect-[4/3] overflow-hidden bg-muted relative">
+            <img src="http://www.rekoplast.sk/images/400x300-rekoplast-1.jpg" alt="Plastové výlisky" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold uppercase px-2.5 py-1 rounded-full shadow-sm">Vstrekovanie</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h4 class="font-bold text-foreground group-hover:text-primary transition-colors">Presné priemyselné diely</h4>
+            <p class="text-xs text-muted-foreground line-clamp-2">Plastové komponenty pre automotive a strojársky priemysel s vysokou presnosťou.</p>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+          <div class="aspect-[4/3] overflow-hidden bg-muted relative">
+            <img src="http://www.rekoplast.sk/images/400x300-rekoplast-4.jpg" alt="Plastové kefy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold uppercase px-2.5 py-1 rounded-full shadow-sm">Narážanie štetín</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h4 class="font-bold text-foreground group-hover:text-primary transition-colors">Kefové a metlové telesá</h4>
+            <p class="text-xs text-muted-foreground line-clamp-2">Tradičné plastové telá s mechanickým narážaním vysoko kvalitných štetín.</p>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+          <div class="aspect-[4/3] overflow-hidden bg-muted relative">
+            <img src="http://www.rekoplast.sk/images/400x300-rekoplast-6.jpg" alt="Plastové krabičky" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold uppercase px-2.5 py-1 rounded-full shadow-sm">Spotrebné plasty</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h4 class="font-bold text-foreground group-hover:text-primary transition-colors">Plastové obaly a boxy</h4>
+            <p class="text-xs text-muted-foreground line-clamp-2">Odolné úložné boxy a prepravné obaly pre skladovanie a organizáciu.</p>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+          <div class="aspect-[4/3] overflow-hidden bg-muted relative">
+            <img src="http://www.rekoplast.sk/images/400x300-rekoplast-8.jpg" alt="Doplnkový sortiment" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold uppercase px-2.5 py-1 rounded-full shadow-sm">Kompletizácia</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h4 class="font-bold text-foreground group-hover:text-primary transition-colors">Montážne zostavy</h4>
+            <p class="text-xs text-muted-foreground line-clamp-2">Finálne kompletizované výrobky pripravené na priamu distribúciu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-24 bg-muted border-t border-border">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center space-y-4 mb-16">
+        <div class="inline-flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest justify-center">
+          <span class="w-8 h-[2px] bg-primary inline-block"></span>
+          ČASTO KLADENÉ OTÁZKY
+          <span class="w-8 h-[2px] bg-primary inline-block"></span>
+        </div>
+        <h2 class="text-3xl font-heading font-bold text-foreground tracking-tight">
+          Odpovedáme na vaše otázky
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-card border border-border rounded-xl p-6 shadow-sm">
+          <h4 class="font-bold text-foreground text-base flex items-center justify-between gap-4">
+            Aké materiály najčastejšie spracovávate?
+            <iconify-icon icon="lucide:info" class="text-primary text-lg shrink-0"></iconify-icon>
+          </h4>
+          <p class="text-sm text-muted-foreground mt-3 leading-relaxed">
+            Spracovávame širokú škálu termoplastov podľa požiadaviek klienta, vrátane PP (polypropylén), PE (polyetylén), PS (polystyrén), ABS, PA (polyamid) a POM (polyacetal). Radi vám poradíme s výberom vhodného materiálu pre váš projekt.
+          </p>
+        </div>
+
+        <div class="bg-card border border-border rounded-xl p-6 shadow-sm">
+          <h4 class="font-bold text-foreground text-base flex items-center justify-between gap-4">
+            Aká je maximálna hmotnosť jedného výlisku?
+            <iconify-icon icon="lucide:info" class="text-primary text-lg shrink-0"></iconify-icon>
+          </h4>
+          <p class="text-sm text-muted-foreground mt-3 leading-relaxed">
+            Naša technológia a vstrekolisy značky Battenfeld sú optimalizované na výrobu dielov s hmotnosťou do približne 250 gramov.
+          </p>
+        </div>
+
+        <div class="bg-card border border-border rounded-xl p-6 shadow-sm">
+          <h4 class="font-bold text-foreground text-base flex items-center justify-between gap-4">
+            Zabezpečujete aj výrobu samotných foriem?
+            <iconify-icon icon="lucide:info" class="text-primary text-lg shrink-0"></iconify-icon>
+          </h4>
+          <p class="text-sm text-muted-foreground mt-3 leading-relaxed">
+            Zabezpečujeme údržbu a servis foriem v našej dielni. Pre samotnú konštrukciu a výrobu nových foriem úzko spolupracujeme s overenými nástrojárňami, čím garantujeme hladký štart sériovej výroby.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt Section -->
+  <section id="kontakt" class="py-24 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <!-- Contact details -->
+        <div class="lg:col-span-5 space-y-8">
+          <div class="space-y-4">
+            <div class="inline-flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest">
+              <span class="w-8 h-[2px] bg-primary inline-block"></span>
+              KONTAKTUJTE NÁS
+            </div>
+            <h2 class="text-3xl font-heading font-bold text-foreground tracking-tight">
+              Sme tu pre vaše projekty
+            </h2>
+            <p class="text-muted-foreground leading-relaxed">
+              Máte otázky alebo hľadáte spoľahlivého partnera na vstrekovanie plastov? Vyplňte náš formulár, zavolajte nám alebo nás navštívte priamo v našej výrobe v Borskom Svätom Jure.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                <iconify-icon icon="lucide:map-pin" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-muted-foreground uppercase tracking-wider">Adresa prevádzky</div>
+                <div class="text-sm font-bold text-foreground mt-1">Rekoplast v.o.s. - lisovanie plastov</div>
+                <div class="text-sm text-muted-foreground">ul. SNP, 908 79 Borský Sv. Jur, Slovenská republika</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                <iconify-icon icon="lucide:phone" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-muted-foreground uppercase tracking-wider">Telefón</div>
+                <div class="text-sm font-bold text-foreground mt-1">+421 34/77 72 160</div>
+                <div class="text-sm text-muted-foreground">Pondelok - Piatok: 7:00 - 15:30</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                <iconify-icon icon="lucide:mail" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-muted-foreground uppercase tracking-wider">E-mail</div>
+                <div class="text-sm font-bold text-foreground mt-1">rekoplast@rekoplast.sk</div>
+                <div class="text-sm text-muted-foreground">Odpovieme vám do 24 hodín</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decorative local map placeholder -->
+          <div class="border border-border rounded-xl overflow-hidden h-48 bg-muted relative shadow-sm">
+            <div class="absolute inset-0 bg-primary/5 flex items-center justify-center flex-col p-4 text-center">
+              <iconify-icon icon="lucide:globe" class="text-3xl text-primary mb-2"></iconify-icon>
+              <span class="text-xs font-bold text-foreground uppercase tracking-wider">Borský Svätý Jur</span>
+              <span class="text-xs text-muted-foreground mt-1">Slovenská republika • Prevádzka v tichej priemyselnej zóne</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form Card -->
+        <div class="lg:col-span-7 bg-card border border-border rounded-2xl p-8 shadow-lg">
+          <h3 class="text-xl font-heading font-bold text-foreground mb-6">Nezáväzný dopytový formulár</h3>
+          
+          <form class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-muted-foreground uppercase tracking-wider">Meno a priezvisko</label>
+                <input type="text" placeholder="napr. Ján Kováč" class="w-full h-11 px-4 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm">
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-muted-foreground uppercase tracking-wider">Názov firmy (voliteľné)</label>
+                <input type="text" placeholder="napr. Firma s.r.o." class="w-full h-11 px-4 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-muted-foreground uppercase tracking-wider">E-mailová adresa</label>
+                <input type="email" placeholder="kovac@firma.sk" class="w-full h-11 px-4 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm">
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-muted-foreground uppercase tracking-wider">Telefónne číslo</label>
+                <input type="tel" placeholder="+421 900 000 000" class="w-full h-11 px-4 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm">
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-xs font-bold text-muted-foreground uppercase tracking-wider">Vaša správa / Špecifikácia dopytu</label>
+              <textarea rows="4" placeholder="Opíšte váš dopyt, predpokladaný objem výroby alebo požiadavky na materiál..." class="w-full p-4 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm resize-none"></textarea>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <input type="checkbox" id="privacy" class="mt-1 rounded border-input text-primary focus:ring-primary">
+              <label for="privacy" class="text-xs text-muted-foreground leading-relaxed">
+                Súhlasím so spracovaním osobných údajov v zmysle platnej legislatívy (GDPR) pre účely vybavenia tohto dopytu.
+              </label>
+            </div>
+
+            <button type="submit" class="w-full h-12 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors shadow-md flex items-center justify-center gap-2">
+              <iconify-icon icon="lucide:send" class="text-lg"></iconify-icon>
+              Odoslať dopyt
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-muted border-t border-border mt-auto">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-primary-foreground font-heading font-black text-base">
+              R
+            </div>
+            <span class="font-heading font-bold text-foreground">REKOPLAST</span>
+          </div>
+          <p class="text-xs text-muted-foreground leading-relaxed">
+            Profesionálny slovenský výrobca plastových produktov a technických výliskov s tradíciou od roku 1994.
+          </p>
+        </div>
+        
+        <div>
+          <h5 class="font-bold text-xs text-foreground uppercase tracking-wider mb-4">Navigácia</h5>
+          <ul class="space-y-2 text-xs text-muted-foreground">
+            <li><a href="#o-nas" class="hover:text-primary transition-colors">O nás</a></li>
+            <li><a href="#technologia" class="hover:text-primary transition-colors">Technológie</a></li>
+            <li><a href="#produkty" class="hover:text-primary transition-colors">Produkty</a></li>
+            <li><a href="#faq" class="hover:text-primary transition-colors">Časté otázky</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="font-bold text-xs text-foreground uppercase tracking-wider mb-4">Služby</h5>
+          <ul class="space-y-2 text-xs text-muted-foreground">
+            <li>Vstrekovanie plastov</li>
+            <li>Tampónová potlač</li>
+            <li>Narážanie štetín</li>
+            <li>Ručná montáž dielov</li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="font-bold text-xs text-foreground uppercase tracking-wider mb-4">Právne informácie</h5>
+          <ul class="space-y-2 text-xs text-muted-foreground">
+            <li><a href="#" class="hover:text-primary transition-colors">Ochrana osobných údajov (GDPR)</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Všeobecné obchodné podmienky</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Nastavenia cookies</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-border mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="text-xs text-muted-foreground">
+          © 1994 - 2024 REKOPLAST, s.r.o. Všetky práva vyhradené.
+        </span>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-muted-foreground hover:text-primary transition-colors" aria-label="Facebook">
+            <iconify-icon icon="lucide:facebook" class="text-lg"></iconify-icon>
+          </a>
+          <a href="#" class="text-muted-foreground hover:text-primary transition-colors" aria-label="Linkedin">
+            <iconify-icon icon="lucide:linkedin" class="text-lg"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
