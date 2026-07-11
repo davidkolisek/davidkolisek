@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autoservis H&T — Peter Hílek, Kopčany</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@100..900&family=Fira+Code:wght@300..700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    <style type="text/tailwindcss">
+      @import "tailwindcss";
+      @theme inline {
+        --color-background: var(--background);
+        --color-foreground: var(--foreground);
+        --color-primary: var(--primary);
+        --color-primary-foreground: var(--primary-foreground);
+        --color-secondary: var(--secondary);
+        --color-secondary-foreground: var(--secondary-foreground);
+        --color-tertiary: var(--tertiary);
+        --color-muted: var(--muted);
+        --color-muted-foreground: var(--muted-foreground);
+        --color-accent: var(--accent);
+        --color-destructive: var(--destructive);
+        --color-card: var(--card);
+        --color-card-foreground: var(--card-foreground);
+        --color-border: var(--border);
+        --color-input: var(--input);
+        --color-ring: var(--ring);
+        --radius-sm: calc(var(--radius) - 4px);
+        --radius-md: calc(var(--radius) - 2px);
+        --radius-lg: var(--radius);
+        --font-family-sans: var(--font-sans);
+        --font-family-heading: var(--font-heading);
+        --font-family-mono: var(--font-mono);
+      }
+      :root {
+        --background: #ffffff;
+        --foreground: #1e293b;
+        --primary: #1e3a8a;
+        --primary-foreground: #ffffff;
+        --secondary: #f1f5f9;
+        --secondary-foreground: #1e293b;
+        --tertiary: #1e3a8a;
+        --muted: #f8fafc;
+        --muted-foreground: #64748b;
+        --accent: #dc2626;
+        --accent-foreground: #ffffff;
+        --card: #ffffff;
+        --card-foreground: #1e293b;
+        --destructive: #dc2626;
+        --border: #e2e8f0;
+        --input: #e2e8f0;
+        --ring: #1e3a8a;
+        --radius: 0.5rem;
+        --font-sans: Inter, sans-serif;
+        --font-heading: Inter, sans-serif;
+        --font-mono: JetBrains Mono, monospace;
+        --shadow-offset-x: 0;
+        --shadow-offset-y: 10;
+        --shadow-blur: 30;
+        --shadow-spread: -8;
+        --shadow-color: rgba(15, 23, 42, 0.12);
+        }
+    </style>
+    <style>
+      .brand-gradient { background-image: linear-gradient(135deg, var(--primary), var(--accent)); }
+      .shadow-theme {
+        box-shadow:
+          calc(var(--shadow-offset-x, 0) * 1px) calc(var(--shadow-offset-y, 10) * 1px)
+          calc(var(--shadow-blur, 30) * 1px) calc(var(--shadow-spread, -8) * 1px)
+          var(--shadow-color, rgba(15, 23, 42, 0.12));
+      }
+    </style>
+  </head>
+  <body>
+<div class="min-h-screen w-full bg-background text-foreground font-sans flex flex-col relative">
+  <!-- TOP BRAND STRIP -->
+  <div class="bg-primary border-b border-primary text-xs text-primary-foreground py-2 px-6">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-6">
+        <span class="flex items-center gap-1.5">
+          <iconify-icon icon="lucide:map-pin" class="text-red-300 text-sm"></iconify-icon>
+          Kopčany, Slovensko (Okres Skalica)
+        </span>
+        <span class="flex items-center gap-1.5">
+          <iconify-icon icon="lucide:clock" class="text-red-300 text-sm"></iconify-icon>
+          Po - Pia: 8:00 - 16:30
+        </span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="tel:+421905123456" class="flex items-center gap-1.5 hover:text-white transition-colors">
+          <iconify-icon icon="lucide:phone" class="text-red-300 text-sm"></iconify-icon>
+          +421 905 123 456
+        </a>
+        <a href="mailto:htservis@stonline.sk" class="flex items-center gap-1.5 hover:text-white transition-colors">
+          <iconify-icon icon="lucide:mail" class="text-red-300 text-sm"></iconify-icon>
+          htservis@stonline.sk
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-sm px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <!-- LOGO -->
+      <a href="#" class="flex items-center gap-3">
+        <div class="bg-destructive text-white p-2 rounded-lg flex items-center justify-center">
+          <iconify-icon icon="lucide:wrench" class="text-xl"></iconify-icon>
+        </div>
+        <div>
+          <span class="font-heading text-xl font-black tracking-tight block text-foreground">AUTOSERVIS H&T</span>
+          <span class="text-[10px] uppercase tracking-widest text-destructive font-bold block -mt-1">Peter Hílek - Kopčany</span>
+        </div>
+      </a>
+
+      <!-- NAVIGATION -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#" class="text-sm font-semibold text-foreground hover:text-destructive transition-colors">Domov</a>
+        <a href="#sluzby" class="text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors">Služby</a>
+        <a href="#o-nas" class="text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors">O nás</a>
+        <a href="#novinky" class="text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors">Novinky</a>
+        <a href="#kontakt" class="text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors">Kontakt</a>
+      </nav>
+
+      <!-- CTA BUTTON -->
+      <div class="flex items-center gap-4">
+        <a href="#kontakt" class="bg-destructive hover:bg-red-700 text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2 shadow-lg shadow-red-600/20">
+          <iconify-icon icon="lucide:calendar" class="text-lg"></iconify-icon>
+          Získať cenovú ponuku
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative bg-gradient-to-b from-muted to-background py-16 lg:py-24 px-6 overflow-hidden border-b border-border">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      
+      <!-- HERO TEXT & FORM -->
+      <div class="lg:col-span-7 space-y-8">
+        <div class="inline-flex items-center gap-2 bg-destructive/10 border border-destructive/30 px-3 py-1.5 rounded-full">
+          <span class="w-2 h-2 rounded-full bg-destructive animate-pulse"></span>
+          <span class="text-xs font-semibold text-destructive uppercase tracking-wider">Profesionálny servis v Kopčanoch</span>
+        </div>
+        
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight text-foreground leading-tight">
+          Spoľahlivý servis, na ktorý sa môžete <span class="text-destructive">spoľahnúť.</span>
+        </h1>
+        
+        <p class="text-lg text-muted-foreground max-w-xl">
+          Peter Hílek - Autoservis H&T poskytuje kompletnú diagnostiku, opravy a údržbu vozidiel všetkých značiek. Sme váš lokálny partner pre bezpečnú jazdu.
+        </p>
+
+        <!-- TRUST BADGES -->
+        <div class="grid grid-cols-3 gap-6 pt-4 border-t border-border max-w-md">
+          <div>
+            <span class="block text-2xl font-black text-foreground">100%</span>
+            <span class="text-xs text-muted-foreground">Profesionálny prístup</span>
+          </div>
+          <div>
+            <span class="block text-2xl font-black text-foreground">Kopčany</span>
+            <span class="text-xs text-muted-foreground">Lokálna dielňa</span>
+          </div>
+          <div>
+            <span class="block text-2xl font-black text-foreground">Moderná</span>
+            <span class="text-xs text-muted-foreground">Diagnostika</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERO IMAGE / ACTION CARD -->
+      <div class="lg:col-span-5">
+        <div class="bg-card border border-border rounded-xl p-6 shadow-2xl relative">
+          <!-- Decorative accent -->
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[3px] bg-destructive rounded-b-full"></div>
+          
+          <h3 class="text-xl font-heading font-bold text-foreground mb-4 flex items-center gap-2">
+            <iconify-icon icon="lucide:calculator" class="text-destructive"></iconify-icon>
+            Nezáväzný dopyt
+          </h3>
+          <p class="text-xs text-muted-foreground mb-6">
+            Vyplňte formulár a my sa vám ozveme s predbežnou kalkuláciou servisu.
+          </p>
+
+          <form class="space-y-4" onsubmit="event.preventDefault();">
+            <div>
+              <label class="block text-xs font-semibold text-muted-foreground mb-1.5 uppercase tracking-wider">Meno a priezvisko</label>
+              <input type="text" placeholder="Napr. Ján Kováč" class="w-full bg-muted border border-border rounded-lg px-4 py-3 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-destructive transition-colors" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-muted-foreground mb-1.5 uppercase tracking-wider">Telefónne číslo</label>
+              <input type="tel" placeholder="Napr. +421 905 123 456" class="w-full bg-muted border border-border rounded-lg px-4 py-3 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-destructive transition-colors" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-muted-foreground mb-1.5 uppercase tracking-wider">Typ vozidla & požadovaná služba</label>
+              <select class="w-full bg-muted border border-border rounded-lg px-4 py-3 text-sm text-foreground focus:outline-none focus:border-destructive transition-colors">
+                <option class="bg-card">Diagnostika vozidla</option>
+                <option class="bg-card">Pravidelná údržba / Výmena oleja</option>
+                <option class="bg-card">Oprava bŕzd a podvozku</option>
+                <option class="bg-card">Oprava motora</option>
+                <option class="bg-card">Iné opravy</option>
+              </select>
+            </div>
+            <button type="submit" class="w-full bg-destructive hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 mt-2">
+              <span>Odoslať dopyt</span>
+              <iconify-icon icon="lucide:arrow-right" class="text-lg"></iconify-icon>
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BACKGROUND GRAPHICS -->
+    <div class="absolute inset-0 z-0 opacity-15">
+      <img src="https://uxmagic.blob.core.windows.net/public/agent-images/hero-workshop-1783785006150-mwxpuw38f98.png" alt="Autoservis H&T dielňa" class="w-full h-full object-cover filter grayscale contrast-125" />
+      <div class="absolute inset-0 bg-gradient-to-t from-muted via-transparent to-background"></div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section id="sluzby" class="py-20 px-6 bg-background">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <span class="text-destructive text-xs font-bold uppercase tracking-widest">Čo pre vás vieme urobiť</span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-black text-foreground tracking-tight">
+          Naše profesionálne služby
+        </h2>
+        <p class="text-muted-foreground">
+          Poskytujeme komplexnú starostlivosť o vaše vozidlo. Od preventívnych prehliadok až po zložité mechanické opravy.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Service 1 -->
+        <div class="bg-card border border-border rounded-xl overflow-hidden group hover:border-destructive/50 transition-all duration-300 flex flex-col h-full">
+          <div class="h-48 overflow-hidden relative">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/service-diagnostics-1783785014521-66yoc17hx4x.png" alt="Počítačová diagnostika vozidiel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute top-4 left-4 bg-destructive text-white text-xs font-bold px-3 py-1.5 rounded-md">
+              Cena od 25 €
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div class="space-y-3">
+              <h3 class="text-xl font-heading font-bold text-foreground">Počítačová diagnostika</h3>
+              <p class="text-sm text-muted-foreground">
+                Rýchle a presné odhalenie chýb pomocou modernej diagnostickej techniky. Čítanie a mazanie chybových kódov.
+              </p>
+            </div>
+            <div class="pt-6 border-t border-border mt-6 flex items-center justify-between text-xs text-muted-foreground">
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:clock" class="text-destructive"></iconify-icon> cca 45 min</span>
+              <a href="#kontakt" class="text-foreground hover:text-destructive font-semibold flex items-center gap-1 transition-colors">
+                Objednať <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="bg-card border border-border rounded-xl overflow-hidden group hover:border-destructive/50 transition-all duration-300 flex flex-col h-full">
+          <div class="h-48 overflow-hidden relative">
+            <div class="w-full h-full bg-gradient-to-br from-muted to-background flex items-center justify-center p-6">
+              <iconify-icon icon="lucide:activity" class="text-5xl text-destructive"></iconify-icon>
+            </div>
+            <div class="absolute top-4 left-4 bg-destructive text-white text-xs font-bold px-3 py-1.5 rounded-md">
+              Cena od 40 €
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div class="space-y-3">
+              <h3 class="text-xl font-heading font-bold text-foreground">Pravidelný servis & Oleje</h3>
+              <p class="text-sm text-muted-foreground">
+                Výmena motorového oleja, filtrov a prevádzkových kvapalín. Pravidelná údržba pre zachovanie životnosti motora.
+              </p>
+            </div>
+            <div class="pt-6 border-t border-border mt-6 flex items-center justify-between text-xs text-muted-foreground">
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:clock" class="text-destructive"></iconify-icon> cca 1 - 2 hod</span>
+              <a href="#kontakt" class="text-foreground hover:text-destructive font-semibold flex items-center gap-1 transition-colors">
+                Objednať <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="bg-card border border-border rounded-xl overflow-hidden group hover:border-destructive/50 transition-all duration-300 flex flex-col h-full">
+          <div class="h-48 overflow-hidden relative">
+            <div class="w-full h-full bg-gradient-to-br from-muted to-background flex items-center justify-center p-6">
+              <iconify-icon icon="lucide:shield" class="text-5xl text-destructive"></iconify-icon>
+            </div>
+            <div class="absolute top-4 left-4 bg-destructive text-white text-xs font-bold px-3 py-1.5 rounded-md">
+              Individuálne nacenenie
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div class="space-y-3">
+              <h3 class="text-xl font-heading font-bold text-foreground">Opravy podvozku & bŕzd</h3>
+              <p class="text-sm text-muted-foreground">
+                Kompletná oprava brzdových systémov, výmena tlmičov, čapov, ramien a stabilizátorov pre vašu bezpečnosť.
+              </p>
+            </div>
+            <div class="pt-6 border-t border-border mt-6 flex items-center justify-between text-xs text-muted-foreground">
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:clock" class="text-destructive"></iconify-icon> Podľa rozsahu</span>
+              <a href="#kontakt" class="text-foreground hover:text-destructive font-semibold flex items-center gap-1 transition-colors">
+                Objednať <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANDS & SPECIALTIES -->
+  <section class="py-12 bg-muted border-y border-border px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+      <div>
+        <h4 class="text-lg font-heading font-bold text-foreground">Servisujeme všetky bežné značky vozidiel</h4>
+        <p class="text-xs text-muted-foreground">Škoda, Volkswagen, Audi, Seat, Peugeot, Citroen, Renault, Ford a ďalšie</p>
+      </div>
+      <div class="flex flex-wrap gap-6 items-center opacity-40 grayscale">
+        <span class="text-sm font-bold tracking-widest text-muted">SKODA</span>
+        <span class="text-sm font-bold tracking-widest text-muted">VW GROUP</span>
+        <span class="text-sm font-bold tracking-widest text-muted">PEUGEOT</span>
+        <span class="text-sm font-bold tracking-widest text-muted">FORD</span>
+        <span class="text-sm font-bold tracking-widest text-muted">RENAULT</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT US & OPENING HOURS -->
+  <section id="o-nas" class="py-20 px-6 bg-muted">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- About details -->
+      <div class="lg:col-span-7 space-y-6">
+        <span class="text-destructive text-xs font-bold uppercase tracking-widest">O našej firme</span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-black text-foreground tracking-tight">
+          Skúsenosti a osobný prístup v Kopčanoch
+        </h2>
+        <p class="text-muted-foreground leading-relaxed">
+          Autoservis H&T, vedený Petrom Hílekom, poskytuje spoľahlivé služby motoristom v Kopčanoch a širokom okolí už dlhé roky. Zakladáme si na férovej komunikácii, rýchlom dodaní náhradných dielov a vysokej odbornosti pri každej oprave.
+        </p>
+        <p class="text-muted-foreground leading-relaxed">
+          Či už potrebujete bežnú výmenu oleja, prípravu vozidla na STK a EK, alebo komplexnú opravu motora, ku každému autu pristupujeme s maximálnou precíznosťou a s ohľadom na vašu bezpečnosť na cestách.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+          <div class="flex gap-3 items-start">
+            <div class="bg-destructive/10 p-2 rounded-lg text-destructive">
+              <iconify-icon icon="lucide:check" class="text-lg"></iconify-icon>
+            </div>
+            <div>
+              <h4 class="font-bold text-foreground text-sm">Transparentné ceny</h4>
+              <p class="text-xs text-muted-foreground">Cenu servisu s vami vždy vopred skonzultujeme.</p>
+            </div>
+          </div>
+          <div class="flex gap-3 items-start">
+            <div class="bg-destructive/10 p-2 rounded-lg text-destructive">
+              <iconify-icon icon="lucide:check" class="text-lg"></iconify-icon>
+            </div>
+            <div>
+              <h4 class="font-bold text-foreground text-sm">Kvalitné diely</h4>
+              <p class="text-xs text-muted-foreground">Používame len overené a certifikované náhradné diely.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opening hours card -->
+      <div class="lg:col-span-5">
+        <div class="bg-card border border-border rounded-xl p-8 relative overflow-hidden">
+          <div class="absolute -right-8 -bottom-8 text-primary opacity-10">
+            <iconify-icon icon="lucide:clock" class="text-9xl"></iconify-icon>
+          </div>
+          
+          <h3 class="text-xl font-heading font-bold text-foreground mb-6 pb-4 border-b border-border flex items-center gap-2">
+            <iconify-icon icon="lucide:clock" class="text-destructive"></iconify-icon>
+            Otváracie hodiny
+          </h3>
+
+          <div class="space-y-4 text-sm relative z-10">
+            <div class="flex justify-between items-center py-1">
+              <span class="text-muted-foreground font-medium">Pondelok</span>
+              <span class="text-foreground font-bold">8:00 - 16:30</span>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span class="text-muted-foreground font-medium">Utorok</span>
+              <span class="text-foreground font-bold">8:00 - 16:30</span>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span class="text-muted-foreground font-medium">Streda</span>
+              <span class="text-foreground font-bold">8:00 - 16:30</span>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span class="text-muted-foreground font-medium">Štvrtok</span>
+              <span class="text-foreground font-bold">8:00 - 16:30</span>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span class="text-muted-foreground font-medium">Piatok</span>
+              <span class="text-foreground font-bold">8:00 - 16:30</span>
+            </div>
+            <div class="flex justify-between items-center py-1 text-red-500">
+              <span class="font-medium">Sobota</span>
+              <span class="font-bold">Zatvorené (na objednávku)</span>
+            </div>
+            <div class="flex justify-between items-center py-1 text-red-500">
+              <span class="font-medium">Nedeľa</span>
+              <span class="font-bold">Zatvorené</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS / BLOG SECTION -->
+  <section id="novinky" class="py-20 px-6 bg-background">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <span class="text-destructive text-xs font-bold uppercase tracking-widest">Rady a zaujímavosti</span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-black text-foreground tracking-tight">
+          Užitočné informácie pre vodičov
+        </h2>
+        <p class="text-muted-foreground">
+          Prečítajte si naše najnovšie články o údržbe vozidiel a novinkách z nášho servisu.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Blog 1 -->
+        <article class="bg-card border border-border rounded-xl overflow-hidden flex flex-col justify-between">
+          <div class="p-6 space-y-3">
+            <span class="text-xs font-bold text-destructive uppercase">Údržba</span>
+            <h3 class="text-lg font-heading font-bold text-foreground hover:text-destructive transition-colors">
+              <a href="#">Ako pripraviť auto na zimnú sezónu?</a>
+            </h3>
+            <p class="text-xs text-muted-foreground line-clamp-3">
+              Nepodceňte prípravu pred mrazmi. Zhrnuli sme pre vás kľúčové body od kontroly akumulátora až po nemrznúce zmesi.
+            </p>
+          </div>
+          <div class="px-6 pb-6 pt-4 border-t border-border flex items-center justify-between text-[11px] text-muted-foreground">
+            <span>12. Október 2023</span>
+            <span class="font-bold text-foreground flex items-center gap-1">Čítať viac <iconify-icon icon="lucide:arrow-right"></iconify-icon></span>
+          </div>
+        </article>
+
+        <!-- Blog 2 -->
+        <article class="bg-card border border-border rounded-xl overflow-hidden flex flex-col justify-between">
+          <div class="p-6 space-y-3">
+            <span class="text-xs font-bold text-destructive uppercase">Servisné rady</span>
+            <h3 class="text-lg font-heading font-bold text-foreground hover:text-destructive transition-colors">
+              <a href="#">Prečo netreba odkladať výmenu oleja?</a>
+            </h3>
+            <p class="text-xs text-muted-foreground line-clamp-3">
+              Pravidelný interval výmeny oleja je kľúčový pre správny chod motora. Čo hrozí vášmu autu pri zanedbaní servisu?
+            </p>
+          </div>
+          <div class="px-6 pb-6 pt-4 border-t border-border flex items-center justify-between text-[11px] text-muted-foreground">
+            <span>28. September 2023</span>
+            <span class="font-bold text-foreground flex items-center gap-1">Čítať viac <iconify-icon icon="lucide:arrow-right"></iconify-icon></span>
+          </div>
+        </article>
+
+        <!-- Blog 3 -->
+        <article class="bg-card border border-border rounded-xl overflow-hidden flex flex-col justify-between">
+          <div class="p-6 space-y-3">
+            <span class="text-xs font-bold text-destructive uppercase">Novinky</span>
+            <h3 class="text-lg font-heading font-bold text-foreground hover:text-destructive transition-colors">
+              <a href="#">Rozšírili sme ponuku o diagnostiku novších typov vozidiel</a>
+            </h3>
+            <p class="text-xs text-muted-foreground line-clamp-3">
+              Investovali sme do nového diagnostického softvéru, aby sme dokázali rýchlo lokalizovať závady aj na najnovších modeloch.
+            </p>
+          </div>
+          <div class="px-6 pb-6 pt-4 border-t border-border flex items-center justify-between text-[11px] text-muted-foreground">
+            <span>15. August 2023</span>
+            <span class="font-bold text-foreground flex items-center gap-1">Čítať viac <iconify-icon icon="lucide:arrow-right"></iconify-icon></span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT & LOCATION MAP -->
+  <section id="kontakt" class="py-20 px-6 bg-muted border-t border-border">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Contact details -->
+        <div class="lg:col-span-5 space-y-8">
+          <div class="space-y-3">
+            <span class="text-destructive text-xs font-bold uppercase tracking-widest">Kde nás nájdete</span>
+            <h2 class="text-3xl font-heading font-black text-foreground tracking-tight">Kontaktujte nás</h2>
+            <p class="text-muted-foreground">
+              Máte otázky alebo chcete objednať vaše vozidlo do servisu? Sme tu pre vás. Ozvite sa nám telefonicky alebo e-mailom.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex items-center gap-4 bg-card p-4 rounded-xl border border-border">
+              <div class="bg-destructive/10 p-3 rounded-lg text-destructive">
+                <iconify-icon icon="lucide:map-pin" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <span class="block text-[10px] uppercase text-muted-foreground font-semibold">Adresa servisu</span>
+                <span class="block text-sm font-bold text-foreground">Kopčany, Slovensko</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 bg-card p-4 rounded-xl border border-border">
+              <div class="bg-destructive/10 p-3 rounded-lg text-destructive">
+                <iconify-icon icon="lucide:phone" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <span class="block text-[10px] uppercase text-muted-foreground font-semibold">Zavolajte nám</span>
+                <a href="tel:+421905123456" class="block text-sm font-bold text-foreground hover:text-destructive transition-colors">+421 905 123 456</a>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 bg-card p-4 rounded-xl border border-border">
+              <div class="bg-destructive/10 p-3 rounded-lg text-destructive">
+                <iconify-icon icon="lucide:mail" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <span class="block text-[10px] uppercase text-muted-foreground font-semibold">Napíšte nám e-mail</span>
+                <a href="mailto:htservis@stonline.sk" class="block text-sm font-bold text-foreground hover:text-destructive transition-colors">htservis@stonline.sk</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Map placeholder -->
+        <div class="lg:col-span-7">
+          <div class="bg-card border border-border rounded-xl p-4 h-full min-h-[350px] flex flex-col justify-between relative overflow-hidden">
+            <!-- Simulated map visual -->
+            <div class="absolute inset-0 bg-card opacity-40">
+              <!-- Grid lines mimicking a map -->
+              <div class="w-full h-full" style="background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px;"></div>
+            </div>
+            
+            <div class="relative z-10 flex flex-col justify-between h-full">
+              <div class="bg-card/95 backdrop-blur-sm border border-border p-4 rounded-lg max-w-sm">
+                <span class="font-heading font-bold text-foreground text-sm block mb-1">Peter Hílek - Autoservis H&T</span>
+                <p class="text-xs text-muted-foreground mb-2">Okres Skalica, Kopčany (Slovenská republika)</p>
+                <a href="https://maps.google.com" target="_blank" class="text-xs text-destructive font-bold flex items-center gap-1 hover:underline">
+                  <iconify-icon icon="lucide:external-link"></iconify-icon> Otvoriť v Google Mapách
+                </a>
+              </div>
+
+              <!-- Map marker visualization in center -->
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                <div class="relative">
+                  <span class="absolute inline-flex h-12 w-12 rounded-full bg-destructive opacity-35 animate-ping -left-3 -top-3"></span>
+                  <div class="bg-destructive text-white p-2.5 rounded-full shadow-lg relative z-10">
+                    <iconify-icon icon="lucide:wrench" class="text-lg"></iconify-icon>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-card/95 backdrop-blur-sm border border-border p-3 rounded-lg text-xs text-muted-foreground mt-auto self-start relative z-10">
+                <span class="font-bold text-foreground">Lokalita:</span> Nachádzame sa v tichej a ľahko prístupnej časti obce Kopčany.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-primary border-t border-primary py-12 px-6 text-sm text-primary-foreground/80">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+      
+      <!-- Col 1: Brand -->
+      <div class="space-y-4">
+        <a href="#" class="flex items-center gap-3">
+          <div class="bg-destructive text-white p-2 rounded-lg flex items-center justify-center">
+            <iconify-icon icon="lucide:wrench" class="text-lg"></iconify-icon>
+          </div>
+          <span class="font-heading text-lg font-black tracking-tight text-primary-foreground">AUTOSERVIS H&T</span>
+        </a>
+        <p class="text-xs leading-relaxed">
+          Profesionálna starostlivosť o vozidlá v Kopčanoch. Opravy motorov, diagnostika, rýchloservis a údržba.
+        </p>
+      </div>
+
+      <!-- Col 2: Navigation -->
+      <div class="space-y-4">
+        <h4 class="font-bold text-primary-foreground text-xs uppercase tracking-wider">Rýchle odkazy</h4>
+        <ul class="space-y-2 text-xs">
+          <li><a href="#" class="hover:text-white transition-colors">Domov</a></li>
+          <li><a href="#sluzby" class="hover:text-white transition-colors">Služby</a></li>
+          <li><a href="#o-nas" class="hover:text-white transition-colors">O nás</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Legal & Facts -->
+      <div class="space-y-4">
+        <h4 class="font-bold text-primary-foreground text-xs uppercase tracking-wider">Fakturačné údaje</h4>
+        <ul class="space-y-1.5 text-xs">
+          <li class="font-bold text-primary-foreground">Peter Hílek - Autoservis H&T</li>
+          <li>Sídlo: Kopčany, Slovensko</li>
+          <li>E-mail: htservis@stonline.sk</li>
+        </ul>
+      </div>
+
+      <!-- Col 4: SEO & Analytics notice -->
+      <div class="space-y-4">
+        <h4 class="font-bold text-primary-foreground text-xs uppercase tracking-wider">Súkromie & Cookies</h4>
+        <p class="text-xs leading-relaxed">
+          Tento web využíva základné súbory cookies na zabezpečenie správneho fungovania a anonymné sledovanie návštevnosti prostredníctvom Google Analytics.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Bottom copyright -->
+    <div class="max-w-7xl mx-auto pt-8 mt-8 border-t border-primary-foreground/20 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+      <p>&copy; 2023 Peter Hílek - Autoservis H&T. Všetky práva vyhradené.</p>
+      <p class="text-primary-foreground/60">Navrhnuté pre moderný web a mobilné zariadenia.</p>
+    </div>
+  </footer>
+</div>
+</body></html>
