@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STOLMA s.r.o. — všetko z masívu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso:#241811;
+    --espresso-2:#2f2013;
+    --espresso-3:#3a2818;
+    --linen:#F2EADC;
+    --linen-2:#E7D9C1;
+    --linen-3:#ddc9a8;
+    --oak:#B8824C;
+    --oak-light:#d3a877;
+    --ember:#9C4326;
+    --ember-light:#c15a37;
+    --ink:#211609;
+    --ink-soft:#5a4a3a;
+    --cream:#F2EADC;
+    --line: rgba(33,22,9,0.14);
+    --line-dark: rgba(242,234,220,0.16);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    background:var(--linen);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    line-height:1.05;
+    color:inherit;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .mono{font-family:'JetBrains Mono', monospace; letter-spacing:0.02em;}
+  .wrap{max-width:1220px; margin:0 auto; padding:0 32px;}
+  section{position:relative;}
+  ::selection{background:var(--oak); color:var(--espresso);}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{outline:2px solid var(--ember); outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(242,234,220,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1220px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{width:34px; height:34px; flex-shrink:0;}
+  .brand-text{display:flex; flex-direction:column; line-height:1.1;}
+  .brand-text b{font-family:'Fraunces',serif; font-size:1.25rem; font-weight:700; letter-spacing:0.01em;}
+  .brand-text span{font-size:0.68rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--ink-soft);}
+  nav.links{display:flex; gap:34px; align-items:center;}
+  nav.links a{font-size:0.92rem; font-weight:500; position:relative; padding:4px 0;}
+  nav.links a:not(.cta-btn)::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:2px; background:var(--ember);
+    transition:width .25s ease;
+  }
+  nav.links a:not(.cta-btn):hover::after{width:100%;}
+  nav.links a.cta-btn{padding:11px 22px;}
+  .cta-btn{
+    background:var(--ember); color:var(--linen); padding:11px 22px; border-radius:2px;
+    font-size:0.88rem; font-weight:600; letter-spacing:0.01em;
+    border:1px solid var(--ember);
+    transition:background .2s ease, transform .2s ease;
+    display:inline-block;
+  }
+  .cta-btn:hover{background:var(--ember-light); transform:translateY(-1px);}
+  .cta-btn.ghost{background:transparent; color:var(--espresso); border:1px solid var(--espresso);}
+  .cta-btn.ghost:hover{background:var(--espresso); color:var(--linen);}
+  .burger{display:none; background:none; border:none; cursor:pointer; width:28px; height:22px; position:relative;}
+  .burger span, .burger span::before, .burger span::after{
+    content:''; position:absolute; left:0; width:100%; height:2px; background:var(--ink); transition:.25s;
+  }
+  .burger span{top:10px;}
+  .burger span::before{top:-8px;}
+  .burger span::after{top:8px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    color:var(--linen);
+    padding:64px 0 0;
+    overflow:hidden;
+    position:relative;
+    background:
+    linear-gradient(
+      318deg, rgba(24, 16, 10, 0.96) 0%, rgba(24, 16, 10, 0.9) 32%, rgba(24, 16, 10, 0.55) 62%, rgba(24, 16, 10, 0.82) 100%), var(--espresso) url(http://www.stolma.sk/images/15_img1_slide3---Kopirovat.png) center 30% / cover no-repeat
+  }
+  .hero-inner{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
+    max-width:1220px; margin:0 auto; padding:70px 32px 40px;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'JetBrains Mono',monospace; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--oak-light); margin-bottom:22px;
+  }
+  .eyebrow::before{content:''; width:26px; height:1px; background:var(--oak-light);}
+  .hero h1{
+    font-size:clamp(2.5rem, 4.6vw, 4.1rem);
+    font-weight:600;
+    max-width:11ch;
+  }
+  .hero h1 em{font-style:italic; font-weight:500; color:var(--oak-light);}
+  .hero p.lead{
+    margin-top:26px; font-size:1.12rem; color:rgba(242,234,220,0.78); max-width:46ch; font-weight:300;
+  }
+  .hero-ctas{display:flex; gap:16px; margin-top:38px; flex-wrap:wrap;}
+  .hero-ctas .cta-btn.ghost{border-color:rgba(242,234,220,0.4); color:var(--linen);}
+  .hero-ctas .cta-btn.ghost:hover{background:var(--linen); color:var(--espresso); border-color:var(--linen);}
+
+  .rings-wrap{position:relative; display:flex; align-items:center; justify-content:center;}
+  .rings-wrap svg{width:100%; max-width:460px; height:auto;}
+  .ring-label{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; fill:var(--oak-light); opacity:0.9;
+  }
+
+  .hero-strip{
+    border-top:1px solid var(--line-dark);
+    margin-top:20px;
+  }
+  .hero-strip .wrap{
+    display:flex; gap:0; flex-wrap:wrap;
+  }
+  .strip-item{
+    flex:1 1 0; min-width:150px; padding:20px 26px; border-right:1px solid var(--line-dark);
+  }
+  .strip-item:last-child{border-right:none;}
+  .strip-item b{
+    font-family:'Fraunces',serif; font-size:1.5rem; font-weight:600; color:var(--oak-light); display:block;
+  }
+  .strip-item span{font-size:0.82rem; color:rgba(242,234,220,0.65);}
+
+  /* ---------- SECTION HEADS ---------- */
+  .section-head{
+    max-width:640px; margin-bottom:56px;
+  }
+  .section-head .eyebrow{color:var(--ember);}
+  .section-head .eyebrow::before{background:var(--ember);}
+  .section-head h2{font-size:clamp(1.9rem,3vw,2.6rem); color:var(--ink);}
+  .section-head p{margin-top:16px; color:var(--ink-soft); font-size:1.02rem; max-width:52ch;}
+  .light-on-dark .section-head h2{color:var(--linen);}
+  .light-on-dark .section-head p{color:rgba(242,234,220,0.7);}
+  .light-on-dark .section-head .eyebrow{color:var(--oak-light);}
+  .light-on-dark .section-head .eyebrow::before{background:var(--oak-light);}
+
+  /* ---------- PRODUKTY ---------- */
+  .produkty{padding:110px 0 100px;}
+  .grid-products{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .product-card{
+    background:var(--linen); padding:38px 32px; min-height:250px;
+    display:flex; flex-direction:column; gap:16px;
+    transition:background .25s ease;
+  }
+  .product-card:hover{background:var(--linen-2);}
+  .product-card .icon{width:42px; height:42px; color:var(--ember);}
+  .product-card h3{font-size:1.28rem; font-weight:600;}
+  .product-card p{font-size:0.93rem; color:var(--ink-soft); flex:1;}
+  .product-card .go{
+    font-size:0.82rem; font-weight:600; letter-spacing:0.02em; color:var(--ember);
+    display:inline-flex; align-items:center; gap:6px; margin-top:4px;
+  }
+  .product-card .go svg{width:14px; height:14px; transition:transform .2s ease;}
+  .product-card:hover .go svg{transform:translateX(4px);}
+
+  /* ---------- PRÍBEH / TIMELINE ---------- */
+  .pribeh{background:var(--espresso); color:var(--linen); padding:110px 0;}
+  .timeline{
+    position:relative; margin-top:20px;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:28px;
+  }
+  .timeline::before{
+    content:''; position:absolute; top:11px; left:0; right:0; height:1px; background:var(--line-dark);
+  }
+  .t-item{position:relative; padding-top:34px;}
+  .t-item::before{
+    content:''; position:absolute; top:0; left:0; width:11px; height:11px; border-radius:50%;
+    background:var(--espresso); border:2px solid var(--oak-light);
+  }
+  .t-item .yr{font-family:'JetBrains Mono',monospace; color:var(--oak-light); font-size:0.95rem; display:block; margin-bottom:10px;}
+  .t-item h4{font-size:1.08rem; font-weight:600; margin-bottom:8px;}
+  .t-item p{font-size:0.88rem; color:rgba(242,234,220,0.68);}
+
+  /* ---------- HODNOTY ---------- */
+  .hodnoty{padding:100px 0; background:var(--linen-2);}
+  .val-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .val-card{background:var(--linen-2); padding:32px 26px;}
+  .val-card .num{font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--ember); display:block; margin-bottom:14px;}
+  .val-card h4{font-size:1.05rem; margin-bottom:8px; font-weight:600;}
+  .val-card p{font-size:0.87rem; color:var(--ink-soft);}
+
+  /* ---------- GALERIA ---------- */
+  .galeria{padding:110px 0;}
+  .gal-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); grid-auto-rows:150px; gap:12px;
+  }
+  .gal-tile{
+    position:relative; border-radius:3px; overflow:hidden;
+    background:linear-gradient(135deg,var(--linen-3),var(--oak) 140%);
+    display:flex; align-items:flex-end; padding:16px;
+  }
+  .gal-tile::before{
+    content:''; position:absolute; inset:0;
+    background-image: repeating-linear-gradient(100deg, rgba(36,24,17,0.06) 0px, rgba(36,24,17,0.06) 2px, transparent 2px, transparent 14px);
+    mix-blend-mode:multiply;
+  }
+  .gal-tile span{
+    position:relative; z-index:1; font-family:'JetBrains Mono',monospace; font-size:0.74rem;
+    color:var(--espresso); background:rgba(242,234,220,0.85); padding:4px 9px; border-radius:2px;
+    letter-spacing:0.03em; text-transform:uppercase;
+  }
+  .gal-tile.big{grid-column:span 2; grid-row:span 2;}
+  .gal-note{margin-top:22px; font-size:0.85rem; color:var(--ink-soft); font-style:italic;}
+
+  /* ---------- B2B ---------- */
+  .b2b{background:var(--ember); color:var(--linen); padding:90px 0;}
+  .b2b-inner{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  .b2b h2{font-size:clamp(1.8rem,2.8vw,2.4rem); max-width:14ch;}
+  .b2b p{margin-top:18px; color:rgba(242,234,220,0.85); max-width:48ch;}
+  .b2b-list{margin-top:26px; display:flex; flex-direction:column; gap:14px;}
+  .b2b-list div{display:flex; gap:12px; font-size:0.95rem; align-items:flex-start;}
+  .b2b-list svg{width:18px; height:18px; flex-shrink:0; margin-top:3px;}
+  .b2b-card{
+    background:rgba(242,234,220,0.08); border:1px solid rgba(242,234,220,0.25); border-radius:4px; padding:34px;
+  }
+  .b2b-card .scale{font-family:'JetBrains Mono',monospace; font-size:3.2rem; font-weight:500; line-height:1;}
+  .b2b-card .scale-label{font-size:0.82rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(242,234,220,0.7); margin-top:8px;}
+  .b2b-card hr{border:none; border-top:1px solid rgba(242,234,220,0.25); margin:26px 0;}
+
+  /* ---------- KONTAKT ---------- */
+  .kontakt{padding:110px 0 100px; background:var(--linen);}
+  .k-grid{display:grid; grid-template-columns:1fr 1fr; gap:70px;}
+  .k-info h2{font-size:clamp(1.9rem,3vw,2.5rem);}
+  .k-info p.lead{margin-top:16px; color:var(--ink-soft); max-width:44ch;}
+  .k-list{margin-top:36px; display:flex; flex-direction:column; gap:22px;}
+  .k-row{display:flex; gap:16px; align-items:flex-start; border-top:1px solid var(--line); padding-top:18px;}
+  .k-row:first-child{border-top:none; padding-top:0;}
+  .k-row svg{width:20px; height:20px; color:var(--ember); flex-shrink:0; margin-top:2px;}
+  .k-row b{display:block; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.09em; color:var(--ink-soft); margin-bottom:4px;}
+  .k-row span, .k-row a{font-size:1rem; font-weight:500;}
+  .stamp{
+    margin-top:34px; display:inline-flex; flex-direction:column; gap:4px;
+    border:1px dashed var(--ink-soft); padding:14px 18px; font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--ink-soft);
+  }
+
+  .form-card{background:var(--espresso); color:var(--linen); border-radius:4px; padding:44px;}
+  .form-card h3{font-size:1.3rem; margin-bottom:8px;}
+  .form-card p{color:rgba(242,234,220,0.65); font-size:0.9rem; margin-bottom:28px;}
+  .form-row{margin-bottom:20px; display:flex; flex-direction:column; gap:8px;}
+  .form-row label{font-size:0.78rem; text-transform:uppercase; letter-spacing:0.07em; color:rgba(242,234,220,0.6);}
+  .form-row input, .form-row textarea, .form-row select{
+    background:rgba(242,234,220,0.06); border:1px solid rgba(242,234,220,0.25); border-radius:2px;
+    padding:12px 14px; color:var(--linen); font-family:'Work Sans',sans-serif; font-size:0.95rem;
+  }
+  .form-row input:focus, .form-row textarea:focus, .form-row select:focus{
+    outline:none; border-color:var(--oak-light);
+  }
+  .form-row textarea{resize:vertical; min-height:90px;}
+  .form-card .cta-btn{width:100%; text-align:center; margin-top:6px; border:none; cursor:pointer;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--espresso-2); color:rgba(242,234,220,0.55); padding:44px 0;}
+  .foot-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:0.82rem;}
+  .foot-inner .mono{color:rgba(242,234,220,0.4);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 980px){
+    nav.links{display:none;}
+    .burger{display:block;}
+    .hero-inner{grid-template-columns:1fr; text-align:left;}
+    .rings-wrap{order:-1; max-width:280px; margin:0 auto 20px;}
+    .grid-products{grid-template-columns:repeat(2,1fr);}
+    .timeline{grid-template-columns:repeat(2,1fr); row-gap:40px;}
+    .timeline::before{display:none;}
+    .val-grid{grid-template-columns:repeat(2,1fr);}
+    .gal-grid{grid-template-columns:repeat(2,1fr);}
+    .gal-tile.big{grid-column:span 2;}
+    .b2b-inner{grid-template-columns:1fr;}
+    .k-grid{grid-template-columns:1fr;}
+    .strip-item{flex:1 1 45%;}
+  }
+  @media (max-width: 560px){
+    .grid-products{grid-template-columns:1fr;}
+    .val-grid{grid-template-columns:1fr;}
+    .gal-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:120px;}
+    .form-card{padding:28px;}
+    .nav{padding:14px 20px;}
+    .hero-inner{padding:50px 20px 30px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18.5" stroke="#9C4326" stroke-width="1.4"/>
+        <circle cx="20" cy="20" r="13" stroke="#B8824C" stroke-width="1.4"/>
+        <circle cx="20" cy="20" r="7" stroke="#9C4326" stroke-width="1.4"/>
+        <circle cx="20" cy="20" r="1.8" fill="#241811"/>
+      </svg>
+      <div class="brand-text">
+        <b>STOLMA</b>
+        <span>všetko z masívu</span>
+      </div>
+    </div>
+    <nav class="links">
+      <a href="#produkty">Produkty</a>
+      <a href="#pribeh">O nás</a>
+      <a href="#galeria">Realizácie</a>
+      <a href="#b2b">Pre firmy</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="tel:+421905574044" class="cta-btn">+421 905 574 044</a>
+    </nav>
+    <button class="burger" aria-label="Menu" onclick="document.querySelector('.links').classList.toggle('open')"><span></span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">Stolárska dielňa · Smolinské · od 1998</div>
+      <h1>Drevo, ktoré <em>rastie</em><br> s vaším domom.</h1>
+      <p class="lead">Okná, dvere, schody, strechy, altány, celé drevostavby aj zimné záhrady — vyrábame z masívu, vo vlastnej dielni, na mieru pre váš dom.</p>
+      <div class="hero-ctas">
+        <a href="#kontakt" class="cta-btn">Nezáväzná ponuka</a>
+        <a href="#produkty" class="cta-btn ghost">Pozrieť produkty</a>
+      </div>
+    </div>
+    <div class="rings-wrap">
+      <svg viewBox="0 0 440 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="220" cy="220" r="205" stroke="#3a2818" stroke-width="1"/>
+        <circle cx="220" cy="220" r="188" stroke="#4a3320" stroke-width="1"/>
+        <circle cx="220" cy="220" r="164" stroke="#5a3f26" stroke-width="1.2"/>
+        <circle cx="220" cy="220" r="146" stroke="#3a2818" stroke-width="1"/>
+        <circle cx="220" cy="220" r="120" stroke="#B8824C" stroke-width="1.4"/>
+        <circle cx="220" cy="220" r="96" stroke="#4a3320" stroke-width="1"/>
+        <circle cx="220" cy="220" r="70" stroke="#9C4326" stroke-width="1.6"/>
+        <circle cx="220" cy="220" r="46" stroke="#B8824C" stroke-width="1.2"/>
+        <circle cx="220" cy="220" r="24" stroke="#c99a67" stroke-width="1.4"/>
+        <circle cx="220" cy="220" r="6" fill="#d3a877"/>
+        <text x="230" y="203" class="ring-label">1998 založenie</text>
+        <text x="270" y="130" class="ring-label">2006 strechy</text>
+        <text x="300" y="80" class="ring-label">drevostavby</text>
+        <text x="150" y="50" class="ring-label">dnes: všetko z masívu</text>
+      </svg>
+    </div>
+  </div>
+  <div class="hero-strip">
+    <div class="wrap">
+      <div class="strip-item"><b>27+</b><span>rokov v obore</span></div>
+      <div class="strip-item"><b>7</b><span>produktových radov</span></div>
+      <div class="strip-item"><b>1:1</b><span>šablóny a výrobné výkresy</span></div>
+      <div class="strip-item"><b>100%</b><span>vlastná výroba</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="produkty" id="produkty">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Čo vyrábame</div>
+      <h2>Sedem remesiel, jedna dielňa.</h2>
+      <p>Od prvého okna po celý drevodom — každý produkt prechádza tou istou dielňou, tými istými rukami.</p>
+    </div>
+    <div class="grid-products">
+
+      <div class="product-card">
+        <svg class="icon" viewBox="0 0 42 42" fill="none"><rect x="6" y="6" width="30" height="30" stroke="currentColor" stroke-width="1.4"/><line x1="21" y1="6" x2="21" y2="36" stroke="currentColor" stroke-width="1.4"/><line x1="6" y1="21" x2="36" y2="21" stroke="currentColor" stroke-width="1.4"/></svg>
+        <h3>Eurookná</h3>
+        <p>Drevené eurookná na mieru, so sieťkami a žalúziami, vrátane údržby farby a vetrania.</p>
+        <a class="go" href="#kontakt">Zistiť viac <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      </div>
+
+      <div class="product-card">
+        <svg class="icon" viewBox="0 0 42 42" fill="none"><rect x="10" y="5" width="22" height="32" rx="1" stroke="currentColor" stroke-width="1.4"/><circle cx="27" cy="21" r="1.6" fill="currentColor"/></svg>
+        <h3>Dvere</h3>
+        <p>Interiérové aj exteriérové dvere z masívu a veľkorozmerné HS portály pre presvetlené interiéry.</p>
+        <a class="go" href="#kontakt">Zistiť viac <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      </div>
+
+      <div class="product-card">
+        <svg class="icon" viewBox="0 0 42 42" fill="none"><path d="M7 34h6v-6h6v-6h6v-6h6" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        <h3>Schody</h3>
+        <p>Schodiská z masívu podľa priestoru a dispozície domu, vrátane výroby na kľúč.</p>
+        <a class="go" href="#kontakt">Zistiť viac <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      </div>
+
+      <div class="product-card">
+        <svg class="icon" viewBox="0 0 42 42" fill="none"><path d="M6 22 21 8l15 14" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><line x1="10" y1="24" x2="10" y2="34" stroke="currentColor" stroke-width="1.4"/><line x1="32" y1="24" x2="32" y2="34" stroke="currentColor" stroke-width="1.4"/></svg>
+        <h3>Strechy a altány</h3>
+        <p>Krovy a strešné konštrukcie, altány a prístrešky — presne tesárske detaily z masívneho dreva.</p>
+        <a class="go" href="#kontakt">Zistiť viac <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      </div>
+
+      <div class="product-card">
+        <svg class="icon" viewBox="0 0 42 42" fill="none"><path d="M6 34V16l15-9 15 9v18" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><line x1="6" y1="34" x2="36" y2="34" stroke="currentColor" stroke-width="1.4"/><line x1="16" y1="34" x2="16" y2="22" stroke="currentColor" stroke-width="1.4"/><line x1="26" y1="34" x2="26" y2="22" stroke="currentColor" stroke-width="1.4"/></svg>
+        <h3>Drevostavby</h3>
+        <p>Kompletné drevodomy podľa vlastných projektov — od hrubej stavby až po realizáciu na kľúč.</p>
+        <a class="go" href="#kontakt">Zistiť viac <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      </div>
+
+      <div class="product-card">
+        <svg class="icon" viewBox="0 0 42 42" fill="none"><path d="M6 34h30M6 34l4-16h22l4 16" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><line x1="21" y1="18" x2="21" y2="34" stroke="currentColor" stroke-width="1.2"/></svg>
+        <h3>Zimné záhrady</h3>
+        <p>Presklené konštrukcie z dreva, ktoré predĺžia obytný priestor do záhrady po celý rok.</p>
+        <a class="go" href="#kontakt">Zistiť viac <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="pribeh light-on-dark" id="pribeh">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Náš príbeh</div>
+      <h2>Od okien k celým domom.</h2>
+      <p>Firma rástla presne tak, ako rastie strom — po vrstvách, rok čo rok, bez preskakovania.</p>
+    </div>
+    <div class="timeline">
+      <div class="t-item">
+        <span class="yr">1998</span>
+        <h4>Založenie dielne</h4>
+        <p>Začíname výrobou okien a exteriérových dverí.</p>
+      </div>
+      <div class="t-item">
+        <span class="yr">2000s</span>
+        <h4>Rozšírenie výroby</h4>
+        <p>Pridávame schodiská a nábytok z masívu, stavia sa nová hala aj samostatné striekacie priestory.</p>
+      </div>
+      <div class="t-item">
+        <span class="yr">2006</span>
+        <h4>Strechy a konštrukcie</h4>
+        <p>Firma sa rozširuje o strechy, altány a prístrešky podľa dopytu zákazníkov.</p>
+      </div>
+      <div class="t-item">
+        <span class="yr">dnes</span>
+        <h4>Celé drevostavby</h4>
+        <p>Vlastné projekty drevodomov, realizácie na kľúč a takmer všetko z masívu pod jednou strechou.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hodnoty">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Prečo my</div>
+      <h2>Dielňa, nie sprostredkovateľ.</h2>
+    </div>
+    <div class="val-grid">
+      <div class="val-card">
+        <span class="num mono">01</span>
+        <h4>Vlastná výroba</h4>
+        <p>Žiadny prekup — od dosky po hotový výrobok prechádza všetko našou dielňou v Smolinskom.</p>
+      </div>
+      <div class="val-card">
+        <span class="num mono">02</span>
+        <h4>Podpora aj po záruke</h4>
+        <p>Zavoláte nám aj po rokoch a poradíme — sme tu pre zákazníkov dlhodobo, nielen pri predaji.</p>
+      </div>
+      <div class="val-card">
+        <span class="num mono">03</span>
+        <h4>Realizácia na kľúč</h4>
+        <p>Drevostavby dodávame v ľubovoľnom štádiu rozpracovania, podľa vašich požiadaviek.</p>
+      </div>
+      <div class="val-card">
+        <span class="num mono">04</span>
+        <h4>Vlastné projekty</h4>
+        <p>Konštrukcie kreslíme v 3D, takže presne viete, čo staviate ešte pred prvým rezom.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="galeria" id="galeria">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Realizácie</div>
+      <h2>Fotogaléria z dielne aj z terénu.</h2>
+      <p>Ukážky rozdelené podľa produktov — priebežne dopĺňame o nové realizácie.</p>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-tile big"><span>Drevodomy</span></div>
+      <div class="gal-tile"><span>Okná</span></div>
+      <div class="gal-tile"><span>Dvere</span></div>
+      <div class="gal-tile" style="background-image:linear-gradient(rgba(36,24,17,0.08),rgba(36,24,17,0.35)), url('http://www.stolma.sk/images/schod-uvod.jpg'); background-size:cover; background-position:center;"><span>Schody</span></div>
+      <div class="gal-tile"><span>Strechy</span></div>
+      <div class="gal-tile"><span>Altány</span></div>
+      <div class="gal-tile"><span>Zimné záhrady</span></div>
+    </div>
+    <p class="gal-note">Dlaždica „Schody“ už používa reálnu fotku z vášho pôvodného webu. Ostatné sú zatiaľ štýlované zástupky — vysvetlenie prečo a ako to dorobiť je nižšie v odpovedi.</p>
+  </div>
+</section>
+
+<section class="b2b" id="b2b">
+  <div class="wrap b2b-inner">
+    <div>
+      <h2>Kreslíme aj pre iných stolárov a tesárov.</h2>
+      <p>Okrem výroby pre koncových zákazníkov ponúkame 3D projekty pre remeselníkov, ktorí potrebujú presné podklady pred výrobou.</p>
+      <div class="b2b-list">
+        <div><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 3D nákresy schodov, striech, altánov a ďalších konštrukcií</div>
+        <div><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Šablóny tlačené v mierke 1:1</div>
+        <div><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Kompletné výrobné výkresy pripravené na výrobu</div>
+      </div>
+    </div>
+    <div class="b2b-card">
+      <span class="scale mono">1:1</span>
+      <span class="scale-label">tlač šablón v reálnej mierke</span>
+      <hr>
+      <p style="color:rgba(242,234,220,0.85); font-size:0.95rem;">Pošlite nám zameranie alebo predstavu a pripravíme podklady presne na mieru vašej výrobe.</p>
+      <div style="margin-top:22px;"><a href="#kontakt" class="cta-btn" style="background:var(--linen); color:var(--espresso); border-color:var(--linen);">Poslať dopyt na projekt</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="kontakt" id="kontakt">
+  <div class="wrap k-grid">
+    <div class="k-info">
+      <div class="eyebrow" style="color:var(--ember);">Kontakt</div>
+      <h2>Poďme prebrať váš projekt.</h2>
+      <p class="lead">Sídlime v Smolinskom, medzi Gbely a Šaštín-Strážami. Zavolajte, napíšte, alebo príďte priamo do dielne.</p>
+      <div class="k-list">
+        <div class="k-row">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="9.5" r="2.3" stroke="currentColor" stroke-width="1.5"/></svg>
+          <div><b>Adresa</b><span>Smolinské 409, okres Senica (medzi Gbely a Šaštín-Strážami)</span></div>
+        </div>
+        <div class="k-row">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L7.9 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z" stroke="currentColor" stroke-width="1.5"/></svg>
+          <div><b>Telefón</b><a href="tel:+421905574044">+421 905 574 044</a></div>
+        </div>
+        <div class="k-row">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4V6z" stroke="currentColor" stroke-width="1.5"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.5"/></svg>
+          <div><b>E-mail</b><a href="mailto:stolmasro@gmail.com">stolmasro@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="stamp mono">
+        IČO 36269417 · DIČ 2021957630<br>
+        Obchodný register: OS Trnava, oddiel Sro, vložka 16812/T
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>Rýchly dopyt</h3>
+      <p>Napíšte pár slov o vašom projekte, ozveme sa vám na uvedený kontakt.</p>
+      <form onsubmit="event.preventDefault(); alert('Formulár je ukážkový — napojenie na e-mail doplníme pri nasadení.');">
+        <div class="form-row">
+          <label for="meno">Meno</label>
+          <input id="meno" type="text" placeholder="Vaše meno" required>
+        </div>
+        <div class="form-row">
+          <label for="mail">E-mail alebo telefón</label>
+          <input id="mail" type="text" placeholder="napr. meno@email.sk" required>
+        </div>
+        <div class="form-row">
+          <label for="typ">Mám záujem o</label>
+          <select id="typ">
+            <option>Eurookná</option>
+            <option>Dvere</option>
+            <option>Schody</option>
+            <option>Strechy a altány</option>
+            <option>Drevostavby</option>
+            <option>Zimné záhrady</option>
+            <option>3D projekt pre stolára/tesára</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="sprava">Popis projektu</label>
+          <textarea id="sprava" placeholder="Rozmery, materiál, termín, alebo čokoľvek, čo nám pomôže pripraviť ponuku..."></textarea>
+        </div>
+        <button type="submit" class="cta-btn">Odoslať dopyt</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>© 2026 STOLMA s.r.o. — všetko z masívu</span>
+    <span class="mono">Smolinské 409 · +421 905 574 044 · stolmasro@gmail.com</span>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.burger').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const links = document.querySelector('.links');
+      const open = links.classList.contains('open');
+      links.style.display = open ? 'none' : 'flex';
+      if(!open){
+        links.style.position='absolute';
+        links.style.top='64px';
+        links.style.left='0';
+        links.style.right='0';
+        links.style.flexDirection='column';
+        links.style.background='var(--linen)';
+        links.style.padding='20px 32px';
+        links.style.borderBottom='1px solid var(--line)';
+        links.style.gap='18px';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
