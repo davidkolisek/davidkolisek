@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zariadenie pre seniorov Skalica — domov, kde na vás záleží</title>
+<meta name="description" content="Zariadenie pre seniorov Skalica a Jesénia Skalica — celoročná pobytová sociálna služba. Poskytovateľ: Mesto Skalica.">
+<style>
+
+/* ============ TOKENS ============ */
+:root{
+  --paper:#FBF7EF;
+  --paper-warm:#F4ECDD;
+  --ink:#2B2E27;
+  --ink-soft:#565A4E;
+  --green-deep:#33503C;
+  --green:#4C6B4F;
+  --green-pale:#DCE6D9;
+  --gold:#C68A3D;
+  --gold-deep:#A66C29;
+  --gold-pale:#F3E3C8;
+  --blush:#E7AE9B;
+  --white:#FFFFFF;
+  --line:#E4DACB;
+  --shadow: 0 20px 50px -20px rgba(43,46,39,0.25);
+  --radius-lg: 32px;
+  --radius-md: 22px;
+  --radius-sm: 14px;
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --sans: "Source Sans 3", "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+@font-face{
+  font-family: "Fraunces";
+  src: local("Georgia");
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:18px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  transition:background .3s ease, color .3s ease;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+h1,h2,h3,h4{
+  font-family:var(--serif);
+  font-weight:600;
+  color:var(--green-deep);
+  line-height:1.12;
+  margin:0 0 .4em 0;
+  letter-spacing:-0.01em;
+}
+.container,
+.container-fluid{
+  width:100%;
+  margin:0 auto;
+  padding-left:clamp(20px, 5vw, 56px);
+  padding-right:clamp(20px, 5vw, 56px);
+}
+.container{
+  max-width:1180px;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:.5em;
+  font-size:.8em;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-weight:700;
+  color:var(--gold-deep);
+  margin-bottom:.9em;
+}
+.eyebrow::before{
+  content:"";
+  width:22px;height:2px;
+  background:var(--gold);
+  display:inline-block;
+}
+p.lead{font-size:1.18em; color:var(--ink-soft); max-width:56ch;}
+
+/* Skip link */
+.skip-link{
+  position:absolute; left:-999px; top:0;
+  background:var(--green-deep); color:#fff; padding:14px 22px;
+  border-radius:0 0 10px 0; z-index:999; font-weight:700;
+}
+.skip-link:focus{left:0;}
+
+:focus-visible{
+  outline:3px solid var(--gold-deep);
+  outline-offset:3px;
+}
+
+/* ============ TOP INFO BAR ============ */
+.access-bar{
+  background:var(--green-deep);
+  color:#fff;
+}
+.access-bar .container{
+  display:flex; align-items:center; justify-content:center;
+  gap:16px; flex-wrap:wrap;
+  padding-top:10px; padding-bottom:10px;
+  font-size:.9em;
+}
+.access-bar .phone{
+  font-weight:700; font-size:1.05em; letter-spacing:.02em;
+  display:flex; align-items:center; gap:.5em;
+  text-decoration:none;
+}
+.access-bar .phone svg{width:18px;height:18px;flex-shrink:0;}
+
+/* ============ HEADER / NAV ============ */
+header.site{
+  position:sticky; top:0; z-index:50;
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+}
+.nav-row{
+  display:flex; align-items:center; justify-content:space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.brand{
+  display:flex; align-items:center; gap:14px;
+  text-decoration:none;
+}
+.brand-mark{
+  width:52px; height:52px; border-radius:16px;
+  background:linear-gradient(150deg, var(--green) 0%, var(--green-deep) 100%);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.brand-mark svg{width:28px;height:28px;color:#fff;}
+.brand-text{line-height:1.2;}
+.brand-text strong{
+  display:block; font-family:var(--serif); font-size:1.28em; color:var(--green-deep);
+}
+.brand-text span{font-size:.82em; color:var(--ink-soft);}
+
+nav.primary{display:flex; align-items:center; gap:6px;}
+nav.primary a{
+  text-decoration:none;
+  font-weight:600;
+  color:var(--ink);
+  padding:12px 16px;
+  border-radius:999px;
+  font-size:.98em;
+}
+nav.primary a:hover{background:var(--green-pale); color:var(--green-deep);}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5em;
+  min-height:52px;
+  padding:0 26px;
+  border-radius:999px;
+  font-weight:700;
+  text-decoration:none;
+  font-size:1em;
+  cursor:pointer;
+  border:2px solid transparent;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--gold); color:#2B2109; box-shadow:0 12px 30px -12px rgba(198,138,61,.6);}
+.btn-primary:hover{background:var(--gold-deep); color:#fff;}
+.btn-outline{background:transparent; border-color:var(--green-deep); color:var(--green-deep);}
+.btn-outline:hover{background:var(--green-deep); color:#fff;}
+.btn-ghost-light{background:rgba(255,255,255,.15); color:#fff; border-color:rgba(255,255,255,.5);}
+
+.hamburger{display:none;}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;
+  overflow:hidden;
+  padding:clamp(48px,8vw,96px) 0 clamp(64px,10vw,110px);
+  background:
+    radial-gradient(1100px 500px at 85% -10%, var(--gold-pale) 0%, transparent 60%),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper-warm) 100%);
+}
+.hero-leaf{
+  position:absolute; pointer-events:none; opacity:.5;
+}
+.hero-leaf.l1{ top:-40px; right:-60px; width:340px; color:var(--gold-pale);}
+.hero-leaf.l2{ bottom:-60px; left:-80px; width:280px; color:var(--green-pale); transform:rotate(25deg);}
+.hero-grid{
+  display:grid; grid-template-columns:1.05fr .95fr;
+  gap:clamp(28px,5vw,60px);
+  align-items:center;
+  position:relative; z-index:2;
+}
+.hero h1{
+  font-size:clamp(2.3em, 4.6vw, 3.5em);
+  max-width:14ch;
+}
+.hero h1 em{
+  font-style:normal;
+  color:var(--gold-deep);
+}
+.hero-actions{
+  display:flex; gap:14px; flex-wrap:wrap; margin-top:34px;
+}
+.hero-quote{
+  margin-top:44px;
+  padding:22px 24px;
+  background:var(--white);
+  border-left:4px solid var(--gold);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  box-shadow:var(--shadow);
+  max-width:52ch;
+}
+.hero-quote p{margin:0; font-family:var(--serif); font-style:italic; color:var(--ink-soft); font-size:1.05em;}
+.hero-quote cite{display:block; margin-top:10px; font-style:normal; font-weight:700; color:var(--green-deep); font-size:.9em;}
+
+.hero-visual{position:relative;}
+.photo-card{
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  position:relative;
+  background:linear-gradient(160deg, var(--green-pale), var(--gold-pale));
+  aspect-ratio:4/5;
+  display:flex; align-items:flex-end;
+}
+.photo-card.small{aspect-ratio:1/1;}
+.photo-card img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+}
+.photo-label{
+  position:relative; z-index:1;
+  width:100%;
+  padding:18px;
+  background:linear-gradient(0deg, rgba(43,46,39,.75), transparent);
+  color:#fff; font-size:.85em; font-weight:600;
+}
+.photo-placeholder-icon{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  color:rgba(43,46,39,.28);
+}
+.photo-placeholder-icon svg{width:64px;height:64px;}
+.hero-float-card{
+  position:absolute; left:-36px; bottom:-28px;
+  background:var(--white);
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow);
+  padding:20px 24px;
+  display:flex; align-items:center; gap:16px;
+  max-width:280px;
+  z-index: 2;
+}
+.hero-float-card svg{width:38px;height:38px;color:var(--green-deep); flex-shrink:0;}
+.hero-float-card strong{display:block; font-family:var(--serif); font-size:1.4em; color:var(--green-deep);}
+.hero-float-card span{font-size:.85em; color:var(--ink-soft);}
+
+/* ============ FACT STRIP ============ */
+.facts{
+  background:var(--green-deep);
+  color:#fff;
+  padding:36px 0;
+}
+.facts-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+  text-align:center;
+}
+.facts-grid .fact strong{
+  display:block; font-family:var(--serif); font-size:2.1em; color:var(--gold-pale);
+}
+.facts-grid .fact span{font-size:.88em; opacity:.85;}
+
+/* ============ SECTION GENERIC ============ */
+section{padding:clamp(64px,9vw,110px) 0;}
+.section-head{max-width:70ch; margin-bottom:48px;}
+.section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+
+/* MISSION editorial */
+.mission{background:var(--paper-warm);}
+.mission-grid{
+  display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:start;
+}
+.mission-quote{
+  font-family:var(--serif); font-size:clamp(1.4em,2.4vw,1.9em);
+  color:var(--green-deep); line-height:1.3; position:relative; padding-left:34px;
+}
+.mission-quote::before{
+  content:"“"; position:absolute; left:-8px; top:-.2em; font-size:2.2em; color:var(--gold); font-family:var(--serif);
+}
+.mission-body p{color:var(--ink-soft); margin-bottom:1.1em;}
+
+/* SERVICES */
+.services-list{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:18px 28px;
+  margin-top:10px;
+}
+.service-item{
+  display:flex; gap:16px; align-items:flex-start;
+  padding:20px;
+  background:var(--white);
+  border-radius:var(--radius-md);
+  border:1px solid var(--line);
+}
+.service-item svg{width:26px;height:26px;color:var(--gold-deep); flex-shrink:0; margin-top:2px;}
+.service-item h4{font-family:var(--sans); font-weight:700; font-size:1.05em; color:var(--ink); margin-bottom:4px;}
+.service-item p{margin:0; font-size:.92em; color:var(--ink-soft);}
+
+/* FACILITIES */
+.facilities{background:var(--paper-warm);}
+.fac-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+.fac-card{
+  background:var(--white); border-radius:var(--radius-lg);
+  box-shadow:var(--shadow); overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.fac-card .photo-card{border-radius:0; aspect-ratio:16/10;}
+.fac-body{padding:30px 30px 34px;}
+.fac-body h3{font-size:1.5em;}
+.fac-body p{color:var(--ink-soft); margin-bottom:18px;}
+.fac-tag{
+  display:inline-block; font-size:.75em; font-weight:800; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--green-deep); background:var(--green-pale);
+  padding:5px 12px; border-radius:999px; margin-bottom:14px;
+}
+
+/* PROCESS */
+.process-list{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:20px; counter-reset:step;
+}
+.step{
+  position:relative; padding:28px 22px 22px;
+  background:var(--white); border-radius:var(--radius-md); border:1px solid var(--line);
+}
+.step::before{
+  counter-increment:step; content:counter(step);
+  font-family:var(--serif); font-size:1.6em; font-weight:700; color:var(--gold-deep);
+  display:block; margin-bottom:10px;
+}
+.step h4{font-size:1.05em; margin-bottom:6px;}
+.step p{margin:0; font-size:.92em; color:var(--ink-soft);}
+
+/* FORMS BOX */
+.forms-box{
+  margin-top:40px;
+  background:var(--paper-warm);
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+  padding:clamp(24px,4vw,36px);
+}
+.forms-box-head{
+  display:flex; gap:16px; align-items:flex-start; margin-bottom:22px;
+}
+.forms-box-head svg{width:30px;height:30px;color:var(--gold-deep); flex-shrink:0; margin-top:2px;}
+.forms-box-head h4{font-family:var(--serif); font-size:1.3em; color:var(--green-deep); margin-bottom:4px;}
+.forms-box-head p{margin:0; color:var(--ink-soft);}
+.forms-list{list-style:none; margin:0; padding:0; display:grid; gap:10px;}
+.forms-list a{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius-sm);
+  padding:16px 20px;
+  text-decoration:none;
+  font-weight:600;
+  color:var(--ink);
+}
+.forms-list a:hover{border-color:var(--gold-deep); background:var(--gold-pale);}
+.forms-list a span{
+  font-size:.75em; font-weight:800; letter-spacing:.06em;
+  color:var(--gold-deep); background:var(--gold-pale);
+  padding:4px 10px; border-radius:999px; flex-shrink:0;
+}
+
+/* JOIN US - jobs & volunteering */
+.joinus{background:var(--green-deep); color:#fff; position:relative; overflow:hidden;}
+.joinus::before{
+  content:""; position:absolute; top:-120px; right:-120px; width:420px; height:420px;
+  background:radial-gradient(circle, rgba(255,255,255,.08), transparent 70%);
+  border-radius:50%;
+}
+.joinus .eyebrow{color:var(--gold-pale);}
+.joinus .eyebrow::before{background:var(--gold-pale);}
+.joinus h2{color:#fff;}
+.joinus .lead{color:rgba(255,255,255,.85);}
+.join-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:36px; position:relative; z-index:2;
+}
+.join-card{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:var(--radius-lg);
+  padding:clamp(26px,4vw,36px);
+  display:flex; flex-direction:column;
+}
+.join-tag{
+  display:inline-flex; align-items:center; gap:8px;
+  align-self:flex-start;
+  font-size:.75em; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+  background:var(--gold); color:#2B2109;
+  padding:6px 14px; border-radius:999px; margin-bottom:18px;
+}
+.join-card h3{color:#fff; font-size:1.5em;}
+.join-card p{color:rgba(255,255,255,.82); margin-bottom:10px;}
+.join-role{
+  background:rgba(255,255,255,.1);
+  border-radius:var(--radius-sm);
+  padding:16px 18px;
+  margin:14px 0 20px;
+}
+.join-role strong{display:block; color:#fff; font-size:1.05em; margin-bottom:4px;}
+.join-role span{font-size:.88em; color:rgba(255,255,255,.75);}
+.join-contact{
+  margin-top:auto;
+  display:flex; flex-direction:column; gap:6px;
+  font-size:.92em; color:rgba(255,255,255,.85);
+}
+.join-contact a{color:#fff; font-weight:700; text-decoration:none;}
+.join-card .btn{margin-top:18px; align-self:flex-start;}
+
+/* GALLERY */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:150px;
+  gap:16px;
+  margin-top:10px;
+}
+.gallery-grid .photo-card{aspect-ratio:auto; height:100%; border-radius:var(--radius-md);}
+.gallery-grid .g1{grid-column:span 2; grid-row:span 2;}
+.gallery-grid .g4{grid-column:span 2;}
+
+/* CONTACT */
+.contact{background:var(--green-deep); color:#fff;}
+.contact h2{color:#fff;}
+.contact .eyebrow{color:var(--gold-pale);}
+.contact .eyebrow::before{background:var(--gold-pale);}
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;}
+.contact-card{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:var(--radius-lg);
+  padding:32px;
+}
+.contact-row{display:flex; gap:16px; align-items:flex-start; margin-bottom:22px;}
+.contact-row:last-child{margin-bottom:0;}
+.contact-row svg{width:24px;height:24px; color:var(--gold-pale); flex-shrink:0; margin-top:3px;}
+.contact-row strong{display:block; font-size:1.1em; margin-bottom:2px;}
+.contact-row a{text-decoration:none; color:#fff;}
+.contact-row span, .contact-row a{color:rgba(255,255,255,.85);}
+.map-embed{
+  border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow);
+  aspect-ratio:4/3; background:var(--green); display:flex; align-items:center; justify-content:center;
+  color:rgba(255,255,255,.7); text-align:center; padding:24px; font-size:.9em;
+}
+
+/* SUPPORT / 2% */
+.support{
+  background:linear-gradient(120deg, var(--gold-pale), var(--paper));
+}
+.support-box{
+  display:grid; grid-template-columns:1.3fr .7fr; gap:36px; align-items:center;
+  background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow);
+  padding:clamp(28px,4vw,48px);
+}
+.support-box h2{font-size:1.7em;}
+.support-box p{color:var(--ink-soft);}
+
+/* FOOTER */
+footer{
+  background:#20281F;
+  color:rgba(255,255,255,.78);
+  padding:56px 0 28px;
+  font-size:.92em;
+}
+.footer-grid{
+  display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px;
+  padding-bottom:32px; border-bottom:1px solid rgba(255,255,255,.14);
+}
+.footer-grid h4{color:#fff; font-family:var(--sans); font-size:.9em; text-transform:uppercase; letter-spacing:.08em; margin-bottom:14px;}
+.footer-grid ul{list-style:none; margin:0; padding:0;}
+.footer-grid li{margin-bottom:10px;}
+.footer-grid a{text-decoration:none; color:rgba(255,255,255,.78);}
+.footer-grid a:hover{color:#fff;}
+.footer-bottom{
+  display:flex; justify-content:space-between; align-items:center; padding-top:22px; flex-wrap:wrap; gap:12px;
+}
+.social-dot{
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center;
+}
+.social-dot svg{width:20px;height:20px;}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:980px){
+  nav.primary{display:none;}
+  .hamburger{
+    display:flex; align-items:center; justify-content:center;
+    width:48px;height:48px; border-radius:12px;
+    background:var(--green-pale); border:none; cursor:pointer;
+  }
+  .hamburger svg{width:24px;height:24px;color:var(--green-deep);}
+  nav.primary.nav-open{
+    display:flex; flex-direction:column;
+    position:absolute; top:100%; left:0; right:0;
+    background:var(--paper); border-bottom:1px solid var(--line);
+    padding:10px clamp(20px,5vw,56px) 18px;
+    box-shadow:var(--shadow);
+  }
+  nav.primary.nav-open a{padding:14px 10px; width:100%;}
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-visual{order:-1; max-width:420px; margin:0 auto 40px;}
+  .hero-float-card{left:8px; bottom:-24px;}
+  .facts-grid{grid-template-columns:repeat(2,1fr);}
+  .mission-grid{grid-template-columns:1fr;}
+  .services-list{grid-template-columns:1fr;}
+  .fac-grid{grid-template-columns:1fr;}
+  .join-grid{grid-template-columns:1fr;}
+  .process-list{grid-template-columns:repeat(2,1fr);}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  .gallery-grid .g1{grid-column:span 2;}
+  .contact-grid{grid-template-columns:1fr;}
+  .support-box{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:560px){
+  .access-bar .container{justify-content:center; text-align:center;}
+  .facts-grid{grid-template-columns:1fr 1fr;}
+  .process-list{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .hero-quote{margin-top:30px;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important; scroll-behavior:auto !important;}
+}
+</style>
+</head>
+<body>
+
+<a href="#obsah" class="skip-link">Preskočiť na obsah</a>
+
+<!-- ACCESS BAR -->
+<div class="access-bar">
+  <div class="container">
+    <a href="tel:+421346645741" class="phone">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.66 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.43a2 2 0 0 1 2.11-.45c.86.32 1.75.54 2.65.66A2 2 0 0 1 22 16.92z"/></svg>
+      +421 34 664 57 41
+    </a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site">
+  <div class="container-fluid nav-row">
+    <a href="#" class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21C12 21 4 15.5 4 9.8C4 6.6 6.4 4 9.5 4c1.4 0 2.6.7 3.5 1.8C13.9 4.7 15.1 4 16.5 4 19.6 4 22 6.6 22 9.8 22 15.5 12 21 12 21z" opacity="0"/><path d="M12 3v18M4 8c2 2 5 3 8 3s6-1 8-3M4 16c2-1.5 5-2.4 8-2.4s6 .9 8 2.4"/></svg>
+      </span>
+      <span class="brand-text">
+        <strong>Zariadenie pre seniorov</strong>
+        <span>Skalica · Jesénia Skalica</span>
+      </span>
+    </a>
+    <nav class="primary" aria-label="Hlavná navigácia">
+      <a href="#o-nas">O nás</a>
+      <a href="#sluzby">Služby</a>
+      <a href="#zariadenia">Zariadenia</a>
+      <a href="#prijatie">Prijatie</a>
+      <a href="#pridajte-sa">Práca a dobrovoľníctvo</a>
+      <a href="#galeria">Fotogaléria</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="#kontakt" class="btn btn-primary">Napíšte nám</a>
+      <button class="hamburger" aria-label="Otvoriť menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="obsah">
+
+  <!-- HERO -->
+  <section class="hero">
+    <svg class="hero-leaf l1" viewBox="0 0 200 200" fill="currentColor"><path d="M100 10 C160 40 180 110 130 160 C90 200 30 170 20 110 C10 50 50 -10 100 10Z"/></svg>
+    <svg class="hero-leaf l2" viewBox="0 0 200 200" fill="currentColor"><path d="M100 10 C160 40 180 110 130 160 C90 200 30 170 20 110 C10 50 50 -10 100 10Z"/></svg>
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Domov pre seniorov · Mesto Skalica</span>
+        <h1>Miesto, kde sa o vašich blízkych <em>starajú ako o rodinu.</em></h1>
+        <p class="lead">Zariadenie pre seniorov Skalica poskytuje celoročnú pobytovú sociálnu službu v pokojnom prostredí pod skalickými vinohradmi. Sme tu pre tých, ktorí potrebujú pomoc, oporu a domov.</p>
+        <div class="hero-actions">
+          <a href="tel:+421346645741" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.66 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.43a2 2 0 0 1 2.11-.45c.86.32 1.75.54 2.65.66A2 2 0 0 1 22 16.92z"/></svg>
+            Zavolať nám
+          </a>
+          <a href="#prijatie" class="btn btn-outline">Podmienky prijatia</a>
+        </div>
+        <div class="hero-quote">
+          <p>Všetko čo robíme, je iba kvapka v mori, ale keby sme to nerobili, tá kvapka by tam chýbala.</p>
+          <cite>— Matka Tereza</cite>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="photo-card">
+          <img src="https://www.zpssi.sk/resize/e/1920/10000/files/bannery/banner-zps-1.jpg" alt="Budova Zariadenia pre seniorov Skalica" width="1920" height="1280" loading="eager" decoding="async">
+          <div class="photo-label">Zariadenie pre seniorov Skalica</div>
+        </div>
+        <div class="hero-float-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1m4 0h1m-6 4h1m4 0h1m-6 4h1m4 0h1"/></svg>
+          <div>
+            <strong>od r. 1987</strong>
+            <span>slúžime senioriom v Skalici</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACTS -->
+  <section class="facts">
+    <div class="container facts-grid">
+      <div class="fact"><strong>168</strong><span>miest v zariadení</span></div>
+      <div class="fact"><strong>1987</strong><span>rok vzniku zariadenia</span></div>
+      <div class="fact"><strong>24/7</strong><span>celoročná pobytová služba</span></div>
+      <div class="fact"><strong>Mesto</strong><span>Skalica — zriaďovateľ</span></div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission" id="o-nas">
+    <div class="container mission-grid">
+      <div>
+        <span class="eyebrow">Naše poslanie</span>
+        <p class="mission-quote">Chceme, aby sa u nás každý cítil bezpečne, doma a rešpektovane.</p>
+      </div>
+      <div class="mission-body">
+        <p>Poslaním Zariadenia pre seniorov Skalica je poskytovať sociálne služby v súlade so zákonom o sociálnych službách a v zmysle zriaďovateľskej listiny, ako súčasť sociálnej politiky Mesta Skalica.</p>
+        <p>Poskytujeme kvalitné sociálne služby založené na rovnosti bez diskriminácie, ktoré napĺňajú individuálne potreby prijímateľov a rešpektujú ich základné ľudské práva a slobody.</p>
+        <p>Naši zamestnanci preferujú holistický prístup a tímovú spoluprácu — usilujeme sa odborným aj ľudským prístupom zabezpečiť dôstojnú starostlivosť a udržiavať sociálne kontakty klientov v bezpečnom a príjemnom prostredí.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="sluzby">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Čo ponúkame</span>
+        <h2 style="font-size:clamp(1.8em,3vw,2.4em);">Starostlivosť podľa § 35 zákona o sociálnych službách</h2>
+        <p class="lead">Poskytujeme širokú škálu služieb tak, aby sa naši klienti nemuseli o nič starať okrem vlastného pokoja a pohody.</p>
+      </div>
+      <div class="services-list">
+        <div class="service-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <div><h4>Pomoc pri odkázanosti</h4><p>Pomoc pri odkázanosti na pomoc inej fyzickej osoby, každý deň.</p></div>
+        </div>
+        <div class="service-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M12 4h9M4 4h.01M4 12h.01M4 20h.01M8 4l4 4-4 4"/></svg>
+          <div><h4>Sociálne poradenstvo</h4><p>Individuálne poradenstvo prispôsobené potrebám klienta.</p></div>
+        </div>
+        <div class="service-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <div><h4>Sociálna rehabilitácia</h4><p>Podpora sebestačnosti a aktivizácia klientov.</p></div>
+        </div>
+        <div class="service-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          <div><h4>Ubytovanie</h4><p>Celoročné pobytové ubytovanie v pokojnom prostredí.</p></div>
+        </div>
+        <div class="service-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2v20M3 6h6M3 10h6M18 8c0 4-3 4-3 8v6M21 8c0 4-3 4-3 8"/></svg>
+          <div><h4>Stravovanie</h4><p>Pravidelná strava prispôsobená potrebám klientov.</p></div>
+        </div>
+        <div class="service-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+          <div><h4>Upratovanie, pranie a žehlenie</h4><p>Údržba bielizne, šatstva a osobného vybavenia.</p></div>
+        </div>
+        <div class="service-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <div><h4>Úschova cenných vecí</h4><p>Vytvárame podmienky na bezpečné uloženie osobných vecí.</p></div>
+        </div>
+        <div class="service-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+          <div><h4>Záujmová činnosť</h4><p>Aktivity, ktoré udržujú spoločenský a sociálny život klientov.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACILITIES -->
+  <section class="facilities" id="zariadenia">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Naše zariadenia</span>
+        <h2 style="font-size:clamp(1.8em,3vw,2.4em);">Dva domovy, jeden prístup ku klientom</h2>
+      </div>
+      <div class="fac-grid">
+        <article class="fac-card">
+          <div class="photo-card">
+            <div class="photo-placeholder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>
+            <div class="photo-label">FOTO: hlavná budova, Pod hájkom 36</div>
+          </div>
+          <div class="fac-body">
+            <span class="fac-tag">Pod hájkom 36</span>
+            <h3>Zariadenie pre seniorov Skalica</h3>
+            <p>Budova sa nachádza v okrajovej časti mesta pod skalickými vinohradmi — v pokojnej lokalite s hojnou zeleňou, ktorá vytvára priestor pre súkromie a oddych klientov.</p>
+            <a href="#kontakt" class="btn btn-outline">Zistiť viac</a>
+          </div>
+        </article>
+        <article class="fac-card">
+          <div class="photo-card">
+            <div class="photo-placeholder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>
+            <div class="photo-label">FOTO: budova Jesénia Skalica</div>
+          </div>
+          <div class="fac-body">
+            <span class="fac-tag">Samostatné zariadenie</span>
+            <h3>Jesénia Skalica zps</h3>
+            <p>Druhé zariadenie s vlastnou ponukou služieb, sociálnou starostlivosťou, cenníkom a podmienkami prijatia — spravované rovnakým tímom a rovnakými hodnotami.</p>
+            <a href="#kontakt" class="btn btn-outline">Zistiť viac</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="prijatie">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Podmienky prijatia</span>
+        <h2 style="font-size:clamp(1.8em,3vw,2.4em);">Ako postupovať, ak hľadáte miesto pre blízkeho</h2>
+        <p class="lead">Sociálna služba sa poskytuje osobe, ktorá dovŕšila dôchodkový vek a je odkázaná na pomoc inej osoby (stupeň odkázanosti aspoň IV), alebo z iných vážnych dôvodov.</p>
+      </div>
+      <div class="process-list">
+        <div class="step"><h4>Kontaktujte nás</h4><p>Zavolajte alebo napíšte — poradíme, aké tlačivá budete potrebovať.</p></div>
+        <div class="step"><h4>Vyplňte žiadosť</h4><p>Formuláre na stiahnutie nájdete v sekcii Podmienky prijatia.</p></div>
+        <div class="step"><h4>Doložte posudok</h4><p>K žiadosti sa dokladá posudok o odkázanosti na sociálnu službu.</p></div>
+        <div class="step"><h4>Prijatie do zariadenia</h4><p>Po posúdení vás budeme kontaktovať ohľadom voľného miesta.</p></div>
+      </div>
+
+      <div class="forms-box">
+        <div class="forms-box-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          <div>
+            <h4>Formuláre na stiahnutie</h4>
+            <p>Všetky tlačivá potrebné k žiadosti nájdete tu — stačí vyplniť a priniesť alebo poslať poštou.</p>
+          </div>
+        </div>
+        <ul class="forms-list">
+          <li><a href="https://www.zpssi.sk/files/formulare/ziadost-o-zabezpecenie-poskytovania-socialnej-sluzby-do-zps-(1).pdf" target="_blank" rel="noopener">Žiadosť o zabezpečenie poskytovania sociálnej služby <span>.pdf</span></a></li>
+          <li><a href="https://www.zpssi.sk/files/formulare/vyhlasenie-o-majetku-fo-od-01.01.2026.pdf-1.pdf" target="_blank" rel="noopener">Vyhlásenie o majetku FO <span>.pdf</span></a></li>
+          <li><a href="https://www.zpssi.sk/files/formulare/cestne-vyhlasenie-o-prijme-a-majetku-na-ucely-platenia-uhrady-za-soc.-sluzbu.pdf" target="_blank" rel="noopener">Čestné vyhlásenie o príjme a majetku na účely platenia úhrady <span>.pdf</span></a></li>
+          <li><a href="https://www.zpssi.sk/files/formulare/zps-cestne-prehlasenie-pohreb.pdf" target="_blank" rel="noopener">ZpS — čestné prehlásenie o zabezpečení pohrebu <span>.pdf</span></a></li>
+          <li><a href="https://www.zpssi.sk/files/formulare/jesenia-cestne-prehlasenie-pohreb.pdf" target="_blank" rel="noopener">Jesénia — čestné vyhlásenie o zabezpečení pohrebu <span>.pdf</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN US -->
+  <section class="joinus" id="pridajte-sa">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Pridajte sa k nám</span>
+        <h2 style="font-size:clamp(1.8em,3vw,2.4em);">Hľadáme kolegov aj dobrovoľníkov s dobrým srdcom</h2>
+        <p class="lead">Či už hľadáte prácu, ktorá má zmysel, alebo pár hodín mesačne, ktoré chcete venovať niekomu, kto si to zaslúži — tešíme sa na vás.</p>
+      </div>
+      <div class="join-grid">
+        <article class="join-card">
+          <span class="join-tag">Voľné pracovné miesto</span>
+          <h3>Fyzioterapeut / fyzioterapeutka</h3>
+          <p>Zariadenie pre seniorov Skalica a JESÉNIA SKALICA hľadá do svojho tímu nového kolegu či kolegyňu.</p>
+          <div class="join-role">
+            <strong>Požiadavka</strong>
+            <span>Príslušné vzdelanie v odbore fyzioterapia.</span>
+          </div>
+          <div class="join-role">
+            <strong>Ponúkame</strong>
+            <span>Odmeňovanie podľa zákona č. 553/2003 Z. z., príplatky, benefity a dobrý kolektív.</span>
+          </div>
+          <div class="join-contact">
+            <span>Kontakt: Mgr. Katarína Jurovatá</span>
+            <a href="tel:+421346645741">034 664 57 41</a>
+            <a href="mailto:jurovata@zpssi.sk">jurovata@zpssi.sk</a>
+          </div>
+        </article>
+        <article class="join-card">
+          <span class="join-tag">Dobrovoľníctvo</span>
+          <h3>„Keď pomoc baví a zábava pomáha"</h3>
+          <p>Máte vo svojom živote čas a priestor, ktorý by ste radi zmysluplne využili? Máte chuť potešiť seniora novým priateľstvom?</p>
+          <div class="join-role">
+            <strong>Spríjemnite život seniorovi</strong>
+            <span>V Zariadení pre seniorov Skalica aj v Jesénii Skalica radi privítame nových dobrovoľníkov. Budeme sa na vás tešiť.</span>
+          </div>
+          <div class="join-contact">
+            <a href="mailto:studenicova@zpssi.sk">studenicova@zpssi.sk</a>
+            <a href="tel:+421346645741">034 664 57 41</a>
+          </div>
+          <a href="mailto:studenicova@zpssi.sk" class="btn btn-primary">Chcem sa stať dobrovoľníkom</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="facilities" id="galeria">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Nahliadnite k nám</span>
+        <h2 style="font-size:clamp(1.8em,3vw,2.4em);">Fotogaléria</h2>
+        <p class="lead">Ukážka z každodenného života v zariadení — aktivity, spoločné priestory aj okolitá príroda. Kompletnú galériu nájdete aj na našom Facebooku.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="photo-card g1"><div class="photo-placeholder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div><div class="photo-label">FOTO: záhrada / altánok</div></div>
+        <div class="photo-card"><div class="photo-placeholder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div><div class="photo-label">FOTO: aktivity klientov</div></div>
+        <div class="photo-card"><div class="photo-placeholder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div><div class="photo-label">FOTO: spoločenská miestnosť</div></div>
+        <div class="photo-card g4"><div class="photo-placeholder-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div><div class="photo-label">FOTO: personál a klienti</div></div>
+      </div>
+      <div style="text-align:center; margin-top:32px;">
+        <a href="https://www.facebook.com/zpsajeseniaskalica/" class="btn btn-outline" target="_blank" rel="noopener">Pozrieť celú galériu na Facebooku</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="kontakt">
+    <div class="container contact-grid">
+      <div>
+        <span class="eyebrow">Sme tu pre vás</span>
+        <h2 style="font-size:clamp(1.8em,3vw,2.4em);">Kontaktujte nás</h2>
+        <p class="lead" style="color:rgba(255,255,255,.85);">Návštevné dni a hodiny sú bez obmedzenia. Ak vrátnik nie je práve prítomný, zazvoňte a chvíľu počkajte — radi vám otvoríme.</p>
+        <div class="contact-card" style="margin-top:28px;">
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><strong>Pod hájkom 36, 909 01 Skalica</strong><span>IČO: 00596469</span></div>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.66 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.43a2 2 0 0 1 2.11-.45c.86.32 1.75.54 2.65.66A2 2 0 0 1 22 16.92z"/></svg>
+            <div><strong><a href="tel:+421346645741">+421 34 664 57 41</a></strong><span>Telefonicky sme dostupní počas pracovných dní</span></div>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+            <div><strong><a href="mailto:stepanovska@zpssi.sk">stepanovska@zpssi.sk</a></strong><span>Napíšte nám s otázkami o prijatí</span></div>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <div><strong>Návštevy bez obmedzenia</strong><span>Zazvoňte pri vrátnici, radi vás privítame</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="map-embed">
+          <span>MAPA: Pod hájkom 36, 909 01 Skalica<br>(vložte Google Maps embed s presnou polohou zariadenia)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPORT / 2% -->
+  <section class="support">
+    <div class="container">
+      <div class="support-box">
+        <div>
+          <span class="eyebrow">Podporte nás</span>
+          <h2>Venujte nám 2 % z dane</h2>
+          <p>Vďaka vašej podpore sme mohli dokúpiť polohovacie postele, rehabilitačné vybavenie, vybudovať bezbariérový park a zorganizovať výlety a podujatia pre našich klientov. Ďakujeme, že vám na nich záleží.</p>
+        </div>
+        <div style="text-align:center;">
+          <a href="#kontakt" class="btn btn-primary">Ako darovať 2 %</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <strong style="color:#fff; font-family:var(--serif); font-size:1.2em; display:block; margin-bottom:10px;">Zariadenie pre seniorov Skalica</strong>
+        <p style="max-width:32ch; color:rgba(255,255,255,.65);">Pod hájkom 36, 909 01 Skalica<br>Zriaďovateľ: Mesto Skalica</p>
+        <div class="social-dot" style="margin-top:14px;">
+          <a href="https://www.facebook.com/zpsajeseniaskalica/" target="_blank" rel="noopener" aria-label="Facebook" style="display:flex;">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff;"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5H17V3.6C16.6 3.5 15.4 3.4 14 3.4c-2.7 0-4.5 1.6-4.5 4.6v2h-2.7v3.1h2.7V21z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Zariadenie</h4>
+        <ul>
+          <li><a href="#o-nas">O nás</a></li>
+          <li><a href="#sluzby">Ponuka služieb</a></li>
+          <li><a href="#prijatie">Podmienky prijatia</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Jesénia Skalica</h4>
+        <ul>
+          <li><a href="#zariadenia">O zariadení</a></li>
+          <li><a href="#galeria">Fotogaléria</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dokumenty</h4>
+        <ul>
+          <li><a href="#">Zverejňovanie dokumentov</a></li>
+          <li><a href="#">Výročná správa</a></li>
+          <li><a href="#">Domáci poriadok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Zariadenie pre seniorov Skalica · IČO: 00596469</span>
+      <span>Rozpočtová organizácia Mesta Skalica</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburgerBtn = document.querySelector('.hamburger');
+  const primaryNav = document.querySelector('nav.primary');
+  if(hamburgerBtn){
+    hamburgerBtn.addEventListener('click', function(){
+      const open = primaryNav.classList.toggle('nav-open');
+      hamburgerBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+</script>
+
+</body>
+</html>
