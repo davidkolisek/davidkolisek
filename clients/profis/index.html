@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Screen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@100..900&family=Fira+Code:wght@300..700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    <style type="text/tailwindcss">
+      @import "tailwindcss";
+      @theme inline {
+        --color-background: var(--background);
+        --color-foreground: var(--foreground);
+        --color-primary: var(--primary);
+        --color-primary-foreground: var(--primary-foreground);
+        --color-secondary: var(--secondary);
+        --color-secondary-foreground: var(--secondary-foreground);
+        --color-tertiary: var(--tertiary);
+        --color-muted: var(--muted);
+        --color-muted-foreground: var(--muted-foreground);
+        --color-accent: var(--accent);
+        --color-destructive: var(--destructive);
+        --color-card: var(--card);
+        --color-card-foreground: var(--card-foreground);
+        --color-border: var(--border);
+        --color-input: var(--input);
+        --color-ring: var(--ring);
+        --radius-sm: calc(var(--radius) - 4px);
+        --radius-md: calc(var(--radius) - 2px);
+        --radius-lg: var(--radius);
+        --font-family-sans: var(--font-sans);
+        --font-family-heading: var(--font-heading);
+        --font-family-mono: var(--font-mono);
+      }
+      :root {
+        --background: #ffffff;
+        --foreground: #111111;
+        --primary: #d12a1f;
+        --primary-foreground: #ffffff;
+        --secondary: #111111;
+        --secondary-foreground: #ffffff;
+        --tertiary: #111111;
+        --muted: #f5f5f5;
+        --muted-foreground: #525252;
+        --accent: #d12a1f;
+        --accent-foreground: #ffffff;
+        --card: #ffffff;
+        --card-foreground: #111111;
+        --destructive: #EF4444;
+        --border: #e5e5e5;
+        --input: #e5e5e5;
+        --ring: #d12a1f;
+        --radius: 0.5rem;
+        --font-sans: Inter, sans-serif;
+        --font-heading: Inter, sans-serif;
+        --font-mono: JetBrains Mono, monospace;
+        --shadow-offset-x: 0;
+        --shadow-offset-y: 10;
+        --shadow-blur: 30;
+        --shadow-spread: -8;
+        --shadow-color: rgba(15, 23, 42, 0.12);
+        }
+    </style>
+    <style>
+      .brand-gradient { background-image: linear-gradient(135deg, var(--primary), var(--accent)); }
+      .shadow-theme {
+        box-shadow:
+          calc(var(--shadow-offset-x, 0) * 1px) calc(var(--shadow-offset-y, 10) * 1px)
+          calc(var(--shadow-blur, 30) * 1px) calc(var(--shadow-spread, -8) * 1px)
+          var(--shadow-color, rgba(15, 23, 42, 0.12));
+      }
+      .site-logo {
+        height: 40px;
+        width: auto;
+        max-width: 100%;
+        display: block;
+        object-fit: contain;
+      }
+      .site-logo--footer {
+        background: #ffffff;
+        padding: 8px 12px;
+        border-radius: 0.5rem;
+      }
+      .icon-box {
+        background: color-mix(in srgb, var(--primary) 12%, white);
+        color: var(--primary);
+      }
+      .icon-box:hover,
+      .group:hover .icon-box {
+        background: var(--primary);
+        color: var(--primary-foreground);
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .hero-bg::before {
+        content: "";
+        position: absolute;
+        top: -20%;
+        right: -10%;
+        width: 70%;
+        height: 140%;
+        background: linear-gradient(135deg, rgba(209, 42, 31, 0.08) 0%, rgba(209, 42, 31, 0.03) 45%, transparent 70%);
+        clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
+      }
+      .hero-bg::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 55%;
+        height: 45%;
+        background: linear-gradient(25deg, rgba(209, 42, 31, 0.05) 0%, transparent 70%);
+        clip-path: polygon(0 30%, 100% 100%, 0 100%);
+      }
+    </style>
+  </head>
+  <body>
+<div class="min-h-screen w-full bg-background flex flex-col relative text-foreground font-sans">
+  <div class="bg-secondary text-secondary-foreground text-xs py-2 px-4 md:px-8 flex flex-wrap justify-between items-center gap-2 border-b border-secondary">
+    <div class="flex items-center gap-4">
+      <span class="flex items-center gap-1">
+        <iconify-icon icon="lucide:map-pin" class="text-sm text-primary"></iconify-icon>
+        Holíč a okolie, Slovenská republika
+      </span>
+      <span class="hidden md:inline-flex items-center gap-1">
+        <iconify-icon icon="lucide:clock" class="text-sm text-primary"></iconify-icon>
+        Po - Pia: 8:00 - 16:00
+      </span>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="tel:+421900000000" class="hover:text-primary transition-colors flex items-center gap-1 text-secondary-foreground/90">
+        <iconify-icon icon="lucide:phone" class="text-sm text-primary"></iconify-icon>
+        Zavolajte nám
+      </a>
+      <span class="bg-primary text-primary-foreground px-2 py-0.5 rounded font-semibold text-[10px] tracking-wide uppercase">
+        BOZP & PO EXPERT
+      </span>
+    </div>
+  </div>
+
+  <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border px-4 md:px-8 py-4 shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="#" class="flex items-center">
+        <img src="./logo.png" alt="PROFIS spol. s r.o." class="site-logo" width="200" height="40">
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8 font-medium text-sm">
+        <a href="#sluzby" class="hover:text-primary transition-colors">Naše Služby</a>
+        <a href="#vzdelavanie" class="hover:text-primary transition-colors">Vzdelávanie / e-Learning</a>
+        <a href="#preco-my" class="hover:text-primary transition-colors">Prečo PROFIS</a>
+        <a href="#referencie" class="hover:text-primary transition-colors">Referencie</a>
+        <a href="#kontakt" class="hover:text-primary transition-colors">Kontakt</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="#kontakt" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors px-3 py-2">
+          Nezáväzná dopyt
+        </a>
+        <a href="#kontakt" class="bg-primary text-primary-foreground hover:bg-primary/90 text-sm font-semibold px-5 py-2.5 rounded-lg transition-all shadow-sm flex items-center gap-2">
+          Rýchla konzultácia
+          <iconify-icon icon="lucide:arrow-right" class="text-base"></iconify-icon>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="relative bg-background py-20 px-4 md:px-8 overflow-hidden border-b border-border">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      <div class="lg:col-span-7 flex flex-col items-start gap-6">
+        <div class="inline-flex items-center gap-2 bg-card border border-border px-3 py-1.5 rounded-full text-primary text-xs font-semibold uppercase tracking-wider shadow-sm">
+          <iconify-icon icon="lucide:shield" class="text-sm"></iconify-icon>
+          Profesionálne zabezpečenie pre firmy v Holíči a okolí
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight tracking-tight text-foreground">
+          Komplexné služby <span class="text-primary">BOZP, PO a CO</span> pre vaše bezpečné podnikanie
+        </h1>
+        <p class="text-lg text-muted-foreground max-w-xl leading-relaxed">
+          Zabezpečíme pre vašu spoločnosť kompletnú zákonnú agendu bezpečnosti práce, požiarnej ochrany, civilnej ochrany a profesionálneho e-Learningového vzdelávania s maximálnou garanciou odbornosti a legislatívneho súladu.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2">
+          <a href="#kontakt" class="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 py-4 rounded-lg transition-all shadow-lg flex items-center justify-center gap-2 text-base">
+            Mám záujem o cenovú ponuku
+            <iconify-icon icon="lucide:arrow-right" class="text-lg"></iconify-icon>
+          </a>
+          <a href="#sluzby" class="bg-card hover:bg-muted text-foreground font-semibold px-8 py-4 rounded-lg transition-all border border-border flex items-center justify-center gap-2 text-base shadow-sm">
+            Preskúmať služby
+          </a>
+        </div>
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t border-border w-full">
+          <div>
+            <div class="text-2xl md:text-3xl font-heading font-bold text-primary">100%</div>
+            <div class="text-xs text-muted-foreground mt-1">Legislatívny súlad</div>
+          </div>
+          <div>
+            <div class="text-2xl md:text-3xl font-heading font-bold text-primary">Holíč</div>
+            <div class="text-xs text-muted-foreground mt-1">Lokálny partner</div>
+          </div>
+          <div>
+            <div class="text-2xl md:text-3xl font-heading font-bold text-primary">e-Learning</div>
+            <div class="text-xs text-muted-foreground mt-1">Moderná výučba</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 relative">
+        <div class="relative bg-card border border-border rounded-2xl overflow-hidden shadow-lg">
+          <img src="./profil.jpg" alt="PROFIS Slovakia Bezpečnosť" class="w-full h-auto object-cover aspect-[4/3]" />
+          <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm border border-border rounded-xl p-4 shadow-md">
+            <div class="flex items-center gap-3">
+              <div class="icon-box p-2 rounded-lg transition-colors">
+                <iconify-icon icon="lucide:activity" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-foreground">PROFIS spol. s r.o.</p>
+                <p class="text-xs text-muted-foreground">Garantujeme bezproblémový priebeh štátnych kontrol</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sluzby" class="py-24 px-4 md:px-8 bg-background relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-primary font-semibold text-sm uppercase tracking-widest block mb-3">Komplexné Portfólio</span>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">
+          Profesionálne služby v oblasti bezpečnosti a ochrany zdravia
+        </h2>
+        <p class="text-muted-foreground text-base">
+          Pokrývame všetky zákonné povinnosti pre živnostníkov, malé prevádzky, stredné podniky aj veľké priemyselné závody v regióne Záhoria.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-card border border-border hover:border-primary/40 rounded-xl p-6 transition-all hover:shadow-lg flex flex-col justify-between group">
+          <div>
+            <div class="icon-box w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-all">
+              <iconify-icon icon="lucide:shield" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-heading font-bold mb-3">Bezpečnosť práce (BOZP)</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed mb-6">
+              Vypracovanie dokumentácie, pravidelné školenia zamestnancov, analýzy rizík, vyšetrovanie pracovných úrazov a zastupovanie pri kontrolách.
+            </p>
+          </div>
+          <a href="#kontakt" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary hover:text-foreground transition-colors">
+            Mám záujem
+            <iconify-icon icon="lucide:arrow-right" class="text-sm"></iconify-icon>
+          </a>
+        </div>
+
+        <div class="bg-card border border-border hover:border-primary/40 rounded-xl p-6 transition-all hover:shadow-lg flex flex-col justify-between group">
+          <div>
+            <div class="icon-box w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-all">
+              <iconify-icon icon="lucide:flame" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-heading font-bold mb-3">Ochrana pred požiarmi (PO)</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed mb-6">
+              Služby technika požiarnej ochrany, vypracovanie požiarnej dokumentácie, cvičné požiarne poplachy a kontroly požiarnotechnických zariadení.
+            </p>
+          </div>
+          <a href="#kontakt" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary hover:text-foreground transition-colors">
+            Mám záujem
+            <iconify-icon icon="lucide:arrow-right" class="text-sm"></iconify-icon>
+          </a>
+        </div>
+
+        <div class="bg-card border border-border hover:border-primary/40 rounded-xl p-6 transition-all hover:shadow-lg flex flex-col justify-between group">
+          <div>
+            <div class="icon-box w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-all">
+              <iconify-icon icon="lucide:layers" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-heading font-bold mb-3">Civilná ochrana (CO)</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed mb-6">
+              Spracovanie plánov ochrany obyvateľstva, príprava na mimoriadne udalosti, školenia personálu a odborná príprava štábov civilnej ochrany.
+            </p>
+          </div>
+          <a href="#kontakt" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary hover:text-foreground transition-colors">
+            Mám záujem
+            <iconify-icon icon="lucide:arrow-right" class="text-sm"></iconify-icon>
+          </a>
+        </div>
+
+        <div class="bg-card border border-border hover:border-primary/40 rounded-xl p-6 transition-all hover:shadow-lg flex flex-col justify-between group">
+          <div>
+            <div class="icon-box w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-all">
+              <iconify-icon icon="lucide:monitor" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-heading font-bold mb-3">Vzdelávanie & e-Learning</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed mb-6">
+              Moderné online školenia pre zamestnancov aj vedúcich pracovníkov s okamžitým vystavením certifikátov a automatickým strážením platnosti.
+            </p>
+          </div>
+          <a href="#vzdelavanie" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary hover:text-foreground transition-colors">
+            Viac o e-learningu
+            <iconify-icon icon="lucide:arrow-right" class="text-sm"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="vzdelavanie" class="py-20 px-4 md:px-8 bg-muted border-y border-border">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-6 order-2 lg:order-1">
+        <div class="bg-card rounded-xl p-4 border border-border shadow-lg">
+          <img src="https://uxmagic.blob.core.windows.net/public/agent-images/elearning-platform-1783856104232-2pussf0h9cn.png" alt="PROFIS e-Learning Platform" class="w-full h-auto rounded-lg object-cover shadow-sm" />
+          <div class="mt-4 flex flex-wrap items-center justify-between gap-4 bg-background p-3 rounded-lg text-xs border border-border text-foreground">
+            <span class="flex items-center gap-1.5 font-medium">
+              <iconify-icon icon="lucide:circle-check" class="text-primary text-base"></iconify-icon>
+              Plne certifikovaný systém
+            </span>
+            <span class="flex items-center gap-1.5 font-medium">
+              <iconify-icon icon="lucide:clock" class="text-primary text-base"></iconify-icon>
+              Úspora času až 70%
+            </span>
+            <span class="flex items-center gap-1.5 font-medium">
+              <iconify-icon icon="lucide:smartphone" class="text-primary text-base"></iconify-icon>
+              Optimalizované pre mobil
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 order-1 lg:order-2 flex flex-col items-start gap-6">
+        <span class="bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border border-primary/20">
+          Moderné vzdelávanie zamestnancov
+        </span>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold tracking-tight text-foreground">
+          Efektívny e-Learning bez zbytočnej byrokracie
+        </h2>
+        <p class="text-foreground/80 text-base leading-relaxed">
+          Už žiadne zdĺhavé celodenné prednášky, ktoré narúšajú vašu prevádzku. Naša e-Learningová platforma umožňuje vašim zamestnancom absolvovať povinné školenia BOZP, PO a vodičov referentských vozidiel kedykoľvek a odkiaľkoľvek.
+        </p>
+        <ul class="space-y-3 w-full">
+          <li class="flex items-start gap-2 text-sm text-foreground/90">
+            <div class="bg-primary/10 text-primary p-1 rounded-full mt-0.5 shrink-0">
+              <iconify-icon icon="lucide:check" class="text-xs"></iconify-icon>
+            </div>
+            <div>
+              <strong>Automatické notifikácie:</strong> Systém sám upozorní zamestnancov na blížiacu sa exspiráciu preukazov.
+            </div>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-foreground/90">
+            <div class="bg-primary/10 text-primary p-1 rounded-full mt-0.5 shrink-0">
+              <iconify-icon icon="lucide:check" class="text-xs"></iconify-icon>
+            </div>
+            <div>
+              <strong>Prehľadná administrácia:</strong> Okamžitý prehľad o úspešnosti testov a stiahnutie certifikátov na jeden klik.
+            </div>
+          </li>
+          <li class="flex items-start gap-2 text-sm text-foreground/90">
+            <div class="bg-primary/10 text-primary p-1 rounded-full mt-0.5 shrink-0">
+              <iconify-icon icon="lucide:check" class="text-xs"></iconify-icon>
+            </div>
+            <div>
+              <strong>Súlad s legislatívou SR:</strong> Všetky kurzy sú pravidelne aktualizované podľa najnovších zákonných úprav.
+            </div>
+          </li>
+        </ul>
+        <div class="flex flex-col sm:flex-row gap-4 w-full pt-2">
+          <a href="#kontakt" class="bg-primary text-primary-foreground hover:bg-primary/90 text-center font-semibold px-6 py-3 rounded-lg transition-all text-sm shadow-md">
+            Vyskúšať demo verziu
+          </a>
+          <a href="#kontakt" class="bg-card border border-border hover:bg-background text-foreground text-center font-semibold px-6 py-3 rounded-lg transition-all text-sm">
+            Cenník školení
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="preco-my" class="py-24 px-4 md:px-8 bg-background">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-5 flex flex-col items-start gap-6">
+          <span class="text-primary font-semibold text-sm uppercase tracking-widest">Prečo PROFIS?</span>
+          <h2 class="text-3xl md:text-4xl font-heading font-bold tracking-tight">
+            Vaša bezpečnosť je našou prioritou a zodpovednosťou
+          </h2>
+          <p class="text-muted-foreground text-base leading-relaxed">
+            Sme lokálna spoločnosť so sídlom v Holíči, ktorá si zakladá na osobnom prístupe, rýchlej reakcii a stopercentnej odbornosti. Našim cieľom je odbremeniť vás od zložitej legislatívy, aby ste sa mohli plne sústrediť na rozvoj vášho podnikania.
+          </p>
+          <div class="bg-card border border-border rounded-xl p-5 w-full flex items-center gap-4 shadow-sm">
+            <div class="icon-box p-3 rounded-lg transition-colors">
+              <iconify-icon icon="lucide:shield" class="text-3xl"></iconify-icon>
+            </div>
+            <div>
+              <h4 class="font-bold text-sm">Garantovaná bezúhonnosť</h4>
+              <p class="text-xs text-muted-foreground mt-0.5">Preberáme plnú zodpovednosť za správnosť vypracovanej agendy.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="bg-card border border-border rounded-xl p-6 hover:shadow-md transition-all">
+            <div class="text-primary mb-4">
+              <iconify-icon icon="lucide:user" class="text-3xl"></iconify-icon>
+            </div>
+            <h3 class="font-bold text-lg mb-2">Osobný prístup</h3>
+            <p class="text-muted-foreground text-sm">
+              Žiadne univerzálne šablóny. Každý klient získava riešenie prispôsobené presným rizikám jeho prevádzky.
+            </p>
+          </div>
+          <div class="bg-card border border-border rounded-xl p-6 hover:shadow-md transition-all">
+            <div class="text-primary mb-4">
+              <iconify-icon icon="lucide:zap" class="text-3xl"></iconify-icon>
+            </div>
+            <h3 class="font-bold text-lg mb-2">Rýchlosť a flexibilita</h3>
+            <p class="text-muted-foreground text-sm">
+              Sídlime v Holíči. V prípade mimoriadnych situácií či kontrol sme u vás okamžite pripravení pomôcť.
+            </p>
+          </div>
+          <div class="bg-card border border-border rounded-xl p-6 hover:shadow-md transition-all">
+            <div class="text-primary mb-4">
+              <iconify-icon icon="lucide:clipboard" class="text-3xl"></iconify-icon>
+            </div>
+            <h3 class="font-bold text-lg mb-2">Kompletná agenda</h3>
+            <p class="text-muted-foreground text-sm">
+              Od vstupných analýz cez pravidelné revízie až po zastupovanie pred Inšpektorátom práce.
+            </p>
+          </div>
+          <div class="bg-card border border-border rounded-xl p-6 hover:shadow-md transition-all">
+            <div class="text-primary mb-4">
+              <iconify-icon icon="lucide:refresh-cw" class="text-3xl"></iconify-icon>
+            </div>
+            <h3 class="font-bold text-lg mb-2">Neustály monitoring</h3>
+            <p class="text-muted-foreground text-sm">
+              Sledujeme neustále zmeny v legislatíve za vás a okamžite aktualizujeme vašu dokumentáciu.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="referencie" class="py-20 px-4 md:px-8 bg-muted border-t border-border">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-primary font-semibold text-sm uppercase tracking-widest block mb-2">Dôvera a Referencie</span>
+        <h2 class="text-3xl font-heading font-bold tracking-tight text-foreground">
+          Spolupracujú s nami lídri v regióne
+        </h2>
+        <p class="text-foreground/75 text-sm mt-3">
+          Našimi klientmi sú výrobné podniky, logistické centrá, stavebné firmy, ale aj materské a základné školy v Holíči, Skalici a Senici.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-items-center">
+        <div class="bg-card border border-border py-6 px-8 rounded-xl w-full text-center font-bold tracking-wider text-foreground text-sm shadow-sm">
+          VÝROBNÝ PODNIK HOLÍČ
+        </div>
+        <div class="bg-card border border-border py-6 px-8 rounded-xl w-full text-center font-bold tracking-wider text-foreground text-sm shadow-sm">
+          LOGISTIKA SKALICA
+        </div>
+        <div class="bg-card border border-border py-6 px-8 rounded-xl w-full text-center font-bold tracking-wider text-foreground text-sm shadow-sm">
+          STAVEBNÁ FIRMA SE
+        </div>
+        <div class="bg-card border border-border py-6 px-8 rounded-xl w-full text-center font-bold tracking-wider text-foreground text-sm shadow-sm">
+          SÚKROMNÝ SEKTOR
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="py-24 px-4 md:px-8 bg-background">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-5 flex flex-col justify-between gap-8">
+          <div>
+            <span class="text-primary font-semibold text-sm uppercase tracking-widest block mb-3">Nezáväzný dopyt</span>
+            <h2 class="text-3xl md:text-4xl font-heading font-bold tracking-tight mb-4">
+              Získajte bezplatnú konzultáciu a audit
+            </h2>
+            <p class="text-muted-foreground text-base leading-relaxed">
+              Vyplňte kontaktný formulár alebo nám zavolajte. Navrhneme vám najefektívnejšie riešenie pre vašu legislatívnu agendu BOZP a PO v Holíči.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="icon-box p-3 rounded-lg mt-1 shrink-0">
+                <iconify-icon icon="lucide:phone" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <p class="text-xs text-muted-foreground uppercase font-semibold">Telefónny kontakt</p>
+                <p class="text-base font-bold mt-0.5">+421 900 000 000</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="icon-box p-3 rounded-lg mt-1 shrink-0">
+                <iconify-icon icon="lucide:mail" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <p class="text-xs text-muted-foreground uppercase font-semibold">E-mailová adresa</p>
+                <p class="text-base font-bold mt-0.5">info@profisslovakia.sk</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="icon-box p-3 rounded-lg mt-1 shrink-0">
+                <iconify-icon icon="lucide:map-pin" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <p class="text-xs text-muted-foreground uppercase font-semibold">Sídlo spoločnosti</p>
+                <p class="text-base font-bold mt-0.5">PROFIS spol. s r.o., Holíč, Slovenská republika</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-border text-xs text-muted-foreground leading-relaxed">
+            PROFIS spol. s r.o. | IČO: 00000000 | DIČ: 0000000000<br />
+            Zapísaná v Obchodnom registri Okresného súdu Trnava
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="bg-card border border-border rounded-2xl p-8 shadow-xl">
+            <h3 class="text-xl font-heading font-bold mb-6">Napíšte nám správu</h3>
+            <form class="space-y-6" onsubmit="event.preventDefault();">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Meno a priezvisko *</label>
+                  <input type="text" placeholder="Napr. Ján Kováč" required class="w-full bg-background border border-input rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Názov firmy / organizácie</label>
+                  <input type="text" placeholder="Napr. Firma s.r.o." class="w-full bg-background border border-input rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">E-mailová adresa *</label>
+                  <input type="email" placeholder="jan.kovac@firma.sk" required class="w-full bg-background border border-input rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Telefónne číslo *</label>
+                  <input type="tel" placeholder="+421 900 000 000" required class="w-full bg-background border border-input rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">O ktorú službu máte záujem?</label>
+                <select class="w-full bg-background border border-input rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all">
+                  <option>Kompletný balík (BOZP + PO + CO)</option>
+                  <option>Bezpečnosť práce (BOZP)</option>
+                  <option>Požiarna ochrana (PO)</option>
+                  <option>e-Learningové vzdelávanie</option>
+                  <option>Iné / Konzultácia</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Vaša správa / špecifikácia dopytu</label>
+                <textarea rows="4" placeholder="Dobrý deň, mali by sme záujem o vypracovanie cenovej ponuky na BOZP pre 15 zamestnancov..." class="w-full bg-background border border-input rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none"></textarea>
+              </div>
+
+              <div class="flex items-start gap-2.5">
+                <input type="checkbox" id="consent" required class="mt-1 rounded border-input text-primary focus:ring-primary" />
+                <label for="consent" class="text-xs text-muted-foreground leading-relaxed">
+                  Súhlasím so spracovaním osobných údajov pre účely kontaktovania a vypracovania nezáväznej ponuky.
+                </label>
+              </div>
+
+              <button type="submit" class="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold py-3.5 rounded-lg transition-all shadow-md flex items-center justify-center gap-2">
+                Odoslať nezáväzný dopyt
+                <iconify-icon icon="lucide:send" class="text-base"></iconify-icon>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-background text-foreground border-t border-border pt-16 pb-8 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-12">
+        <div class="lg:col-span-4 flex flex-col items-start gap-4">
+          <a href="#" class="inline-flex items-center">
+            <img src="./logo.png" alt="PROFIS spol. s r.o." class="site-logo" width="200" height="40">
+          </a>
+          <p class="text-xs text-muted-foreground leading-relaxed max-w-sm">
+            Váš spoľahlivý partner pre bezpečnosť práce, požiarnu ochranu a moderné e-Learningové vzdelávanie v regióne Holíč.
+          </p>
+          <div class="flex items-center gap-3 mt-2">
+            <a href="#" class="bg-background hover:bg-primary hover:text-primary-foreground text-muted-foreground w-8 h-8 rounded-full flex items-center justify-center transition-all border border-border">
+              <iconify-icon icon="lucide:globe" class="text-sm"></iconify-icon>
+            </a>
+            <a href="#" class="bg-background hover:bg-primary hover:text-primary-foreground text-muted-foreground w-8 h-8 rounded-full flex items-center justify-center transition-all border border-border">
+              <iconify-icon icon="lucide:mail" class="text-sm"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-3">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">Rýchle odkazy</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#sluzby" class="text-foreground/80 hover:text-primary transition-colors">Naše služby</a></li>
+            <li><a href="#vzdelavanie" class="text-foreground/80 hover:text-primary transition-colors">e-Learningové vzdelávanie</a></li>
+            <li><a href="#preco-my" class="text-foreground/80 hover:text-primary transition-colors">Prečo si vybrať nás</a></li>
+            <li><a href="#referencie" class="text-foreground/80 hover:text-primary transition-colors">Klienti a referencie</a></li>
+            <li><a href="#kontakt" class="text-foreground/80 hover:text-primary transition-colors">Kontakt</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-3">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">Hlavné služby</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#sluzby" class="text-foreground/80 hover:text-primary transition-colors">Bezpečnosť práce (BOZP)</a></li>
+            <li><a href="#sluzby" class="text-foreground/80 hover:text-primary transition-colors">Ochrana pred požiarmi (PO)</a></li>
+            <li><a href="#sluzby" class="text-foreground/80 hover:text-primary transition-colors">Civilná ochrana (CO)</a></li>
+            <li><a href="#sluzby" class="text-foreground/80 hover:text-primary transition-colors">Školenia a kurzy</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">Lokalita</h4>
+          <p class="text-sm text-foreground/80 leading-relaxed mb-4">
+            PROFIS spol. s r.o.<br />
+            Holíč, Záhorie<br />
+            Slovenská republika
+          </p>
+          <span class="inline-flex items-center gap-1 text-xs text-primary font-semibold">
+            <iconify-icon icon="lucide:map-pin" class="text-xs"></iconify-icon>
+            Pôsobíme v regióne
+          </span>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+        <p>© 2025 PROFIS spol. s r.o. Všetky práva vyhradené.</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-primary transition-colors">Ochrana osobných údajov</a>
+          <a href="#" class="hover:text-primary transition-colors">Všeobecné podmienky</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+</body></html>
