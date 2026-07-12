@@ -1,751 +1,513 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dávid Kolísek | Frontend Developer · Vue.js &amp; React</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="canonical" href="https://davidkolisek.netlify.app/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&amp;display=swap"
-          rel="stylesheet">
-    <!--OG-->
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:title" content="Dávid Kolísek | Frontend Developer · Vue.js &amp; React">
-    <meta property="og:description"
-          content="Frontend developer from Slovakia specializing in Vue.js, React, and TypeScript. I build fast, responsive websites and SPAs — from corporate projects to side apps.">
-    <meta property="og:url" content="https://davidkolisek.netlify.app/">
-    <meta property="og:site_name" content="Dávid Kolísek">
-    <meta property="og:image" content="https://davidkolisek.netlify.app/images/me-transparent.png">
-    <meta property="og:image:alt" content="Dávid Kolísek — Frontend Developer">
-    <meta name="description"
-          content="Frontend developer from Slovakia specializing in Vue.js, React, and TypeScript. I build fast, responsive websites and SPAs — from corporate projects to side apps.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Dávid Kolísek | Frontend Developer · Vue.js &amp; React">
-    <meta name="twitter:description"
-          content="Frontend developer from Slovakia specializing in Vue.js, React, and TypeScript. I build fast, responsive websites and SPAs.">
-    <meta name="twitter:image" content="https://davidkolisek.netlify.app/images/me-transparent.png">
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="images/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="images/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="images/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/favicons/apple-touch-icon-152x152.png">
-    <link rel="icon" type="image/png" href="images/favicons/favicon-196x196.png" sizes="196x196">
-    <link rel="icon" type="image/png" href="images/favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="images/favicons/favicon-128.png" sizes="128x128">
-    <meta name="application-name" content="Dávid Kolísek">
-    <meta name="msapplication-TileColor" content="#FFFFFF">
-    <meta name="msapplication-TileImage" content="images/favicons/mstile-144x144.png">
-    <meta name="msapplication-square70x70logo" content="images/favicons/mstile-70x70.png">
-    <meta name="msapplication-square150x150logo" content="images/favicons/mstile-150x150.png">
-    <meta name="msapplication-wide310x150logo" content="images/favicons/mstile-310x150.png">
-    <meta name="msapplication-square310x310logo" content="images/favicons/mstile-310x310.png">
-    <meta name="theme-color" content="#ffffff">
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link href="css/main.css" rel="stylesheet">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org/",
-            "@type": "Person",
-            "name": "Dávid Kolísek",
-            "url": "https://davidkolisek.netlify.app/",
-            "image": "https://davidkolisek.netlify.app/images/me-transparent.png",
-            "email": "mailto:kolisek.david@gmail.com",
-            "sameAs": [
-                "https://www.linkedin.com/in/d%C3%A1vid-kol%C3%ADsek-73048011a/",
-                "https://github.com/davidkolisek",
-                "https://www.jaspravim.sk/profil/dakol"
-            ],
-            "jobTitle": "Frontend Developer",
-            "knowsAbout": ["Vue.js", "React", "TypeScript", "JavaScript", "HTML", "CSS", "Web Performance"],
-            "worksFor": {
-                "@type": "Organization",
-                "name": "Freelance"
-            }
-        }
-    </script>
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "How long have you been involved in programming?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "I have over 10 years of programming experience."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "What technologies do you use?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "My core stack includes HTML, CSS, SCSS, JavaScript, and TypeScript. I primarily work with Vue.js and Nuxt, and I have solid experience with React.js. I can build WordPress templates, use Firebase for backend basics, and I care deeply about performance — Lighthouse scores are part of how I measure a job well done."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Are you a front-end developer?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "While I'm skilled in frontend development, I primarily identify as a web developer who turns design concepts into production-ready templates and components. I enjoy preparing UI, wiring up logic, and collaborating on backend integration when the project needs it."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Is your pricing fixed?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "No, pricing can be flexible, and I'm open to finding a compromise that works for both parties. Keep in mind that pricing reflects the hours invested in development and ongoing learning."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Do you provide graphic design services or web template design?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "I primarily focus on development and coding, rather than graphic design. While I have the foundational skills to create websites, I prefer to work with existing design concepts and take inspiration from platforms like Dribbble."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Can you assist with frontend bug fixes on existing websites?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes, I can help with frontend bug fixes. Feel free to leave a message detailing the issue, and I'll be happy to assist."
-                    }
-                }
-            ]
-        }
-    </script>
-    <!--Analytics-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Dávid Kolísek | Frontend Developer · Vue.js &amp; React</title>
+  <meta name="description" content="Frontend developer from Slovakia specializing in Vue.js, React, and TypeScript. I build fast, responsive websites and SPAs — from corporate projects to side apps.">
+  <link rel="canonical" href="https://davidkolisek.netlify.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Dávid Kolísek | Frontend Developer · Vue.js &amp; React">
+  <meta property="og:description" content="Frontend developer from Slovakia specializing in Vue.js, React, and TypeScript. I build fast, responsive websites and SPAs — from corporate projects to side apps.">
+  <meta property="og:url" content="https://davidkolisek.netlify.app/">
+  <meta property="og:site_name" content="Dávid Kolísek">
+  <meta property="og:image" content="https://davidkolisek.netlify.app/images/me-transparent.png">
+  <meta property="og:image:alt" content="Dávid Kolísek — Frontend Developer">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dávid Kolísek | Frontend Developer · Vue.js &amp; React">
+  <meta name="twitter:description" content="Frontend developer from Slovakia specializing in Vue.js, React, and TypeScript. I build fast, responsive websites and SPAs.">
+  <meta name="twitter:image" content="https://davidkolisek.netlify.app/images/me-transparent.png">
+  <meta name="application-name" content="Dávid Kolísek">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="images/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/favicons/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="images/favicons/favicon-128.png" sizes="128x128">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+  <style type="text/tailwindcss">
+    @import "tailwindcss";
+    @theme inline {
+      --color-background: var(--background);
+      --color-foreground: var(--foreground);
+      --color-primary: var(--primary);
+      --color-primary-foreground: var(--primary-foreground);
+      --color-secondary: var(--secondary);
+      --color-secondary-foreground: var(--secondary-foreground);
+      --color-tertiary: var(--tertiary);
+      --color-muted: var(--muted);
+      --color-muted-foreground: var(--muted-foreground);
+      --color-accent: var(--accent);
+      --color-destructive: var(--destructive);
+      --color-card: var(--card);
+      --color-card-foreground: var(--card-foreground);
+      --color-border: var(--border);
+      --color-input: var(--input);
+      --color-ring: var(--ring);
+      --radius-sm: calc(var(--radius) - 4px);
+      --radius-md: calc(var(--radius) - 2px);
+      --radius-lg: var(--radius);
+      --font-family-sans: var(--font-sans);
+      --font-family-heading: var(--font-heading);
+      --font-family-mono: var(--font-mono);
+    }
+    :root {
+      --background: #FFFFFF;
+      --foreground: #18181B;
+      --primary: #E11D48;
+      --primary-foreground: #FFFFFF;
+      --secondary: #F4F4F5;
+      --secondary-foreground: #18181B;
+      --tertiary: #BE123C;
+      --muted: #F8FAFC;
+      --muted-foreground: #71717A;
+      --accent: #FFE4E6;
+      --accent-foreground: #881337;
+      --card: #FFFFFF;
+      --card-foreground: #18181B;
+      --destructive: #DC2626;
+      --border: #E4E4E7;
+      --input: #E4E4E7;
+      --ring: #E11D48;
+      --radius: 0.75rem;
+      --font-sans: 'Geist Sans', 'Inter', system-ui, sans-serif;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-mono: JetBrains Mono, monospace;
+    }
+  </style>
+  <style>
+    #lang-select {
+      appearance: none;
+      background: #FFFFFF url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2371717A' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 0.65rem center;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      color: var(--foreground);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.45rem 2rem 0.45rem 0.75rem;
+      cursor: pointer;
+    }
+    #lang-select:focus { outline: 2px solid var(--ring); outline-offset: 2px; }
+    html { scroll-behavior: smooth; }
+    .navbar-brand {
+      text-decoration: none;
+      color: inherit;
+    }
+    .logo-wrapper {
+      width: 50px;
+      height: 50px;
+      border-radius: 9999px;
+      background: var(--primary);
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      transition: background-color 0.2s ease;
+    }
+    .logo-wrapper img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: filter 0.2s ease;
+    }
+    .navbar-brand:hover .logo-wrapper img {
+      filter: none;
+    }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Person",
+    "name": "Dávid Kolísek",
+    "url": "https://davidkolisek.netlify.app/",
+    "image": "https://davidkolisek.netlify.app/images/me-transparent.png",
+    "email": "mailto:kolisek.david@gmail.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/d%C3%A1vid-kol%C3%ADsek-73048011a/",
+      "https://github.com/davidkolisek",
+      "https://www.jaspravim.sk/profil/dakol"
+    ],
+    "jobTitle": "Frontend Developer",
+    "knowsAbout": ["Vue.js", "React", "TypeScript", "JavaScript", "HTML", "CSS", "Web Performance"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"How long have you been involved in programming?","acceptedAnswer":{"@type":"Answer","text":"I have over 10 years of programming experience."}},
+      {"@type":"Question","name":"What technologies do you use?","acceptedAnswer":{"@type":"Answer","text":"My core stack includes HTML, CSS, SCSS, JavaScript, and TypeScript. I primarily work with Vue.js and Nuxt, and I have solid experience with React.js."}},
+      {"@type":"Question","name":"Are you a front-end developer?","acceptedAnswer":{"@type":"Answer","text":"While I'm skilled in frontend development, I primarily identify as a web developer who turns design concepts into production-ready templates and components."}},
+      {"@type":"Question","name":"Is your pricing fixed?","acceptedAnswer":{"@type":"Answer","text":"No, pricing can be flexible, and I'm open to finding a compromise that works for both parties."}},
+      {"@type":"Question","name":"Do you provide graphic design services or web template design?","acceptedAnswer":{"@type":"Answer","text":"I primarily focus on development and coding, rather than graphic design."}},
+      {"@type":"Question","name":"Can you assist with frontend bug fixes on existing websites?","acceptedAnswer":{"@type":"Answer","text":"Yes, I can help with frontend bug fixes."}}
+    ]
+  }
+  </script>
 </head>
+<body>
+<div class="min-h-screen w-full bg-background text-foreground flex flex-col relative font-sans selection:bg-primary selection:text-primary-foreground">
 
-<body class="ly-body hs-loaded" data-new-gr-c-s-check-loaded="14.1094.0" data-gr-ext-installed="">
-<div class="ly-layout">
-    <header class="ly-header">
-        <nav class="navbar navbar-expand-lg md-navbar">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="./">
-                    <div class="logo-wrapper">
-                        <img src="images/me-transparent.png" alt="Dávid Kolísek">
-                    </div>
-                    <span class="p-regular">Dávid Kolísek</span>
-                </a>
-                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#about">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#projects">Projects</a>
-                        </li>
-                        <!--                        <li class="nav-item">-->
-                        <!--                            <a class="nav-link" href="#pricing">Pricing</a>-->
-                        <!--                        </li>-->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#faq">FAQ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contact">Contact</a>
-                        </li>
-                    </ul>
+  <header class="sticky top-0 z-40 w-full bg-background/90 backdrop-blur-xl border-b border-border shadow-sm px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3 min-w-0">
+        <a href="#" class="navbar-brand flex items-center gap-3 min-w-0 shrink-0">
+          <span class="logo-wrapper">
+            <img src="images/me-transparent-gray.png" alt="Dávid Kolísek" width="50" height="50">
+          </span>
+          <span class="flex flex-col gap-1 min-w-0">
+            <span class="text-lg font-heading font-bold tracking-tight truncate leading-tight">Dávid Kolísek</span>
+            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 w-fit">
+              <span class="h-1 w-1 rounded-full bg-emerald-500 shrink-0"></span>
+              <span data-i18n="nav.available">Available for work</span>
+            </span>
+          </span>
+        </a>
+      </div>
 
-                    <!-- <button class="theme-switcher">
-              <i class="icon-moon"></i>
-            </button> -->
-                    <ul class="social-nav">
-                        <li>
-                            <a href="https://www.linkedin.com/in/d%C3%A1vid-kol%C3%ADsek-73048011a/" target="_blank"
-                               rel="noopener noreferrer" aria-label="LinkedIn">
-                                <span>LinkedIn</span>
-                                <i class="icon-linkedin">
-                                </i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/davidkolisek" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                                <span>GitHub</span>
-                                <i class="icon-github">
+      <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-muted-foreground">
+        <a href="#about" class="hover:text-foreground transition-colors" data-i18n="nav.about">About</a>
+        <a href="#projects" class="hover:text-foreground transition-colors" data-i18n="nav.projects">Selected Work</a>
+        <a href="#building" class="hover:text-foreground transition-colors" data-i18n="nav.products">Products</a>
+        <a href="#faq" class="hover:text-foreground transition-colors" data-i18n="nav.faq">FAQ</a>
+      </nav>
 
-                                </i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.jaspravim.sk/profil/dakol" target="_blank" rel="noopener noreferrer" aria-label="JaSpravím">
-                                <span>Jaspravim</span>
-                                <i class="icon-user">
+      <div class="flex items-center gap-3 shrink-0">
+        <label for="lang-select" class="sr-only">Language</label>
+        <select id="lang-select" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="sk">SK</option>
+        </select>
+        <a href="#contact" class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity" data-i18n="nav.cta">Let's Build</a>
+      </div>
+    </div>
+  </header>
 
-                                </i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <main class="ly-content">
-        <!-- home start -->
-        <section id="home">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h1>Hi, I'm Dávid Kolísek</h1>
-                        <p class="p-large">
-                            Frontend developer building fast, responsive websites and web apps — from corporate
-                            platforms to side projects. Vue.js, React, TypeScript, and a strong focus on performance.
-                        </p>
-                        <a href="#about" class="main-btn main-btn-primary btn-size-lg">About me</a>
-                    </div>
-                </div>
-            </div>
-            <div class="mouse-icon mt-4 mx-auto">
-                <span class="mouse-wheel"></span>
-            </div>
-        </section>
-        <!-- home end -->
-        <!-- about start -->
-        <section id="about">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 section-heading-wrapper hs-init hs-inview" data-hs="fade">
-                        <h2 class="section-heading">
-                            About me
-                        </h2>
-                    </div>
-                    <div class="col-lg-6 col-12 hs-init hs-inview" data-hs="fade right">
-                        <div class="content-wrapper">
-                            <h3>A few words...</h3>
-                            <p>
-                                I'm a frontend developer focused on turning designs into fast, maintainable websites
-                                and web applications — mostly with Vue.js and Nuxt, plus React when the project calls for it.
-                            </p>
-                            <p>
-                                With over 6 years of professional web development experience, I aim for high Lighthouse
-                                scores and clean, accessible markup. I consider a project done when it performs well,
-                                works across browsers and devices, and is easy to hand over.
-                            </p>
-                            <p>
-                                Throughout the project's lifecycle, I maintain active communication with the client.
-                                This collaborative approach is a cornerstone of my process, designed to streamline
-                                project development and ensure timely delivery of the final product.
-                            </p>
-                            <p>
-                                I am adaptable when it comes to teamwork, comfortable both in collaborative environments
-                                and as an independent contributor. I have extensive experience working with the Scrum
-                                methodology, but I'm equally at ease with direct client interaction.
-                            </p>
-                            <a href="#projects" class="main-btn main-btn-primary btn-size-md">Projects</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-12 hs-init hs-inview" data-hs="fade left">
-                        <div class="content-wrapper">
-                            <h3>Skills</h3>
-                            <ul class="md-badges">
-                                <li>
-                                    <p>HTML</p>
-                                </li>
-                                <li>
-                                    <p>CSS</p>
-                                </li>
-                                <li>
-                                    <p>JavaScript</p>
-                                </li>
-                                <li>
-                                    <p>Typescript</p>
-                                </li>
-                                <li>
-                                    <p>SCSS</p>
-                                </li>
-                                <li>
-                                    <p>Vue.js</p>
-                                </li>
-                                <li>
-                                    <p>React.js</p>
-                                </li>
-                                <li>
-                                    <p>Pug.js</p>
-                                </li>
-                                <li>
-                                    <p>Node.js</p>
-                                </li>
-                                <li>
-                                    <p>Bootstrap</p>
-                                </li>
-                                <li>
-                                    <p>Firebase</p>
-                                </li>
-                                <li>
-                                    <p>NPM</p>
-                                </li>
-                                <li>
-                                    <p>Vuex</p>
-                                </li>
-                                <li>
-                                    <p>Pinia</p>
-                                </li>
-                                <li>
-                                    <p>Vuetify</p>
-                                </li>
-                                <li>
-                                    <p>Vitest</p>
-                                </li>
-                                <li>
-                                    <p>PrimeVue</p>
-                                </li>
-                                <li>
-                                    <p>Nuxt</p>
-                                </li>
-                                <li>
-                                    <p>Material UI</p>
-                                </li>
-                                <li>
-                                    <p>IDSK</p>
-                                </li>
-                                <li>
-                                    <p>Website Optimization</p>
-                                </li>
-                                <li>
-                                    <p>WordPress</p>
-                                </li>
-                                <li>
-                                    <p>Photoshop</p>
-                                </li>
-                                <li>
-                                    <p>Figma</p>
-                                </li>
-                                <li>
-                                    <p>Storybook</p>
-                                </li>
-                                <li>
-                                    <p>Jira</p>
-                                </li>
-                                <li>
-                                    <p>GIT</p>
-                                </li>
-                                <li>
-                                    <p>Github</p>
-                                </li>
-                                <li>
-                                    <p>GitLab</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- about end -->
-        <!-- projects start -->
-        <section id="projects">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 section-heading-wrapper hs-init hs-inview" data-hs="fade">
-                        <h2 class="section-heading">
-                            Projects
-                        </h2>
-                        <p class="p-regular">
-                            Static websites, single-page applications, and performance-focused frontends.
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <h3 class="pb-4">
-                            Client &amp; corporate projects
-                        </h3>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 pb-5">
-                        <div class="md-card">
-                            <p>
-                                In recent years, I've collaborated on projects for clients including
-                                <strong>Tatrabanka, Uniqa, Raiffeisen, VšZP, and others</strong>.
-                                <br/><br/>
-                                For more detail on corporate work, see the projects section on my LinkedIn profile.
-                            </p>
-                            <a href="https://www.linkedin.com/in/d%C3%A1vid-kol%C3%ADsek-73048011a/"
-                               class="main-btn main-btn-primary btn-size-sm" target="_blank" rel="noopener noreferrer">LinkedIn profile</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row pt-4">
-                    <div class="col-12">
-                        <h3 class="pb-4">
-                            Side projects
-                        </h3>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 pb-5">
-                        <div class="md-card">
-                            <p>
-                                <strong>
-                                    SVG-TO-ICON
-                                </strong>
-                            </p>
-                            <p>
-                                An npm package that turns custom SVG icons into a lightweight icon font — so you don't have to pull in the entire Font Awesome library for a handful of icons.
-                            </p>
-                            <a href="https://www.npmjs.com/package/@davidkolisek/svg-to-icon/"
-                               class="main-btn main-btn-primary btn-size-sm mt-auto" target="_blank" rel="noopener noreferrer">npm</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 pb-5">
-                        <div class="md-card">
-                            <p>
-                                <strong>
-                                    GENKIT
-                                </strong>
-                            </p>
-                            <p>
-                                Online tools for generating data and everyday utilities — valid Slovak birth numbers, IBAN, QR and PayBySquare codes, border radius preview, text format converter, and image format converter.
-                            </p>
-                            <a href="https://gen-kit.netlify.app/"
-                               class="main-btn main-btn-primary btn-size-sm" target="_blank" rel="noopener noreferrer">Link</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 pb-5">
-                        <div class="md-card">
-                            <p>
-                                <strong>
-                                    Self-employed hourly rate calculator
-                                </strong>
-                            </p>
-                            <p>
-                                Switching from employment to self-employment and need to figure out your hourly rate?
-                                This calculator helps you work it out.
-                            </p>
-                            <a href="https://zivnost-kalkulacka.netlify.app/"
-                               class="main-btn main-btn-primary btn-size-sm" target="_blank" rel="noopener noreferrer">Link</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 pb-5">
-                        <div class="md-card">
-                            <p>
-                                <strong>
-                                    MYMATCH
-                                </strong>
-                            </p>
-                            <p>
-                                MyMatch is a simple web application tool for team sports: fair teams, easy scheduling
-                            </p>
-                            <a href="https://mymatch-light-dev.web.app/"
-                               class="main-btn main-btn-primary btn-size-sm mt-auto" target="_blank" rel="noopener noreferrer">Link</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 pb-5">
-                        <div class="md-card">
-                            <p>
-                                <strong>
-                                    SHUFFLY
-                                </strong>
-                            </p>
-                            <p>
-                                Random team generator with balanced skill levels, optional gender balance, and saved team setups you can reload — ideal for sports, work events, games, and tournaments.
-                            </p>
-                            <a href="https://shuffly.eu/"
-                               class="main-btn main-btn-primary btn-size-sm" target="_blank" rel="noopener noreferrer">Link</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 pb-5">
-                        <div class="md-card">
-                            <p>
-                                <strong>
-                                    VIALERTO
-                                </strong>
-                            </p>
-                            <p>
-                                Civic engagement platform that helps communities identify, map, and prioritize local issues. Anonymous citizen reports reveal what residents experience every day — no account required, report in under 10 seconds.
-                            </p>
-                            <a href="https://vialerto.com/"
-                               class="main-btn main-btn-primary btn-size-sm" target="_blank" rel="noopener noreferrer">Link</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 pb-5">
-                        <div class="md-card">
-                            <p>
-                                <strong>
-                                    ŠK VAJNORY
-                                </strong>
-                            </p>
-                            <p>
-                                Website for a ball hockey sports club in Bratislava–Vajnory. Built with HTML and CSS — membership, training schedule, coaches, and community around the Alviano sports area.
-                            </p>
-                            <a href="https://skvajnory.sk/"
-                               class="main-btn main-btn-primary btn-size-sm" target="_blank" rel="noopener noreferrer">Link</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 pb-5">
-                        <div class="md-card">
-                            <p>
-                                <strong>
-                                    BR INTERIOR &amp; EXTERIOR
-                                </strong>
-                            </p>
-                            <p>
-                                Portfolio website for an interior and exterior design studio — crafted spaces for residential and commercial living with timeless details, services, and project showcase.
-                            </p>
-                            <a href="https://brinteriorexterior.netlify.app/en"
-                               class="main-btn main-btn-primary btn-size-sm" target="_blank" rel="noopener noreferrer">Link</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- projects end -->
-        <!-- faq start -->
-        <section id="faq">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 section-heading-wrapper hs-init" data-hs="fade">
-                        <h2 class="section-heading">
-                            FAQ
-                        </h2>
-                    </div>
-                    <div class="col-md-5 hs-init" data-hs="fade right">
-                        <div class="img-faq-wrapper">
-                            <img src="images/faq.png" alt="FAQ">
-                        </div>
-                    </div>
-                    <div class="col-md-7 hs-init" data-hs="fade left">
-                        <div class="md-accordion accordion" id="accordionExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header collapsed" id="headingOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                        How long have you been involved in programming?
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        I have over 10 years of programming experience.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header collapsed" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#collapseTwo" aria-expanded="false"
-                                            aria-controls="collapseTwo">
-                                        What technologies do you use?
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        My core stack includes HTML, CSS, SCSS, JavaScript, and TypeScript. I primarily
-                                        work with Vue.js and Nuxt, and I have solid experience with React.js. I can build
-                                        WordPress templates, use Firebase for backend basics, and I care deeply about
-                                        performance — Lighthouse scores are part of how I measure a job well done.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header collapsed" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseThree" aria-expanded="false"
-                                            aria-controls="collapseThree">
-                                        Are you a front-end developer?
-                                    </button>
-                                </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse"
-                                     aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        While I'm skilled in frontend development, I primarily identify as a web
-                                        developer who turns design concepts into production-ready templates and
-                                        components. I enjoy preparing UI, wiring up logic, and collaborating on backend
-                                        integration when the project needs it.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header collapsed" id="heading4">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                                        Is your pricing fixed?
-                                    </button>
-                                </h2>
-                                <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4"
-                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        No, pricing can be flexible, and I'm open to finding a compromise that works for
-                                        both parties. Keep in mind that pricing is a reflection of the hours invested in
-                                        development and ongoing learning.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header collapsed" id="heading5">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                                        Do you provide graphic design services or web template design?
-                                    </button>
-                                </h2>
-                                <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5"
-                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        I primarily focus on development and coding, rather than graphic design. While I
-                                        have the foundational skills to create websites, I prefer to work with existing
-                                        design concepts and take inspiration from platforms like Dribbble.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header collapsed" id="heading6">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
-                                        Can you assist with frontend bug fixes on existing websites?
-                                    </button>
-                                </h2>
-                                <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6"
-                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        Yes, I can help with frontend bug fixes. Feel free to leave a message detailing
-                                        the issue, and I'll be happy to assist.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer class="ly-footer" id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-6 col-12 order-md-0 order-1">
-                    <h3>Dávid Kolísek</h3>
-                    <p class="p-small">
-                        Frontend developer — responsive websites, SPAs, and performance optimization. Based in Slovakia,
-                        available for freelance and remote collaboration.
-                    </p>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12 order-md-1 order-0">
-                    <h3>Contact</h3>
-                    <ul class="md-social">
-                        <li>
-                            <a href="https://www.linkedin.com/in/d%C3%A1vid-kol%C3%ADsek-73048011a/" target="_blank"
-                               rel="noopener noreferrer" aria-label="LinkedIn">
-                                <span>LinkedIn</span>
-                                <i class="icon-linkedin">
-
-                                </i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/davidkolisek" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                                <span>GitHub</span>
-                                <i class="icon-github">
-
-                                </i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.jaspravim.sk/profil/dakol" target="_blank" rel="noopener noreferrer" aria-label="JaSpravím">
-                                <span>Jaspravim</span>
-                                <i class="icon-user">
-
-                                </i>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="contact-list">
-                        <li>
-                            <span>Dávid Kolísek</span>
-                        </li>
-                        <li>
-                <span>
-                  IČO: 55123252
-                </span>
-                        </li>
-                        <li>
-                            <a href="mailto:kolisek.david@gmail.com">kolisek.david@gmail.com</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-12">
-
-                    <p>
-                        © <span id="year" class="d-inline-block">2023</span> | Made with 💜 by <a href="./">Dávid
-                        Kolísek</a>
-                    </p>
-                </div>
-            </div>
+  <!-- Hero -->
+  <section id="home" class="relative py-20 lg:py-32 px-6 overflow-hidden border-b border-border/40">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+      <div class="lg:col-span-7 space-y-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted border border-border text-sm text-muted-foreground">
+          <span class="flex h-2 w-2 rounded-full bg-primary"></span>
+          <span data-i18n="hero.badge">Senior Frontend Engineer &amp; Product Builder</span>
         </div>
-    </footer>
-    <!-- START other things -->
+        <h1 class="text-5xl lg:text-7xl font-heading font-bold tracking-tight text-foreground leading-[1.1]" data-i18n-html="hero.title">
+          Engineering digital products with <span class="text-primary italic font-serif">architectural</span> precision.
+        </h1>
+        <p class="text-lg lg:text-xl text-muted-foreground max-w-2xl leading-relaxed" data-i18n="hero.lead">
+          I translate complex business requirements and ambitious design systems into highly performant, accessible, and polished web applications.
+        </p>
+        <div class="grid grid-cols-3 gap-4 py-4 max-w-lg border-t border-b border-border/40">
+          <div>
+            <div class="text-2xl font-heading font-bold text-foreground" data-i18n="hero.stat1.value">10+ Yrs</div>
+            <div class="text-sm text-muted-foreground" data-i18n="hero.stat1.label">Professional Craft</div>
+          </div>
+          <div>
+            <div class="text-2xl font-heading font-bold text-foreground">100%</div>
+            <div class="text-sm text-muted-foreground" data-i18n="hero.stat2.label">Lighthouse Focused</div>
+          </div>
+          <div>
+            <div class="text-2xl font-heading font-bold text-foreground">10+</div>
+            <div class="text-sm text-muted-foreground" data-i18n="hero.stat3.label">Products Launched</div>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity">
+            <span data-i18n="hero.cta1">Explore Selected Work</span>
+            <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+          </a>
+          <a href="#about" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-muted border border-border text-foreground hover:bg-secondary transition-colors">
+            <span data-i18n="hero.cta2">Read Philosophy</span>
+          </a>
+        </div>
+      </div>
+      <div class="lg:col-span-5 flex justify-center lg:justify-end">
+        <div class="relative w-full max-w-sm aspect-square rounded-2xl overflow-hidden border border-border shadow-2xl group">
+          <img src="images/me-transparent.png" alt="Dávid Kolísek" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" width="512" height="512">
+          <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-white/90 backdrop-blur-md border border-border shadow-lg">
+            <div class="text-sm text-muted-foreground uppercase tracking-widest font-semibold" data-i18n="hero.portrait.location">Based in Slovakia</div>
+            <div class="text-sm font-medium text-foreground" data-i18n="hero.portrait.note">Collaborating globally with premium teams</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <ul class="md-social">
-        <li>
-            <a href="https://www.linkedin.com/in/d%C3%A1vid-kol%C3%ADsek-73048011a/" target="_blank"
-               rel="noopener noreferrer" aria-label="LinkedIn">
-                <span>LinkedIn</span>
-                <i class="icon-linkedin">
+  <!-- About -->
+  <section id="about" class="py-24 px-6 border-b border-border/40">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-4 space-y-4">
+          <span class="text-sm font-bold uppercase tracking-widest text-primary" data-i18n="about.eyebrow">Philosophy</span>
+          <h2 class="text-3xl lg:text-4xl font-heading font-bold text-foreground" data-i18n="about.title">Beyond writing code.</h2>
+          <p class="text-muted-foreground leading-relaxed" data-i18n="about.lead">
+            I consider a digital product done when it performs seamlessly under load, provides an equitable experience for everyone, and scales effortlessly for the engineers who inherit it.
+          </p>
+        </div>
+        <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-8 rounded-xl bg-card border border-border space-y-4 hover:border-primary/40 transition-colors">
+            <div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary"><iconify-icon icon="lucide:layers" class="text-xl"></iconify-icon></div>
+            <h3 class="text-lg font-heading font-bold text-foreground" data-i18n="about.card1.title">Design Systems &amp; UX</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="about.card1.text"></p>
+          </div>
+          <div class="p-8 rounded-xl bg-card border border-border space-y-4 hover:border-primary/40 transition-colors">
+            <div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary"><iconify-icon icon="lucide:zap" class="text-xl"></iconify-icon></div>
+            <h3 class="text-lg font-heading font-bold text-foreground" data-i18n="about.card2.title">Performance Engineering</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="about.card2.text"></p>
+          </div>
+          <div class="p-8 rounded-xl bg-card border border-border space-y-4 hover:border-primary/40 transition-colors">
+            <div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary"><iconify-icon icon="lucide:globe" class="text-xl"></iconify-icon></div>
+            <h3 class="text-lg font-heading font-bold text-foreground" data-i18n="about.card3.title">Collaborative Scrum</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="about.card3.text"></p>
+          </div>
+          <div class="p-8 rounded-xl bg-card border border-border space-y-4 hover:border-primary/40 transition-colors">
+            <div class="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary"><iconify-icon icon="lucide:shield" class="text-xl"></iconify-icon></div>
+            <h3 class="text-lg font-heading font-bold text-foreground" data-i18n="about.card4.title">Production Quality</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed" data-i18n="about.card4.text"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                </i>
-            </a>
-        </li>
-        <li>
-            <a href="https://github.com/davidkolisek" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <span>GitHub</span>
-                <i class="icon-github">
+  <!-- Enterprise projects -->
+  <section id="projects" class="py-24 px-6 border-b border-border bg-muted">
+    <div class="max-w-7xl mx-auto space-y-16">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div class="space-y-4">
+          <span class="text-sm font-bold uppercase tracking-widest text-primary" data-i18n="projects.eyebrow">Selected Work</span>
+          <h2 class="text-3xl lg:text-5xl font-heading font-bold text-foreground" data-i18n="projects.title">Enterprise Collaborations</h2>
+          <p class="text-muted-foreground max-w-xl" data-i18n="projects.lead"></p>
+        </div>
+        <a href="https://www.linkedin.com/in/d%C3%A1vid-kol%C3%ADsek-73048011a/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
+          <span data-i18n="projects.linkedin">View corporate history on LinkedIn</span>
+          <iconify-icon icon="lucide:external-link"></iconify-icon>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-8 rounded-xl bg-card border border-border flex flex-col justify-between min-h-48 hover:border-primary/30 transition-all">
+          <div class="text-lg font-bold tracking-tight text-foreground font-heading">Tatra banka</div>
+          <p class="text-sm text-muted-foreground" data-i18n="projects.client1.text"></p>
+          <span class="text-xs uppercase tracking-wider text-primary font-semibold" data-i18n="projects.client1.tag">Frontend Architecture</span>
+        </div>
+        <div class="p-8 rounded-xl bg-card border border-border flex flex-col justify-between min-h-48 hover:border-primary/30 transition-all">
+          <div class="text-lg font-bold tracking-tight text-foreground font-heading">Uniqa</div>
+          <p class="text-sm text-muted-foreground" data-i18n="projects.client2.text"></p>
+          <span class="text-xs uppercase tracking-wider text-primary font-semibold" data-i18n="projects.client2.tag">UI Development</span>
+        </div>
+        <div class="p-8 rounded-xl bg-card border border-border flex flex-col justify-between min-h-48 hover:border-primary/30 transition-all">
+          <div class="text-lg font-bold tracking-tight text-foreground font-heading">Raiffeisen Bank</div>
+          <p class="text-sm text-muted-foreground" data-i18n="projects.client3.text"></p>
+          <span class="text-xs uppercase tracking-wider text-primary font-semibold" data-i18n="projects.client3.tag">Component Systems</span>
+        </div>
+        <div class="p-8 rounded-xl bg-card border border-border flex flex-col justify-between min-h-48 hover:border-primary/30 transition-all">
+          <div class="text-lg font-bold tracking-tight text-foreground font-heading">VšZP</div>
+          <p class="text-sm text-muted-foreground" data-i18n="projects.client4.text"></p>
+          <span class="text-xs uppercase tracking-wider text-primary font-semibold" data-i18n="projects.client4.tag">Web Applications</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                </i>
-            </a>
-        </li>
-        <li>
-            <a href="https://www.jaspravim.sk/profil/dakol" target="_blank" rel="noopener noreferrer" aria-label="JaSpravím">
-                <span>Jaspravim</span>
-                <i class="icon-user">
+  <!-- Side products -->
+  <section id="building" class="py-24 px-6 border-b border-border/40">
+    <div class="max-w-7xl mx-auto space-y-16">
+      <div class="space-y-4">
+        <span class="text-sm font-bold uppercase tracking-widest text-primary" data-i18n="products.eyebrow">Product Engineering</span>
+        <h2 class="text-3xl lg:text-5xl font-heading font-bold text-foreground" data-i18n="products.title">Things I'm Building</h2>
+        <p class="text-muted-foreground max-w-xl" data-i18n="products.lead"></p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                </i>
-            </a>
-        </li>
-    </ul>
-    <!-- END other things -->
+        <article class="p-8 rounded-xl bg-card border border-border flex flex-col justify-between hover:border-primary/30 transition-all">
+          <div class="space-y-4">
+            <span class="text-xs font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-full">NPM Package</span>
+            <h3 class="text-xl font-heading font-bold text-foreground">@davidkolisek/svg-to-icon</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">Custom SVG icons compiled into an ultra-lightweight icon font — without pulling in entire heavy icon libraries.</p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-border/40">
+            <a href="https://www.npmjs.com/package/@davidkolisek/svg-to-icon/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">NPM <iconify-icon icon="lucide:arrow-right"></iconify-icon></a>
+          </div>
+        </article>
+
+        <article class="p-8 rounded-xl bg-card border border-border flex flex-col justify-between hover:border-primary/30 transition-all">
+          <div class="space-y-4">
+            <span class="text-xs font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-full">Developer Utility</span>
+            <h3 class="text-xl font-heading font-bold text-foreground">Genkit</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">Tools for generating and validating everyday data: Slovak birth numbers, IBANs, PayBySquare QR codes, border-radius previews, and image format converters.</p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-border/40">
+            <a href="https://gen-kit.netlify.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">Launch <iconify-icon icon="lucide:external-link"></iconify-icon></a>
+          </div>
+        </article>
+
+        <article class="p-8 rounded-xl bg-card border border-border flex flex-col justify-between hover:border-primary/30 transition-all">
+          <div class="space-y-4">
+            <span class="text-xs font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-full">Calculator</span>
+            <h3 class="text-xl font-heading font-bold text-foreground">Self-employed rate calculator</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">Switching from employment to self-employment? Work out your hourly rate with this calculator.</p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-border/40">
+            <a href="https://zivnost-kalkulacka.netlify.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">Launch <iconify-icon icon="lucide:external-link"></iconify-icon></a>
+          </div>
+        </article>
+
+        <article class="p-8 rounded-xl bg-card border border-border flex flex-col justify-between hover:border-primary/30 transition-all">
+          <div class="space-y-4">
+            <span class="text-xs font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-full">Sports SaaS</span>
+            <h3 class="text-xl font-heading font-bold text-foreground">MyMatch</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">Simple web app for team sports: fair teams and easy scheduling.</p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-border/40">
+            <a href="https://mymatch-light-dev.web.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">Launch <iconify-icon icon="lucide:external-link"></iconify-icon></a>
+          </div>
+        </article>
+
+        <article class="p-8 rounded-xl bg-card border border-border flex flex-col justify-between hover:border-primary/30 transition-all">
+          <div class="space-y-4">
+            <span class="text-xs font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-full">Team Generator</span>
+            <h3 class="text-xl font-heading font-bold text-foreground">Shuffly</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">Random team generator with balanced skill levels, optional gender balance, and saved setups — for sports, work events, and tournaments.</p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-border/40">
+            <a href="https://shuffly.eu/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">Launch <iconify-icon icon="lucide:external-link"></iconify-icon></a>
+          </div>
+        </article>
+
+        <article class="p-8 rounded-xl bg-card border border-border flex flex-col justify-between hover:border-primary/30 transition-all">
+          <div class="space-y-4">
+            <span class="text-xs font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-full">Civic Tech</span>
+            <h3 class="text-xl font-heading font-bold text-foreground">Vialerto</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">Platform for mapping and prioritizing local community issues. Anonymous reports, no account required.</p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-border/40">
+            <a href="https://vialerto.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">Launch <iconify-icon icon="lucide:external-link"></iconify-icon></a>
+          </div>
+        </article>
+
+        <article class="p-8 rounded-xl bg-card border border-border flex flex-col justify-between hover:border-primary/30 transition-all">
+          <div class="space-y-4">
+            <span class="text-xs font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-full">Sports Club</span>
+            <h3 class="text-xl font-heading font-bold text-foreground">ŠK Vajnory</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">Website for a ball hockey club in Bratislava–Vajnory — membership, schedule, coaches, and community.</p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-border/40">
+            <a href="https://skvajnory.sk/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">Launch <iconify-icon icon="lucide:external-link"></iconify-icon></a>
+          </div>
+        </article>
+
+        <article class="p-8 rounded-xl bg-card border border-border flex flex-col justify-between hover:border-primary/30 transition-all">
+          <div class="space-y-4">
+            <span class="text-xs font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-full">Portfolio</span>
+            <h3 class="text-xl font-heading font-bold text-foreground">BR Interior &amp; Exterior</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">Portfolio for an interior and exterior design studio — services, projects, and crafted residential &amp; commercial spaces.</p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-border/40">
+            <a href="https://brinteriorexterior.netlify.app/en" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">Launch <iconify-icon icon="lucide:external-link"></iconify-icon></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section class="py-24 px-6 border-b border-border bg-muted/50">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-4 space-y-4">
+          <span class="text-sm font-bold uppercase tracking-widest text-primary" data-i18n="stack.eyebrow">Capabilities</span>
+          <h2 class="text-3xl lg:text-4xl font-heading font-bold text-foreground" data-i18n="stack.title">The Technical Stack</h2>
+          <p class="text-muted-foreground leading-relaxed" data-i18n="stack.lead"></p>
+        </div>
+        <div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div class="p-4 rounded-lg bg-card border border-border flex flex-col justify-between h-32"><iconify-icon icon="lucide:layers" class="text-2xl text-primary"></iconify-icon><div><div class="text-sm font-semibold text-foreground">Vue.js &amp; Nuxt</div><div class="text-sm text-muted-foreground">Primary Ecosystem</div></div></div>
+          <div class="p-4 rounded-lg bg-card border border-border flex flex-col justify-between h-32"><iconify-icon icon="lucide:activity" class="text-2xl text-primary"></iconify-icon><div><div class="text-sm font-semibold text-foreground">React.js &amp; Next.js</div><div class="text-sm text-muted-foreground">Framework Versatility</div></div></div>
+          <div class="p-4 rounded-lg bg-card border border-border flex flex-col justify-between h-32"><iconify-icon icon="lucide:shield" class="text-2xl text-primary"></iconify-icon><div><div class="text-sm font-semibold text-foreground">TypeScript</div><div class="text-sm text-muted-foreground">Type-Safe Architecture</div></div></div>
+          <div class="p-4 rounded-lg bg-card border border-border flex flex-col justify-between h-32"><iconify-icon icon="lucide:zap" class="text-2xl text-primary"></iconify-icon><div><div class="text-sm font-semibold text-foreground">Tailwind &amp; SCSS</div><div class="text-sm text-muted-foreground">Responsive Layouts</div></div></div>
+          <div class="p-4 rounded-lg bg-card border border-border flex flex-col justify-between h-32"><iconify-icon icon="lucide:database" class="text-2xl text-primary"></iconify-icon><div><div class="text-sm font-semibold text-foreground">Firebase &amp; Node</div><div class="text-sm text-muted-foreground">Backend Basics</div></div></div>
+          <div class="p-4 rounded-lg bg-card border border-border flex flex-col justify-between h-32"><iconify-icon icon="lucide:check" class="text-2xl text-primary"></iconify-icon><div><div class="text-sm font-semibold text-foreground">SEO &amp; WCAG</div><div class="text-sm text-muted-foreground">Accessibility &amp; Reach</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-24 px-6 border-b border-border/40">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5 space-y-4">
+        <span class="text-sm font-bold uppercase tracking-widest text-primary" data-i18n="faq.eyebrow">Clarifications</span>
+        <h2 class="text-3xl lg:text-4xl font-heading font-bold text-foreground" data-i18n="faq.title">Frequently Asked Questions</h2>
+        <p class="text-muted-foreground leading-relaxed" data-i18n="faq.lead"></p>
+      </div>
+      <div class="lg:col-span-7 space-y-4">
+        <div class="p-6 rounded-xl bg-card border border-border space-y-3"><h3 class="text-lg font-bold text-foreground" data-i18n="faq.q1"></h3><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="faq.a1"></p></div>
+        <div class="p-6 rounded-xl bg-card border border-border space-y-3"><h3 class="text-lg font-bold text-foreground" data-i18n="faq.q2"></h3><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="faq.a2"></p></div>
+        <div class="p-6 rounded-xl bg-card border border-border space-y-3"><h3 class="text-lg font-bold text-foreground" data-i18n="faq.q3"></h3><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="faq.a3"></p></div>
+        <div class="p-6 rounded-xl bg-card border border-border space-y-3"><h3 class="text-lg font-bold text-foreground" data-i18n="faq.q4"></h3><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="faq.a4"></p></div>
+        <div class="p-6 rounded-xl bg-card border border-border space-y-3"><h3 class="text-lg font-bold text-foreground" data-i18n="faq.q5"></h3><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="faq.a5"></p></div>
+        <div class="p-6 rounded-xl bg-card border border-border space-y-3"><h3 class="text-lg font-bold text-foreground" data-i18n="faq.q6"></h3><p class="text-sm text-muted-foreground leading-relaxed" data-i18n="faq.a6"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-24 lg:py-32 px-6 bg-gradient-to-b from-background to-muted relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,#e11d48,transparent_45%)] opacity-[0.07] pointer-events-none"></div>
+    <div class="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+      <span class="text-sm font-bold uppercase tracking-widest text-primary" data-i18n="contact.eyebrow">Get in Touch</span>
+      <h2 class="text-4xl lg:text-6xl font-heading font-bold text-foreground tracking-tight leading-none" data-i18n-html="contact.title">
+        Let's build something <span class="italic font-serif text-primary">exceptional</span> together.
+      </h2>
+      <p class="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed" data-i18n="contact.lead"></p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+        <a href="mailto:kolisek.david@gmail.com" class="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-primary text-primary-foreground font-semibold text-base hover:opacity-90 transition-opacity w-full sm:w-auto justify-center">
+          <iconify-icon icon="lucide:mail"></iconify-icon>
+          <span data-i18n="contact.email">kolisek.david@gmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/d%C3%A1vid-kol%C3%ADsek-73048011a/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-muted border border-border text-foreground hover:bg-secondary transition-colors w-full sm:w-auto justify-center">
+          <iconify-icon icon="lucide:external-link"></iconify-icon>
+          <span data-i18n="contact.linkedin">Connect on LinkedIn</span>
+        </a>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-6 pt-12 text-sm text-muted-foreground border-t border-border/40 max-w-lg mx-auto">
+        <a href="https://github.com/davidkolisek" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1.5"><iconify-icon icon="lucide:globe"></iconify-icon> <span data-i18n="contact.github">GitHub</span></a>
+        <a href="https://www.npmjs.com/~davidkolisek" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1.5"><iconify-icon icon="lucide:box"></iconify-icon> <span data-i18n="contact.npm">NPM Profile</span></a>
+        <a href="https://www.jaspravim.sk/profil/dakol" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors flex items-center gap-1.5"><iconify-icon icon="lucide:user"></iconify-icon> <span data-i18n="contact.jaspravim">JaSpravím</span></a>
+      </div>
+      <p class="text-sm text-muted-foreground pt-4">IČO: 55123252</p>
+    </div>
+  </section>
+
+  <footer class="py-8 px-6 border-t border-border bg-muted text-center text-sm text-muted-foreground">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>&copy; <span id="year">2025</span> Dávid Kolísek. <span data-i18n="footer.rights">All rights reserved.</span></p>
+      <p class="font-mono" data-i18n="footer.tagline">Designed &amp; engineered with architectural precision.</p>
+    </div>
+  </footer>
 </div>
-<!-- work availability -->
-<div class="md-work-availability">
-    <a href="https://www.linkedin.com/in/d%C3%A1vid-kol%C3%ADsek-73048011a/" class="me-img" target="_blank"
-       rel="noopener noreferrer">
-                            <img src="images/me-transparent.png" alt="Dávid Kolísek">
-    </a>
-    <p><span>I'm currently <strong>available</strong> for work!</span><span>I'm currently
-        <strong>unavailable</strong> for work :(</span></p>
-    <span class="pulse"></span>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
-<script src="js/plugins/humbleScroll.min.js"></script>
-<script src="js/main.min.js"></script>
+
+<script src="js/i18n.js"></script>
 </body>
 </html>
