@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nákupné centrá MAX — Skalica &amp; Prešov</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        navy: {950:'#080f33',900:'#0c1548',800:'#101c5e',700:'#1a2a7a',600:'#2a3a94',500:'#3d4db0'},
+        signal: {400:'#ffc72c',300:'#ffd666',500:'#f0ad00'},
+        paper: '#f5f6fb',
+        ink: '#0e1330',
+        slate2: '#5b6280',
+        line2: '#e3e6f1'
+      },
+      fontFamily: {
+        display: ['"Plus Jakarta Sans"','sans-serif'],
+        body: ['"Inter"','sans-serif'],
+        mono: ['"IBM Plex Mono"','monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background:#f5f6fb;color:#0e1330}
+  .font-display{font-family:'Plus Jakarta Sans',sans-serif}
+  .font-mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+  ::-webkit-scrollbar{height:8px;width:8px}
+  ::-webkit-scrollbar-thumb{background:#c7ccdd;border-radius:8px}
+  .no-scrollbar::-webkit-scrollbar{display:none}
+  .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+  [data-view]{display:none}
+  [data-view].active{display:block}
+  .card-hover{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+  .card-hover:hover{transform:translateY(-6px);box-shadow:0 20px 40px -12px rgba(12,21,72,.18)}
+  .flip-num{display:inline-block;background:#0c1548;color:#ffc72c;border-radius:4px;padding:2px 6px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.05)}
+  .board-row{border-bottom:1px dashed rgba(255,255,255,.14)}
+  .board-row:last-child{border-bottom:none}
+  .chip{border:1px solid #e3e6f1;background:#fff}
+  .chip.active{background:#0c1548;color:#fff;border-color:#0c1548}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  .marquee-track{display:flex;width:max-content;animation:marquee 34s linear infinite}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .skeleton{background:linear-gradient(90deg,#eef0f7 25%,#e4e7f2 37%,#eef0f7 63%);background-size:400% 100%;animation:sk 1.4s ease infinite}
+  @keyframes sk{0%{background-position:100% 50%}100%{background-position:0 50%}}
+  .focus-ring:focus-visible{outline:3px solid #ffc72c;outline-offset:2px}
+  dialog::backdrop{background:rgba(8,15,51,.55);backdrop-filter:blur(2px)}
+  dialog{border:none;padding:0;background:transparent;max-width:none;max-height:none}
+  @media (prefers-reduced-motion: reduce){.card-hover,.reveal,.marquee-track{transition:none;animation:none!important}}
+</style>
+</head>
+<body class="bg-paper text-ink">
+<div id="app"></div>
+<script>
+/* =========================================================================
+   NC MAX — redesign prototype
+   Vanilla JS hash-router SPA simulating multiple pages inside one HTML file.
+   ========================================================================= */
+
+/* ---------- ICONS (24x24 stroke, currentColor) ---------- */
+const ICONS = {
+  bank:'<path d="M3 10 12 4l9 6M4 10v9M9 10v9M15 10v9M20 10v9M2 21h20"/>',
+  home:'<path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/>',
+  drogeria:'<path d="M9 3h6v3H9z"/><path d="M8 6h8l1 15H7z"/><path d="M9 12h6"/>',
+  elektro:'<rect x="4" y="4" width="16" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/>',
+  hracky:'<circle cx="12" cy="8" r="4"/><path d="M8 12 5 20M16 12l3 8M9 20h6"/>',
+  ine:'<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>',
+  hair:'<path d="M6 4c3 0 3 4 6 4s3-4 6-4"/><path d="M6 20c3 0 3-4 6-4s3 4 6 4"/><path d="M8 8 16 16M16 8 8 16"/>',
+  kino:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 5v14M17 5v14M3 9h4M3 15h4M17 9h4M17 15h4"/>',
+  knihy:'<path d="M4 5c3-1.5 6-1.5 8 0v14c-2-1.5-5-1.5-8 0Z"/><path d="M20 5c-3-1.5-6-1.5-8 0v14c2-1.5 5-1.5 8 0Z"/>',
+  lekaren:'<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/>',
+  moda:'<path d="M8 4 4 8l3 3-2 9h14l-2-9 3-3-4-4"/><path d="M8 4a4 4 0 0 0 8 0"/>',
+  noviny:'<rect x="3" y="5" width="14" height="16" rx="1"/><path d="M17 8h4v10a2 2 0 0 1-2 2H7"/><path d="M6 9h8M6 12h8M6 15h5"/>',
+  potraviny:'<path d="M5 8h14l-1.5 11a2 2 0 0 1-2 1.8H8.5a2 2 0 0 1-2-1.8Z"/><path d="M9 8a3 3 0 0 1 6 0"/>',
+  resto:'<path d="M6 3v8a3 3 0 0 0 6 0V3M9 3v8"/><path d="M17 3c-2 2-2 5-2 7 0 1.5 1 2 2 2v9"/>',
+  sluzby:'<circle cx="12" cy="12" r="3"/><path d="M4 12h2M18 12h2M12 4v2M12 18v2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4"/>',
+  sperky:'<path d="M6 8h12l-6 12Z"/><path d="M9 8 6 3h12l-3 5"/>',
+  sport:'<circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.5 2.2 2.5 13.8 0 16M12 4c-2.5 2.2-2.5 13.8 0 16"/>',
+  zabava:'<circle cx="12" cy="12" r="8"/><path d="M9 10h.01M15 10h.01M8.5 15c1 1 5 1 7 0"/>',
+  pin:'<path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/>',
+  search:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+  ticket:'<path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4Z"/><path d="M10 6v12" stroke-dasharray="3 3"/>',
+  chevron:'<path d="m9 18 6-6-6-6"/>',
+  arrowleft:'<path d="M19 12H5M11 18l-6-6 6-6"/>',
+  calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+  layers:'<path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5M3 8v5M21 8v5"/>',
+  phone:'<path d="M5 4h4l2 5-2.5 2a12 12 0 0 0 5.5 5.5l2-2.5 5 2v4a2 2 0 0 1-2.2 2A18 18 0 0 1 3 5.2 2 2 0 0 1 5 4Z"/>',
+  mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6 8 7 8-7"/>',
+  menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',
+  close:'<path d="M6 6l12 12M18 6 6 18"/>',
+  filter:'<path d="M4 5h16M7 12h10M10 19h4"/>',
+  star:'<path d="M12 3l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2L6.6 19.3l1.3-6-4.6-4.1 6.1-.6Z"/>'
+};
+function icon(name,cls){return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="${cls||'w-5 h-5'}">${ICONS[name]||ICONS.ine}</svg>`;}
+
+/* ---------- IMAGE HELPER (placeholder photography for the concept) ---------- */
+function ph(seed,w,h){return `https://picsum.photos/seed/${encodeURIComponent(seed)}/${w}/${h}`;}
+
+/* ---------- CATEGORY LIST ---------- */
+const CATS = [
+ ['moda','Móda, doplnky'],['resto','Reštaurácie, kaviarne'],['sluzby','Služby'],
+ ['sport','Šport'],['potraviny','Potraviny'],['drogeria','Drogéria, parfuméria'],
+ ['home','Domácnosť'],['elektro','Elektro, hry, mobil'],['bank','Banky, bankomaty'],
+ ['lekaren','Lekáreň'],['hracky','Hračky'],['sperky','Šperky, hodinky'],
+ ['knihy','Knihy, papiernictvo'],['hair','Kaderníctvo'],['noviny','Tabak, tlač'],
+ ['zabava','Zábava, relax'],['kino','Kino'],['ine','Iné']
+];
+const CATNAME = Object.fromEntries(CATS);
+
+/* ---------- STORE DATA (real tenant directory, current as of mid-2026) ---------- */
+function S(n,c,h,f){return {n,c,h,f};}
+const SKALICA_STORES = [
+ S('1. day s.r.o.','potraviny','09:00–21:00','I. Poschodie'),
+ S('101 Drogérie','drogeria','09:00–21:00','I. Poschodie'),
+ S('BENU Lekáreň','lekaren','09:00–21:00','Prízemie'),
+ S('BEPON','moda','09:00–21:00','I. Poschodie'),
+ S('CINEMAX','kino','09:00–21:00','I. Poschodie'),
+ S('Deichmann','moda','09:00–21:00','I. Poschodie'),
+ S('Detské ihrisko Sovička','zabava','10:00–19:00','I. Poschodie'),
+ S('Dráčik','hracky','09:00–21:00','I. Poschodie'),
+ S('Fann parfumérie','drogeria','09:00–21:00','I. Poschodie'),
+ S('FORTUNA','sluzby','09:00–21:00','I. Poschodie'),
+ S('GALLERY café','resto','09:00–21:00','I. Poschodie'),
+ S('GATE','moda','09:00–21:00','I. Poschodie'),
+ S('GGTabak','noviny','09:00–21:00','I. Poschodie'),
+ S('HZH ŠPORT','sport','09:00–21:00','I. Poschodie'),
+ S('JEANS SHOP','moda','09:00–21:00','I. Poschodie'),
+ S('Klenoty Trend','sperky','09:00–21:00','I. Poschodie'),
+ S('Kvetinárstvo TREND','sluzby','09:00–21:00','I. Poschodie'),
+ S('Lokálna Kantína','resto','09:00–21:00','I. Poschodie'),
+ S('LOTUS BISTRO','resto','09:00–21:00','I. Poschodie'),
+ S('MAX HAIR','hair','09:00–21:00','Prízemie'),
+ S('MAX NAILS','sluzby','09:00–21:00','I. Poschodie'),
+ S('MCafé','resto','09:00–21:00','Prízemie'),
+ S('MGYM','sport','06:30–20:00','I. Poschodie'),
+ S('Michell fashion','moda','09:00–21:00','I. Poschodie'),
+ S('MOBILONLINE','elektro','09:00–21:00','I. Poschodie'),
+ S('MONACO','zabava','10:00–03:00','I. Poschodie'),
+ S('NEW YORKER','moda','09:00–21:00','I. Poschodie'),
+ S('Niké','sluzby','09:00–20:00','I. Poschodie'),
+ S('Panta Rhei','knihy','09:00–21:00','I. Poschodie'),
+ S('PEPCO','moda','09:00–21:00','I. Poschodie'),
+ S('Slovenská pošta','sluzby','09:00–19:00','I. Poschodie'),
+ S('Solárium','sluzby','09:00–20:00','I. Poschodie'),
+ S('ŠPERK Holíč','sperky','09:00–21:00','I. Poschodie'),
+ S('TAKKO FASHION','moda','09:00–21:00','I. Poschodie'),
+ S('VisionX Fashionoptik','sluzby','09:00–21:00','I. Poschodie')
+];
+const PRESOV_STORES = [
+ S('101 DROGÉRIA','drogeria','09:00–21:00','Prízemie'),
+ S('Action','home','09:00–21:00','Prízemie'),
+ S('ALKOPOINT','ine','09:00–21:00','Prízemie'),
+ S('ALPINE PRO Outlet','sport','09:00–21:00','Prízemie'),
+ S('Auto aréna','ine','09:00–21:00','I. Poschodie'),
+ S('Autosklo Hornet','sluzby','09:00–17:30','Suterén'),
+ S('Autoumyváreň','sluzby','09:00–21:00','Suterén'),
+ S('Bagetéria','resto','09:00–21:00','I. Poschodie'),
+ S('Bankomat ČSOB','bank','09:00–21:00','Prízemie'),
+ S('Bankomat Prima banka','bank','09:00–21:00','Prízemie'),
+ S('Bankomat Slovenská sporiteľňa','bank','09:00–21:00','Prízemie'),
+ S('Bankomat Tatra banka','bank','09:00–21:00','Prízemie'),
+ S('BENU Lekáreň','lekaren','09:00–21:00','Prízemie'),
+ S('BYD','ine','09:00–19:00','Prízemie'),
+ S('CAFÉ ATLANTIC','resto','09:00–21:00','Prízemie'),
+ S('Café Italiano','resto','09:00–21:00','Prízemie'),
+ S('CHOICE HOME','home','09:00–21:00','I. Poschodie'),
+ S('CINEMAX','kino','09:00–22:00','I. Poschodie'),
+ S('CITY GYM','sport','06:00–21:00','II. Poschodie'),
+ S('commando.sk','moda','09:00–21:00','I. Poschodie'),
+ S('ČSOB','bank','09:00–19:00','Prízemie'),
+ S('Daffer papiernictvo','knihy','09:00–21:00','Prízemie'),
+ S('Datacomp','elektro','09:00–21:00','Prízemie'),
+ S('DELIKATESO','potraviny','09:00–21:00','Prízemie'),
+ S('Detský kútik DANYS','zabava','09:00–21:00','II. Poschodie'),
+ S('DOUBLE RED','moda','09:00–21:00','I. Poschodie'),
+ S('Dráčik','hracky','09:00–21:00','Prízemie'),
+ S('e-smoke','noviny','09:00–21:00','Prízemie'),
+ S('EMI EU','moda','09:00–21:00','I. Poschodie'),
+ S('Erotic City','ine','09:00–21:00','Prízemie'),
+ S('EXIsport','sport','09:00–21:00','Prízemie'),
+ S('FAnn parfumérie','drogeria','09:00–21:00','Prízemie'),
+ S('FOKUS Očná optika','sluzby','09:00–18:00','Prízemie'),
+ S('Gazdovská Stodola','resto','09:00–21:00','I. Poschodie'),
+ S('GENERALI','sluzby','09:00–19:00','I. Poschodie'),
+ S('Home Credit','bank','09:00–21:00','Prízemie'),
+ S('HROŠÍK baby spa','sluzby','09:00–17:00','I. Poschodie'),
+ S('HUSKY','sport','09:00–21:00','Prízemie'),
+ S('Kaderníctvo Klier','hair','09:00–21:00','Prízemie'),
+ S('KORAS','resto','09:00–21:00','I. Poschodie'),
+ S('Kvetinárstvo VICTOR','ine','09:00–21:00','Prízemie'),
+ S('LIDL','potraviny','09:00–21:00','Prízemie'),
+ S('Ministry of Fashion','moda','09:00–21:00','Prízemie'),
+ S('New Yorker','moda','09:00–21:00','Prízemie'),
+ S('NORMA','home','09:00–21:00','I. Poschodie'),
+ S('Očná optika Sofia','sluzby','09:00–21:00','Prízemie'),
+ S('Panta Rhei','knihy','09:00–21:00','Prízemie'),
+ S('PAVANNA','moda','09:00–21:00','Prízemie'),
+ S('Pepco','moda','09:00–21:00','I. Poschodie'),
+ S('PINKY Club','moda','09:00–21:00','Prízemie'),
+ S('PreSpánok','home','09:00–21:00','I. Poschodie'),
+ S('Prima banka','bank','09:00–19:00','Prízemie'),
+ S('Prvá stavebná sporiteľňa','bank','09:00–21:00','I. Poschodie'),
+ S('R Nails studio','sluzby','09:00–21:00','Prízemie'),
+ S('SANAS štúdio','home','09:00–21:00','I. Poschodie'),
+ S('Šarišská chiža','resto','09:00–21:00','II. Poschodie'),
+ S('Šarišský šenk','resto','09:00–21:00','II. Poschodie'),
+ S('Sinsay','moda','09:00–21:00','I. Poschodie'),
+ S('Slovenská sporiteľňa','bank','09:00–19:00','I. Poschodie'),
+ S('ŠPERK Holíč','sperky','09:00–21:00','Prízemie'),
+ S('Niké stávková kancelária','ine','09:00–21:00','I. Poschodie'),
+ S('STUDIO STARS','sluzby','09:00–21:00','Prízemie'),
+ S('TABAK-PRESS','noviny','09:00–21:00','Prízemie'),
+ S('TEDI','home','09:00–21:00','I. Poschodie'),
+ S('top GRILL','resto','09:00–21:00','I. Poschodie'),
+ S('VIET NAILS','sluzby','09:00–21:00','I. Poschodie'),
+ S('Vietnamské bistro','resto','09:00–21:00','I. Poschodie'),
+ S('wood service','home','09:00–21:00','I. Poschodie')
+];
+
+/* ---------- PROMOTIONS / EVENTS / FILMS (demo content for the concept) ---------- */
+function mkPromo(store,title,cat,from,to,seed){return {store,title,cat,from,to,img:ph(seed,640,420)};}
+const SKALICA_PROMO = [
+ mkPromo('BENU Lekáreň','10 rokov BENU. Oslávte s nami naše výročie','Zdravie a krása','08.07.','31.08.2026','sk-benu'),
+ mkPromo('NEW YORKER','Letná kolekcia so zľavou až 40 %','Móda','01.07.','15.08.2026','sk-newyorker'),
+ mkPromo('LOTUS BISTRO','Obedové menu za zvýhodnenú cenu','Gastro','celoročne','—','sk-lotus'),
+ mkPromo('Klenoty Trend','Výmena batérie do hodiniek zadarmo','Šperky','01.07.','31.07.2026','sk-klenoty')
+];
+const PRESOV_PROMO = [
+ mkPromo('LIDL','Čerstvé letné ovocie za akciové ceny','Potraviny','13.07.','19.07.2026','po-lidl'),
+ mkPromo('Sinsay','Druhý kus za polovicu na vybrané kúsky','Móda','01.07.','31.07.2026','po-sinsay'),
+ mkPromo('CITY GYM','Letná permanentka s bonusom 2 mesiace','Šport','01.07.','31.08.2026','po-gym'),
+ mkPromo('Gazdovská Stodola','Sezónne špeciality z regionálnych surovín','Gastro','celoročne','—','po-stodola'),
+ mkPromo('EXIsport','Výpredaj outdoorového vybavenia','Šport','13.07.','27.07.2026','po-exisport')
+];
+function mkEvent(title,date,time,place,seed){return {title,date,time,place,img:ph(seed,900,540)};}
+const SKALICA_EVENTS = [
+ mkEvent('Letný jarmok remesiel','26. júla 2026','10:00 – 18:00','Átrium centra','sk-ev1'),
+ mkEvent('Detský popoludňajší program s maskotom MAX','9. augusta 2026','15:00 – 17:00','Átrium centra','sk-ev2'),
+ mkEvent('Móda naživo — jesenná prehliadka','12. septembra 2026','17:30','Átrium centra','sk-ev3')
+];
+const PRESOV_EVENTS = [
+ mkEvent('Prázdninový detský klub','18. júla 2026','10:00 – 13:00','II. poschodie','po-ev1'),
+ mkEvent('Kulinárske soboty na Šarišskej chiži','25. júla 2026','12:00 – 16:00','II. poschodie','po-ev2'),
+ mkEvent('Jesenný veľtrh zdravia a krásy','5. septembra 2026','09:00 – 20:00','Átrium centra','po-ev3')
+];
+function mkFilm(t,genre,dur,times,seed){return {t,genre,dur,times,img:ph(seed,480,680)};}
+const FILMS = [
+ mkFilm('Posledný let nad mestom','Akčný / 12+','118 min',['16:20','19:00','21:40'],'film1'),
+ mkFilm('Recept na leto','Komédia / 7+','101 min',['15:00','17:15'],'film2'),
+ mkFilm('Malý drak Šupko','Animovaný / MP','88 min',['10:30','13:00','15:30'],'film3'),
+ mkFilm('Tichá hranica','Triler / 15+','132 min',['18:30','21:15'],'film4')
+];
+
+/* ---------- BRANCHES ---------- */
+const BRANCHES = {
+ skalica:{
+  slug:'skalica', name:'MAX Skalica', city:'Skalica',
+  address:'Mallého 55, 909 01 Skalica',
+  hours:'09:00 – 21:00', floors:['Prízemie','I. Poschodie'],
+  stores:SKALICA_STORES, promo:SKALICA_PROMO, events:SKALICA_EVENTS,
+  hero:ph('skalica-hero',1600,900), thumb:ph('skalica-thumb',900,700),
+  manager:[
+    {name:'Lenka Šebelová', role:'Marketingovo-prevádzkový manažér centra', phone:'+421 34 6973 401', mail:'l.sebelova@slovakiamax.sk'},
+    {name:'Jaroslav Kosík', role:'Technicko-prevádzkový manažér centra', phone:'+421 34 6973 401', mail:'j.kosik@slovakiamax.sk'}
+  ]
+ },
+ presov:{
+  slug:'presov', name:'MAX Prešov', city:'Prešov',
+  address:'Vihorlatská 2A, 080 01 Prešov',
+  hours:'09:00 – 21:00', floors:['Suterén','Prízemie','I. Poschodie','II. Poschodie'],
+  stores:PRESOV_STORES, promo:PRESOV_PROMO, events:PRESOV_EVENTS,
+  hero:ph('presov-hero',1600,900), thumb:ph('presov-thumb',900,700),
+  manager:[
+    {name:'Recepcia centra', role:'Prevádzkový manažment MAX Prešov', phone:'+421 51 000 0000', mail:'presov@slovakiamax.sk'}
+  ]
+ }
+};
+
+/* ---------- ROUTER ---------- */
+const app = document.getElementById('app');
+let STATE = { cat:'all', floor:'all', q:'' };
+
+function route(){
+  const hash = location.hash.slice(1) || '/';
+  const parts = hash.split('/').filter(Boolean);
+  window.scrollTo({top:0,behavior:'instant'});
+  if(parts.length===0) return renderHome();
+  const b = BRANCHES[parts[0]];
+  if(!b) return renderHome();
+  const page = parts[1];
+  STATE = { cat:'all', floor:'all', q:'' };
+  if(!page) return renderBranch(b);
+  if(page==='prevadzky') return renderStores(b);
+  if(page==='mapa') return renderMap(b);
+  if(page==='akcie-a-zlavy') return renderPromo(b);
+  if(page==='podujatia') return renderEvents(b);
+  if(page==='kino') return renderCinema(b);
+  if(page==='o-nas') return renderContact(b);
+  return renderBranch(b);
+}
+window.addEventListener('hashchange', route);
+window.addEventListener('DOMContentLoaded', route);
+
+/* ---------- SHARED CHROME ---------- */
+function nav(b, current){
+  const items = [
+    ['','Domov'], ['prevadzky','Obchody a služby'], ['mapa','Mapa centra'],
+    ['akcie-a-zlavy','Akcie'], ['podujatia','Podujatia'], ['kino','Kino'], ['o-nas','Kontakt']
+  ];
+  return `
+  <header class="sticky top-0 z-40 bg-navy-900/95 backdrop-blur text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16">
+      <a href="#/${b.slug}" class="flex items-center gap-2 font-display font-extrabold text-xl tracking-tight focus-ring rounded">
+      
+          <img src="./logo.png" alt="MAX Logo" class="w-auto h-10" />
+      </a>
+      <nav class="hidden lg:flex items-center gap-1 font-medium text-sm">
+        ${items.map(([p,l])=>`<a href="#/${b.slug}${p?'/'+p:''}" class="px-3 py-2 rounded-full transition ${current===p?'bg-signal-400 text-navy-950 font-semibold':'hover:bg-white/10'}">${l}</a>`).join('')}
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="#/" class="hidden md:inline-flex items-center gap-1 text-xs text-white/60 hover:text-white transition">${icon('layers','w-4 h-4')} Rozcestník pobočiek</a>
+        <button onclick="document.getElementById('mmenu').showModal()" class="lg:hidden p-2 rounded-lg hover:bg-white/10 focus-ring">${icon('menu','w-6 h-6')}</button>
+      </div>
+    </div>
+  </header>
+  <dialog id="mmenu" class="w-full max-w-none m-0 p-0">
+    <div class="fixed inset-0 bg-navy-950 text-white p-6 flex flex-col">
+      <div class="flex justify-between items-center mb-8">
+        <span class="font-display font-extrabold text-xl"><span class="text-signal-400">MAX</span></span>
+        <button onclick="document.getElementById('mmenu').close()" class="p-2 focus-ring rounded">${icon('close','w-6 h-6')}</button>
+      </div>
+      <nav class="flex flex-col gap-1 text-lg font-display font-semibold">
+        ${items.map(([p,l])=>`<a href="#/${b.slug}${p?'/'+p:''}" onclick="document.getElementById('mmenu').close()" class="px-3 py-3 rounded-xl ${current===p?'bg-signal-400 text-navy-950':'hover:bg-white/10'}">${l}</a>`).join('')}
+      </nav>
+      <a href="#/" class="mt-auto text-white/60 text-sm flex items-center gap-2">${icon('arrowleft','w-4 h-4')} Späť na výber pobočky</a>
+    </div>
+  </dialog>`;
+}
+
+function liveBoard(b){
+  const open = isOpenNow();
+  const nextFilm = FILMS[0];
+  const nextEvent = b.events[0];
+  return `
+  <div class="bg-navy-950 text-white font-mono text-xs sm:text-sm">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 overflow-x-auto no-scrollbar">
+      <div class="flex items-stretch divide-x divide-white/10 py-3 gap-6 min-w-max">
+        <div class="flex items-center gap-2 pr-6"><span class="w-2 h-2 rounded-full ${open?'bg-emerald-400':'bg-signal-400'} animate-pulse"></span>${open?'OTVORENÉ':'ZATVORENÉ'} · do <span class="flip-num">21:00</span></div>
+        <div class="flex items-center gap-2 pl-6 pr-6">PREVÁDZOK <span class="flip-num">${b.stores.length}</span></div>
+        <div class="flex items-center gap-2 pl-6 pr-6">${icon('ticket','w-4 h-4 text-signal-400')} NAJBLIŽŠIE PREDSTAVENIE <span class="flip-num">${nextFilm.times[0]}</span> · ${nextFilm.t}</div>
+        <div class="flex items-center gap-2 pl-6">${icon('calendar','w-4 h-4 text-signal-400')} PODUJATIE <span class="flip-num">${nextEvent.date.split(' ')[0]}</span> · ${nextEvent.title}</div>
+      </div>
+    </div>
+  </div>`;
+}
+function isOpenNow(){ const h=new Date().getHours(); return h>=9 && h<21; }
+
+function footer(b){
+  return `
+  <footer class="bg-navy-950 text-white/70 mt-24">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 py-14 grid md:grid-cols-4 gap-10">
+      <div>
+        <div class="font-display font-extrabold text-2xl text-white mb-3">
+          <img src="./logo.png" alt="MAX Logo" class="w-auto h-10" />
+          </div>
+        <p class="text-sm leading-relaxed">${b.name}<br>${b.address}</p>
+      </div>
+      <div>
+        <div class="text-white font-display font-semibold mb-3 text-sm tracking-wide uppercase">Navigácia</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#/${b.slug}/prevadzky" class="hover:text-white">Obchody a služby</a></li>
+          <li><a href="#/${b.slug}/mapa" class="hover:text-white">Mapa centra</a></li>
+          <li><a href="#/${b.slug}/akcie-a-zlavy" class="hover:text-white">Akcie a zľavy</a></li>
+          <li><a href="#/${b.slug}/podujatia" class="hover:text-white">Podujatia</a></li>
+          <li><a href="#/${b.slug}/kino" class="hover:text-white">Kino</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-white font-display font-semibold mb-3 text-sm tracking-wide uppercase">Nákupné centrá MAX</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#/presov" class="hover:text-white">NC MAX Prešov</a></li>
+          <li><a href="#/skalica" class="hover:text-white">NC MAX Skalica</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-white font-display font-semibold mb-3 text-sm tracking-wide uppercase">Kontakt</div>
+        <p class="text-sm mb-3">${b.address}</p>
+        <a href="#/${b.slug}/o-nas" class="inline-flex items-center gap-2 text-sm text-signal-400 hover:text-signal-300">Kontaktné informácie ${icon('chevron','w-4 h-4')}</a>
+      </div>
+    </div>
+    <div class="border-t border-white/10 py-6 text-center text-xs text-white/40">© 2026 NC MAX · koncept redizajnu</div>
+  </footer>`;
+}
+
+function setActive(id){
+  document.querySelectorAll('[data-view]').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('.reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('in'), i*40));
+  });
+}
+
+/* ================= HOME (rozcestník) ================= */
+function renderHome(){
+  document.title = 'Nákupné centrá MAX';
+  app.innerHTML = `
+  <div class="min-h-screen">
+    <header class="absolute top-0 inset-x-0 z-30 max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
+      <span class="font-display font-extrabold text-2xl text-white">
+          <img src="./logo.png" alt="MAX Logo" class="w-auto h-10" />
+        </span>
+      <span class="hidden sm:block text-white/70 text-sm font-medium">Nákupné centrá</span>
+    </header>
+    <section class="relative h-[60vh] min-h-[560px] flex items-end overflow-hidden">
+      <img src="${ph('max-hero-wide',1920,1200)}" class="absolute inset-0 w-full h-full object-cover" alt="">
+      <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/60 to-navy-950/20"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-navy-950/70 via-transparent to-transparent"></div>
+      <div class="relative max-w-7xl mx-auto px-4 md:px-8 pb-16 md:pb-24 w-full text-white">
+        <p class="font-mono text-signal-400 text-sm tracking-[0.2em] mb-4 reveal in">NÁKUPNÉ · GASTRO · KINO · PODUJATIA</p>
+        <h1 class="font-display font-extrabold text-4xl sm:text-6xl md:text-7xl leading-[1.02] max-w-3xl reveal in">Miesto, kde sa vaše mesto stretáva.</h1>
+        <p class="mt-6 max-w-xl text-white/75 text-lg reveal in mb-10">Vyberte si svoje nákupné centrum MAX a objavte obchody, akcie, podujatia a kino vo vašom meste.</p>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 md:px-8 -mt-20 md:-mt-28 relative z-20 pb-24">
+      <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+        ${Object.values(BRANCHES).map(b=>`
+        <a href="#/${b.slug}" class="group card-hover relative rounded-3xl overflow-hidden bg-navy-950 text-white shadow-2xl focus-ring">
+          <div class="relative h-96">
+            <img src="${b.thumb}" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-80 transition duration-700" alt="">
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent"></div>
+          </div>
+          <div class="absolute inset-0 p-8 flex flex-col justify-end">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="font-mono text-xs text-white/80">OTVORENÉ · do 21:00</span>
+            </div>
+            <h2 class="font-display font-extrabold text-3xl md:text-4xl mb-2">${b.name}</h2>
+            <p class="text-white/70 text-sm mb-6">${b.address}</p>
+            <div class="flex items-center gap-6 font-mono text-sm text-white/80 mb-6">
+              <span class="flex items-center gap-1.5">${icon('layers','w-4 h-4 text-signal-400')}${b.stores.length} prevádzok</span>
+              <span class="flex items-center gap-1.5">${icon('clock','w-4 h-4 text-signal-400')}${b.hours}</span>
+            </div>
+            <span class="inline-flex items-center gap-2 self-start bg-signal-400 text-navy-950 font-display font-bold px-5 py-3 rounded-full group-hover:gap-3 transition-all">Vstúpiť do centra ${icon('chevron','w-4 h-4')}</span>
+          </div>
+        </a>`).join('')}
+      </div>
+    </section>
+  </div>`;
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+}
+
+/* ================= BRANCH HOME ================= */
+function renderBranch(b){
+  document.title = b.name;
+  const featured = b.stores.slice(0,10);
+  app.innerHTML = `
+  ${nav(b,'')}
+  ${liveBoard(b)}
+  <section class="relative h-[40vh] min-h-[440px] flex items-end overflow-hidden">
+    <img src="${b.hero}" class="absolute inset-0 w-full h-full object-cover" alt="">
+    <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/50 to-navy-950/10"></div>
+    <div class="relative max-w-7xl mx-auto px-4 md:px-8 pb-14 w-full text-white">
+      <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl reveal">${b.name}</h1>
+      <p class="mt-4 max-w-lg text-white/75 reveal">Nakupovanie, gastronómia, služby, kino a podujatia na jednom mieste v ${b.city==='Skalica'?'Skalici':'Prešove'}.</p>
+      <div class="mt-8 flex flex-wrap gap-3 reveal">
+        <a href="#/${b.slug}/prevadzky" class="bg-signal-400 text-navy-950 font-display font-bold px-5 py-3 rounded-full flex items-center gap-2">${icon('search','w-4 h-4')} Nájsť obchod</a>
+        <a href="#/${b.slug}/mapa" class="bg-white/10 backdrop-blur border border-white/20 font-display font-semibold px-5 py-3 rounded-full flex items-center gap-2">${icon('pin','w-4 h-4')} Mapa centra</a>
+        <a href="#/${b.slug}/kino" class="bg-white/10 backdrop-blur border border-white/20 font-display font-semibold px-5 py-3 rounded-full flex items-center gap-2">${icon('ticket','w-4 h-4')} Kino</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 md:px-8 py-6 -mt-8 relative z-10 reveal">
+    <div class="bg-white rounded-2xl shadow-xl border border-line2 p-3 flex flex-wrap gap-2 overflow-x-auto no-scrollbar">
+      ${CATS.map(([k,l])=>`<a href="#/${b.slug}/prevadzky" onclick="STATE.cat='${k}'" class="chip shrink-0 flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium hover:border-navy-700 transition">${icon(k,'w-4 h-4')}${l}</a>`).join('')}
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 md:px-8 py-10">
+    <div class="flex items-end justify-between mb-6 reveal">
+      <div>
+        <p class="font-mono text-xs tracking-widest text-navy-600 mb-1">OBCHODY A SLUŽBY</p>
+        <h2 class="font-display font-extrabold text-2xl md:text-3xl">Vyberte si z ${b.stores.length} prevádzok</h2>
+      </div>
+      <a href="#/${b.slug}/prevadzky" class="hidden sm:flex items-center gap-1 text-navy-700 font-semibold text-sm hover:gap-2 transition-all">Všetky obchody ${icon('chevron','w-4 h-4')}</a>
+    </div>
+    <div class="flex gap-4 overflow-x-auto no-scrollbar pb-2 reveal">
+      ${featured.map(s=>storeCard(b,s,true)).join('')}
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 md:px-8 py-10">
+    <div class="grid lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 bg-navy-950 text-white rounded-3xl p-8 md:p-10 flex flex-col justify-between reveal overflow-hidden relative">
+        <img src="${ph(b.slug+'-map-teaser',900,700)}" class="absolute inset-0 w-full h-full object-cover opacity-20" alt="">
+        <div class="relative">
+          <p class="font-mono text-xs text-signal-400 tracking-widest mb-2">${icon('pin','w-4 h-4 inline mr-1')}NAVIGÁCIA V CENTRE</p>
+          <h3 class="font-display font-extrabold text-2xl md:text-3xl max-w-md">Neviete kde nájsť obľúbený obchod? Mapa centra vás tam dovedie za pár sekúnd.</h3>
+        </div>
+        <a href="#/${b.slug}/mapa" class="relative mt-8 inline-flex w-fit items-center gap-2 bg-signal-400 text-navy-950 font-display font-bold px-5 py-3 rounded-full">Otvoriť mapu centra ${icon('chevron','w-4 h-4')}</a>
+      </div>
+      <div class="bg-white rounded-3xl p-8 border border-line2 flex flex-col justify-between reveal">
+        <div>
+          <p class="font-mono text-xs text-navy-600 tracking-widest mb-2">${icon('ticket','w-4 h-4 inline mr-1')}CINEMAX</p>
+          <h3 class="font-display font-extrabold text-2xl mb-4">Práve v kine</h3>
+          <div class="flex items-center gap-3">
+            <img src="${FILMS[0].img}" class="w-16 h-20 object-cover rounded-lg" alt="">
+            <div>
+              <p class="font-display font-bold leading-tight">${FILMS[0].t}</p>
+              <p class="text-xs text-slate2">${FILMS[0].genre}</p>
+              <p class="font-mono text-sm text-navy-700 mt-1">${FILMS[0].times.join(' · ')}</p>
+            </div>
+          </div>
+        </div>
+        <a href="#/${b.slug}/kino" class="mt-6 inline-flex items-center gap-1 text-navy-700 font-semibold text-sm">Program kina ${icon('chevron','w-4 h-4')}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 md:px-8 py-10">
+    <div class="flex items-end justify-between mb-6 reveal">
+      <div>
+        <p class="font-mono text-xs tracking-widest text-navy-600 mb-1">AKTUÁLNE</p>
+        <h2 class="font-display font-extrabold text-2xl md:text-3xl">Akcie a podujatia</h2>
+      </div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="reveal">
+        <p class="text-xs font-semibold text-slate2 uppercase tracking-wide mb-3">Akcie a zľavy</p>
+        <div class="flex flex-col gap-3">${b.promo.slice(0,2).map(p=>promoCard(p,true)).join('')}</div>
+        <a href="#/${b.slug}/akcie-a-zlavy" class="mt-3 inline-flex items-center gap-1 text-navy-700 font-semibold text-sm">Všetky akcie ${icon('chevron','w-4 h-4')}</a>
+      </div>
+      <div class="reveal">
+        <p class="text-xs font-semibold text-slate2 uppercase tracking-wide mb-3">Podujatia</p>
+        <div class="flex flex-col gap-3">${b.events.slice(0,2).map(e=>eventCard(e,true)).join('')}</div>
+        <a href="#/${b.slug}/podujatia" class="mt-3 inline-flex items-center gap-1 text-navy-700 font-semibold text-sm">Všetky podujatia ${icon('chevron','w-4 h-4')}</a>
+      </div>
+    </div>
+  </section>
+  ${footer(b)}
+  <dialog id="storeModal"></dialog>
+  `;
+  setActiveHomeReveal();
+}
+function setActiveHomeReveal(){ requestAnimationFrame(()=>document.querySelectorAll('.reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),i*50))); }
+
+/* ---------- CARDS ---------- */
+function storeCard(b,s,wide){
+  return `
+  <button onclick="openStore('${b.slug}','${encodeURIComponent(s.n)}')" class="text-left shrink-0 ${wide?'w-56':'w-full'} bg-white rounded-2xl border border-line2 overflow-hidden card-hover focus-ring">
+    <div class="h-28 bg-navy-900 relative overflow-hidden">
+      <img src="${ph(b.slug+s.n,400,220)}" class="w-full h-full object-cover opacity-90" alt="">
+      <span class="absolute top-2 left-2 bg-white/90 text-navy-900 text-[10px] font-mono px-2 py-1 rounded-full flex items-center gap-1">${icon(s.c,'w-3 h-3')}${CATNAME[s.c]}</span>
+    </div>
+    <div class="p-4">
+      <p class="font-display font-bold leading-tight">${s.n}</p>
+      <p class="text-xs text-slate2 mt-1 flex items-center gap-1">${icon('clock','w-3.5 h-3.5')}${s.h}</p>
+      <p class="text-xs text-slate2 mt-0.5 flex items-center gap-1">${icon('pin','w-3.5 h-3.5')}${s.f}</p>
+    </div>
+  </button>`;
+}
+function promoCard(p,compact){
+  return `
+  <div class="flex gap-4 bg-white rounded-2xl border border-line2 p-3 card-hover">
+    <img src="${p.img}" class="w-24 h-24 object-cover rounded-xl shrink-0" alt="">
+    <div class="py-1">
+      <span class="text-[10px] font-mono uppercase tracking-wide text-navy-600 bg-navy-900/5 px-2 py-0.5 rounded-full">${p.cat}</span>
+      <p class="font-display font-bold leading-snug mt-1.5">${p.title}</p>
+      <p class="text-xs text-slate2 mt-1">${p.store} · ${p.from}${p.to!=='—'?' – '+p.to:''}</p>
+    </div>
+  </div>`;
+}
+function eventCard(e){
+  return `
+  <div class="flex gap-4 bg-white rounded-2xl border border-line2 p-3 card-hover">
+    <img src="${e.img}" class="w-24 h-24 object-cover rounded-xl shrink-0" alt="">
+    <div class="py-1">
+      <p class="font-display font-bold leading-snug">${e.title}</p>
+      <p class="text-xs text-slate2 mt-1 flex items-center gap-1">${icon('calendar','w-3.5 h-3.5')}${e.date} · ${e.time}</p>
+      <p class="text-xs text-slate2 mt-0.5 flex items-center gap-1">${icon('pin','w-3.5 h-3.5')}${e.place}</p>
+    </div>
+  </div>`;
+}
+
+/* ================= STORES LISTING ================= */
+function renderStores(b){
+  document.title = 'Obchody a služby — '+b.name;
+  app.innerHTML = `
+  ${nav(b,'prevadzky')}
+  ${liveBoard(b)}
+  <section class="max-w-7xl mx-auto px-4 md:px-8 py-10">
+    <p class="font-mono text-xs tracking-widest text-navy-600 mb-1 reveal">${b.name.toUpperCase()}</p>
+    <h1 class="font-display font-extrabold text-3xl md:text-4xl mb-8 reveal">Obchody a služby</h1>
+    <div class="grid lg:grid-cols-[280px_1fr] gap-8">
+      <aside class="lg:sticky lg:top-20 h-fit space-y-6 reveal">
+        <div class="bg-white rounded-2xl border border-line2 p-4">
+          <label class="text-xs font-semibold text-slate2 uppercase tracking-wide flex items-center gap-1 mb-2">${icon('search','w-3.5 h-3.5')}Hľadať</label>
+          <input id="qInput" type="text" placeholder="Názov obchodu…" value="${STATE.q}" class="w-full border border-line2 rounded-xl px-3 py-2 text-sm focus-ring focus:border-navy-700 outline-none">
+        </div>
+        <div class="bg-white rounded-2xl border border-line2 p-4">
+          <p class="text-xs font-semibold text-slate2 uppercase tracking-wide flex items-center gap-1 mb-3">${icon('layers','w-3.5 h-3.5')}Poschodie</p>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="setFloor('all')" class="chip ${STATE.floor==='all'?'active':''} px-3 py-1.5 rounded-full text-xs">Všetky</button>
+            ${b.floors.map(f=>`<button onclick="setFloor('${f}')" class="chip ${STATE.floor===f?'active':''} px-3 py-1.5 rounded-full text-xs">${f}</button>`).join('')}
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-line2 p-4">
+          <p class="text-xs font-semibold text-slate2 uppercase tracking-wide flex items-center gap-1 mb-3">${icon('filter','w-3.5 h-3.5')}Kategórie</p>
+          <div class="flex flex-col gap-1 max-h-96 overflow-y-auto pr-1">
+            <button onclick="setCat('all')" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-left ${STATE.cat==='all'?'bg-navy-900 text-white':'hover:bg-paper'}">${icon('layers','w-4 h-4')}Všetky kategórie</button>
+            ${CATS.map(([k,l])=>`<button onclick="setCat('${k}')" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-left ${STATE.cat===k?'bg-navy-900 text-white':'hover:bg-paper'}">${icon(k,'w-4 h-4')}${l}</button>`).join('')}
+          </div>
+        </div>
+      </aside>
+      <div>
+        <div id="resultsMeta" class="text-sm text-slate2 mb-4 reveal"></div>
+        <div id="storeGrid" class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+      </div>
+    </div>
+  </section>
+  ${footer(b)}
+  <dialog id="storeModal"></dialog>
+  `;
+  document.getElementById('qInput').addEventListener('input', e=>{STATE.q=e.target.value; paintStores(b);});
+  window.CURBRANCH = b;
+  paintStores(b);
+  requestAnimationFrame(()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in')));
+}
+function setFloor(f){STATE.floor=f; renderStores(window.CURBRANCH);}
+function setCat(c){STATE.cat=c; renderStores(window.CURBRANCH);}
+function paintStores(b){
+  let list = b.stores.filter(s=>
+    (STATE.cat==='all'||s.c===STATE.cat) &&
+    (STATE.floor==='all'||s.f===STATE.floor) &&
+    (STATE.q===''||s.n.toLowerCase().includes(STATE.q.toLowerCase()))
+  );
+  document.getElementById('resultsMeta').textContent = `${list.length} ${list.length===1?'prevádzka':'prevádzok'}`;
+  const grid = document.getElementById('storeGrid');
+  if(list.length===0){
+    grid.innerHTML = `<div class="col-span-full text-center py-16 border border-dashed border-line2 rounded-2xl">
+      <p class="font-display font-bold text-lg mb-1">Žiadny obchod nezodpovedá filtru</p>
+      <p class="text-sm text-slate2">Skúste zmeniť kategóriu, poschodie alebo hľadaný výraz.</p>
+    </div>`;
+    return;
+  }
+  grid.innerHTML = list.map(s=>storeCard(b,s,false)).join('');
+}
+
+/* ---------- STORE MODAL ---------- */
+function openStore(slug, encName){
+  const b = BRANCHES[slug];
+  const name = decodeURIComponent(encName);
+  const s = b.stores.find(x=>x.n===name);
+  if(!s) return;
+  const promo = b.promo.find(p=>p.store===s.n);
+  const dlg = document.getElementById('storeModal');
+  dlg.innerHTML = `
+  <div class="fixed inset-0 flex items-end sm:items-center justify-center z-50 p-0 sm:p-6" onclick="if(event.target===this)document.getElementById('storeModal').close()">
+    <div class="bg-white rounded-t-3xl sm:rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+      <div class="relative h-48">
+        <img src="${ph(slug+s.n,700,400)}" class="w-full h-full object-cover" alt="">
+        <button onclick="document.getElementById('storeModal').close()" class="absolute top-3 right-3 bg-white/90 p-2 rounded-full focus-ring">${icon('close','w-5 h-5')}</button>
+        <span class="absolute bottom-3 left-3 bg-white/95 text-navy-900 text-xs font-mono px-3 py-1.5 rounded-full flex items-center gap-1.5">${icon(s.c,'w-3.5 h-3.5')}${CATNAME[s.c]}</span>
+      </div>
+      <div class="p-6">
+        <h3 class="font-display font-extrabold text-2xl mb-1">${s.n}</h3>
+        <p class="text-slate2 text-sm mb-5">${b.name}</p>
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="bg-paper rounded-xl p-4">
+            <p class="text-xs text-slate2 flex items-center gap-1 mb-1">${icon('clock','w-3.5 h-3.5')}Otváracie hodiny</p>
+            <p class="font-mono font-semibold">${s.h}</p>
+          </div>
+          <div class="bg-paper rounded-xl p-4">
+            <p class="text-xs text-slate2 flex items-center gap-1 mb-1">${icon('pin','w-3.5 h-3.5')}Poschodie</p>
+            <p class="font-mono font-semibold">${s.f}</p>
+          </div>
+        </div>
+        ${promo?`<div class="bg-signal-400/15 border border-signal-400/40 rounded-xl p-4 mb-6">
+          <p class="text-xs font-semibold text-navy-900 uppercase tracking-wide mb-1">Aktuálna akcia</p>
+          <p class="font-display font-bold">${promo.title}</p>
+        </div>`:''}
+        <a href="#/${slug}/mapa" onclick="document.getElementById('storeModal').close()" class="w-full inline-flex justify-center items-center gap-2 bg-navy-900 text-white font-display font-bold py-3 rounded-full">${icon('pin','w-4 h-4')} Zobraziť v mape centra</a>
+      </div>
+    </div>
+  </div>`;
+  dlg.showModal();
+}
+
+/* ================= PROMOTIONS ================= */
+function renderPromo(b){
+  document.title = 'Akcie a zľavy — '+b.name;
+  app.innerHTML = `
+  ${nav(b,'akcie-a-zlavy')}
+  ${liveBoard(b)}
+  <section class="max-w-7xl mx-auto px-4 md:px-8 py-10">
+    <p class="font-mono text-xs tracking-widest text-navy-600 mb-1 reveal">${b.name.toUpperCase()}</p>
+    <h1 class="font-display font-extrabold text-3xl md:text-4xl mb-2 reveal">Akcie a zľavy</h1>
+    <p class="text-slate2 mb-8 reveal">Aktuálne ponuky priamo od obchodov a prevádzok v centre.</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      ${b.promo.map(p=>`
+      <div class="bg-white rounded-2xl border border-line2 overflow-hidden card-hover reveal">
+        <div class="h-44 relative">
+          <img src="${p.img}" class="w-full h-full object-cover" alt="">
+          <span class="absolute top-3 left-3 bg-white/95 text-navy-900 text-[10px] font-mono uppercase tracking-wide px-2.5 py-1 rounded-full">${p.cat}</span>
+        </div>
+        <div class="p-5">
+          <p class="font-display font-bold leading-snug mb-2">${p.title}</p>
+          <p class="text-sm text-slate2 mb-3">${p.store}</p>
+          <p class="font-mono text-xs text-navy-700 flex items-center gap-1.5">${icon('calendar','w-3.5 h-3.5')}${p.from}${p.to!=='—'?' – '+p.to:' · celoročne'}</p>
+        </div>
+      </div>`).join('')}
+    </div>
+  </section>
+  ${footer(b)}
+  `;
+  requestAnimationFrame(()=>document.querySelectorAll('.reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),i*40)));
+}
+
+/* ================= EVENTS ================= */
+function renderEvents(b){
+  document.title = 'Podujatia — '+b.name;
+  app.innerHTML = `
+  ${nav(b,'podujatia')}
+  ${liveBoard(b)}
+  <section class="max-w-4xl mx-auto px-4 md:px-8 py-10">
+    <p class="font-mono text-xs tracking-widest text-navy-600 mb-1 reveal">${b.name.toUpperCase()}</p>
+    <h1 class="font-display font-extrabold text-3xl md:text-4xl mb-2 reveal">MAX podujatia</h1>
+    <p class="text-slate2 mb-10 reveal">Zážitky, ktoré robia z nákupného centra živé miesto stretávania.</p>
+    <div class="relative pl-8 md:pl-10">
+      <div class="absolute left-3 md:left-4 top-2 bottom-2 w-px bg-line2"></div>
+      ${b.events.map((e,i)=>`
+      <div class="relative mb-10 reveal">
+        <span class="absolute -left-8 md:-left-10 top-1 w-6 h-6 rounded-full bg-navy-900 text-signal-400 font-mono text-xs flex items-center justify-center font-bold">${i+1}</span>
+        <div class="grid sm:grid-cols-[160px_1fr] gap-5 bg-white rounded-2xl border border-line2 overflow-hidden card-hover">
+          <img src="${e.img}" class="w-full h-40 sm:h-full object-cover" alt="">
+          <div class="p-5">
+            <p class="font-mono text-xs text-navy-700 flex items-center gap-1.5 mb-2">${icon('calendar','w-3.5 h-3.5')}${e.date} · ${e.time}</p>
+            <h3 class="font-display font-bold text-xl mb-2">${e.title}</h3>
+            <p class="text-sm text-slate2 flex items-center gap-1.5">${icon('pin','w-3.5 h-3.5')}${e.place}</p>
+          </div>
+        </div>
+      </div>`).join('')}
+    </div>
+  </section>
+  ${footer(b)}
+  `;
+  requestAnimationFrame(()=>document.querySelectorAll('.reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),i*60)));
+}
+
+/* ================= CINEMA ================= */
+function renderCinema(b){
+  document.title = 'Kino — '+b.name;
+  app.innerHTML = `
+  ${nav(b,'kino')}
+  ${liveBoard(b)}
+  <section class="bg-navy-950 text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 py-14 grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal">
+        <p class="font-mono text-xs text-signal-400 tracking-widest mb-3">CINEMAX · ${b.name.toUpperCase()}</p>
+        <h1 class="font-display font-extrabold text-4xl md:text-5xl mb-4">Kino, na ktoré sa oplatí prísť skôr.</h1>
+        <p class="text-white/70 mb-6">Aktuálne premietané filmy a najbližšie premiéry priamo v ${b.city==='Skalica'?'Skalici':'Prešove'}.</p>
+        <div class="flex items-center gap-3">
+          <img src="${FILMS[0].img}" class="w-20 h-28 object-cover rounded-lg" alt="">
+          <div>
+            <p class="font-display font-bold text-lg">${FILMS[0].t}</p>
+            <p class="text-sm text-white/60">${FILMS[0].genre} · ${FILMS[0].dur}</p>
+            <p class="font-mono text-signal-400 mt-1">${FILMS[0].times.join(' · ')}</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <img src="${ph(b.slug+'-cinema',900,600)}" class="rounded-3xl w-full h-72 object-cover" alt="">
+      </div>
+    </div>
+  </section>
+  <section class="max-w-7xl mx-auto px-4 md:px-8 py-12">
+    <h2 class="font-display font-extrabold text-2xl md:text-3xl mb-6 reveal">Program tento týždeň</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      ${FILMS.map(f=>`
+      <div class="bg-white rounded-2xl border border-line2 overflow-hidden card-hover reveal">
+        <img src="${f.img}" class="w-full h-56 object-cover" alt="">
+        <div class="p-4">
+          <p class="font-display font-bold leading-tight mb-1">${f.t}</p>
+          <p class="text-xs text-slate2 mb-3">${f.genre} · ${f.dur}</p>
+          <div class="flex flex-wrap gap-1.5">
+            ${f.times.map(t=>`<span class="font-mono text-xs bg-paper border border-line2 px-2 py-1 rounded-lg">${t}</span>`).join('')}
+          </div>
+        </div>
+      </div>`).join('')}
+    </div>
+  </section>
+  ${footer(b)}
+  `;
+  requestAnimationFrame(()=>document.querySelectorAll('.reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),i*50)));
+}
+
+/* ================= MAP ================= */
+const ZONECOLOR = {
+  moda:'#c9a13b', resto:'#2f8f6e', sluzby:'#7c86b0', sport:'#3d6bd1',
+  potraviny:'#5aa552', drogeria:'#b177c9', home:'#8a6d4f', elektro:'#5b6280',
+  bank:'#22335f', lekaren:'#d1495b', hracky:'#e08e2b', sperky:'#b08900',
+  knihy:'#4a6fa5', hair:'#c46a9c', noviny:'#6e6e6e', zabava:'#2fa5a5',
+  kino:'#0c1548', ine:'#9098b3'
+};
+function renderMap(b){
+  document.title = 'Mapa centra — '+b.name;
+  const floor = STATE.floor==='all' ? b.floors[b.floors.length>2?1:0] : STATE.floor;
+  app.innerHTML = `
+  ${nav(b,'mapa')}
+  <div class="bg-navy-950 text-white font-mono text-xs sm:text-sm">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 flex items-center gap-6 py-3 overflow-x-auto no-scrollbar">
+      <span class="flex items-center gap-2 shrink-0">${icon('layers','w-4 h-4 text-signal-400')} SMEROVÝ PLÁN CENTRA</span>
+      <span class="text-white/40 shrink-0">·</span>
+      <span class="shrink-0">${b.stores.length} prevádzok na ${b.floors.length} podlažiach</span>
+    </div>
+  </div>
+  <section class="max-w-7xl mx-auto px-4 md:px-8 py-8">
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-6 reveal">
+      <div>
+        <p class="font-mono text-xs tracking-widest text-navy-600 mb-1">${b.name.toUpperCase()}</p>
+        <h1 class="font-display font-extrabold text-3xl md:text-4xl">Mapa centra</h1>
+      </div>
+      <div class="flex gap-2 bg-white rounded-full border border-line2 p-1.5">
+        ${b.floors.map(f=>`<button onclick="setMapFloor('${b.slug}','${f}')" class="px-4 py-2 rounded-full text-sm font-semibold transition ${floor===f?'bg-navy-900 text-white':'text-slate2 hover:bg-paper'}">${f}</button>`).join('')}
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-[1fr_280px] gap-6">
+      <div class="bg-white rounded-3xl border border-line2 p-4 md:p-6 reveal overflow-hidden">
+        <div id="mapSvgWrap"></div>
+      </div>
+      <aside class="reveal space-y-4">
+        <div class="bg-white rounded-2xl border border-line2 p-4">
+          <p class="text-xs font-semibold text-slate2 uppercase tracking-wide mb-3">Legenda kategórií</p>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            ${Object.entries(ZONECOLOR).slice(0,10).map(([k,c])=>`<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm" style="background:${c}"></span>${CATNAME[k]}</span>`).join('')}
+          </div>
+        </div>
+        <div class="bg-navy-950 text-white rounded-2xl p-4">
+          <p class="text-xs text-white/60 mb-2">Tip</p>
+          <p class="text-sm">Kliknite na jednotku v pláne pre detail prevádzky, otváracie hodiny a aktuálne akcie.</p>
+        </div>
+        <a href="#/${b.slug}/prevadzky" class="w-full inline-flex justify-center items-center gap-2 bg-signal-400 text-navy-950 font-display font-bold py-3 rounded-full">${icon('search','w-4 h-4')} Vyhľadať v zozname</a>
+      </aside>
+    </div>
+  </section>
+  ${footer(b)}
+  <dialog id="storeModal"></dialog>
+  `;
+  window.CURBRANCH = b;
+  paintMap(b, floor);
+  requestAnimationFrame(()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in')));
+}
+function setMapFloor(slug, f){ STATE.floor = f; renderMap(BRANCHES[slug]); }
+function paintMap(b, floor){
+  const stores = b.stores.filter(s=>s.f===floor);
+  const cols = stores.length > 24 ? 8 : 6;
+  const cw = 118, ch = 74, gx = 10, gy = 10, padX = 20, padY = 20;
+  const rows = Math.ceil(stores.length/cols);
+  const w = cols*(cw+gx)+padX*2;
+  const h = rows*(ch+gy)+padY*2;
+  let svg = `<svg viewBox="0 0 ${w} ${h}" class="w-full h-auto" role="img" aria-label="Schéma podlažia ${floor}">`;
+  svg += `<rect x="1" y="1" width="${w-2}" height="${h-2}" rx="18" fill="#f5f6fb" stroke="#e3e6f1"/>`;
+  stores.forEach((s,i)=>{
+    const col = i%cols, row = Math.floor(i/cols);
+    const x = padX + col*(cw+gx), y = padY + row*(ch+gy);
+    const color = ZONECOLOR[s.c]||'#9098b3';
+    svg += `<g style="cursor:pointer" onclick="openStore('${b.slug}','${encodeURIComponent(s.n)}')">
+      <rect x="${x}" y="${y}" width="${cw}" height="${ch}" rx="10" fill="${color}" opacity="0.14"/>
+      <rect x="${x}" y="${y}" width="${cw}" height="${ch}" rx="10" fill="none" stroke="${color}" stroke-width="1.5"/>
+      <rect x="${x}" y="${y}" width="6" height="${ch}" rx="3" fill="${color}"/>
+      <text x="${x+14}" y="${y+ch/2-4}" font-size="11" font-family="Plus Jakarta Sans, sans-serif" font-weight="700" fill="#0e1330">${escXml(truncate(s.n,14))}</text>
+      <text x="${x+14}" y="${y+ch/2+14}" font-size="9.5" font-family="IBM Plex Mono, monospace" fill="#5b6280">${s.h.split('–')[0]}</text>
+    </g>`;
+  });
+  svg += `</svg>`;
+  document.getElementById('mapSvgWrap').innerHTML = svg || '<p class="text-sm text-slate2 p-6">Na tomto podlaží momentálne nie sú evidované prevádzky.</p>';
+}
+function truncate(s,n){return s.length>n? s.slice(0,n-1)+'…' : s;}
+function escXml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+/* ================= CONTACT ================= */
+function renderContact(b){
+  document.title = 'Kontakt — '+b.name;
+  app.innerHTML = `
+  ${nav(b,'o-nas')}
+  ${liveBoard(b)}
+  <section class="max-w-5xl mx-auto px-4 md:px-8 py-12">
+    <p class="font-mono text-xs tracking-widest text-navy-600 mb-1 reveal">${b.name.toUpperCase()}</p>
+    <h1 class="font-display font-extrabold text-3xl md:text-4xl mb-8 reveal">O nás a kontakt</h1>
+    <div class="grid md:grid-cols-2 gap-6 mb-10">
+      <div class="bg-navy-950 text-white rounded-3xl p-8 reveal">
+        <p class="font-mono text-xs text-signal-400 tracking-widest mb-3">ADRESA</p>
+        <p class="font-display font-bold text-2xl mb-1">${b.name}</p>
+        <p class="text-white/70">${b.address}</p>
+        <p class="font-mono text-sm text-white/60 mt-4 flex items-center gap-2">${icon('clock','w-4 h-4 text-signal-400')}Otvorené denne ${b.hours}</p>
+      </div>
+      <div class="bg-white rounded-3xl border border-line2 p-8 reveal">
+        <p class="font-mono text-xs text-navy-600 tracking-widest mb-3">NAPÍŠTE NÁM</p>
+        <p class="text-slate2 mb-4">Pre otázky ohľadom prenájmu priestorov, spolupráce alebo podujatí nás kontaktujte priamo.</p>
+        <a href="mailto:info@ncmax.sk" class="inline-flex items-center gap-2 font-display font-bold text-navy-900">${icon('mail','w-4 h-4')} info@ncmax.sk</a>
+      </div>
+    </div>
+    <h2 class="font-display font-extrabold text-xl mb-4 reveal">Manažment centra</h2>
+    <div class="grid sm:grid-cols-2 gap-4">
+      ${b.manager.map(m=>`
+      <div class="bg-white rounded-2xl border border-line2 p-5 reveal">
+        <p class="font-display font-bold">${m.name}</p>
+        <p class="text-sm text-slate2 mb-3">${m.role}</p>
+        <p class="text-sm flex items-center gap-2 mb-1">${icon('phone','w-4 h-4 text-navy-600')}${m.phone}</p>
+        <p class="text-sm flex items-center gap-2">${icon('mail','w-4 h-4 text-navy-600')}${m.mail}</p>
+      </div>`).join('')}
+    </div>
+  </section>
+  ${footer(b)}
+  `;
+  requestAnimationFrame(()=>document.querySelectorAll('.reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),i*60)));
+}
+
+</script>
+</body>
+</html>
