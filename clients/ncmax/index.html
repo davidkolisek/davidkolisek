@@ -268,7 +268,7 @@ const BRANCHES = {
   address:'Mallého 55, 909 01 Skalica',
   hours:'09:00 – 21:00', floors:['Prízemie','I. Poschodie'],
   stores:SKALICA_STORES, promo:SKALICA_PROMO, events:SKALICA_EVENTS,
-  hero:ph('skalica-hero',1600,900), thumb:ph('skalica-thumb',900,700),
+  hero:ph('skalica-hero',1600,900), thumb:'./max-skalica.jpg',
   manager:[
     {name:'Lenka Šebelová', role:'Marketingovo-prevádzkový manažér centra', phone:'+421 34 6973 401', mail:'l.sebelova@slovakiamax.sk'},
     {name:'Jaroslav Kosík', role:'Technicko-prevádzkový manažér centra', phone:'+421 34 6973 401', mail:'j.kosik@slovakiamax.sk'}
@@ -279,7 +279,7 @@ const BRANCHES = {
   address:'Vihorlatská 2A, 080 01 Prešov',
   hours:'09:00 – 21:00', floors:['Suterén','Prízemie','I. Poschodie','II. Poschodie'],
   stores:PRESOV_STORES, promo:PRESOV_PROMO, events:PRESOV_EVENTS,
-  hero:ph('presov-hero',1600,900), thumb:ph('presov-thumb',900,700),
+  hero:ph('presov-hero',1600,900), thumb:'./max-presov.jpg',
   manager:[
     {name:'Recepcia centra', role:'Prevádzkový manažment MAX Prešov', phone:'+421 51 000 0000', mail:'presov@slovakiamax.sk'}
   ]
@@ -422,7 +422,7 @@ function renderHome(){
       <span class="hidden sm:block text-white/70 text-sm font-medium">Nákupné centrá</span>
     </header>
     <section class="relative h-[60vh] min-h-[560px] flex items-end overflow-hidden">
-      <img src="${ph('max-hero-wide',1920,1200)}" class="absolute inset-0 w-full h-full object-cover" alt="">
+      <img src="https://scontent-waw2-1.xx.fbcdn.net/v/t39.30808-6/721110499_1424381356398878_3941335520486915968_n.jpg?stp=dst-jpg_tt6&cstp=mx1640x624&ctp=s1640x624&_nc_cat=111&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=xWL7xpHEnCsQ7kNvwHofHQ1&_nc_oc=AdpS2CT4_Iiz1VxeRkkJO1JF0FbWfB6TPG71n0alcVeBWVm6_BgdjaBBmHX0DbtFQCs&_nc_zt=23&_nc_ht=scontent-waw2-1.xx&_nc_gid=GJLc8-FbJ-SPbzEB0tMMmQ&_nc_ss=7b2a8&oh=00_AQDt7OuwV9prDlfA6HUtTNGuzi23M3EepmQ7RTuje1EFTA&oe=6A5A7810" class="absolute inset-0 w-full h-full object-cover" alt="">
       <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/60 to-navy-950/20"></div>
       <div class="absolute inset-0 bg-gradient-to-r from-navy-950/70 via-transparent to-transparent"></div>
       <div class="relative max-w-7xl mx-auto px-4 md:px-8 pb-16 md:pb-24 w-full text-white">
