@@ -1,0 +1,783 @@
+<!DOCTYPE html><html lang="en" style="--background: #f8fafc; --foreground: #0f172a; --primary: #0284c7; --primary-foreground: #ffffff; --secondary: #0f172a; --secondary-foreground: #ffffff; --tertiary: #10b981; --muted: #E1E3E7; --muted-foreground: #787D89; --accent: #D1E7F4; --accent-foreground: #0f172a; --card: #ffffff; --card-foreground: #0f172a; --destructive: #EF4444; --border: #e2e8f0; --input: #cbd5e1; --ring: #0ea5e9; --radius: 0.75rem; --font-sans: Inter, sans-serif; --font-heading: Inter, sans-serif; --font-mono: JetBrains Mono, monospace; --shadow-offset-x: 0; --shadow-offset-y: 10; --shadow-blur: 30; --shadow-spread: -8; --shadow-color: rgba(15, 23, 42, 0.12);"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Poppins:wght@100..900&amp;family=Fira+Code:wght@300..700&amp;family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    <style type="text/tailwindcss">
+      @import "tailwindcss";
+      @theme inline {
+        --color-background: var(--background);
+        --color-foreground: var(--foreground);
+        --color-primary: var(--primary);
+        --color-primary-foreground: var(--primary-foreground);
+        --color-secondary: var(--secondary);
+        --color-secondary-foreground: var(--secondary-foreground);
+        --color-tertiary: var(--tertiary);
+        --color-muted: var(--muted);
+        --color-muted-foreground: var(--muted-foreground);
+        --color-accent: var(--accent);
+        --color-destructive: var(--destructive);
+        --color-card: var(--card);
+        --color-card-foreground: var(--card-foreground);
+        --color-border: var(--border);
+        --color-input: var(--input);
+        --color-ring: var(--ring);
+        --radius-sm: calc(var(--radius) - 4px);
+        --radius-md: calc(var(--radius) - 2px);
+        --radius-lg: var(--radius);
+        --font-family-sans: var(--font-sans);
+        --font-family-heading: var(--font-heading);
+        --font-family-mono: var(--font-mono);
+      }
+      :root { --background: #f8fafc;
+        --foreground: #0f172a;
+        --primary: #0284c7;
+        --primary-foreground: #ffffff;
+        --secondary: #0f172a;
+        --secondary-foreground: #ffffff;
+        --tertiary: #10b981;
+        --muted: #E1E3E7;
+        --muted-foreground: #787D89;
+        --accent: #D1E7F4;
+        --accent-foreground: #0f172a;
+        --card: #ffffff;
+        --card-foreground: #0f172a;
+        --destructive: #EF4444;
+        --border: #e2e8f0;
+        --input: #cbd5e1;
+        --ring: #0ea5e9;
+        --radius: 0.75rem;
+        --font-sans: Inter, sans-serif;
+        --font-heading: Inter, sans-serif;
+        --font-mono: JetBrains Mono, monospace;
+        --shadow-offset-x: 0;
+        --shadow-offset-y: 10;
+        --shadow-blur: 30;
+        --shadow-spread: -8;
+        --shadow-color: rgba(15, 23, 42, 0.12); }
+    </style>
+    <style>
+      .brand-gradient { background-image: linear-gradient(135deg, var(--primary), var(--accent)); }
+      .shadow-theme {
+        box-shadow:
+          calc(var(--shadow-offset-x, 0) * 1px) calc(var(--shadow-offset-y, 10) * 1px)
+          calc(var(--shadow-blur, 30) * 1px) calc(var(--shadow-spread, -8) * 1px)
+          var(--shadow-color, rgba(15, 23, 42, 0.12));
+      }
+      .site-logo {
+        height: 52px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .site-logo--footer {
+        height: 56px;
+        background: #fff;
+        border-radius: 0.5rem;
+        padding: 4px 8px;
+      }
+    </style>
+  
+
+
+<link id="google-font-Inter" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"></head>
+  <body>
+<div class="min-h-screen w-full bg-background flex flex-col relative font-sans text-foreground" style="">
+  <!-- Top Announcement Bar -->
+  <div class="bg-secondary text-secondary-foreground py-2 px-4 text-xs md:text-sm text-center font-medium border-b border-border/10" style="">
+    <span class="inline-flex items-center gap-2" style="">
+      <iconify-icon icon="lucide:map-pin" class="text-primary" style=""></iconify-icon>
+      Pôsobíme v Šamoríne, Bratislave a širšom okolí
+    </span>
+    <span class="mx-3 hidden md:inline" style="">|</span>
+    <span class="hidden md:inline-flex items-center gap-2" style="">
+      <iconify-icon icon="lucide:phone" class="text-primary" style=""></iconify-icon>
+      Zavolajte nám: +421 905 123 456
+    </span>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="bg-card/90 backdrop-blur-md sticky top-0 z-50 border-b border-border transition-all" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between" style="">
+      <!-- Logo / Brand -->
+      <a href="#" class="inline-flex items-center group">
+        <img src="./alubalsro-logo.webp" alt="ALUBAL – Zasklievanie balkónov a loggií" class="site-logo group-hover:scale-105 transition-transform" width="125" height="125">
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-muted-foreground" style="">
+        <a href="#sluzby" class="hover:text-primary transition-colors py-2" style="">Služby</a>
+        <a href="#preco-my" class="hover:text-primary transition-colors py-2" style="">Prečo Alubal</a>
+        <a href="#projekty" class="hover:text-primary transition-colors py-2" style="">Galéria realizácií</a>
+        <a href="#o-nas" class="hover:text-primary transition-colors py-2" style="">O nás</a>
+        <a href="#blog" class="hover:text-primary transition-colors py-2" style="">Užitočné tipy</a>
+        <a href="#kontakt" class="hover:text-primary transition-colors py-2" style="">Kontakt</a>
+      </nav>
+
+      <!-- Header CTAs -->
+      <div class="flex items-center gap-4" style="">
+        <a href="#kontakt" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-all shadow-sm hover:shadow" style="">
+          Nezáväzná cenová ponuka
+        </a>
+        <button class="lg:hidden p-2 text-secondary hover:bg-muted rounded-lg transition-colors" aria-label="Menu">
+          <iconify-icon icon="lucide:menu" class="text-2xl"></iconify-icon>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-[600px] md:min-h-[700px] flex items-center pt-16 pb-20 md:py-28 overflow-hidden bg-slate-950 text-white" style="background-image: linear-gradient(to right, rgba(15, 23, 42, 0.95) 30%, rgba(15, 23, 42, 0.8) 60%, rgba(15, 23, 42, 0.4) 100%), url('https://alubal.sk/images/design/bg-main.webp'); background-size: cover; background-position: center;">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-950/50 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Hero Text Content -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/20 text-primary-foreground border border-primary/30 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm">
+            <iconify-icon icon="lucide:star" class="text-sm text-primary"></iconify-icon>
+            27 rokov skúseností na trhu
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight text-white leading-tight">
+            Premenite svoj balkón na <span class="text-primary-foreground underline decoration-primary decoration-4 underline-offset-4" style="text-shadow: 0 2px 10px rgba(2,132,199,0.3);">oázu pokoja</span> za každého počasia
+          </h1>
+          <p class="text-lg text-slate-200 leading-relaxed max-w-xl" style="text-shadow: 0 1px 4px rgba(0,0,0,0.5);">
+            Profesionálne zasklievanie balkónov, zimné záhrady a hliníkové pergoly na mieru v Šamoríne a okolí. Chráňte svoj domov pred hlukom, prachom a chladom s certifikovaným riešením od Ladislava Barátha.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 pt-2">
+            <a href="#kontakt" class="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-base gap-2">
+              <iconify-icon icon="lucide:calculator" class="text-xl"></iconify-icon>
+              Získať kalkuláciu zadarmo
+            </a>
+            <a href="#sluzby" class="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white font-bold hover:bg-white/20 transition-all text-base gap-2">
+              Naše služby
+              <iconify-icon icon="lucide:arrow-right" class="text-lg"></iconify-icon>
+            </a>
+          </div>
+          <!-- Quick Trust Indicators -->
+          <div class="grid grid-cols-3 gap-6 pt-6 border-t border-white/10">
+            <div>
+              <div class="text-3xl font-heading font-black text-white">27+</div>
+              <div class="text-xs text-slate-300 font-medium uppercase tracking-wider">Rokov na trhu</div>
+            </div>
+            <div>
+              <div class="text-3xl font-heading font-black text-white">1000+</div>
+              <div class="text-xs text-slate-300 font-medium uppercase tracking-wider">Zrealizovaných</div>
+            </div>
+            <div>
+              <div class="text-3xl font-heading font-black text-white">500+</div>
+              <div class="text-xs text-slate-300 font-medium uppercase tracking-wider">Spokojných ľudí</div>
+            </div>
+          </div>
+        </div>
+        <!-- Right side is kept empty or for visual balance in large screens -->
+        <div class="hidden lg:block lg:col-span-5"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="sluzby" class="py-20 bg-background" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4" style="">
+        <span class="text-primary font-bold uppercase tracking-widest text-xs" style="">Čo ponúkame</span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-secondary" style="">Profesionálne systémy pre váš domov</h2>
+        <p class="text-muted-foreground text-lg" style="">
+          Zameriavame sa na prvotriedne spracovanie a hliníkové konštrukcie s dlhou životnosťou. Každý projekt navrhujeme presne na mieru vašim možnostiam a priestoru.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8" style="">
+        <!-- Service 1: Glazing -->
+        <div class="bg-slate-50 rounded-2xl overflow-hidden border border-border group hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col" style="">
+          <div class="relative h-56 overflow-hidden" style="">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/hero-balcony-1784043896034-a99j9ihtnqj.png" alt="Zasklievanie balkónov" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" style="">
+            <div class="absolute top-4 left-4 bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5 rounded-md uppercase tracking-wider" style="">
+              Najobľúbenejšie
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4" style="">
+            <div class="space-y-2" style="">
+              <h3 class="text-xl font-heading font-bold text-secondary" style="">Zasklievanie balkónov a lodžií</h3>
+              <p class="text-muted-foreground text-sm leading-relaxed" style="">
+                Rámové aj bezrámové otočné systémy, ktoré dokonale chránia pred vetrom, dažďom, hlukom a zároveň šetria náklady na vykurovanie.
+              </p>
+            </div>
+            <ul class="space-y-2 text-xs font-medium text-slate-600" style="">
+              <li class="flex items-center gap-2" style="">
+                <iconify-icon icon="lucide:check" class="text-primary text-base"></iconify-icon>
+                Zníženie hluku až o 50%
+              </li>
+              <li class="flex items-center gap-2" style="">
+                <iconify-icon icon="lucide:check" class="text-primary text-base"></iconify-icon>
+                Úspora energie v zimnom období
+              </li>
+            </ul>
+            <a href="#kontakt" class="inline-flex items-center justify-center py-3 px-4 rounded-lg border border-primary text-primary font-bold text-sm hover:bg-primary hover:text-primary-foreground transition-all gap-2" style="">
+              Mám záujem
+              <iconify-icon icon="lucide:arrow-right" class="text-base"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 2: Winter Gardens -->
+        <div class="bg-slate-50 rounded-2xl overflow-hidden border border-border group hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col" style="">
+          <div class="relative h-56 overflow-hidden" style="">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/service-wintergarden-1784043907902-ua85o2936jl.png" alt="Zimné záhrady" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" style="">
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4" style="">
+            <div class="space-y-2" style="">
+              <h3 class="text-xl font-heading font-bold text-secondary" style="">Zimné záhrady na mieru</h3>
+              <p class="text-muted-foreground text-sm leading-relaxed" style="">
+                Predĺžte si leto po celý rok. Navrhneme a zrealizujeme presklenú zimnú záhradu, ktorá sa stane novým obľúbeným centrom vášho domova.
+              </p>
+            </div>
+            <ul class="space-y-2 text-xs font-medium text-slate-600" style="">
+              <li class="flex items-center gap-2" style="">
+                <iconify-icon icon="lucide:check" class="text-primary text-base"></iconify-icon>
+                Vysokokvalitné hliníkové profily
+              </li>
+              <li class="flex items-center gap-2" style="">
+                <iconify-icon icon="lucide:check" class="text-primary text-base"></iconify-icon>
+                Bezpečnostné izolačné sklo
+              </li>
+            </ul>
+            <a href="#kontakt" class="inline-flex items-center justify-center py-3 px-4 rounded-lg border border-primary text-primary font-bold text-sm hover:bg-primary hover:text-primary-foreground transition-all gap-2" style="">
+              Mám záujem
+              <iconify-icon icon="lucide:arrow-right" class="text-base"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 3: Pergolas -->
+        <div class="bg-slate-50 rounded-2xl overflow-hidden border border-border group hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col" style="">
+          <div class="relative h-56 overflow-hidden" style="">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/service-pergola-1784043918701-wrpewhi04h.png" alt="Moderné pergoly" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" style="">
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4" style="">
+            <div class="space-y-2" style="">
+              <h3 class="text-xl font-heading font-bold text-secondary" style="">Hliníkové pergoly</h3>
+              <p class="text-muted-foreground text-sm leading-relaxed" style="">
+                Moderné a bezúdržbové hliníkové prístrešky a bioklimatické pergoly s otočnými lamelami pre dokonalú reguláciu slnečného svitu.
+              </p>
+            </div>
+            <ul class="space-y-2 text-xs font-medium text-slate-600" style="">
+              <li class="flex items-center gap-2" style="">
+                <iconify-icon icon="lucide:check" class="text-primary text-base"></iconify-icon>
+                Integrovaný odvod dažďovej vody
+              </li>
+              <li class="flex items-center gap-2" style="">
+                <iconify-icon icon="lucide:check" class="text-primary text-base"></iconify-icon>
+                Možnosť inteligentného ovládania
+              </li>
+            </ul>
+            <a href="#kontakt" class="inline-flex items-center justify-center py-3 px-4 rounded-lg border border-primary text-primary font-bold text-sm hover:bg-primary hover:text-primary-foreground transition-all gap-2" style="">
+              Mám záujem
+              <iconify-icon icon="lucide:arrow-right" class="text-base"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us / Benefits -->
+  <section id="preco-my" class="py-20 bg-slate-950 text-primary-foreground relative overflow-hidden" style="">
+    <!-- Subtle architectural abstract background pattern -->
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#0284c7_1px,transparent_1px)] [background-size:16px_16px]" style=""></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" style="">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center" style="">
+        <div class="lg:col-span-5 space-y-6" style="">
+          <span class="text-primary font-bold uppercase tracking-widest text-xs" style="">Naše prednosti</span>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-primary-foreground leading-tight" style="">Prečo zveriť zasklenie práve nám?</h2>
+          <p class="text-slate-400 text-base leading-relaxed" style="">
+            Ako lokálny rodinný špecialista zo Šamorína staviame na osobnom prístupe, poctivej remeselnej práci a overených certifikovaných materiáloch. S nami máte záruku bezstarostného priebehu od zamerania až po montáž.
+          </p>
+          <div class="pt-4" style="">
+            <a href="#kontakt" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all text-sm gap-2" style="">
+              Nezáväzná konzultácia zadarmo
+              <iconify-icon icon="lucide:arrow-right" class="text-base"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6" style="">
+          <!-- Benefit 1 -->
+          <div class="bg-background/5 border border-border/10 p-6 rounded-2xl hover:border-primary/50 transition-colors" style="">
+            <div class="h-12 w-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center mb-4" style="">
+              <iconify-icon icon="lucide:shield" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-primary-foreground mb-2" style="">27-ročná tradícia</h3>
+            <p class="text-slate-400 text-sm leading-relaxed" style="">
+              Pôsobíme na trhu nepretržite od roku 1997. Naše bohaté skúsenosti sú zárukou zvládnutia aj tých najnáročnejších detailov.
+            </p>
+          </div>
+
+          <!-- Benefit 2 -->
+          <div class="bg-background/5 border border-border/10 p-6 rounded-2xl hover:border-primary/50 transition-colors" style="">
+            <div class="h-12 w-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center mb-4" style="">
+              <iconify-icon icon="lucide:badge" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-primary-foreground mb-2" style="">Prvotriedna kvalita</h3>
+            <p class="text-slate-400 text-sm leading-relaxed" style="">
+              Používame výhradne certifikované hliníkové profily a bezpečnostné kalené sklá s vysokou odolnosťou voči poveternostným vplyvom.
+            </p>
+          </div>
+
+          <!-- Benefit 3 -->
+          <div class="bg-background/5 border border-border/10 p-6 rounded-2xl hover:border-primary/50 transition-colors" style="">
+            <div class="h-12 w-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center mb-4" style="">
+              <iconify-icon icon="lucide:clock" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-primary-foreground mb-2" style="">Rýchlosť a spoľahlivosť</h3>
+            <p class="text-slate-400 text-sm leading-relaxed" style="">
+              Dodržiavame dohodnuté termíny. Zameranie, výrobu aj finálnu montáž realizujeme rýchlo a bez zbytočného neporiadku.
+            </p>
+          </div>
+
+          <!-- Benefit 4 -->
+          <div class="bg-background/5 border border-border/10 p-6 rounded-2xl hover:border-primary/50 transition-colors" style="">
+            <div class="h-12 w-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center mb-4" style="">
+              <iconify-icon icon="lucide:smile" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-primary-foreground mb-2" style="">Kompletný servis</h3>
+            <p class="text-slate-400 text-sm leading-relaxed" style="">
+              Od bezplatného odborného poradenstva a zamerania, cez vypracovanie cenovej ponuky až po profesionálnu záručnú a pozáručnú starostlivosť.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process / How It Works -->
+  <section class="py-20 bg-background border-b border-border" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4" style="">
+        <span class="text-primary font-bold uppercase tracking-widest text-xs" style="">Jednoduchá cesta</span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-secondary" style="">Ako prebieha spolupráca?</h2>
+        <p class="text-muted-foreground text-lg" style="">
+          Zasklenie vášho balkónu či výstavba zimnej záhrady v 4 jednoduchých krokoch bez starostí.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative" style="">
+        <!-- Step 1 -->
+        <div class="relative bg-card p-6 rounded-2xl border border-border shadow-sm flex flex-col items-center text-center" style="">
+          <div class="h-12 w-12 rounded-full bg-primary text-primary-foreground font-bold text-lg flex items-center justify-center mb-4 shadow-md" style="">
+            1
+          </div>
+          <h3 class="font-heading font-bold text-lg text-secondary mb-2" style="">Nezáväzný dopyt</h3>
+          <p class="text-muted-foreground text-sm" style="">
+            Vyplňte náš formulár alebo nám zavolajte. Ozveme sa vám obratom a preberieme vaše predstavy.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative bg-card p-6 rounded-2xl border border-border shadow-sm flex flex-col items-center text-center" style="">
+          <div class="h-12 w-12 rounded-full bg-primary text-primary-foreground font-bold text-lg flex items-center justify-center mb-4 shadow-md" style="">
+            2
+          </div>
+          <h3 class="font-heading font-bold text-lg text-secondary mb-2" style="">Zameranie &amp; Návrh</h3>
+          <p class="text-muted-foreground text-sm" style="">
+            Prídeme k vám, bezplatne zameriame priestor a navrhneme optimálne technické a materiálové riešenie.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative bg-card p-6 rounded-2xl border border-border shadow-sm flex flex-col items-center text-center" style="">
+          <div class="h-12 w-12 rounded-full bg-primary text-primary-foreground font-bold text-lg flex items-center justify-center mb-4 shadow-md" style="">
+            3
+          </div>
+          <h3 class="font-heading font-bold text-lg text-secondary mb-2" style="">Výroba na mieru</h3>
+          <p class="text-muted-foreground text-sm" style="">
+            Podľa presných rozmerov vyrobíme konštrukciu s použitím najmodernejších hliníkových profilov.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="relative bg-card p-6 rounded-2xl border border-border shadow-sm flex flex-col items-center text-center" style="">
+          <div class="h-12 w-12 rounded-full bg-primary text-primary-foreground font-bold text-lg flex items-center justify-center mb-4 shadow-md" style="">
+            4
+          </div>
+          <h3 class="font-heading font-bold text-lg text-secondary mb-2" style="">Odborná montáž</h3>
+          <p class="text-muted-foreground text-sm" style="">
+            Naši vyškolení technici namontujú systém, všetko dôkladne otestujú a odovzdajú čisté dielo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Gallery -->
+  <section id="projekty" class="py-20 bg-background" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4" style="">
+        <div style="">
+          <span class="text-primary font-bold uppercase tracking-widest text-xs" style="">Ukážka našej práce</span>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-secondary mt-2" style="">Zrealizované projekty</h2>
+        </div>
+        <div class="flex gap-2" style="">
+          <button class="px-4 py-2 text-xs font-bold rounded-full bg-primary text-primary-foreground" style="">Všetko</button>
+          <button class="px-4 py-2 text-xs font-bold rounded-full bg-slate-100 text-muted-foreground hover:bg-slate-200 transition-colors" style="">Balkóny</button>
+          <button class="px-4 py-2 text-xs font-bold rounded-full bg-slate-100 text-muted-foreground hover:bg-slate-200 transition-colors" style="">Zimné záhrady</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" style="">
+        <!-- Gallery Item 1 -->
+        <div class="group relative rounded-2xl overflow-hidden border border-border shadow-sm bg-slate-50" style="">
+          <img src="https://uxmagic.blob.core.windows.net/public/agent-images/hero-balcony-1784043896034-a99j9ihtnqj.png" alt="Bezrámové zasklenie" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" style="">
+          <div class="p-4 bg-background" style="">
+            <span class="text-xs text-primary font-bold uppercase tracking-wider" style="">Bezrámový otočný systém</span>
+            <h4 class="font-heading font-bold text-secondary mt-1" style="">Moderná lodžia v novostavbe</h4>
+            <p class="text-xs text-muted-foreground mt-1" style="">Lokalita: Šamorín</p>
+          </div>
+        </div>
+
+        <!-- Gallery Item 2 -->
+        <div class="group relative rounded-2xl overflow-hidden border border-border shadow-sm bg-slate-50" style="">
+          <img src="https://uxmagic.blob.core.windows.net/public/agent-images/service-wintergarden-1784043907902-ua85o2936jl.png" alt="Zimná záhrada" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" style="">
+          <div class="p-4 bg-background" style="">
+            <span class="text-xs text-primary font-bold uppercase tracking-wider" style="">Hliníková zimná záhrada</span>
+            <h4 class="font-heading font-bold text-secondary mt-1" style="">Presklená terasa rodinného domu</h4>
+            <p class="text-xs text-muted-foreground mt-1" style="">Lokalita: Dunajská Lužná</p>
+          </div>
+        </div>
+
+        <!-- Gallery Item 3 -->
+        <div class="group relative rounded-2xl overflow-hidden border border-border shadow-sm bg-slate-50" style="">
+          <img src="https://uxmagic.blob.core.windows.net/public/agent-images/service-pergola-1784043918701-wrpewhi04h.png" alt="Bioklimatická pergola" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" style="">
+          <div class="p-4 bg-background" style="">
+            <span class="text-xs text-primary font-bold uppercase tracking-wider" style="">Bioklimatická pergola</span>
+            <h4 class="font-heading font-bold text-secondary mt-1" style="">Moderné tienenie terasy</h4>
+            <p class="text-xs text-muted-foreground mt-1" style="">Lokalita: Kvetoslavov</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="o-nas" class="py-20 bg-slate-50" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center" style="">
+      <!-- About Text -->
+      <div class="lg:col-span-7 space-y-6" style="">
+        <span class="text-primary font-bold uppercase tracking-widest text-xs" style="">O našej spoločnosti</span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-secondary" style="">Ladislav Baráth - Alubal</h2>
+        <p class="text-muted-foreground text-base leading-relaxed" style="">
+          Už od roku 1997 prinášame našim zákazníkom v Šamoríne a širokom okolí špičkové riešenia v oblasti zasklievania balkónov, zimných záhrad a pergol. Naším prvoradým cieľom je maximálna kvalita materiálov a precíznosť samotnej montáže.
+        </p>
+        <p class="text-muted-foreground text-base leading-relaxed" style="">
+          Veríme, že poctivé remeslo a osobná zodpovednosť za každé zrealizované dielo sú dôvodom, prečo sa na nás zákazníci s dôverou obracajú už takmer tri desaťročia. Každá realizácia prechádza dôkladnou kontrolou, aby vám slúžila bezchybne po celé generácie.
+        </p>
+        <div class="grid grid-cols-2 gap-6 pt-4" style="">
+          <div class="flex items-start gap-3" style="">
+            <div class="h-10 w-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0" style="">
+              <iconify-icon icon="lucide:check" class="text-xl"></iconify-icon>
+            </div>
+            <div style="">
+              <h4 class="font-heading font-bold text-secondary text-sm" style="">Slovenská výroba</h4>
+              <p class="text-xs text-muted-foreground" style="">Vlastné kapacity a overené lokálne materiály</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3" style="">
+            <div class="h-10 w-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0" style="">
+              <iconify-icon icon="lucide:shield-check" class="text-xl"></iconify-icon>
+            </div>
+            <div style="">
+              <h4 class="font-heading font-bold text-secondary text-sm" style="">Záruka kvality</h4>
+              <p class="text-xs text-muted-foreground" style="">Dlhoročná garancia na profily aj prácu</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- About Stat Highlight Frame -->
+      <div class="lg:col-span-5 bg-secondary text-secondary-foreground p-8 rounded-3xl relative overflow-hidden shadow-xl border border-border/10" style="">
+        <div class="absolute -right-12 -bottom-12 h-44 w-44 rounded-full bg-primary/10 blur-2xl" style=""></div>
+        <div class="space-y-6 relative z-10" style="">
+          <h3 class="text-2xl font-heading font-bold text-primary-foreground" style="">Naše úspechy v číslach</h3>
+          <p class="text-slate-400 text-sm leading-relaxed" style="">
+            Pevné základy a tisíce úspešných montáží sú dôkazom našej stability a spoľahlivosti na slovenskom trhu.
+          </p>
+          <div class="space-y-4 pt-4 border-t border-border/10" style="">
+            <div class="flex items-center justify-between" style="">
+              <span class="text-slate-300 text-sm" style="">Rok založenia</span>
+              <span class="font-heading font-black text-xl text-primary" style="">1997</span>
+            </div>
+            <div class="flex items-center justify-between" style="">
+              <span class="text-slate-300 text-sm" style="">Zrealizované projekty</span>
+              <span class="font-heading font-black text-xl text-primary" style="">1 000 +</span>
+            </div>
+            <div class="flex items-center justify-between" style="">
+              <span class="text-slate-300 text-sm" style="">Spokojní zákazníci</span>
+              <span class="font-heading font-black text-xl text-primary" style="">500 +</span>
+            </div>
+            <div class="flex items-center justify-between" style="">
+              <span class="text-slate-300 text-sm" style="">Záručný servis</span>
+              <span class="font-heading font-black text-xl text-primary" style="">100%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog / News Section -->
+  <section id="blog" class="py-20 bg-background" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4" style="">
+        <span class="text-primary font-bold uppercase tracking-widest text-xs" style="">Užitočné informácie</span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-secondary" style="">Tipy a trendy v zasklievaní</h2>
+        <p class="text-muted-foreground text-lg" style="">
+          Prečítajte si, ako správne vybrať zasklenie, ako sa oň starať a aké sú najnovšie technologické trendy.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8" style="">
+        <!-- Article 1 -->
+        <article class="bg-slate-50 rounded-2xl overflow-hidden border border-border group hover:shadow-lg transition-all flex flex-col" style="">
+          <div class="relative h-48 overflow-hidden" style="">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/hero-balcony-1784043896034-a99j9ihtnqj.png" alt="Rámové vs bezrámové zasklenie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" style="">
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-3" style="">
+            <div class="space-y-2" style="">
+              <span class="text-xs text-primary font-bold uppercase tracking-wider" style="">Poradňa</span>
+              <h3 class="text-lg font-heading font-bold text-secondary group-hover:text-primary transition-colors" style="">
+                <a href="#" style="">Ako si vybrať správny systém: Rámové vs. Bezrámové zasklenie</a>
+              </h3>
+              <p class="text-muted-foreground text-sm line-clamp-2" style="">
+                Rozhodujete sa medzi moderným bezrámovým dizajnom a klasickým stabilným rámovým profilom? Porovnali sme pre vás hlavné výhody.
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3 border-t border-border text-xs text-muted-foreground" style="">
+              <span class="flex items-center gap-1" style="">
+                <iconify-icon icon="lucide:calendar" class="text-sm"></iconify-icon>
+                12. Október 2024
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 2 -->
+        <article class="bg-slate-50 rounded-2xl overflow-hidden border border-border group hover:shadow-lg transition-all flex flex-col" style="">
+          <div class="relative h-48 overflow-hidden" style="">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/service-wintergarden-1784043907902-ua85o2936jl.png" alt="Úspora energií" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" style="">
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-3" style="">
+            <div class="space-y-2" style="">
+              <span class="text-xs text-primary font-bold uppercase tracking-wider" style="">Úspora energie</span>
+              <h3 class="text-lg font-heading font-bold text-secondary group-hover:text-primary transition-colors" style="">
+                <a href="#" style="">Zasklenie balkónu ako účinná tepelná izolácia bytu</a>
+              </h3>
+              <p class="text-muted-foreground text-sm line-clamp-2" style="">
+                Vedeli ste, že zasklením balkónu dokážete znížiť tepelné straty v priľahlej miestnosti až o 30%? Prečítajte si, ako funguje fyzika za týmto riešením.
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3 border-t border-border text-xs text-muted-foreground" style="">
+              <span class="flex items-center gap-1" style="">
+                <iconify-icon icon="lucide:calendar" class="text-sm"></iconify-icon>
+                28. September 2024
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 3 -->
+        <article class="bg-slate-50 rounded-2xl overflow-hidden border border-border group hover:shadow-lg transition-all flex flex-col" style="">
+          <div class="relative h-48 overflow-hidden" style="">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/service-pergola-1784043918701-wrpewhi04h.png" alt="Údržba zasklenia" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" style="">
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-3" style="">
+            <div class="space-y-2" style="">
+              <span class="text-xs text-primary font-bold uppercase tracking-wider" style="">Údržba</span>
+              <h3 class="text-lg font-heading font-bold text-secondary group-hover:text-primary transition-colors" style="">
+                <a href="#" style="">Tipy na údržbu hliníkových konštrukcií a skiel</a>
+              </h3>
+              <p class="text-muted-foreground text-sm line-clamp-2" style="">
+                Hoci sú hliníkové systémy takmer bezúdržbové, správna a šetrná starostlivosť dokáže predĺžiť ich životnosť a zachovať dokonalý vzhľad na desiatky rokov.
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-3 border-t border-border text-xs text-muted-foreground" style="">
+              <span class="flex items-center gap-1" style="">
+                <iconify-icon icon="lucide:calendar" class="text-sm"></iconify-icon>
+                05. September 2024
+              </span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Lead Generation -->
+  <section id="kontakt" class="py-20 bg-slate-900 text-primary-foreground relative overflow-hidden" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" style="">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12" style="">
+        <!-- Contact Info -->
+        <div class="lg:col-span-5 space-y-8" style="">
+          <div class="space-y-4" style="">
+            <span class="text-primary font-bold uppercase tracking-widest text-xs" style="">Máte otázky?</span>
+            <h2 class="text-3xl sm:text-4xl font-heading font-bold text-primary-foreground" style="">Napíšte nám alebo zavolajte</h2>
+            <p class="text-slate-400 text-sm sm:text-base leading-relaxed" style="">
+              Radi vám poradíme, odpovieme na vaše otázky a vypracujeme nezáväznú cenovú ponuku presne pre váš projekt. Sme tu pre vás.
+            </p>
+          </div>
+
+          <div class="space-y-4" style="">
+            <div class="flex items-center gap-4" style="">
+              <div class="h-11 w-11 rounded-lg bg-background/5 border border-border/10 text-primary flex items-center justify-center shrink-0" style="">
+                <iconify-icon icon="lucide:phone" class="text-xl"></iconify-icon>
+              </div>
+              <div style="">
+                <p class="text-xs text-slate-400" style="">Telefónny kontakt</p>
+                <p class="font-semibold text-primary-foreground hover:text-primary transition-colors" style="">+421 905 123 456</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4" style="">
+              <div class="h-11 w-11 rounded-lg bg-background/5 border border-border/10 text-primary flex items-center justify-center shrink-0" style="">
+                <iconify-icon icon="lucide:mail" class="text-xl"></iconify-icon>
+              </div>
+              <div style="">
+                <p class="text-xs text-slate-400" style="">E-mailová adresa</p>
+                <p class="font-semibold text-primary-foreground hover:text-primary transition-colors" style="">info@alubal.sk</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4" style="">
+              <div class="h-11 w-11 rounded-lg bg-background/5 border border-border/10 text-primary flex items-center justify-center shrink-0" style="">
+                <iconify-icon icon="lucide:map-pin" class="text-xl"></iconify-icon>
+              </div>
+              <div style="">
+                <p class="text-xs text-slate-400" style="">Sídlo spoločnosti</p>
+                <p class="font-semibold text-slate-200" style="">Ladislav Baráth, Šamorín, Slovenská republika</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 bg-background/5 border border-border/10 rounded-2xl" style="">
+            <h4 class="font-heading font-bold text-primary-foreground mb-1" style="">Pôsobíme v týchto lokalitách:</h4>
+            <p class="text-xs text-slate-400 leading-relaxed" style="">
+              Šamorín, Bratislava, Senec, Dunajská Streda, Galanta a okolité obce západného Slovenska.
+            </p>
+          </div>
+        </div>
+
+        <!-- Contact Form Card -->
+        <div class="lg:col-span-7 bg-background text-foreground p-8 rounded-3xl shadow-2xl space-y-6" style="">
+          <div class="space-y-2" style="">
+            <h3 class="text-2xl font-heading font-bold text-secondary" style="">Nezáväzný dopyt / Cenová ponuka</h3>
+            <p class="text-sm text-muted-foreground" style="">
+              Vyplňte krátky formulár a my vás budeme kontaktovať za účelom bezplatného zamerania a cenovej kalkulácie.
+            </p>
+          </div>
+
+          <form class="space-y-4" style="">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" style="">
+              <div class="space-y-1.5" style="">
+                <label class="text-xs font-bold text-slate-700 uppercase tracking-wider" style="">Meno a priezvisko *</label>
+                <input type="text" placeholder="napr. Ján Novák" class="w-full px-4 py-3 rounded-lg border border-input focus:outline-none focus:ring-2 focus:ring-primary text-sm transition-all bg-slate-50" required="" style="">
+              </div>
+              <div class="space-y-1.5" style="">
+                <label class="text-xs font-bold text-slate-700 uppercase tracking-wider" style="">Telefónne číslo *</label>
+                <input type="tel" placeholder="napr. +421 905 123 456" class="w-full px-4 py-3 rounded-lg border border-input focus:outline-none focus:ring-2 focus:ring-primary text-sm transition-all bg-slate-50" required="" style="">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" style="">
+              <div class="space-y-1.5" style="">
+                <label class="text-xs font-bold text-slate-700 uppercase tracking-wider" style="">E-mailová adresa *</label>
+                <input type="email" placeholder="napr. jan.novak@gmail.com" class="w-full px-4 py-3 rounded-lg border border-input focus:outline-none focus:ring-2 focus:ring-primary text-sm transition-all bg-slate-50" required="" style="">
+              </div>
+              <div class="space-y-1.5" style="">
+                <label class="text-xs font-bold text-slate-700 uppercase tracking-wider" style="">Mesto / Obec *</label>
+                <input type="text" placeholder="napr. Šamorín" class="w-full px-4 py-3 rounded-lg border border-input focus:outline-none focus:ring-2 focus:ring-primary text-sm transition-all bg-slate-50" required="" style="">
+              </div>
+            </div>
+
+            <div class="space-y-1.5" style="">
+              <label class="text-xs font-bold text-slate-700 uppercase tracking-wider" style="">Typ služby</label>
+              <select class="w-full px-4 py-3 rounded-lg border border-input focus:outline-none focus:ring-2 focus:ring-primary text-sm transition-all bg-slate-50" style="">
+                <option>Zasklievanie balkónu / lodžie</option>
+                <option>Zimná záhrada</option>
+                <option>Hliníková pergola / prístrešok</option>
+                <option>Iné / Neviem presne</option>
+              </select>
+            </div>
+
+            <div class="space-y-1.5" style="">
+              <label class="text-xs font-bold text-slate-700 uppercase tracking-wider" style="">Vaša správa / Detaily projektu</label>
+              <textarea rows="4" placeholder="Uveďte približné rozmery alebo akékoľvek špecifické požiadavky..." class="w-full px-4 py-3 rounded-lg border border-input focus:outline-none focus:ring-2 focus:ring-primary text-sm transition-all bg-slate-50" style=""></textarea>
+            </div>
+
+            <div class="flex items-start gap-2.5 pt-2" style="">
+              <input type="checkbox" id="privacy" class="mt-1 rounded border-input text-primary focus:ring-primary" required="" style="">
+              <label for="privacy" class="text-xs text-muted-foreground leading-relaxed" style="">
+                Súhlasím so spracovaním osobných údajov za účelom vypracovania cenovej ponuky. *
+              </label>
+            </div>
+
+            <button type="submit" class="w-full py-4 rounded-xl bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-all shadow-lg text-base flex items-center justify-center gap-2 mt-4" style="">
+              <iconify-icon icon="lucide:send" class="text-lg"></iconify-icon>
+              Odoslať nezáväzný dopyt
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-secondary text-secondary-foreground pt-16 pb-8 border-t border-border/5" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b border-border/5" style="">
+      <!-- About Column -->
+      <div class="md:col-span-5 space-y-4" style="">
+        <a href="#" class="inline-flex items-center group">
+          <img src="./alubalsro-logo.webp" alt="ALUBAL – Zasklievanie balkónov a loggií" class="site-logo site-logo--footer" width="125" height="125">
+        </a>
+        <p class="text-slate-400 text-sm leading-relaxed max-w-sm" style="">
+          Slovenský výrobca a montážnik certifikovaných hliníkových systémov pre zasklievanie balkónov, lodžií, terás a výstavbu zimných záhrad. Pôsobíme od roku 1997.
+        </p>
+      </div>
+
+      <!-- Links Column -->
+      <div class="md:col-span-3 space-y-4" style="">
+        <h4 class="font-heading font-bold text-primary-foreground text-sm uppercase tracking-wider" style="">Naše Služby</h4>
+        <ul class="space-y-2.5 text-sm text-slate-400" style="">
+          <li style=""><a href="#sluzby" class="hover:text-primary transition-colors" style="">Zasklievanie balkónov</a></li>
+          <li style=""><a href="#sluzby" class="hover:text-primary transition-colors" style="">Zasklievanie lodžií</a></li>
+          <li style=""><a href="#sluzby" class="hover:text-primary transition-colors" style="">Zimné záhrady</a></li>
+          <li style=""><a href="#sluzby" class="hover:text-primary transition-colors" style="">Hliníkové pergoly</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick links Column -->
+      <div class="md:col-span-4 space-y-4" style="">
+        <h4 class="font-heading font-bold text-primary-foreground text-sm uppercase tracking-wider" style="">Rýchle odkazy</h4>
+        <ul class="space-y-2.5 text-sm text-slate-400" style="">
+          <li style=""><a href="#preco-my" class="hover:text-primary transition-colors" style="">Prečo si vybrať nás</a></li>
+          <li style=""><a href="#projekty" class="hover:text-primary transition-colors" style="">Galéria realizácií</a></li>
+          <li style=""><a href="#o-nas" class="hover:text-primary transition-colors" style="">O nás</a></li>
+          <li style=""><a href="#blog" class="hover:text-primary transition-colors" style="">Tipy a triky</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright and legal info -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500" style="">
+      <p style="">© 2024 Ladislav Baráth - ALUBAL. Všetky práva vyhradené. Sídlo: Šamorín.</p>
+      <div class="flex gap-6" style="">
+        <a href="#" class="hover:text-slate-300 transition-colors" style="">Ochrana osobných údajov</a>
+        <a href="#" class="hover:text-slate-300 transition-colors" style="">Všeobecné obchodné podmienky</a>
+      </div>
+    </div>
+  </footer>
+</div>
+</body></html>
