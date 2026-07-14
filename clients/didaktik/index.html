@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Screen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@100..900&family=Fira+Code:wght@300..700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    <style type="text/tailwindcss">
+      @import "tailwindcss";
+      @theme inline {
+        --color-background: var(--background);
+        --color-foreground: var(--foreground);
+        --color-primary: var(--primary);
+        --color-primary-foreground: var(--primary-foreground);
+        --color-secondary: var(--secondary);
+        --color-secondary-foreground: var(--secondary-foreground);
+        --color-tertiary: var(--tertiary);
+        --color-muted: var(--muted);
+        --color-muted-foreground: var(--muted-foreground);
+        --color-accent: var(--accent);
+        --color-destructive: var(--destructive);
+        --color-card: var(--card);
+        --color-card-foreground: var(--card-foreground);
+        --color-border: var(--border);
+        --color-input: var(--input);
+        --color-ring: var(--ring);
+        --radius-sm: calc(var(--radius) - 4px);
+        --radius-md: calc(var(--radius) - 2px);
+        --radius-lg: var(--radius);
+        --font-family-sans: var(--font-sans);
+        --font-family-heading: var(--font-heading);
+        --font-family-mono: var(--font-mono);
+      }
+      :root {
+        --background: #FFFFFF;
+        --foreground: #0F172A;
+        --primary: #2563EB;
+        --primary-foreground: #FFFFFF;
+        --secondary: #E7E8EA;
+        --secondary-foreground: #0F172A;
+        --tertiary: #2563EB;
+        --muted: #E7E8EA;
+        --muted-foreground: #7B7F8A;
+        --accent: #DCE6FC;
+        --accent-foreground: #0F172A;
+        --card: #F3F3F4;
+        --card-foreground: #0F172A;
+        --destructive: #EF4444;
+        --border: #D9DADD;
+        --input: #D9DADD;
+        --ring: #2563EB;
+        --radius: 0.5rem;
+        --font-sans: Inter, sans-serif;
+        --font-heading: Inter, sans-serif;
+        --font-mono: JetBrains Mono, monospace;
+        --shadow-offset-x: 0;
+        --shadow-offset-y: 10;
+        --shadow-blur: 30;
+        --shadow-spread: -8;
+        --shadow-color: rgba(15, 23, 42, 0.12);
+        --"--card": #ffffff;
+        --"--card-foreground": #0f172a;
+        --"--border": #cbd5e1;
+        --"--background": #f8fafc;
+        --"--muted-foreground": #475569;
+        --"--input": #e2e8f0;
+        --"--ring": #0f4c81;
+        --"--font-sans": Inter, sans-serif;
+        --"--tertiary": #0ea5e9;
+        --"--secondary-foreground": #0f172a;
+        --"--destructive": #ef4444;
+        --"--radius": 0.5rem;
+        --"--muted": #f1f5f9;
+        --"--font-heading": Inter, sans-serif;
+        --"--primary-foreground": #ffffff;
+        --"--foreground": #0f172a;
+        --"--primary": #0f4c81;
+        --"--secondary": #e2e8f0;
+        }
+    </style>
+    <style>
+      .brand-gradient { background-image: linear-gradient(135deg, var(--primary), var(--accent)); }
+      .shadow-theme {
+        box-shadow:
+          calc(var(--shadow-offset-x, 0) * 1px) calc(var(--shadow-offset-y, 10) * 1px)
+          calc(var(--shadow-blur, 30) * 1px) calc(var(--shadow-spread, -8) * 1px)
+          var(--shadow-color, rgba(15, 23, 42, 0.12));
+      }
+    </style>
+  </head>
+  <body>
+<div class="min-h-screen w-full bg-background flex flex-col relative text-foreground font-sans">
+  <!-- Top Header / Navigation -->
+  <header class="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <a href="#" class="block">
+          <img src="https://www.didaktik.sk/images/didaktik_logo.png" alt="Didaktik logo" class="h-10 w-auto object-contain">
+        </a>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#o-nas" class="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors">O nás</a>
+        <a href="#sluzby" class="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors">Služby</a>
+        <a href="#technologie" class="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors">Technológie</a>
+        <a href="#pomocky" class="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors">Učebné pomôcky</a>
+        <a href="#certifikaty" class="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors">Certifikáty</a>
+        <a href="#referencie" class="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors">Referencie</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-4">
+        <a href="#kontakt" class="hidden sm:inline-flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-lg text-sm font-semibold tracking-wide shadow-lg shadow-primary/15 transition-all">
+          <iconify-icon icon="lucide:mail" class="mr-2 text-base"></iconify-icon>
+          Kontaktujte nás
+        </a>
+        <!-- Language Selector -->
+        <div class="flex items-center gap-1.5 text-xs font-bold text-muted-foreground border border-border rounded-md px-2 py-1 bg-muted/50">
+          <span class="text-primary">SK</span>
+          <span class="text-slate-300">|</span>
+          <span class="hover:text-primary cursor-pointer">EN</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. Hero Section -->
+  <section class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-primary/40 py-24 lg:py-32 overflow-hidden">
+    <!-- Visual background decoration -->
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-tertiary/20 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-primary/30 rounded-full blur-3xl"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 flex flex-col items-start text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary text-xs font-bold uppercase tracking-wider mb-6">
+          <iconify-icon icon="lucide:sparkles" class="text-sm"></iconify-icon>
+          Inovácie vo vzdelávaní a výrobe
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-primary-foreground leading-tight tracking-tight mb-6">
+          Moderné technológie a učebné pomôcky pre generáciu budúcnosti
+        </h1>
+        <p class="text-lg text-slate-300 mb-8 max-w-xl leading-relaxed">
+          Už viac ako tri desaťročia navrhujeme, vyrábame a dodávame špičkové edukačné systémy, technické vybavenie a komplexné služby pre moderné školy i priemysel.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <a href="#sluzby" class="inline-flex items-center justify-center bg-tertiary text-primary-foreground hover:bg-tertiary/90 px-8 py-4 rounded-lg font-bold text-base tracking-wide transition-all shadow-lg shadow-tertiary/25">
+            Zistite viac o našich službách
+            <iconify-icon icon="lucide:arrow-right" class="ml-2 text-lg"></iconify-icon>
+          </a>
+          <a href="#kontakt" class="inline-flex items-center justify-center bg-background/10 hover:bg-background/20 text-primary-foreground border border-border/20 px-8 py-4 rounded-lg font-bold text-base tracking-wide transition-all backdrop-blur-sm">
+            Nezáväzný dopyt
+          </a>
+        </div>
+      </div>
+      <div class="lg:col-span-5 relative">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-border/10">
+          <img src="https://uxmagic.blob.core.windows.net/public/agent-images/hero-school-1784055923245-rpy77uucn8h.png" alt="Modern educational classroom" class="w-full h-auto object-cover aspect-[4/3] transform hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 bg-background/10 backdrop-blur-md p-4 rounded-xl border border-border/15 flex items-center gap-4">
+            <div class="bg-tertiary text-primary-foreground p-3 rounded-lg">
+              <iconify-icon icon="lucide:activity" class="text-2xl"></iconify-icon>
+            </div>
+            <div>
+              <p class="text-primary-foreground font-bold text-sm">Zodpovedný prístup</p>
+              <p class="text-slate-300 text-xs">Certifikovaný slovenský výrobca</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. O nás (About Us) Section -->
+  <section id="o-nas" class="py-20 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left Column: Visual stats -->
+        <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+          <div class="bg-muted p-8 rounded-2xl flex flex-col justify-between h-48 border border-border">
+            <iconify-icon icon="lucide:calendar" class="text-primary text-3xl"></iconify-icon>
+            <div>
+              <p class="text-3xl font-heading font-black text-primary">30+</p>
+              <p class="text-xs font-bold text-muted-foreground uppercase tracking-wider mt-1">Rokov na trhu</p>
+            </div>
+          </div>
+          <div class="bg-primary text-primary-foreground p-8 rounded-2xl flex flex-col justify-between h-48 shadow-lg shadow-primary/10">
+            <iconify-icon icon="lucide:globe" class="text-primary-foreground text-3xl"></iconify-icon>
+            <div>
+              <p class="text-3xl font-heading font-black">1000+</p>
+              <p class="text-xs font-bold text-primary-foreground/80 uppercase tracking-wider mt-1">Vybavených škôl</p>
+            </div>
+          </div>
+          <div class="bg-slate-900 text-primary-foreground p-8 rounded-2xl flex flex-col justify-between h-48 col-span-2">
+            <div class="flex items-center justify-between">
+              <iconify-icon icon="lucide:shield" class="text-tertiary text-3xl"></iconify-icon>
+              <span class="text-xs bg-background/15 px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">Kvalita</span>
+            </div>
+            <div>
+              <p class="text-xl font-heading font-bold mb-1">Tradičné slovenské družstvo</p>
+              <p class="text-slate-400 text-xs">Vlastný výskum, vývoj a precízna domáca výroba.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Text Content -->
+        <div class="lg:col-span-7 flex flex-col items-start">
+          <span class="text-xs font-bold uppercase tracking-widest text-primary mb-2">Sme Didaktik</span>
+          <h2 class="text-3xl md:text-4xl font-heading font-black mb-6 text-slate-900 leading-tight">
+            Tradičné hodnoty prepojené s moderným inžinierstvom
+          </h2>
+          <p class="text-muted-foreground mb-6 leading-relaxed">
+            Didaktik, družstvo, je stabilným a dôveryhodným partnerom v oblasti vzdelávania a priemyslu. Naším poslaním je zjednodušovať a zefektívňovať výučbu technických smerov prostredníctvom inovatívnych učebných pomôcok, špeciálneho softvéru a moderných technológií.
+          </p>
+          <p class="text-muted-foreground mb-8 leading-relaxed">
+            Kladieme dôraz na maximálnu spoľahlivosť, technickú presnosť a flexibilný prozákaznícky prístup. Pomáhame školám držať krok s požiadavkami modernej priemyselnej praxe a B2B partnerom dodávame komplexné technologické riešenia na kľúč.
+          </p>
+          <div class="border-t border-border pt-6 w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="flex items-start gap-3">
+              <iconify-icon icon="lucide:check" class="text-tertiary text-xl mt-0.5"></iconify-icon>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Vlastné vývojové centrum</h4>
+                <p class="text-xs text-muted-foreground">Inovujeme priamo na základe potrieb praxe.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <iconify-icon icon="lucide:check" class="text-tertiary text-xl mt-0.5"></iconify-icon>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Kompletný servis</h4>
+                <p class="text-xs text-muted-foreground">Od návrhu, cez inštaláciu až po zaškolenie a servis.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Služby (Services) Section -->
+  <section id="sluzby" class="py-20 bg-muted/50 border-y border-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-primary">Naše portfólio</span>
+        <h2 class="text-3xl md:text-4xl font-heading font-black mt-2 mb-4 text-slate-900">
+          Profesionálne služby a riešenia na mieru
+        </h2>
+        <p class="text-muted-foreground">
+          Poskytujeme komplexné služby od úvodnej konzultácie až po finálnu realizáciu a následnú technickú podporu pre vzdelávacie inštitúcie i komerčné subjekty.
+        </p>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <!-- Service 1 -->
+        <div class="bg-background rounded-2xl p-8 border border-border hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
+          <div>
+            <div class="bg-primary/10 text-primary w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+              <iconify-icon icon="lucide:monitor" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-slate-900 mb-3">Návrh a projektovanie učební</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed mb-6">
+              Kompletné 3D vizualizácie a plány technických učební, laboratórií a dielní prispôsobené vašim priestorom a rozpočtu.
+            </p>
+          </div>
+          <a href="#kontakt" class="inline-flex items-center text-sm font-bold text-primary hover:text-tertiary transition-colors">
+            Mám záujem o projekt
+            <iconify-icon icon="lucide:arrow-right" class="ml-1.5 text-base"></iconify-icon>
+          </a>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="bg-background rounded-2xl p-8 border border-border hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
+          <div>
+            <div class="bg-primary/10 text-primary w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+              <iconify-icon icon="lucide:settings" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-slate-900 mb-3">Inštalácia a integrácia technológií</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed mb-6">
+              Profesionálna montáž hardvéru, prepojenie systémov a inštalácia špecializovaného softvéru našimi certifikovanými technikmi.
+            </p>
+          </div>
+          <a href="#kontakt" class="inline-flex items-center text-sm font-bold text-primary hover:text-tertiary transition-colors">
+            Zistiť viac
+            <iconify-icon icon="lucide:arrow-right" class="ml-1.5 text-base"></iconify-icon>
+          </a>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="bg-background rounded-2xl p-8 border border-border hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
+          <div>
+            <div class="bg-primary/10 text-primary w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+              <iconify-icon icon="lucide:bookmark" class="text-2xl"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-slate-900 mb-3">Odborné školenia a podpora</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed mb-6">
+              Praktické semináre a metodické školenia pre učiteľov a technický personál, aby ste naplno využili potenciál zakúpených systémov.
+            </p>
+          </div>
+          <a href="#kontakt" class="inline-flex items-center text-sm font-bold text-primary hover:text-tertiary transition-colors">
+            Rezervovať školenie
+            <iconify-icon icon="lucide:arrow-right" class="ml-1.5 text-base"></iconify-icon>
+          </a>
+        </div>
+      </div>
+
+      <!-- Case Study / Highlight -->
+      <div class="bg-slate-900 text-primary-foreground rounded-2xl p-8 lg:p-12 border border-slate-800 flex flex-col lg:flex-row items-center gap-8 shadow-xl">
+        <div class="flex-1">
+          <span class="text-xs font-bold uppercase tracking-widest text-tertiary">Prípadová štúdia</span>
+          <h4 class="text-2xl font-heading font-bold mt-2 mb-4">Komplexná modernizácia SOŠ Technickej</h4>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Pre strednú odbornú školu sme navrhli a kompletne zrealizovali moderné CNC laboratórium a robotické pracovisko. Výsledkom je zvýšený záujem študentov o štúdium a úzka integrácia s požiadavkami lokálnych priemyselných podnikov.
+          </p>
+          <div class="flex items-center gap-6">
+            <div>
+              <p class="text-2xl font-heading font-bold text-primary-foreground">100%</p>
+              <p class="text-xs text-slate-400">spokojnosť vedenia</p>
+            </div>
+            <div class="border-l border-slate-700 h-10"></div>
+            <div>
+              <p class="text-2xl font-heading font-bold text-primary-foreground">240+</p>
+              <p class="text-xs text-slate-400">vyškolených študentov ročne</p>
+            </div>
+          </div>
+        </div>
+        <div class="w-full lg:w-1/3 flex justify-end">
+          <a href="#kontakt" class="w-full sm:w-auto inline-flex items-center justify-center bg-background text-slate-900 hover:bg-slate-100 px-6 py-4 rounded-lg font-bold text-sm tracking-wide transition-colors">
+            Chcem podobné riešenie
+            <iconify-icon icon="lucide:arrow-right" class="ml-2 text-base"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Technológie (Technologies) Section -->
+  <section id="technologie" class="py-20 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left: Image -->
+        <div class="lg:col-span-5">
+          <div class="relative rounded-2xl overflow-hidden shadow-xl border border-border">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/tech-production-1784055934282-bzo8j69uc1o.png" alt="Precision technology production" class="w-full h-auto object-cover aspect-[4/3]">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
+          </div>
+        </div>
+
+        <!-- Right: Content -->
+        <div class="lg:col-span-7 flex flex-col items-start">
+          <span class="text-xs font-bold uppercase tracking-widest text-primary mb-2">Technologická vyspelosť</span>
+          <h2 class="text-3xl md:text-4xl font-heading font-black mb-6 text-slate-900 leading-tight">
+            Špičkové technológie pre precízne výsledky
+          </h2>
+          <p class="text-muted-foreground mb-8 leading-relaxed">
+            Investujeme do moderného strojového vybavenia a inovatívnych softvérových platforiem. To nám umožňuje garantovať vysokú kvalitu spracovania, flexibilnú produkciu a kompatibilitu s najnovšími štandardmi Priemyslu 4.0.
+          </p>
+
+          <!-- Tech points -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
+            <div class="p-5 rounded-xl border border-border bg-muted/30 hover:bg-muted/50 transition-colors">
+              <div class="flex items-center gap-3 mb-3">
+                <iconify-icon icon="lucide:zap" class="text-tertiary text-2xl"></iconify-icon>
+                <h4 class="font-bold text-slate-900 text-sm">CNC a automatizácia</h4>
+              </div>
+              <p class="text-xs text-muted-foreground leading-relaxed">
+                Využívame presné počítačom riadené stroje pre bezchybnú výrobu mechanických dielov a konštrukcií.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-xl border border-border bg-muted/30 hover:bg-muted/50 transition-colors">
+              <div class="flex items-center gap-3 mb-3">
+                <iconify-icon icon="lucide:layers" class="text-tertiary text-2xl"></iconify-icon>
+                <h4 class="font-bold text-slate-900 text-sm">3D tlač a aditívna výroba</h4>
+              </div>
+              <p class="text-xs text-muted-foreground leading-relaxed">
+                Rýchle prototypovanie a výroba zložitých geometrických tvarov z odolných polymérov a kompozitov.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-xl border border-border bg-muted/30 hover:bg-muted/50 transition-colors">
+              <div class="flex items-center gap-3 mb-3">
+                <iconify-icon icon="lucide:monitor" class="text-tertiary text-2xl"></iconify-icon>
+                <h4 class="font-bold text-slate-900 text-sm">Simulačný softvér</h4>
+              </div>
+              <p class="text-xs text-muted-foreground leading-relaxed">
+                Integrácia moderných CAD/CAM a simulačných systémov pre interaktívne praktické cvičenia.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-xl border border-border bg-muted/30 hover:bg-muted/50 transition-colors">
+              <div class="flex items-center gap-3 mb-3">
+                <iconify-icon icon="lucide:activity" class="text-tertiary text-2xl"></iconify-icon>
+                <h4 class="font-bold text-slate-900 text-sm">IoT a Senzorika</h4>
+              </div>
+              <p class="text-xs text-muted-foreground leading-relaxed">
+                Zabudované inteligentné senzory pre reálny zber dát a analýzu fyzikálnych a technických veličín.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Učebné pomôcky (Educational Aids) Section -->
+  <section id="pomocky" class="py-20 bg-muted/50 border-y border-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-primary">Naše produkty</span>
+        <h2 class="text-3xl md:text-4xl font-heading font-black mt-2 mb-4 text-slate-900">
+          Učebné pomôcky, ktoré menia teóriu na zážitok
+        </h2>
+        <p class="text-muted-foreground">
+          Ponúkame široké spektrum certifikovaných didaktických pomôcok od základných škôl až po špecializované univerzitné pracoviská.
+        </p>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <!-- Product Card 1 -->
+        <div class="bg-background rounded-2xl overflow-hidden border border-border hover:shadow-xl transition-all flex flex-col h-full">
+          <div class="relative bg-slate-100 p-6 flex items-center justify-center aspect-video">
+            <iconify-icon icon="lucide:activity" class="text-6xl text-primary/30"></iconify-icon>
+            <span class="absolute top-4 left-4 bg-primary text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full uppercase">Fyzika</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="text-lg font-heading font-bold text-slate-900 mb-2">Súprava pre mechaniku a optiku</h4>
+              <p class="text-muted-foreground text-xs leading-relaxed mb-4">
+                Kompletná modulárna sada s presnými meracími prvkami a digitálnym rozhraním pre stredné školy.
+              </p>
+            </div>
+            <div class="border-t border-border pt-4 flex items-center justify-between">
+              <span class="text-xs font-bold text-muted-foreground">Skladom / Na objednávku</span>
+              <a href="#kontakt" class="text-xs font-bold text-primary hover:text-tertiary transition-colors flex items-center gap-1">
+                Zistiť viac <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 2 -->
+        <div class="bg-background rounded-2xl overflow-hidden border border-border hover:shadow-xl transition-all flex flex-col h-full">
+          <div class="relative bg-slate-100 p-6 flex items-center justify-center aspect-video">
+            <iconify-icon icon="lucide:settings" class="text-6xl text-primary/30"></iconify-icon>
+            <span class="absolute top-4 left-4 bg-tertiary text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full uppercase">Robotika</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="text-lg font-heading font-bold text-slate-900 mb-2">Programovateľné rameno Didaktik-Robo</h4>
+              <p class="text-muted-foreground text-xs leading-relaxed mb-4">
+                Učebný model priemyselného manipulátora s intuitívnym softvérom pre základy programovania a mechatroniky.
+              </p>
+            </div>
+            <div class="border-t border-border pt-4 flex items-center justify-between">
+              <span class="text-xs font-bold text-muted-foreground">Predvádzací model k dispozícii</span>
+              <a href="#kontakt" class="text-xs font-bold text-primary hover:text-tertiary transition-colors flex items-center gap-1">
+                Zistiť viac <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 3 -->
+        <div class="bg-background rounded-2xl overflow-hidden border border-border hover:shadow-xl transition-all flex flex-col h-full">
+          <div class="relative bg-slate-100 p-6 flex items-center justify-center aspect-video">
+            <iconify-icon icon="lucide:layers" class="text-6xl text-primary/30"></iconify-icon>
+            <span class="absolute top-4 left-4 bg-slate-900 text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full uppercase">Chémia</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="text-lg font-heading font-bold text-slate-900 mb-2">Digitálne laboratórium Lab-X</h4>
+              <p class="text-muted-foreground text-xs leading-relaxed mb-4">
+                Sada senzorov na meranie pH, teploty a vodivosti s priamym bezdrôtovým prenosom do tabletov a PC.
+              </p>
+            </div>
+            <div class="border-t border-border pt-4 flex items-center justify-between">
+              <span class="text-xs font-bold text-muted-foreground">Kompletné sady</span>
+              <a href="#kontakt" class="text-xs font-bold text-primary hover:text-tertiary transition-colors flex items-center gap-1">
+                Zistiť viac <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Callout / Gallery Banner -->
+      <div class="bg-background rounded-2xl p-6 border border-border flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4">
+          <div class="bg-primary/10 text-primary p-3 rounded-xl">
+            <iconify-icon icon="lucide:book-open" class="text-2xl"></iconify-icon>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-sm">Chcete vidieť kompletný sortiment?</h4>
+            <p class="text-xs text-muted-foreground">Stiahnite si náš najnovší produktový katalóg pre tento rok.</p>
+          </div>
+        </div>
+        <a href="#kontakt" class="w-full sm:w-auto inline-flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 px-5 py-3 rounded-lg text-xs font-bold tracking-wide transition-colors">
+          <iconify-icon icon="lucide:download" class="mr-2 text-base"></iconify-icon>
+          Stiahnuť katalóg (PDF)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Certifikáty (Certificates) Section -->
+  <section id="certifikaty" class="py-20 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left: Content -->
+        <div class="lg:col-span-7 flex flex-col items-start">
+          <span class="text-xs font-bold uppercase tracking-widest text-primary mb-2">Záruka kvality</span>
+          <h2 class="text-3xl md:text-4xl font-heading font-black mb-6 text-slate-900 leading-tight">
+            Garantovaná kvalita a overené štandardy
+          </h2>
+          <p class="text-muted-foreground mb-8 leading-relaxed">
+            Naše procesy, vývoj a samotná výroba podliehajú prísnej kontrole a spĺňajú najvyššie európske normy. Sme držiteľom prestížnych certifikátov, ktoré potvrdzujú našu spoľahlivosť a bezpečnosť našich produktov.
+          </p>
+
+          <!-- Certificates Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+            <div class="flex items-center gap-4 p-4 rounded-xl border border-border bg-muted/20">
+              <div class="bg-background p-2.5 rounded-lg border border-border flex items-center justify-center">
+                <iconify-icon icon="lucide:shield" class="text-tertiary text-2xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">ISO 9001:2015</h4>
+                <p class="text-xs text-muted-foreground">Systém manažérstva kvality</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 p-4 rounded-xl border border-border bg-muted/20">
+              <div class="bg-background p-2.5 rounded-lg border border-border flex items-center justify-center">
+                <iconify-icon icon="lucide:shield-check" class="text-tertiary text-2xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">ISO 14001:2015</h4>
+                <p class="text-xs text-muted-foreground">Systém environmentálneho manažérstva</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 p-4 rounded-xl border border-border bg-muted/20">
+              <div class="bg-background p-2.5 rounded-lg border border-border flex items-center justify-center">
+                <iconify-icon icon="lucide:award" class="text-tertiary text-2xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">CE Certifikácia</h4>
+                <p class="text-xs text-muted-foreground">Súlad s európskymi bezpečnostnými normami</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 p-4 rounded-xl border border-border bg-muted/20">
+              <div class="bg-background p-2.5 rounded-lg border border-border flex items-center justify-center">
+                <iconify-icon icon="lucide:check" class="text-tertiary text-2xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Bezpečnosť a zhoda</h4>
+                <p class="text-xs text-muted-foreground">Všetky pomôcky sú certifikované pre školy</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive badge display -->
+        <div class="lg:col-span-5 bg-gradient-to-br from-primary to-slate-900 text-primary-foreground rounded-2xl p-8 flex flex-col justify-between min-h-[320px] shadow-xl relative overflow-hidden">
+          <div class="absolute -top-10 -right-10 w-40 h-40 bg-background/5 rounded-full"></div>
+          <div>
+            <div class="bg-background/10 w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+              <iconify-icon icon="lucide:info" class="text-2xl text-tertiary"></iconify-icon>
+            </div>
+            <h4 class="text-xl font-heading font-bold mb-3">Transparentnosť na prvom mieste</h4>
+            <p class="text-slate-300 text-xs leading-relaxed">
+              Všetky originálne certifikáty a vyhlásenia o zhode sú k dispozícii na nahliadnutie pre našich B2B partnerov a zriaďovateľov škôl.
+            </p>
+          </div>
+          <div class="border-t border-border/10 pt-6 mt-6 flex items-center justify-between">
+            <span class="text-xs text-slate-400">Potrebujete vyhlásenie o zhode?</span>
+            <a href="#kontakt" class="inline-flex items-center text-xs font-bold text-tertiary hover:text-primary-foreground transition-colors">
+              Vyžiadať dokumenty
+              <iconify-icon icon="lucide:arrow-right" class="ml-1 text-sm"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Dôvera (Trust & References) Section -->
+  <section id="referencie" class="py-20 bg-muted/50 border-t border-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-primary">Prečo nám dôverujú</span>
+        <h2 class="text-3xl md:text-4xl font-heading font-black mt-2 mb-4 text-slate-900">
+          Čo hovoria naši spokojní partneri
+        </h2>
+        <p class="text-muted-foreground">
+          Dlhodobé partnerstvá sú základom nášho úspechu. Spolupracujeme so školami, univerzitami a priemyselnými lídrami.
+        </p>
+      </div>
+
+      <!-- Testimonials Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <!-- Testimonial 1 -->
+        <div class="bg-background p-8 rounded-2xl border border-border shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-amber-500 mb-6">
+              <iconify-icon icon="lucide:star"></iconify-icon>
+              <iconify-icon icon="lucide:star"></iconify-icon>
+              <iconify-icon icon="lucide:star"></iconify-icon>
+              <iconify-icon icon="lucide:star"></iconify-icon>
+              <iconify-icon icon="lucide:star"></iconify-icon>
+            </div>
+            <p class="text-muted-foreground text-sm italic leading-relaxed mb-6">
+              "Vybavenie od firmy Didaktik nám umožnilo kompletne pretransformovať výučbu fyziky a mechatroniky. Študenti oceňujú najmä praktické merania s priamym prepojením na počítač."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 border-t border-border pt-4">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">
+              JM
+            </div>
+            <div>
+              <h5 class="font-bold text-slate-900 text-xs">Ing. Ján Molnár</h5>
+              <p class="text-[10px] text-muted-foreground">Riaditeľ, Stredná odborná škola technická</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="bg-background p-8 rounded-2xl border border-border shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-amber-500 mb-6">
+              <iconify-icon icon="lucide:star"></iconify-icon>
+              <iconify-icon icon="lucide:star"></iconify-icon>
+              <iconify-icon icon="lucide:star"></iconify-icon>
+              <iconify-icon icon="lucide:star"></iconify-icon>
+              <iconify-icon icon="lucide:star"></iconify-icon>
+            </div>
+            <p class="text-muted-foreground text-sm italic leading-relaxed mb-6">
+              "Spolupráca na vývoji špeciálnych meracích prípravkov pre náš výskumný ústav prebehla na vysokej profesionálnej úrovni. Výborná komunikácia a presné dodržanie termínov."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 border-t border-border pt-4">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">
+              PK
+            </div>
+            <div>
+              <h5 class="font-bold text-slate-900 text-xs">Doc. RNDr. Peter Kováč, PhD.</h5>
+              <p class="text-[10px] text-muted-foreground">Vedúci katedry aplikovanej fyziky</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="bg-background p-8 rounded-2xl border border-border shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-amber-500 mb-6">
+              <iconify-icon icon="lucide:star"></iconify-icon>
+              <iconify-icon icon="lucide:star"></iconify-icon>
+              <iconify-icon icon="lucide:star"></iconify-icon>
+              <iconify-icon icon="lucide:star"></iconify-icon>
+              <iconify-icon icon="lucide:star"></iconify-icon>
+            </div>
+            <p class="text-muted-foreground text-sm italic leading-relaxed mb-6">
+              "Ako distribútor oceňujeme spoľahlivosť dodávok a špičkovú technickú podporu. Didaktik je pre nás synonymom kvality v stredoeurópskom regióne."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 border-t border-border pt-4">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">
+              MH
+            </div>
+            <div>
+              <h5 class="font-bold text-slate-900 text-xs">Marek Horváth</h5>
+              <p class="text-[10px] text-muted-foreground">B2B Partner & Distribútor</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partner Logos -->
+      <div class="border-t border-border pt-12">
+        <p class="text-center text-xs font-bold text-muted-foreground uppercase tracking-widest mb-8">Naši kľúčoví partneri</p>
+        <div class="flex flex-wrap items-center justify-center gap-12 opacity-60">
+          <div class="flex items-center gap-2">
+            <iconify-icon icon="lucide:layers" class="text-3xl text-slate-500"></iconify-icon>
+            <span class="font-heading font-black text-slate-600 tracking-wider">TECH-UNIV</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <iconify-icon icon="lucide:settings" class="text-3xl text-slate-500"></iconify-icon>
+            <span class="font-heading font-black text-slate-600 tracking-wider">SLOV-INDUSTRY</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <iconify-icon icon="lucide:globe" class="text-3xl text-slate-500"></iconify-icon>
+            <span class="font-heading font-black text-slate-600 tracking-wider">EDU-GLOBAL</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <iconify-icon icon="lucide:shield" class="text-3xl text-slate-500"></iconify-icon>
+            <span class="font-heading font-black text-slate-600 tracking-wider">SK-CERT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Kontakt (Contact) Section -->
+  <section id="kontakt" class="py-20 bg-background border-t border-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Left: Contact info -->
+        <div class="lg:col-span-5 flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-primary mb-2">Spojte sa s nami</span>
+            <h2 class="text-3xl md:text-4xl font-heading font-black mb-6 text-slate-900 leading-tight">
+              Sme tu pre vaše otázky a projekty
+            </h2>
+            <p class="text-muted-foreground mb-8 text-sm leading-relaxed">
+              Máte otázku k našim produktom, potrebujete vypracovať individuálnu cenovú ponuku alebo konzultovať projekt učebne? Neváhajte nás kontaktovať.
+            </p>
+
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div class="bg-primary/10 text-primary p-3 rounded-lg">
+                  <iconify-icon icon="lucide:map-pin" class="text-xl"></iconify-icon>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm">Sídlo spoločnosti</h4>
+                  <p class="text-xs text-muted-foreground mt-0.5">Didaktik, družstvo</p>
+                  <p class="text-xs text-muted-foreground">Ulica Priemyselná 4, 052 01 Spišská Nová Ves</p>
+                  <p class="text-xs text-muted-foreground">Slovenská republika</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="bg-primary/10 text-primary p-3 rounded-lg">
+                  <iconify-icon icon="lucide:phone" class="text-xl"></iconify-icon>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm">Telefonický kontakt</h4>
+                  <p class="text-xs text-muted-foreground mt-0.5">Sekretariát: <a href="tel:+421534123456" class="hover:text-primary font-semibold">+421 53 412 3456</a></p>
+                  <p class="text-xs text-muted-foreground">Obchodné oddelenie: <a href="tel:+421534123457" class="hover:text-primary font-semibold">+421 53 412 3457</a></p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="bg-primary/10 text-primary p-3 rounded-lg">
+                  <iconify-icon icon="lucide:mail" class="text-xl"></iconify-icon>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm">E-mailová adresa</h4>
+                  <p class="text-xs text-muted-foreground mt-0.5">Všeobecné otázky: <a href="mailto:info@didaktik.sk" class="hover:text-primary font-semibold">info@didaktik.sk</a></p>
+                  <p class="text-xs text-muted-foreground">Dopyty a objednávky: <a href="mailto:obchod@didaktik.sk" class="hover:text-primary font-semibold">obchod@didaktik.sk</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Billing Info / Transparency -->
+          <div class="border-t border-border pt-6 mt-8">
+            <div class="grid grid-cols-2 gap-4 text-[11px] text-muted-foreground">
+              <div>
+                <p class="font-semibold text-slate-900">IČO</p>
+                <p>31651478</p>
+              </div>
+              <div>
+                <p class="font-semibold text-slate-900">DIČ / IČ DPH</p>
+                <p>SK2020501234</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Contact form -->
+        <div class="lg:col-span-7 bg-muted/40 p-8 rounded-2xl border border-border">
+          <h3 class="text-xl font-heading font-bold text-slate-900 mb-2">Napíšte nám rýchlu správu</h3>
+          <p class="text-xs text-muted-foreground mb-6">Odpovieme vám najneskôr do 24 pracovných hodín.</p>
+
+          <form class="space-y-4" onsubmit="event.preventDefault(); alert('Správa bola úspešne odoslaná! Budeme Vás kontaktovať.');">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Meno a priezvisko *</label>
+                <input type="text" required placeholder="Napr. Ján Kováč" class="w-full px-4 py-3 bg-background border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Názov organizácie / firmy</label>
+                <input type="text" placeholder="Napr. SOŠ Technická" class="w-full px-4 py-3 bg-background border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">E-mailová adresa *</label>
+                <input type="email" required placeholder="kovac@skola.sk" class="w-full px-4 py-3 bg-background border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Telefónne číslo</label>
+                <input type="tel" placeholder="+421 900 000 000" class="w-full px-4 py-3 bg-background border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Mám záujem o *</label>
+              <select required class="w-full px-4 py-3 bg-background border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+                <option value="">Vyberte kategóriu...</option>
+                <option value="pomocky">Učebné pomôcky a vybavenie</option>
+                <option value="projekt">Projekt a 3D návrh učebne</option>
+                <option value="technologie">Technologická kooperácia / Výroba</option>
+                <option value="ine">Iné / Všeobecná otázka</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Vaša správa *</label>
+              <textarea required rows="4" placeholder="Popíšte vaše požiadavky alebo otázky..." class="w-full px-4 py-3 bg-background border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"></textarea>
+            </div>
+
+            <div class="flex items-start gap-2 pt-2">
+              <input type="checkbox" required id="gdpr" class="mt-1 rounded border-border text-primary focus:ring-primary">
+              <label for="gdpr" class="text-xs text-muted-foreground leading-relaxed">
+                Súhlasím so spracovaním osobných údajov za účelom vybavenia dopytu v zmysle zásad ochrany súkromia. *
+              </label>
+            </div>
+
+            <button type="submit" class="w-full inline-flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-4 rounded-lg font-bold text-sm tracking-wide shadow-lg shadow-primary/15 transition-all mt-4">
+              <iconify-icon icon="lucide:send" class="mr-2 text-base"></iconify-icon>
+              Odoslať nezáväzný dopyt
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 text-primary-foreground border-t border-slate-900 py-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <a href="#" class="block">
+          <img src="https://www.didaktik.sk/images/didaktik_logo.png" alt="Didaktik logo" class="h-8 w-auto object-contain">
+        </a>
+      </div>
+      <p class="text-xs text-slate-500 text-center md:text-right">
+        &copy; 2026 Didaktik, družstvo. Všetky práva vyhradené. Vyrobené s dôrazom na kvalitu a inovácie.
+      </p>
+    </div>
+  </footer>
+</div>
+</body></html>
