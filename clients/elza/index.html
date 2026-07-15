@@ -1,0 +1,524 @@
+<!DOCTYPE html><html lang="en" style="--background: #fdfdfd; --foreground: #333333; --primary: #007b63; --primary-foreground: #ffffff; --secondary: #f1f1f1; --secondary-foreground: #333333; --tertiary: #007b63; --muted: #f1f1f1; --muted-foreground: #8e8e8e; --accent: #65afa1; --destructive: #ef4444; --card: #f0f0f0; --card-foreground: #333333; --border: #b3b3b3; --input: #b3b3b3; --ring: #007b63; --radius: 8px; --font-sans: Inter, sans-serif; --font-heading: Inter, sans-serif; --font-mono: JetBrains Mono, monospace; --shadow-offset-x: 0; --shadow-offset-y: 10; --shadow-blur: 30; --shadow-spread: -8; --shadow-color: rgba(15, 23, 42, 0.12);"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Poppins:wght@100..900&amp;family=Fira+Code:wght@300..700&amp;family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    <style type="text/tailwindcss">
+      @import "tailwindcss";
+      @theme inline {
+        --color-background: var(--background);
+        --color-foreground: var(--foreground);
+        --color-primary: var(--primary);
+        --color-primary-foreground: var(--primary-foreground);
+        --color-secondary: var(--secondary);
+        --color-secondary-foreground: var(--secondary-foreground);
+        --color-tertiary: var(--tertiary);
+        --color-muted: var(--muted);
+        --color-muted-foreground: var(--muted-foreground);
+        --color-accent: var(--accent);
+        --color-destructive: var(--destructive);
+        --color-card: var(--card);
+        --color-card-foreground: var(--card-foreground);
+        --color-border: var(--border);
+        --color-input: var(--input);
+        --color-ring: var(--ring);
+        --radius-sm: calc(var(--radius) - 4px);
+        --radius-md: calc(var(--radius) - 2px);
+        --radius-lg: var(--radius);
+        --font-family-sans: var(--font-sans);
+        --font-family-heading: var(--font-heading);
+        --font-family-mono: var(--font-mono);
+      }
+      :root {
+        --background: #fdfdfd;
+        --foreground: #333333;
+        --primary: #007b63;
+        --primary-foreground: #ffffff;
+        --secondary: #f1f1f1;
+        --secondary-foreground: #333333;
+        --tertiary: #007b63;
+        --muted: #f1f1f1;
+        --muted-foreground: #8e8e8e;
+        --accent: #65afa1;
+        --destructive: #ef4444;
+        --card: #f0f0f0;
+        --card-foreground: #333333;
+        --border: #b3b3b3;
+        --input: #b3b3b3;
+        --ring: #007b63;
+        --radius: 8px;
+        --font-sans: Inter, sans-serif;
+        --font-heading: Inter, sans-serif;
+        --font-mono: JetBrains Mono, monospace;
+        --shadow-offset-x: 0;
+        --shadow-offset-y: 10;
+        --shadow-blur: 30;
+        --shadow-spread: -8;
+        --shadow-color: rgba(15, 23, 42, 0.12);
+        }
+    </style>
+    <style>
+      .brand-gradient { background-image: linear-gradient(135deg, var(--primary), var(--accent)); }
+      .shadow-theme {
+        box-shadow:
+          calc(var(--shadow-offset-x, 0) * 1px) calc(var(--shadow-offset-y, 10) * 1px)
+          calc(var(--shadow-blur, 30) * 1px) calc(var(--shadow-spread, -8) * 1px)
+          var(--shadow-color, rgba(15, 23, 42, 0.12));
+      }
+    </style>
+  
+
+
+<link id="google-font-Inter" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+
+
+</head>
+  <body>
+<div class="min-h-screen w-full bg-background flex flex-col relative text-foreground font-sans selection:bg-accent selection:text-primary" style="">
+  <header class="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-md shadow-sm" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4" style="">
+      <a href="#" class="flex items-center gap-3 group focus:outline-none min-h-12" style="">
+        <div class="bg-card p-2 shadow-sm border border-border rounded-lg" style="">
+          <img src="https://www.elza.sk/templates/t-elza/images/logo-elza.png" alt="ELZA logo" class="h-10 w-auto object-contain" style="">
+        </div>
+        <div class="hidden sm:flex flex-col" style="">
+          <span class="font-heading font-bold text-lg tracking-tight text-primary" style="">Elektromontážny závod Bratislava</span>
+          <span class="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold leading-none" style="">akciová spoločnosť</span>
+        </div>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8" style="">
+        <a href="#services" class="text-sm font-semibold text-foreground hover:text-primary transition-colors relative py-2 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left" style="">Služby</a>
+        <a href="#projects" class="text-sm font-semibold text-foreground hover:text-primary transition-colors relative py-2 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left" style="">Projekty a referencie</a>
+        <a href="#certificates" class="text-sm font-semibold text-foreground hover:text-primary transition-colors relative py-2 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left" style="">Certifikáty</a>
+        <a href="#about" class="text-sm font-semibold text-foreground hover:text-primary transition-colors relative py-2 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left" style="">O nás</a>
+        <a href="#news" class="text-sm font-semibold text-foreground hover:text-primary transition-colors relative py-2 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left" style="">Novinky</a>
+      </nav>
+
+      <div class="flex items-center gap-3" style="">
+        <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-5 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm border border-primary transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md min-h-12 hover:bg-primary/90" style="visibility: visible;">Vyžiadať konzultáciu<iconify-icon icon="lucide:arrow-right" class="ml-2 text-base"></iconify-icon></a>
+        <button class="lg:hidden p-3 rounded-lg border border-border bg-card text-foreground hover:bg-muted transition-colors min-h-12 min-w-12" aria-label="Otvoriť menu">
+          <iconify-icon icon="lucide:menu" class="text-xl"></iconify-icon>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="relative w-full border-b border-border bg-secondary py-14 lg:py-20 overflow-hidden" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center" style="">
+      <div class="lg:col-span-6 flex flex-col space-y-6" style="">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border w-fit shadow-sm" style="">
+          <span class="w-2 h-2 rounded-full bg-accent" style=""></span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-primary" style="">Slovenská tradícia a technická presnosť od roku 1992</span>
+        </div>
+        <h1 class="text-4xl lg:text-5xl font-heading font-extrabold text-primary leading-tight tracking-tight" style="">
+          Vysokonapäťová elektrotechnika a priemyselná elektrifikácia pre projekty veľkého rozsahu
+        </h1>
+        <p class="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl" style="">
+          ELZA zabezpečuje komplexnú výstavbu, montáž a údržbu silnoprúdových a slaboprúdových zariadení, trakčných vedení, rozvodní a priemyselných elektroinštalácií pre Slovensko aj zahraničných partnerov.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 pt-2" style="">
+          <a href="#contact" class="inline-flex items-center justify-center px-6 py-3.5 rounded-lg bg-primary text-primary-foreground font-bold text-sm border border-primary transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg min-h-12" style="">
+            Vyžiadať cenovú ponuku
+            <iconify-icon icon="lucide:clipboard" class="ml-2 text-base" style=""></iconify-icon>
+          </a>
+          <a href="#projects" class="inline-flex items-center justify-center px-6 py-3.5 rounded-lg border border-border bg-card text-foreground font-semibold text-sm transition-all duration-300 hover:bg-muted hover:-translate-y-0.5 min-h-12" style="">
+            Zobraziť referencie
+            <iconify-icon icon="lucide:arrow-right" class="ml-2 text-base" style=""></iconify-icon>
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 relative" style="">
+        <div class="relative rounded-xl overflow-hidden shadow-lg border border-border bg-card p-2" style="">
+          <img src="https://www.elza.sk/templates/t-elza/images/header.jpg" alt="Priemyselná elektrická infraštruktúra" class="w-full h-[420px] object-cover rounded-lg" style="">
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent pointer-events-none rounded-lg" style=""></div>
+          <div class="absolute bottom-5 left-5 right-5 bg-background/95 border border-border p-4 rounded-xl shadow-md flex items-center justify-between gap-4" style="">
+            <div class="flex items-center gap-3" style="">
+              <div class="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center border border-border" style="">
+                <iconify-icon icon="lucide:shield" class="text-xl text-accent" style=""></iconify-icon>
+              </div>
+              <div style="">
+                <p class="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground" style="">Spoľahlivý partner</p>
+                <p class="text-sm font-bold text-primary" style="">Dôraz na bezpečnosť, kvalitu a certifikované procesy</p>
+              </div>
+            </div>
+            <iconify-icon icon="lucide:circle-check" class="text-2xl text-accent" style=""></iconify-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="w-full py-16 lg:py-20 border-b border-border bg-background" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6" style="">
+      <div class="text-center max-w-3xl mx-auto mb-14" style="">
+        <span class="text-xs font-bold uppercase tracking-widest text-accent block mb-3" style="">Služby</span>
+        <h2 class="text-3xl lg:text-4xl font-heading font-extrabold text-primary mb-4" style="">Komplexné riešenia v elektroenergetike</h2>
+        <p class="text-base text-muted-foreground" style="">Nadväzujeme na odborné zázemie ELZA a prinášame projekciu, montáž, modernizáciu aj údržbu technicky náročných elektrických zariadení.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style="">
+        <div class="group bg-card border border-border rounded-xl p-8 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1" style="">
+          <div class="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center border border-border mb-6 transition-colors group-hover:bg-accent/20" style="">
+            <iconify-icon icon="lucide:activity" class="text-2xl text-primary transition-colors group-hover:text-accent"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-heading font-bold text-primary mb-3" style="">Priemyselné elektroinštalácie</h3>
+          <p class="text-sm text-muted-foreground leading-relaxed mb-6" style="">
+            Realizácia elektroinštalačných prác v budovách, výrobných halách a priemyselných prevádzkach s dôrazom na bezpečnosť a kontinuitu prevádzky.
+          </p>
+          <a href="#contact" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-primary group-hover:text-accent transition-colors" style="">
+            Zistiť viac
+            <iconify-icon icon="lucide:arrow-right" class="ml-1.5 text-sm transition-transform group-hover:translate-x-1"></iconify-icon>
+          </a>
+        </div>
+
+        <div class="group bg-card border border-border rounded-xl p-8 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1" style="">
+          <div class="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center border border-border mb-6 transition-colors group-hover:bg-accent/20" style="">
+            <iconify-icon icon="lucide:layers" class="text-2xl text-primary transition-colors group-hover:text-accent"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-heading font-bold text-primary mb-3" style="">Montáž rozvodní a staníc VVN, VN, NN</h3>
+          <p class="text-sm text-muted-foreground leading-relaxed mb-6" style="">
+            Výstavba, rekonštrukcie a servis transformovní, spínacích staníc a rozvodní pre železničné aj verejné energetické siete.
+          </p>
+          <a href="#contact" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-primary group-hover:text-accent transition-colors" style="">
+            Zistiť viac
+            <iconify-icon icon="lucide:arrow-right" class="ml-1.5 text-sm transition-transform group-hover:translate-x-1"></iconify-icon>
+          </a>
+        </div>
+
+        <div class="group bg-card border border-border rounded-xl p-8 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1" style="">
+          <div class="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center border border-border mb-6 transition-colors group-hover:bg-accent/20" style="">
+            <iconify-icon icon="lucide:pencil" class="text-2xl text-primary transition-colors group-hover:text-accent"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-heading font-bold text-primary mb-3" style="">Projekcia a technický návrh</h3>
+          <p class="text-sm text-muted-foreground leading-relaxed mb-6" style="">
+            Projekčné práce, odborné revízie elektrických zariadení a technické riešenia pre nové investície aj modernizácie existujúcich systémov.
+          </p>
+          <a href="#contact" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-primary group-hover:text-accent transition-colors" style="">
+            Zistiť viac
+            <iconify-icon icon="lucide:arrow-right" class="ml-1.5 text-sm transition-transform group-hover:translate-x-1"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates" class="w-full py-16 lg:py-20 border-b border-border bg-secondary" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6" style="">
+      <div class="text-center max-w-2xl mx-auto mb-12" style="">
+        <span class="text-xs font-bold uppercase tracking-widest text-accent block mb-3" style="">Dôveryhodnosť a kvalita</span>
+        <h2 class="text-3xl font-heading font-extrabold text-primary" style="">Certifikácie, partneri a odborné referencie</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-14" style="">
+        <div class="bg-card border border-border rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-sm" style="">
+          <img src="https://uxmagic.blob.core.windows.net/public/agent-images/iso_cert_1-1784113844422-3ousqzm1dtu.png" alt="ISO 9001" class="w-16 h-16 object-contain mb-4" style="">
+          <p class="font-heading font-bold text-sm text-primary" style="">ISO 9001</p>
+          <p class="text-xs text-muted-foreground mt-1" style="">Systém manažérstva kvality</p>
+        </div>
+        <div class="bg-card border border-border rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-sm" style="">
+          <img src="https://uxmagic.blob.core.windows.net/public/agent-images/iso_cert_2-1784113852496-xak9k8tw9f.png" alt="ISO 14001" class="w-16 h-16 object-contain mb-4" style="">
+          <p class="font-heading font-bold text-sm text-primary" style="">ISO 14001</p>
+          <p class="text-xs text-muted-foreground mt-1" style="">Environmentálne štandardy</p>
+        </div>
+        <div class="bg-card border border-border rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-sm" style="">
+          <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mb-4 border border-border" style="">
+            <iconify-icon icon="lucide:shield" class="text-3xl text-primary"></iconify-icon>
+          </div>
+          <p class="font-heading font-bold text-sm text-primary" style="">Odborná spôsobilosť</p>
+          <p class="text-xs text-muted-foreground mt-1" style="">Certifikovaní technici a revízni pracovníci</p>
+        </div>
+        <div class="bg-card border border-border rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-sm" style="">
+          <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mb-4 border border-border" style="">
+            <iconify-icon icon="lucide:globe" class="text-3xl text-primary"></iconify-icon>
+          </div>
+          <p class="font-heading font-bold text-sm text-primary" style="">Silní partneri</p>
+          <p class="text-xs text-muted-foreground mt-1" style="">Spolupráca s domácimi aj zahraničnými dodávateľmi</p>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto bg-card border border-border rounded-xl p-8 lg:p-10 shadow-sm relative overflow-hidden" style="">
+        <div class="absolute top-0 left-0 w-2 h-full bg-accent" style=""></div>
+        <div class="flex flex-col space-y-6" style="">
+          <iconify-icon icon="lucide:message-circle" class="text-4xl text-accent/30"></iconify-icon>
+          <blockquote class="text-lg lg:text-xl font-medium text-primary italic leading-relaxed" style="">
+            „ELZA dlhodobo potvrdzuje vysokú technickú úroveň, spoľahlivosť pri realizácii náročných elektroenergetických celkov a profesionálny prístup počas celej výstavby.“
+          </blockquote>
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-t border-border pt-6" style="">
+            <div style="">
+              <p class="font-heading font-bold text-primary" style="">Referenčný klient</p>
+              <p class="text-xs text-muted-foreground" style="">Veľký partner v oblasti energetickej infraštruktúry a priemyselnej výstavby</p>
+            </div>
+            <div class="flex items-center gap-2" style="">
+              <span class="text-xs uppercase tracking-wider font-semibold text-muted-foreground" style="">Rozsah projektu:</span>
+              <span class="px-3 py-1 bg-secondary text-primary text-xs font-bold rounded-lg" style="">Rozvodne a priemyselné elektrocelky</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="w-full py-16 lg:py-20 border-b border-border bg-background" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start" style="">
+      <div class="lg:col-span-5 flex flex-col space-y-8" style="">
+        <div style="">
+          <span class="text-xs font-bold uppercase tracking-widest text-accent block mb-3" style="">História a kapacity</span>
+          <h2 class="text-3xl lg:text-4xl font-heading font-extrabold text-primary" style="">Dlhoročná tradícia, odborné zázemie a silný tím</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" style="">
+          <div class="border-l-4 border-accent pl-6 py-2" style="">
+            <p class="text-4xl font-heading font-extrabold text-primary" style="">30+</p>
+            <p class="text-xs uppercase tracking-wider font-semibold text-muted-foreground mt-1" style="">rokov skúseností</p>
+          </div>
+          <div class="border-l-4 border-primary pl-6 py-2" style="">
+            <p class="text-4xl font-heading font-extrabold text-primary" style="">500+</p>
+            <p class="text-xs uppercase tracking-wider font-semibold text-muted-foreground mt-1" style="">realizovaných projektov</p>
+          </div>
+          <div class="border-l-4 border-primary pl-6 py-2" style="">
+            <p class="text-4xl font-heading font-extrabold text-primary" style="">100+</p>
+            <p class="text-xs uppercase tracking-wider font-semibold text-muted-foreground mt-1" style="">certifikovaných odborníkov</p>
+          </div>
+          <div class="border-l-4 border-accent pl-6 py-2" style="">
+            <p class="text-4xl font-heading font-extrabold text-primary" style="">3</p>
+            <p class="text-xs uppercase tracking-wider font-semibold text-muted-foreground mt-1" style="">závody v Bratislave, Žiline a Košiciach</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 flex flex-col space-y-6" style="">
+        <p class="text-base text-muted-foreground leading-relaxed" style="">
+          Spoločnosť ELZA – Elektromontážny závod Bratislava, a. s., pôsobí na trhu od roku 1992 a dlhodobo sa venuje komplexnému zabezpečeniu výstavby a údržby elektrických silnoprúdových a slaboprúdových zariadení. Vychádza zo silného technického know-how, vlastného personálneho zázemia a skúseností z realizácie energetických, železničných aj mestských dopravných projektov.
+        </p>
+        <p class="text-base text-muted-foreground leading-relaxed" style="">
+          Na tradíciu pôvodnej spoločnosti nadväzuje moderným prístupom, dôrazom na bezpečnosť, kvalitu dodávok a spoluprácu s významnými domácimi aj zahraničnými partnermi. Výsledkom je stabilný a dôveryhodný partner pre technicky náročné elektroenergetické zákazky.
+        </p>
+
+        <div class="border border-border rounded-xl bg-card overflow-hidden" style="">
+          <div class="bg-secondary p-4 border-b border-border flex items-center justify-between" style="">
+            <span class="text-xs font-bold uppercase tracking-wider text-primary" style="">Kľúčové míľniky</span>
+            <div class="flex gap-2" style="">
+              <span class="w-2.5 h-2.5 rounded-full bg-accent" style=""></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-primary/20" style=""></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-primary/20" style=""></span>
+            </div>
+          </div>
+
+          <div class="p-6 divide-y divide-border" style="">
+            <div class="pb-4 flex items-start gap-4" style="">
+              <span class="px-3 py-1 bg-accent/20 text-primary text-xs font-extrabold rounded-lg" style="">1992</span>
+              <div style="">
+                <h4 class="font-heading font-bold text-primary text-sm" style="">Založenie spoločnosti</h4>
+                <p class="text-xs text-muted-foreground mt-1" style="">Začiatok pôsobenia v oblasti elektromontážnych a elektroenergetických prác.</p>
+              </div>
+            </div>
+            <div class="py-4 flex items-start gap-4" style="">
+              <span class="px-3 py-1 bg-secondary text-primary text-xs font-extrabold rounded-lg" style="">2004</span>
+              <div style="">
+                <h4 class="font-heading font-bold text-primary text-sm" style="">Transformácia na akciovú spoločnosť</h4>
+                <p class="text-xs text-muted-foreground mt-1" style="">Posilnenie postavenia firmy a ďalší rast technických kapacít.</p>
+              </div>
+            </div>
+            <div class="pt-4 flex items-start gap-4" style="">
+              <span class="px-3 py-1 bg-secondary text-primary text-xs font-extrabold rounded-lg" style="">Dnes</span>
+              <div style="">
+                <h4 class="font-heading font-bold text-primary text-sm" style="">Komplexný partner pre energetické projekty</h4>
+                <p class="text-xs text-muted-foreground mt-1" style="">Od trakčných vedení až po rozvodne, projekciu a modernizáciu priemyselných riešení.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="w-full py-16 lg:py-20 border-b border-border bg-secondary" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6" style="">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12" style="">
+        <div style="">
+          <span class="text-xs font-bold uppercase tracking-widest text-accent block mb-3" style="">Projekty a aktuality</span>
+          <h2 class="text-3xl font-heading font-extrabold text-primary" style="">Referencie, novinky a odborné témy</h2>
+        </div>
+        <a href="#contact" class="inline-flex items-center text-sm font-bold text-primary hover:text-accent transition-colors mt-2 md:mt-0" style="">
+          Zobraziť všetky články
+          <iconify-icon icon="lucide:arrow-right" class="ml-1.5 text-base"></iconify-icon>
+        </a>
+      </div>
+
+      <div id="news" class="grid grid-cols-1 md:grid-cols-3 gap-8" style="">
+        <div class="bg-card border border-border rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1" style="">
+          <div class="p-6" style="">
+            <div class="flex items-center gap-3 text-xs text-muted-foreground mb-4" style="">
+              <span class="font-semibold text-accent" style="">Realizácia</span>
+              <span style="">•</span>
+              <span style="">Október 2024</span>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-primary mb-3" style="">
+              Rozšírenie a modernizácia energetického uzla pre priemyselný areál
+            </h3>
+            <p class="text-xs text-muted-foreground leading-relaxed mb-6" style="">
+              Úspešná realizácia nových rozvodných prvkov a technologických napojení pre stabilnú a bezpečnú prevádzku investora.
+            </p>
+            <a href="#" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-primary hover:text-accent transition-colors" style="">
+              Čítať viac
+              <iconify-icon icon="lucide:arrow-right" class="ml-1 text-sm" style=""></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-card border border-border rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1" style="">
+          <div class="p-6" style="">
+            <div class="flex items-center gap-3 text-xs text-muted-foreground mb-4" style="">
+              <span class="font-semibold text-primary" style="">Bezpečnosť</span>
+              <span style="">•</span>
+              <span style="">September 2024</span>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-primary mb-3" style="">
+              Odborné školenia a certifikácie tímu ELZA
+            </h3>
+            <p class="text-xs text-muted-foreground leading-relaxed mb-6" style="">
+              Neustále vzdelávanie pracovníkov a revíznych technikov zvyšuje kvalitu realizácií aj spoľahlivosť prevádzky.
+            </p>
+            <a href="#" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-primary hover:text-accent transition-colors" style="">
+              Čítať viac
+              <iconify-icon icon="lucide:arrow-right" class="ml-1 text-sm" style=""></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-card border border-border rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1" style="">
+          <div class="p-6" style="">
+            <div class="flex items-center gap-3 text-xs text-muted-foreground mb-4" style="">
+              <span class="font-semibold text-accent" style="">Technológie</span>
+              <span style="">•</span>
+              <span style="">August 2024</span>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-primary mb-3" style="">
+              Moderné riešenia pre rozvodne, trakčné vedenia a priemyselné siete
+            </h3>
+            <p class="text-xs text-muted-foreground leading-relaxed mb-6" style="">
+              Ako technické inovácie a kvalitné komponenty pomáhajú budovať bezpečnejšiu a výkonnejšiu infraštruktúru.
+            </p>
+            <a href="#" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-primary hover:text-accent transition-colors" style="">
+              Čítať viac
+              <iconify-icon icon="lucide:arrow-right" class="ml-1 text-sm" style=""></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="w-full py-16 lg:py-20 bg-primary text-primary-foreground relative overflow-hidden" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10" style="">
+      <div class="lg:col-span-7 bg-card text-card-foreground p-8 lg:p-10 rounded-xl shadow-lg border border-border" style="">
+        <h3 class="text-2xl font-heading font-extrabold text-primary mb-2" style="">Kontaktujte nás</h3>
+        <p class="text-sm text-muted-foreground mb-8" style="">Pošlite nám základné informácie o projekte a náš tím vás bude kontaktovať s ďalším postupom.</p>
+
+        <form class="space-y-6" style="">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" style="">
+            <div class="flex flex-col space-y-2" style="">
+              <label class="text-xs font-bold uppercase tracking-wider text-primary" style="">Meno</label>
+              <input type="text" placeholder="napr. Ing. Ján Novák" class="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-accent text-sm transition-all min-h-12" style="">
+            </div>
+            <div class="flex flex-col space-y-2" style="">
+              <label class="text-xs font-bold uppercase tracking-wider text-primary" style="">Firemný e-mail</label>
+              <input type="email" placeholder="napr. jan.novak@firma.sk" class="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-accent text-sm transition-all min-h-12" style="">
+            </div>
+          </div>
+          <div class="flex flex-col space-y-2" style="">
+            <label class="text-xs font-bold uppercase tracking-wider text-primary" style="">Stručný popis projektu</label>
+            <textarea rows="4" placeholder="Opíšte stručne typ projektu, lokalitu a požadovaný rozsah realizácie..." class="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-accent text-sm transition-all resize-none" style=""></textarea>
+          </div>
+
+          <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-lg bg-primary text-primary-foreground font-bold text-sm border border-primary transition-all duration-300 hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg min-h-12" style="visibility: visible;">Odoslať dopyt<iconify-icon icon="lucide:send" class="ml-2 text-base"></iconify-icon></button>
+        </form>
+      </div>
+
+      <div class="lg:col-span-5 flex flex-col justify-between space-y-8 lg:py-4" style="">
+        <div class="space-y-6" style="">
+          <div style="">
+            <span class="text-xs font-bold uppercase tracking-widest text-accent block mb-2" style="">Priamy kontakt</span>
+            <h3 class="text-3xl font-heading font-extrabold text-primary-foreground" style="">Spojte sa s nami</h3>
+          </div>
+          <p class="text-sm text-primary-foreground/80 leading-relaxed" style="">
+            Pre technické konzultácie, obchodné dopyty alebo pozvania do tendrov nás kontaktujte priamo cez centrálu alebo navštívte niektorý z našich závodov.
+          </p>
+
+          <div class="space-y-4 pt-2" style="">
+            <div class="flex items-start gap-4" style="">
+              <div class="w-10 h-10 rounded-lg bg-background/10 flex items-center justify-center border border-border/10" style="">
+                <iconify-icon icon="lucide:phone" class="text-lg text-accent" style=""></iconify-icon>
+              </div>
+              <div style="">
+                <p class="text-[10px] uppercase tracking-wider font-semibold text-primary-foreground/60" style="">Telefón</p>
+                <p class="text-sm font-bold text-primary-foreground" style="">+421 2 4342 5511</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4" style="">
+              <div class="w-10 h-10 rounded-lg bg-background/10 flex items-center justify-center border border-border/10" style="">
+                <iconify-icon icon="lucide:map-pin" class="text-lg text-accent" style=""></iconify-icon>
+              </div>
+              <div style="">
+                <p class="text-[10px] uppercase tracking-wider font-semibold text-primary-foreground/60" style="">Adresa</p>
+                <p class="text-sm font-bold text-primary-foreground" style="">Račianska 155, 831 54 Bratislava</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4" style="">
+              <div class="w-10 h-10 rounded-lg bg-background/10 flex items-center justify-center border border-border/10" style="">
+                <iconify-icon icon="lucide:mail" class="text-lg text-accent" style=""></iconify-icon>
+              </div>
+              <div style="">
+                <p class="text-[10px] uppercase tracking-wider font-semibold text-primary-foreground/60" style="">E-mail</p>
+                <p class="text-sm font-bold text-primary-foreground" style="">elza@elza.sk</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-border/10" style="">
+          <a href="https://www.elza.sk/kontakty" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent hover:text-primary-foreground transition-colors min-h-12" style="">
+            <iconify-icon icon="lucide:external-link" class="text-base" style=""></iconify-icon>
+            Otvoriť mapu a kontakty
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="w-full bg-primary border-t border-border/10 py-10 text-primary-foreground/70 text-xs" style="">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6" style="">
+      <div class="flex items-center gap-3" style="">
+        <div class="bg-background p-1.5 rounded border border-border/10" style="">
+          <img src="https://www.elza.sk/templates/t-elza/images/logo-elza.png" alt="ELZA logo" class="h-8 w-auto object-contain" style="">
+        </div>
+        <div style="">
+          <span class="font-heading font-bold text-primary-foreground text-sm tracking-tight block" style="">ELZA – Elektromontážny závod Bratislava, a. s.</span>
+          <span class="text-[9px] uppercase tracking-widest text-primary-foreground/50 block" style="">spoľahlivý partner v elektroenergetike</span>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-6 text-primary-foreground/80" style="">
+        <a href="#" class="hover:text-accent transition-colors" style="">Ochrana osobných údajov</a>
+        <a href="#" class="hover:text-accent transition-colors" style="">Obchodné podmienky</a>
+        <a href="#" class="hover:text-accent transition-colors" style="">Certifikáty</a>
+        <a href="#contact" class="hover:text-accent transition-colors" style="">Kontakt</a>
+      </div>
+
+      <div style="">
+        <p style="">© ELZA – Elektromontážny závod Bratislava, a. s.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+</body></html>
