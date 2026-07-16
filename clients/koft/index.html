@@ -1,0 +1,605 @@
+<!DOCTYPE html><html lang="en" style="--background: #ffffff; --foreground: #333333; --primary: #6f2c85; --primary-foreground: #ffffff; --secondary: #f3f3f3; --secondary-foreground: #333333; --tertiary: #2d4156; --muted: #f3f3f3; --muted-foreground: #8f8f8f; --accent: #f6dcff; --accent-foreground: #333333; --card: #f5f5f5; --card-foreground: #333333; --destructive: #ef4444; --border: #dddddd; --input: #dddddd; --ring: #6f2c85; --radius: 0.125rem; --font-sans: Open Sans, sans-serif; --font-heading: Open Sans, sans-serif; --font-mono: JetBrains Mono, monospace; --shadow-offset-x: 0; --shadow-offset-y: 10; --shadow-blur: 30; --shadow-spread: -8; --shadow-color: rgba(15, 23, 42, 0.12);"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Poppins:wght@100..900&amp;family=Fira+Code:wght@300..700&amp;family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    <style type="text/tailwindcss">
+      @import "tailwindcss";
+      @theme inline {
+        --color-background: var(--background);
+        --color-foreground: var(--foreground);
+        --color-primary: var(--primary);
+        --color-primary-foreground: var(--primary-foreground);
+        --color-secondary: var(--secondary);
+        --color-secondary-foreground: var(--secondary-foreground);
+        --color-tertiary: var(--tertiary);
+        --color-muted: var(--muted);
+        --color-muted-foreground: var(--muted-foreground);
+        --color-accent: var(--accent);
+        --color-destructive: var(--destructive);
+        --color-card: var(--card);
+        --color-card-foreground: var(--card-foreground);
+        --color-border: var(--border);
+        --color-input: var(--input);
+        --color-ring: var(--ring);
+        --radius-sm: calc(var(--radius) - 4px);
+        --radius-md: calc(var(--radius) - 2px);
+        --radius-lg: var(--radius);
+        --font-family-sans: var(--font-sans);
+        --font-family-heading: var(--font-heading);
+        --font-family-mono: var(--font-mono);
+      }
+      :root { --background: #ffffff;
+        --foreground: #333333;
+        --primary: #6f2c85;
+        --primary-foreground: #ffffff;
+        --secondary: #f3f3f3;
+        --secondary-foreground: #333333;
+        --tertiary: #2d4156;
+        --muted: #f3f3f3;
+        --muted-foreground: #8f8f8f;
+        --accent: #2d4156;
+        --accent-foreground: #333333;
+        --card: #f5f5f5;
+        --card-foreground: #333333;
+        --destructive: #ef4444;
+        --border: #dddddd;
+        --input: #dddddd;
+        --ring: #6f2c85;
+        --radius: 0.125rem;
+        --font-sans: Open Sans, sans-serif;
+        --font-heading: Open Sans, sans-serif;
+        --font-mono: JetBrains Mono, monospace;
+        --shadow-offset-x: 0;
+        --shadow-offset-y: 10;
+        --shadow-blur: 30;
+        --shadow-spread: -8;
+        --shadow-color: rgba(15, 23, 42, 0.12); }
+    </style>
+    <style>
+      .brand-gradient { background-image: linear-gradient(135deg, var(--primary), var(--accent)); }
+      .shadow-theme {
+        box-shadow:
+          calc(var(--shadow-offset-x, 0) * 1px) calc(var(--shadow-offset-y, 10) * 1px)
+          calc(var(--shadow-blur, 30) * 1px) calc(var(--shadow-spread, -8) * 1px)
+          var(--shadow-color, rgba(15, 23, 42, 0.12));
+      }
+    </style>
+  
+
+
+<link id="google-font-Open-Sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&amp;display=swap"></head>
+  <body>
+<div class="min-h-screen w-full bg-background text-foreground flex flex-col relative font-sans selection:bg-primary selection:text-primary-foreground" style="">
+  <header class="sticky top-0 z-50 w-full border-b border-border bg-background/70 backdrop-blur-md" style="">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between" style="">
+      <a href="#" class="flex items-center gap-3 group" style="">
+          <img src="https://www.koft.sk/assets/img/koft_logo_h_w.png" alt="KOFT logo" class="w-full h-full object-contain object-left-top" style="">
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8" style="">
+        <a href="#o-nas" class="text-sm font-medium text-muted-foreground hover:text-primary transition-colors" style="">O nás</a>
+        <a href="#portfolio" class="text-sm font-medium text-muted-foreground hover:text-primary transition-colors" style="">Portfólio</a>
+        <a href="#drink-guide" class="text-sm font-medium text-muted-foreground hover:text-primary transition-colors" style="">Drink Guide</a>
+        <a href="#b2b" class="text-sm font-medium text-muted-foreground hover:text-primary transition-colors" style="">B2B Zóna</a>
+        <a href="#kontakt" class="text-sm font-medium text-muted-foreground hover:text-primary transition-colors" style="">Kontakt</a>
+      </nav>
+
+      <div class="flex items-center gap-4" style="">
+        <div class="hidden sm:flex items-center gap-1 text-xs font-semibold text-muted-foreground bg-card/70 px-3 py-1.5 rounded-full border border-border" style="">
+          <span class="text-primary" style="">SK</span>
+          <span class="text-border" style="">|</span>
+          <a href="#" class="hover:text-foreground transition-colors" style="">EN</a>
+        </div>
+        <a href="https://koft.sk" target="_blank" class="flex items-center gap-2 bg-primary text-primary-foreground font-bold px-5 py-3 rounded-xl text-sm shadow-lg hover:opacity-90 transition-all" style="">
+          <iconify-icon icon="lucide:shopping-cart" class="text-base" style=""></iconify-icon>
+          <span style="">E-shop</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="relative w-full overflow-hidden border-b border-border" style="">
+    <div class="relative min-h-[720px] w-full overflow-hidden" style="">
+      <img src="https://uxmagic.blob.core.windows.net/public/agent-images/img-hero-bottle-1784204172187-r1fxua872c.png" alt="Prémiové koktaily a nightlife atmosféra" class="absolute inset-0 w-full h-full object-cover" style="">
+      <div class="absolute inset-0" style="background-image: linear-gradient(105deg, rgba(217, 28, 132, 0.92) 0%, rgba(142, 36, 170, 0.88) 28%, rgba(76, 29, 149, 0.82) 52%, rgba(26, 58, 140, 0.78) 78%, rgba(15, 35, 95, 0.72) 100%);"></div>
+      <div class="absolute inset-0" style="background-image: linear-gradient(to top, rgba(8, 18, 55, 0.55) 0%, transparent 45%);"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 py-20 lg:py-28 min-h-[720px] flex items-center" style="">
+        <div class="max-w-3xl flex flex-col items-start text-left gap-6" style="">
+          <div class="inline-flex items-center gap-2 bg-card/20 text-primary-foreground px-4 py-2 rounded-full border border-border backdrop-blur-md text-xs font-semibold tracking-[0.25em] uppercase" style="">
+            <iconify-icon icon="lucide:glass-water" class="text-sm" style=""></iconify-icon>
+            <span style="">Distribúcia prémiových značiek</span>
+          </div>
+
+          <div class="flex items-center gap-4" style="">
+            <p class="text-sm sm:text-base text-primary-foreground/90 max-w-md leading-relaxed" style="">Viac ako 30 rokov spájame svetové značky alkoholu s barmi, gastronómiou a retailom na slovenskom trhu.</p>
+          </div>
+
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold text-primary-foreground leading-[0.95] tracking-tight text-left" style="">
+            Prémiové portfólio,
+            <span class="block" style="">ktoré patrí do centra</span>
+            <span class="block" style="">každej oslavy.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-primary-foreground/85 max-w-2xl leading-relaxed text-left" style="">
+            Menej korporátny, viac zážitkový. KOFT prezentuje prémiové liehoviny, ikonické značky a drink inšpirácie v štýle moderného nightlife distributor brandu.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-start gap-4 pt-2 w-full sm:w-auto" style="">
+            <a href="https://koft.sk" target="_blank" class="w-full sm:w-auto text-center bg-white text-primary font-bold px-8 py-4 rounded-xl shadow-xl hover:bg-white/90 transition-all" style="">
+              Navštíviť E-shop
+            </a>
+            <a href="#portfolio" class="w-full sm:w-auto text-center bg-white/10 text-primary-foreground border border-white/70 backdrop-blur-md font-semibold px-8 py-4 rounded-xl hover:bg-white/20 transition-all" style="">
+              Prehliadať portfólio
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="o-nas" class="py-20 w-full relative overflow-hidden border-b border-border" style="">
+    <div class="max-w-7xl mx-auto px-6" style="">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center" style="">
+        <div class="lg:col-span-5 flex flex-col gap-6" style="">
+          <div class="text-[120px] font-heading font-bold text-primary leading-none tracking-tighter select-none" style="">
+            30+
+          </div>
+          <div class="flex flex-col gap-2 text-left" style="">
+            <h3 class="text-2xl font-heading font-bold text-foreground" style="">Rokov na slovenskom trhu</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed" style="">
+              Od roku 1993 zastupujeme popredných svetových výrobcov. Sme spoľahlivým partnerom pre tisícky gastro prevádzok, barov a maloobchodných sietí.
+            </p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6" style="">
+          <div class="bg-card/70 backdrop-blur-md p-6 rounded-xl border border-border flex flex-col gap-4" style="">
+            <div class="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary" style="">
+              <iconify-icon icon="lucide:globe" class="text-2xl" style=""></iconify-icon>
+            </div>
+            <h4 class="text-lg font-heading font-semibold text-foreground" style="">Globálne portfólio</h4>
+            <p class="text-muted-foreground text-xs leading-relaxed" style="">
+              Exkluzívne zastúpenie pre svetoznáme značky rumov, ginov, whisky a likérov.
+            </p>
+          </div>
+
+          <div class="bg-card/70 backdrop-blur-md p-6 rounded-xl border border-border flex flex-col gap-4" style="">
+            <div class="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary" style="">
+              <iconify-icon icon="lucide:truck" class="text-2xl" style=""></iconify-icon>
+            </div>
+            <h4 class="text-lg font-heading font-semibold text-foreground" style="">B2B Distribúcia</h4>
+            <p class="text-muted-foreground text-xs leading-relaxed" style="">
+              Efektívna logistika, spoľahlivé dodávky po celej SR a profesionálna podpora predaja.
+            </p>
+          </div>
+
+          <div class="bg-card/70 backdrop-blur-md p-6 rounded-xl border border-border flex flex-col gap-4" style="">
+            <div class="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary" style="">
+              <iconify-icon icon="lucide:award" class="text-2xl" style=""></iconify-icon>
+            </div>
+            <h4 class="text-lg font-heading font-semibold text-foreground" style="">Certifikovaná kvalita</h4>
+            <p class="text-muted-foreground text-xs leading-relaxed" style="">
+              Všetky naše produkty prechádzajú prísnou kontrolou pôvodu a spĺňajú najvyššie normy.
+            </p>
+          </div>
+
+          <div class="bg-card/70 backdrop-blur-md p-6 rounded-xl border border-border flex flex-col gap-4" style="">
+            <div class="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary" style="">
+              <iconify-icon icon="lucide:users" class="text-2xl" style=""></iconify-icon>
+            </div>
+            <h4 class="text-lg font-heading font-semibold text-foreground" style="">Odborný tím</h4>
+            <p class="text-muted-foreground text-xs leading-relaxed" style="">
+              Školenia personálu, barmanské workshopy a pomoc pri zostavovaní prémiových nápojových lístkov.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" class="py-20 w-full bg-card/40 border-b border-border" style="">
+    <div class="max-w-7xl mx-auto px-6" style="">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12" style="">
+        <div class="flex flex-col gap-2 text-left" style="">
+          <span class="text-xs font-semibold uppercase tracking-widest text-primary" style="">Exkluzívne portfólio</span>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-foreground" style="">Svetové značky na jednom mieste</h2>
+        </div>
+        <div class="flex flex-wrap gap-2" style="">
+          <button class="bg-primary text-primary-foreground text-xs font-semibold px-4 py-2 rounded-full shadow-md transition-all" style="">Všetko</button>
+          <button class="bg-muted text-muted-foreground hover:text-foreground hover:bg-accent border border-border text-xs font-semibold px-4 py-2 rounded-full transition-all" style="">Rum</button>
+          <button class="bg-muted text-muted-foreground hover:text-foreground hover:bg-accent border border-border text-xs font-semibold px-4 py-2 rounded-full transition-all" style="">Gin</button>
+          <button class="bg-muted text-muted-foreground hover:text-foreground hover:bg-accent border border-border text-xs font-semibold px-4 py-2 rounded-full transition-all" style="">Whisky</button>
+          <button class="bg-muted text-muted-foreground hover:text-foreground hover:bg-accent border border-border text-xs font-semibold px-4 py-2 rounded-full transition-all" style="">Tequila</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" style="">
+        <div class="group bg-card/70 backdrop-blur-md rounded-xl border border-border p-6 flex flex-col justify-between hover:border-primary/40 transition-all duration-300 relative overflow-hidden" style="">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-all" style=""></div>
+          <div style="">
+            <div class="h-12 flex items-center mb-6" style="">
+              <span class="font-heading font-bold text-2xl tracking-wider text-foreground" style="">LARCENY</span>
+            </div>
+            <span class="text-[10px] uppercase font-semibold text-primary tracking-widest bg-primary/10 px-2 py-1 rounded" style="">Kentucky Bourbon</span>
+            <h3 class="text-lg font-heading font-bold text-foreground mt-4 mb-2" style="">Larceny Bourbon</h3>
+            <p class="text-muted-foreground text-xs leading-relaxed mb-6" style="">Prémiový pšeničný bourbon s neuveriteľne jemným a plným profilom.</p>
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-border" style="">
+            <span class="text-sm font-bold text-foreground" style="">od 42.90 €</span>
+            <a href="https://koft.sk" target="_blank" class="flex items-center gap-1.5 text-xs font-semibold text-primary transition-colors" style="">
+              <span style="">Kúpiť</span>
+              <iconify-icon icon="lucide:external-link" class="text-sm"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="group bg-card/70 backdrop-blur-md rounded-xl border border-border p-6 flex flex-col justify-between hover:border-primary/40 transition-all duration-300 relative overflow-hidden" style="">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-all" style=""></div>
+          <div style="">
+            <div class="h-12 flex items-center mb-6" style="">
+              <span class="font-heading font-bold text-2xl tracking-wider text-foreground" style="">CAZCABEL</span>
+            </div>
+            <span class="text-[10px] uppercase font-semibold text-primary tracking-widest bg-primary/10 px-2 py-1 rounded" style="">Tequila</span>
+            <h3 class="text-lg font-heading font-bold text-foreground mt-4 mb-2" style="">Cazcabel Blanco</h3>
+            <p class="text-muted-foreground text-xs leading-relaxed mb-6 font-sans" style="">Autentická mexická tequila zo 100% modrej agávy, ocenená zlatom.</p>
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-border" style="">
+            <span class="text-sm font-bold text-foreground" style="">od 34.50 €</span>
+            <a href="https://koft.sk" target="_blank" class="flex items-center gap-1.5 text-xs font-semibold text-primary transition-colors" style="">
+              <span style="">Kúpiť</span>
+              <iconify-icon icon="lucide:external-link" class="text-sm"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="group bg-card/70 backdrop-blur-md rounded-xl border border-border p-6 flex flex-col justify-between hover:border-primary/40 transition-all duration-300 relative overflow-hidden" style="">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-all" style=""></div>
+          <div style="">
+            <div class="h-12 flex items-center mb-6" style="">
+              <span class="font-heading font-bold text-2xl tracking-wider text-foreground" style="">ABER FALLS</span>
+            </div>
+            <span class="text-[10px] uppercase font-semibold text-primary tracking-widest bg-primary/10 px-2 py-1 rounded" style="">Welsh Gin</span>
+            <h3 class="text-lg font-heading font-bold text-foreground mt-4 mb-2" style="">Aber Falls Orange</h3>
+            <p class="text-muted-foreground text-xs leading-relaxed mb-6" style="">Remeselný gin z Walesu s osviežujúcim tónom citrusov a jalovca.</p>
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-border" style="">
+            <span class="text-sm font-bold text-foreground" style="">od 26.90 €</span>
+            <a href="https://koft.sk" target="_blank" class="flex items-center gap-1.5 text-xs font-semibold text-primary transition-colors" style="">
+              <span style="">Kúpiť</span>
+              <iconify-icon icon="lucide:external-link" class="text-sm"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="group bg-card/70 backdrop-blur-md rounded-xl border border-border p-6 flex flex-col justify-between hover:border-primary/40 transition-all duration-300 relative overflow-hidden" style="">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-all" style=""></div>
+          <div style="">
+            <div class="h-12 flex items-center mb-6" style="">
+              <span class="font-heading font-bold text-2xl tracking-wider text-foreground" style="">VALHALLA</span>
+            </div>
+            <span class="text-[10px] uppercase font-semibold text-primary tracking-widest bg-primary/10 px-2 py-1 rounded" style="">Herb Liqueur</span>
+            <h3 class="text-lg font-heading font-bold text-foreground mt-4 mb-2" style="">Valhalla Liqueur</h3>
+            <p class="text-muted-foreground text-xs leading-relaxed mb-6" style="">Severský bylinný likér inšpirovaný silou škandinávskej prírody.</p>
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-border" style="">
+            <span class="text-sm font-bold text-foreground" style="">od 21.90 €</span>
+            <a href="https://koft.sk" target="_blank" class="flex items-center gap-1.5 text-xs font-semibold text-primary transition-colors" style="">
+              <span style="">Kúpiť</span>
+              <iconify-icon icon="lucide:external-link" class="text-sm"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="drink-guide" class="py-20 w-full relative overflow-hidden border-b border-border" style="">
+    <div class="max-w-7xl mx-auto px-6 relative z-10" style="">
+      <div class="flex flex-col items-start text-left gap-2 mb-16" style="">
+        <span class="text-xs font-semibold uppercase tracking-widest text-primary" style="">Inšpirujte sa gastronómiou</span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-foreground" style="">Drink Guide &amp; Recepty</h2>
+        <p class="text-sm text-muted-foreground max-w-xl" style="">Pripravte si dokonalé miešané nápoje s prémiovými ingredienciami z nášho portfólia.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center" style="">
+        <div class="lg:col-span-6 relative" style="">
+          <div class="relative rounded-2xl overflow-hidden border border-border shadow-2xl aspect-[4/3] sm:aspect-video" style="">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/img-drink-recipe-1784204181610-zq31qrqrpg.png" alt="Laciho Svieži Vánok Cocktail" class="w-full h-full object-cover" style="">
+            <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" style=""></div>
+            <div class="absolute bottom-6 left-6 right-6 text-left" style="">
+              <span class="text-xs font-semibold text-primary uppercase tracking-wider" style="">Odporúčaný drink</span>
+              <h3 class="text-2xl font-heading font-bold text-foreground mt-1" style="">Laciho Svieži Vánok</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 bg-card/80 backdrop-blur-md rounded-2xl border border-border p-8 shadow-xl relative overflow-hidden text-left" style="">
+          <div class="flex items-center justify-between mb-6" style="">
+            <div class="flex items-center gap-2" style="">
+              <span class="text-xs font-semibold text-muted-foreground" style="">Pohár:</span>
+              <span class="text-xs font-semibold text-foreground bg-accent px-2.5 py-1 rounded border border-border" style="">Highball</span>
+            </div>
+            <div class="flex items-center gap-2" style="">
+              <span class="text-xs font-semibold text-muted-foreground" style="">Obtiažnosť:</span>
+              <span class="text-xs font-semibold text-foreground bg-accent px-2.5 py-1 rounded border border-border" style="">Jednoduchá</span>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-heading font-bold text-foreground mb-6" style="">Ingrediencie</h3>
+          <ul class="divide-y divide-border/60 mb-8" style="">
+            <li class="py-3 flex justify-between items-center text-sm" style="">
+              <span class="text-muted-foreground" style="">Koskenkorva Vodka</span>
+              <span class="font-semibold text-foreground" style="">40 ml</span>
+            </li>
+            <li class="py-3 flex justify-between items-center text-sm" style="">
+              <span class="text-muted-foreground" style="">Čakankový sirup</span>
+              <span class="font-semibold text-foreground" style="">10 ml</span>
+            </li>
+            <li class="py-3 flex justify-between items-center text-sm" style="">
+              <span class="text-muted-foreground" style="">Green Apple Cordial</span>
+              <span class="font-semibold text-foreground" style="">50 ml</span>
+            </li>
+            <li class="py-3 flex justify-between items-center text-sm" style="">
+              <span class="text-muted-foreground" style="">Limetová šťava</span>
+              <span class="font-semibold text-foreground" style="">20 ml</span>
+            </li>
+            <li class="py-3 flex justify-between items-center text-sm" style="">
+              <span class="text-muted-foreground" style="">Sóda na doliatie</span>
+              <span class="font-semibold text-foreground" style="">Doplna</span>
+            </li>
+          </ul>
+
+          <div class="flex flex-col sm:flex-row items-center gap-4" style="">
+            <a href="https://koft.sk" target="_blank" class="w-full sm:w-auto text-center bg-primary text-primary-foreground font-bold px-6 py-3 rounded-lg text-sm shadow-md hover:opacity-90 transition-all" style="">
+              Kúpiť ingrediencie na e-shope
+            </a>
+            <button class="w-full sm:w-auto text-center bg-transparent text-foreground border border-border font-semibold px-6 py-3 rounded-lg text-sm hover:bg-muted transition-all" style="">
+              Zobraziť postup
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 w-full relative overflow-hidden border-b border-border" style="">
+    <div class="max-w-4xl mx-auto px-6 relative z-10" style="">
+      <div class="flex flex-col items-start text-left gap-2 mb-12" style="">
+        <span class="text-xs font-semibold uppercase tracking-widest text-primary" style="">Máte otázky?</span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-bold text-foreground" style="">Otázka vo fľaši (FAQ)</h2>
+        <p class="text-sm text-muted-foreground" style="">Často kladené otázky ohľadom nákupu, veľkoobchodnej spolupráce a distribúcie.</p>
+      </div>
+
+      <div class="space-y-4" style="">
+        <details class="group bg-card rounded-xl border border-border [&amp;_summary::-webkit-details-marker]:hidden" open="" style="">
+          <summary class="flex items-center justify-between p-6 cursor-pointer select-none" style="">
+            <h4 class="text-base sm:text-lg font-heading font-semibold text-foreground group-hover:text-primary transition-colors" style="">
+              Ako môžem objednať tovar pre moju gastro prevádzku?
+            </h4>
+            <span class="w-8 h-8 rounded-full bg-accent border border-border flex items-center justify-center text-primary group-open:rotate-180 transition-transform" style="">
+              <iconify-icon icon="lucide:plus" class="text-sm" style=""></iconify-icon>
+            </span>
+          </summary>
+          <div class="px-6 pb-6 text-sm text-muted-foreground leading-relaxed text-left" style="">
+            Pre gastro prevádzky ponúkame individuálne B2B podmienky. Kontaktujte náš obchodný tím prostredníctvom formulára nižšie alebo si stiahnite produktové listy a katalógy v našej B2B zóne.
+          </div>
+        </details>
+
+        <details class="group bg-card rounded-xl border border-border [&amp;_summary::-webkit-details-marker]:hidden" style="">
+          <summary class="flex items-center justify-between p-6 cursor-pointer select-none" style="">
+            <h4 class="text-base sm:text-lg font-heading font-semibold text-foreground group-hover:text-primary transition-colors" style="">
+              Sú všetky produkty na e-shope skladom?
+            </h4>
+            <span class="w-8 h-8 rounded-full bg-accent border border-border flex items-center justify-center text-primary group-open:rotate-180 transition-transform" style="">
+              <iconify-icon icon="lucide:plus" class="text-sm" style=""></iconify-icon>
+            </span>
+          </summary>
+          <div class="px-6 pb-6 text-sm text-muted-foreground leading-relaxed text-left" style="">
+            Áno, drvivá väčšina produktov prezentovaných na našom partnerskom e-shope je pripravená na okamžitú expedíciu priamo z našich centrálnych skladov.
+          </div>
+        </details>
+
+        <details class="group bg-card rounded-xl border border-border [&amp;_summary::-webkit-details-marker]:hidden" style="">
+          <summary class="flex items-center justify-between p-6 cursor-pointer select-none" style="">
+            <h4 class="text-base sm:text-lg font-heading font-semibold text-foreground group-hover:text-primary transition-colors" style="">
+              Kde nájdem informácie o zložení a alergénoch?
+            </h4>
+            <span class="w-8 h-8 rounded-full bg-accent border border-border flex items-center justify-center text-primary group-open:rotate-180 transition-transform" style="">
+              <iconify-icon icon="lucide:plus" class="text-sm" style=""></iconify-icon>
+            </span>
+          </summary>
+          <div class="px-6 pb-6 text-sm text-muted-foreground leading-relaxed text-left" style="">
+            Detailné informácie o zložení, alergénoch a pôvode každého nápoja nájdete v produktových listoch na stiahnutie v B2B sekcii.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 w-full bg-card/40 border-b border-border" style="">
+    <div class="max-w-7xl mx-auto px-6" style="">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12" style="">
+        <div class="flex flex-col gap-2 text-left" style="">
+          <span class="text-xs font-semibold uppercase tracking-widest text-primary" style="">Život v KOFT</span>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-foreground" style="">Novinky &amp; Zodpovedná konzumácia</h2>
+        </div>
+        <a href="#" class="text-xs font-semibold text-primary hover:text-secondary flex items-center gap-1 transition-colors" style="">
+          <span style="">Všetky články</span>
+          <iconify-icon icon="lucide:arrow-right" class="text-sm" style=""></iconify-icon>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" style="">
+        <div class="bg-card rounded-xl border border-border overflow-hidden flex flex-col group hover:border-primary/40 transition-all" style="">
+          <div class="aspect-video relative overflow-hidden" style="">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/img-news-event-1784204191854-wasjnqfou7q.png" alt="Día de los Muertos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" style="">
+            <div class="absolute top-4 left-4 bg-primary text-primary-foreground text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded" style="">Eventy</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1 text-left" style="">
+            <div style="">
+              <p class="text-[10px] text-muted-foreground font-semibold mb-2" style="">28. OKTÓBER 2024</p>
+              <h3 class="text-lg font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors" style="">Día de los Muertos – oslava života, farieb a tequily Cazcabel</h3>
+              <p class="text-muted-foreground text-xs leading-relaxed mb-4" style="">Pozrite sa, ako prebiehali barmanské oslavy v hlavnom meste s autentickou chuťou Mexika.</p>
+            </div>
+            <a href="#" class="text-xs font-semibold text-primary flex items-center gap-1 mt-4" style="">
+              <span style="">Čítať viac</span>
+              <iconify-icon icon="lucide:arrow-right" class="text-sm" style=""></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-card rounded-xl border border-border overflow-hidden flex flex-col group hover:border-primary/40 transition-all" style="">
+          <div class="aspect-video relative bg-muted flex items-center justify-center" style="">
+            <iconify-icon icon="lucide:shield" class="text-5xl text-primary/40" style=""></iconify-icon>
+            <div class="absolute top-4 left-4 bg-primary text-primary-foreground text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded" style="">Zodpovednosť</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1 text-left" style="">
+            <div style="">
+              <p class="text-[10px] text-muted-foreground font-semibold mb-2" style="">12. SEPTEMBER 2024</p>
+              <h3 class="text-lg font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors" style="">Rozumná konzumácia: Podporujeme zodpovedný prístup</h3>
+              <p class="text-muted-foreground text-xs leading-relaxed mb-4" style="">Našou prioritou je šíriť osvetu a kultúru pitia, ktorá rešpektuje zdravie a spoločenské zásady.</p>
+            </div>
+            <a href="#" class="text-xs font-semibold text-primary flex items-center gap-1 mt-4" style="">
+              <span style="">Čítať viac</span>
+              <iconify-icon icon="lucide:arrow-right" class="text-sm" style=""></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-card rounded-xl border border-border overflow-hidden flex flex-col group hover:border-primary/40 transition-all" style="">
+          <div class="aspect-video relative bg-muted flex items-center justify-center" style="">
+            <iconify-icon icon="lucide:award" class="text-5xl text-primary/40" style=""></iconify-icon>
+            <div class="absolute top-4 left-4 bg-primary text-primary-foreground text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded" style="">Ocenenia</div>
+          </div>
+          <div class="p-6 flex flex-col justify-between flex-1 text-left" style="">
+            <div style="">
+              <p class="text-[10px] text-muted-foreground font-semibold mb-2" style="">04. AUGUST 2024</p>
+              <h3 class="text-lg font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors" style="">Larceny Bourbon získava prestížne zlaté ocenenie</h3>
+              <p class="text-muted-foreground text-xs leading-relaxed mb-4" style="">Náš prémiový bourbon opäť potvrdil svoju svetovú kvalitu na prestížnej súťaži destilátov.</p>
+            </div>
+            <a href="#" class="text-xs font-semibold text-primary flex items-center gap-1 mt-4" style="">
+              <span style="">Čítať viac</span>
+              <iconify-icon icon="lucide:arrow-right" class="text-sm" style=""></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="b2b" class="py-20 w-full relative overflow-hidden border-b border-border" style="">
+    <div class="max-w-7xl mx-auto px-6 relative z-10" style="">
+      <div class="bg-card/80 backdrop-blur-md rounded-2xl border border-border p-8 md:p-12 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden" style="">
+        <div class="absolute -bottom-12 -right-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" style=""></div>
+        <div class="flex flex-col items-start gap-4 max-w-xl text-left" style="">
+          <div class="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider border border-primary/20" style="">
+            <iconify-icon icon="lucide:layers" class="text-sm" style=""></iconify-icon>
+            <span style="">Pre Gastro Partnerov</span>
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-heading font-bold text-foreground" style="">B2B Zóna na stiahnutie</h3>
+          <p class="text-sm text-muted-foreground leading-relaxed" style="">
+            Získajte okamžitý prístup k našim aktuálnym produktovým katalógom, technickým listom, certifikátom a marketingovým materiálom pre vašu prevádzku.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-stretch gap-4 w-full lg:w-auto" style="">
+          <a href="#" class="flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-4 rounded-lg text-sm shadow-md hover:opacity-90 transition-all" style="">
+            <iconify-icon icon="lucide:download" class="text-lg" style=""></iconify-icon>
+            <span style="">Katalóg produktov PDF</span>
+          </a>
+          <a href="#" class="flex items-center justify-center gap-2 bg-transparent text-foreground border border-border font-semibold px-6 py-4 rounded-lg text-sm hover:bg-muted transition-all" style="">
+            <iconify-icon icon="lucide:file" class="text-lg" style=""></iconify-icon>
+            <span style="">Produktové listy (.zip)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 w-full bg-background border-b border-border overflow-hidden" style="">
+    <div class="max-w-7xl mx-auto px-6" style="">
+      <p class="text-center text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-8" style="">Významní svetoví dodávatelia a partneri</p>
+      <div class="flex flex-wrap items-center justify-center gap-12 md:gap-16 opacity-40 hover:opacity-70 transition-opacity duration-300" style="">
+        <span class="font-heading font-bold text-xl tracking-widest text-foreground" style="">LARCENY</span>
+        <span class="font-heading font-bold text-xl tracking-widest text-foreground" style="">RITTENHOUSE</span>
+        <span class="font-heading font-bold text-xl tracking-widest text-foreground" style="">ABER FALLS</span>
+        <span class="font-heading font-bold text-xl tracking-widest text-foreground" style="">BOULARD</span>
+        <span class="font-heading font-bold text-xl tracking-widest text-foreground" style="">BARON HILDPRANDT</span>
+        <span class="font-heading font-bold text-xl tracking-widest text-foreground" style="">VALHALLA</span>
+      </div>
+    </div>
+  </section>
+
+  <footer id="kontakt" class="bg-card w-full pt-20 pb-12 relative overflow-hidden" style="">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-border" style="">
+      <div class="lg:col-span-5 flex flex-col gap-6 text-left" style="">
+        <a href="#" class="flex items-center gap-3" style="">
+          
+          <img src="https://www.koft.sk/assets/img/koft_logo_h_w.png" alt="KOFT logo" class="w-full h-full object-contain object-left-top" style="width: 40px; height: 40px;">
+        </a>
+        <p class="text-xs text-muted-foreground leading-relaxed max-w-sm" style="">
+          Popredný slovenský distribútor prémiových alkoholických nápojov s viac ako 30-ročnou tradíciou kvality a spoľahlivosti.
+        </p>
+
+        <div class="flex flex-col gap-4 pt-4" style="">
+          <div class="flex items-center gap-3 text-xs text-muted-foreground" style="">
+            <iconify-icon icon="lucide:map-pin" class="text-lg text-primary" style=""></iconify-icon>
+            <span style="">K O F T, s. r. o., Bratislava, Slovenská republika</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs text-muted-foreground" style="">
+            <iconify-icon icon="lucide:phone" class="text-lg text-primary" style=""></iconify-icon>
+            <span style="">+421 2 123 456 78</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs text-muted-foreground" style="">
+            <iconify-icon icon="lucide:mail" class="text-lg text-primary" style=""></iconify-icon>
+            <span style="">info@koft.sk</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 bg-background/50 rounded-2xl border border-border p-8 text-left" style="">
+        <h3 class="text-xl font-heading font-bold text-foreground mb-2" style="">Napíšte nám</h3>
+        <p class="text-xs text-muted-foreground mb-6" style="">Máte záujem o spoluprácu alebo sa chcete na niečo opýtať? Vyplňte formulár.</p>
+
+        <form class="space-y-4" onsubmit="event.preventDefault();" style="">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" style="">
+            <div class="flex flex-col gap-1.5" style="">
+              <label class="text-[10px] uppercase font-bold text-muted-foreground tracking-wider" style="">Meno a priezvisko</label>
+              <input type="text" placeholder="Napr. Ján Kováč" class="bg-input text-foreground text-xs px-4 py-3 rounded-lg border border-border focus:border-primary focus:outline-none transition-colors" style="">
+            </div>
+            <div class="flex flex-col gap-1.5" style="">
+              <label class="text-[10px] uppercase font-bold text-muted-foreground tracking-wider" style="">E-mailová adresa</label>
+              <input type="email" placeholder="Napr. jan.kovac@firma.sk" class="bg-input text-foreground text-xs px-4 py-3 rounded-lg border border-border focus:border-primary focus:outline-none transition-colors" style="">
+            </div>
+          </div>
+          <div class="flex flex-col gap-1.5" style="">
+            <label class="text-[10px] uppercase font-bold text-muted-foreground tracking-wider" style="">Vaša správa</label>
+            <textarea rows="4" placeholder="Napíšte vašu správu..." class="bg-input text-foreground text-xs px-4 py-3 rounded-lg border border-border focus:border-primary focus:outline-none transition-colors resize-none" style=""></textarea>
+          </div>
+          <button type="submit" class="w-full bg-primary text-primary-foreground font-bold py-3.5 rounded-lg text-xs shadow-md hover:opacity-90 transition-all" style="">
+            Odoslať správu
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="">
+      <div class="flex items-center gap-2 text-[10px] font-bold text-destructive uppercase tracking-widest bg-destructive/10 px-3 py-1 rounded border border-destructive/20" style="">
+        <iconify-icon icon="lucide:circle-alert" class="text-sm" style=""></iconify-icon>
+        <span style="">Zákaz predaja alkoholických nápojov osobám mladším ako 18 rokov.</span>
+      </div>
+      <p class="text-[10px] text-muted-foreground tracking-wide" style="">
+        © 2024 K O F T, s. r. o. Všetky práva vyhradené. Dizajn a vývoj v prémiovom štandarde.
+      </p>
+    </div>
+  </footer>
+</div>
+</body></html>
