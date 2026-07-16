@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENERGIA - Jarás | Priemyselné energetické riešenia</title>
+<meta name="description" content="Energetické audity, poradenstvo a obnoviteľné riešenia pre priemysel: solárna, veterná, bioenergia a vodná energia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Brand palette — sampled from the current energia-jaras.sk mark and site */
+    --terracotta:#BA4A2F;
+    --terracotta-dark:#98392A;
+    --olive:#8FB93E;
+    --olive-deep:#719432;
+    --mustard:#DEB14A;
+    --slate-blue:#8A97BA;
+    --pale-teal:#A7CCD6;
+    --charcoal:#2A2622;
+    --charcoal-soft:#4A433C;
+    --ink-60:rgba(42,38,34,0.62);
+    --cream:#FAF7F2;
+    --cream-deep:#F1EAE0;
+    --line:rgba(42,38,34,0.1);
+    --line-soft:rgba(255,255,255,0.16);
+    --white:#FFFFFF;
+    --shadow-soft:0 20px 50px -22px rgba(42,38,34,0.28);
+    --ff-display:'Manrope',sans-serif;
+    --ff-body:'Inter',sans-serif;
+    --ease:cubic-bezier(.22,.9,.35,1);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    font-family:var(--ff-body);
+    color:var(--charcoal);
+    background:var(--white);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,h4{
+    font-family:var(--ff-display);
+    letter-spacing:-0.01em;
+    line-height:1.12;
+    color:var(--charcoal);
+    font-weight:700;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  input,select,textarea{font-family:inherit;}
+
+  :focus-visible{outline:2px solid var(--terracotta);outline-offset:3px;border-radius:4px;}
+
+  .wrap{max-width:1240px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-size:12.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--terracotta);display:flex;align-items:center;gap:10px;margin-bottom:16px;
+  }
+  .eyebrow::before{content:'';width:22px;height:2px;background:var(--olive);display:inline-block;border-radius:2px;}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:15px 30px;border-radius:999px;font-weight:700;font-size:15px;
+    transition:transform .3s var(--ease), box-shadow .3s var(--ease), background .25s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--terracotta);color:var(--white);
+    box-shadow:0 14px 28px -10px rgba(186,74,47,0.55);
+  }
+  .btn-primary:hover{background:var(--terracotta-dark);transform:translateY(-2px);}
+  .btn-ghost{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.4);}
+  .btn-ghost:hover{background:rgba(255,255,255,0.1);transform:translateY(-2px);}
+  .btn-ghost.on-light{color:var(--charcoal);border-color:var(--line);}
+  .btn-ghost.on-light:hover{background:var(--cream-deep);}
+
+  /* ===== TOP UTILITY BAR ===== */
+  .util-bar{background:var(--cream-deep);border-bottom:1px solid var(--line);padding:9px 0;position:relative;z-index:101;}
+  .util-bar .wrap{display:flex;align-items:center;justify-content:flex-end;gap:24px;max-width:1240px;}
+  .util-phone{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:var(--charcoal);}
+  .util-phone svg{width:15px;height:15px;stroke:var(--terracotta);}
+  .util-search{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--line);border-radius:8px;padding:6px 6px 6px 12px;}
+  .util-search input{border:none;font-size:13px;width:120px;background:transparent;}
+  .util-search input:focus{outline:none;}
+  .util-search button{width:26px;height:26px;display:flex;align-items:center;justify-content:center;}
+  .util-search svg{width:15px;height:15px;stroke:var(--charcoal-soft);}
+
+  /* ===== HEADER ===== */
+  header{position:sticky;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1240px;}
+
+  .logo{display:flex;align-items:center;gap:11px;}
+  .logo .mark{width:44px;height:44px;flex-shrink:0;}
+  .logo .word{font-family:var(--ff-display);line-height:1;}
+  .logo .word .l1{display:block;font-weight:800;font-size:21px;letter-spacing:0.01em;color:var(--terracotta);}
+  .logo .word .l2{display:block;font-weight:600;font-size:13px;color:var(--charcoal);margin-top:1px;}
+
+  nav.primary-nav{display:flex;align-items:center;gap:2px;position:relative;}
+  nav.primary-nav > a, nav.primary-nav > .has-mega > button{
+    color:var(--charcoal);font-size:14.5px;font-weight:600;padding:10px 15px;border-radius:8px;
+    transition:color .2s ease;position:relative;display:inline-flex;align-items:center;gap:5px;
+  }
+  nav.primary-nav > a::after, .has-mega > button::after{
+    content:'';position:absolute;left:15px;right:15px;bottom:4px;height:2px;background:var(--terracotta);
+    transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease);
+  }
+  nav.primary-nav > a:hover::after, nav.primary-nav > a.active::after, .has-mega:hover > button::after{transform:scaleX(1);}
+  nav.primary-nav > a:hover, .has-mega:hover > button{color:var(--terracotta);}
+  .has-mega{position:relative;}
+  .has-mega > button svg{width:12px;height:12px;stroke:currentColor;transition:transform .25s ease;}
+  .has-mega:hover > button svg{transform:rotate(180deg);}
+  .mega{
+    position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);
+    background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-soft);
+    padding:10px;display:grid;grid-template-columns:1fr;gap:2px;min-width:220px;
+    opacity:0;pointer-events:none;transition:opacity .2s ease, transform .2s ease;
+  }
+  .has-mega:hover .mega{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}
+  .mega a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;font-size:14px;font-weight:500;color:var(--charcoal);}
+  .mega a:hover{background:var(--cream);color:var(--terracotta);}
+  .mega a .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+
+  .nav-actions{display:flex;align-items:center;gap:14px;}
+
+  .hamburger{display:none;width:40px;height:40px;border-radius:8px;align-items:center;justify-content:center;background:var(--cream);}
+  .hamburger span, .hamburger span::before, .hamburger span::after{
+    content:'';display:block;width:18px;height:2px;background:var(--charcoal);border-radius:2px;position:relative;transition:.3s ease;
+  }
+  .hamburger span::before{position:absolute;top:-6px;}
+  .hamburger span::after{position:absolute;top:6px;}
+  .hamburger.active span{background:transparent;}
+  .hamburger.active span::before{transform:rotate(45deg);top:0;background:var(--charcoal);}
+  .hamburger.active span::after{transform:rotate(-45deg);top:0;background:var(--charcoal);}
+
+  .mobile-menu{
+    position:fixed;inset:0;z-index:99;background:var(--white);display:flex;flex-direction:column;
+    padding:110px 32px 40px;transform:translateY(-100%);transition:transform .5s var(--ease);overflow-y:auto;
+  }
+  .mobile-menu.open{transform:translateY(0);}
+  .mobile-menu a{font-family:var(--ff-display);font-size:26px;font-weight:700;color:var(--charcoal);padding:12px 0;border-bottom:1px solid var(--line);}
+  .mobile-menu .sub-list{display:flex;flex-direction:column;padding-left:14px;}
+  .mobile-menu .sub-list a{font-size:16px;font-weight:500;padding:9px 0;border-bottom:none;color:var(--charcoal-soft);}
+  .mobile-menu .mm-foot{margin-top:auto;color:var(--ink-60);font-size:13px;}
+
+  .mobile-cta-bar{
+    display:none;position:fixed;bottom:0;left:0;right:0;z-index:98;background:var(--white);
+    border-top:1px solid var(--line);padding:12px 16px;padding-bottom:calc(12px + env(safe-area-inset-bottom));gap:10px;
+    box-shadow:0 -10px 30px -10px rgba(42,38,34,0.15);
+  }
+  .mobile-cta-bar a{flex:1;}
+  .mobile-cta-bar .btn{width:100%;padding:14px;}
+
+  /* ===== HERO ===== */
+  .hero{position:relative;min-height:88svh;display:flex;align-items:flex-end;overflow:hidden;
+    background:linear-gradient(180deg,#2E2140 0%,#5C2E4A 28%,#B6503F 55%,#DE8A47 78%,#E9AE5F 100%);
+  }
+  .hero-glow{position:absolute;left:50%;top:36%;width:70vw;height:70vw;max-width:900px;max-height:900px;
+    background:radial-gradient(circle,rgba(255,196,110,0.55),transparent 60%);
+    transform:translate(-50%,-50%);pointer-events:none;}
+  .hero-panels{position:absolute;left:0;right:0;bottom:0;height:34%;z-index:1;opacity:0.9;}
+  .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg, rgba(20,14,20,0.55) 0%, rgba(20,14,20,0.05) 45%);z-index:2;}
+  .hero .wrap{position:relative;z-index:3;padding-bottom:72px;padding-top:120px;width:100%;}
+  .hero-copy{max-width:700px;}
+  .hero-copy .eyebrow{color:var(--mustard);}
+  .hero-copy .eyebrow::before{background:var(--mustard);}
+  .hero-copy h1{font-size:clamp(2.2rem, 4.6vw, 3.8rem);color:var(--white);margin-bottom:20px;text-shadow:0 6px 30px rgba(0,0,0,0.25);}
+  .hero-copy h1 em{font-style:normal;color:var(--mustard);}
+  .hero-copy p.lead{font-size:18px;color:rgba(255,255,255,0.86);max-width:520px;margin-bottom:34px;}
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:44px;}
+  .hero-stats{display:flex;gap:36px;flex-wrap:wrap;}
+  .hero-stats div{border-left:2px solid var(--mustard);padding-left:14px;}
+  .hero-stats .num{font-family:var(--ff-display);font-size:26px;font-weight:800;color:var(--white);}
+  .hero-stats .lbl{font-size:12.5px;color:rgba(255,255,255,0.7);}
+
+  /* ===== SECTION shells ===== */
+  section{padding:110px 0;position:relative;}
+  .section-head{max-width:640px;margin-bottom:60px;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .section-head h2{font-size:clamp(1.7rem,3.2vw,2.4rem);}
+  .section-head p{color:var(--ink-60);font-size:16.5px;margin-top:14px;}
+
+  .bg-charcoal{background:var(--charcoal);color:var(--white);}
+  .bg-charcoal h2,.bg-charcoal h3,.bg-charcoal h4{color:var(--white);}
+  .bg-charcoal .section-head p{color:rgba(255,255,255,0.62);}
+  .bg-cream{background:var(--cream);}
+
+  /* ===== TRUST STRIP ===== */
+  .trust-strip{padding:48px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .trust-strip .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:space-between;}
+  .trust-strip .label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-60);flex-shrink:0;}
+  .logo-slider{display:flex;gap:38px;flex-wrap:wrap;filter:grayscale(1);opacity:.5;}
+  .logo-chip{font-family:var(--ff-display);font-weight:700;font-size:16px;color:var(--charcoal-soft);}
+
+  /* ===== SERVICES ===== */
+  .service-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:6px;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-soft);}
+  .stile{position:relative;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;color:var(--white);overflow:hidden;cursor:pointer;}
+  .stile .stile-bg{position:absolute;inset:0;transition:transform .5s var(--ease);z-index:0;}
+  .stile:hover .stile-bg{transform:scale(1.06);}
+  .stile .stile-icon{width:34px;height:34px;margin-bottom:12px;position:relative;z-index:1;}
+  .stile .stile-icon svg{width:100%;height:100%;stroke:var(--white);}
+  .stile h3{position:relative;z-index:1;font-size:18px;color:var(--white);}
+  .stile p{position:relative;z-index:1;font-size:12.5px;color:rgba(255,255,255,0.85);margin-top:4px;max-height:0;overflow:hidden;transition:max-height .4s var(--ease);}
+  .stile:hover p{max-height:60px;}
+  .stile::before{content:'';position:absolute;inset:0;background:linear-gradient(0deg, rgba(0,0,0,0.42), transparent 60%);z-index:0;}
+
+  .stile.photo-solar .stile-bg{background:
+      linear-gradient(120deg, rgba(20,30,45,.15), rgba(20,30,45,.55)),
+      repeating-linear-gradient(115deg, #3B4B63 0 26px, #2D3A4E 26px 52px);}
+  .stile.solid-wind .stile-bg{background:var(--slate-blue);}
+  .stile.photo-bio .stile-bg{background:
+      radial-gradient(circle at 30% 70%, rgba(255,255,255,0.15), transparent 55%),
+      linear-gradient(140deg, #4A6B2E, #7FA83E 70%);}
+  .stile.solid-water .stile-bg{background:var(--pale-teal);}
+  .stile.solid-solar .stile-bg{background:var(--mustard);}
+  .stile.photo-wind .stile-bg{background:
+      linear-gradient(180deg, #BFDCEE, #E7F2FA 70%);}
+  .stile.photo-wind::after{content:'';position:absolute;left:20%;bottom:20%;width:2px;height:55%;background:rgba(60,70,90,0.55);z-index:0;}
+  .stile.solid-bio .stile-bg{background:var(--terracotta);}
+  .stile.photo-hydro .stile-bg{background:
+      linear-gradient(200deg, #202B3A, #45607A 65%, #7FA0B4);}
+
+  /* ===== CASE STUDY ===== */
+  .case-study{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-soft);}
+  .case-visual{background:linear-gradient(155deg,var(--charcoal), #3A2A22 55%, var(--terracotta-dark));padding:52px;position:relative;min-height:440px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
+  .case-stats{display:flex;gap:34px;position:relative;z-index:2;flex-wrap:wrap;}
+  .case-stats .stat-num{font-family:var(--ff-display);font-size:clamp(2.1rem,3.8vw,3rem);font-weight:800;color:var(--white);}
+  .case-stats .stat-lbl{font-size:12.5px;color:rgba(255,255,255,0.65);margin-top:4px;}
+  .case-copy{background:var(--white);padding:54px;display:flex;flex-direction:column;justify-content:center;}
+  .case-copy .tag{font-size:12px;font-weight:700;color:var(--olive-deep);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px;}
+  .case-copy h3{font-size:24px;margin-bottom:16px;}
+  .case-copy p{color:var(--ink-60);margin-bottom:20px;}
+  .case-quote{border-left:3px solid var(--terracotta);padding-left:18px;font-weight:500;color:var(--charcoal);}
+  .case-quote cite{display:block;margin-top:10px;font-weight:400;font-style:normal;font-size:13px;color:var(--ink-60);}
+
+  /* ===== ABOUT ===== */
+  .about-layout{display:grid;grid-template-columns:0.9fr 1.1fr;gap:66px;align-items:center;}
+  .about-copy p{color:var(--ink-60);margin-bottom:15px;}
+  .value-list{margin-top:26px;display:grid;gap:13px;}
+  .value-list li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--charcoal-soft);}
+  .value-list svg{width:18px;height:18px;stroke:var(--olive-deep);flex-shrink:0;margin-top:2px;}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .team-card{aspect-ratio:3/4;border-radius:16px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px;color:var(--white);}
+  .team-card::before{content:'';position:absolute;inset:0;z-index:0;}
+  .team-card:nth-child(1)::before{background:linear-gradient(160deg,var(--charcoal),#4A433C);}
+  .team-card:nth-child(2)::before{background:linear-gradient(160deg,var(--terracotta),var(--terracotta-dark));}
+  .team-card:nth-child(3)::before{background:linear-gradient(160deg,var(--olive),var(--olive-deep));}
+  .team-card:nth-child(4)::before{background:linear-gradient(200deg,var(--slate-blue),#5F6D96);}
+  .team-card:nth-child(5)::before{background:linear-gradient(200deg,var(--mustard),#B98A2D);}
+  .team-card:nth-child(6)::before{background:linear-gradient(200deg,var(--charcoal),var(--terracotta-dark));}
+  .team-card .initials{font-family:var(--ff-display);font-size:15px;font-weight:800;position:relative;z-index:1;}
+  .team-card .role{font-size:11.5px;opacity:.8;position:relative;z-index:1;}
+
+  /* ===== INSIGHTS ===== */
+  .insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .insight-card{border-radius:16px;overflow:hidden;border:1px solid var(--line);transition:transform .35s var(--ease);background:var(--white);}
+  .insight-card:hover{transform:translateY(-5px);}
+  .insight-media{height:160px;position:relative;}
+  .insight-media.i1{background:linear-gradient(135deg,var(--charcoal),var(--terracotta));}
+  .insight-media.i2{background:linear-gradient(135deg,var(--olive-deep),var(--olive));}
+  .insight-media.i3{background:linear-gradient(135deg,var(--slate-blue),var(--charcoal));}
+  .insight-body{padding:22px;}
+  .insight-tag{font-size:11px;font-weight:700;color:var(--terracotta);text-transform:uppercase;letter-spacing:.06em;}
+  .insight-body h4{font-size:16.5px;margin:9px 0 8px;}
+  .insight-body p{font-size:13.5px;color:var(--ink-60);}
+  .insight-body .read-more{display:inline-block;margin-top:13px;font-size:13px;font-weight:700;color:var(--charcoal);border-bottom:2px solid var(--olive);}
+
+  /* ===== CONTACT ===== */
+  .contact-layout{display:grid;grid-template-columns:0.85fr 1.15fr;gap:0;border-radius:22px;overflow:hidden;box-shadow:var(--shadow-soft);}
+  .contact-left{background:var(--charcoal);color:var(--white);padding:54px 46px;}
+  .contact-left h3{font-size:22px;margin-bottom:12px;}
+  .contact-left p{color:rgba(255,255,255,0.62);margin-bottom:30px;}
+  .contact-channel{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-top:1px solid var(--line-soft);}
+  .contact-channel:last-of-type{border-bottom:1px solid var(--line-soft);}
+  .contact-channel svg{width:20px;height:20px;stroke:var(--mustard);flex-shrink:0;margin-top:2px;}
+  .contact-channel .cl{font-size:12px;color:rgba(255,255,255,0.5);}
+  .contact-channel .cv{font-weight:700;font-size:14.5px;}
+  .map-box{margin-top:26px;height:145px;border-radius:14px;
+    background:linear-gradient(rgba(42,38,34,0.55),rgba(42,38,34,0.75)),
+      repeating-linear-gradient(0deg, rgba(222,177,74,0.14) 0 1px, transparent 1px 26px),
+      repeating-linear-gradient(90deg, rgba(222,177,74,0.14) 0 1px, transparent 1px 26px);
+    background-color:#352B22;position:relative;border:1px solid var(--line-soft);}
+  .map-box::after{content:'';position:absolute;top:38%;left:46%;width:14px;height:14px;border-radius:50%;background:var(--terracotta);box-shadow:0 0 0 8px rgba(186,74,47,0.28);}
+
+  .contact-right{background:var(--white);padding:54px 46px;}
+  .wizard-steps{display:flex;gap:8px;margin-bottom:32px;}
+  .wizard-steps .dot{flex:1;height:4px;border-radius:2px;background:var(--line);}
+  .wizard-steps .dot.active{background:var(--terracotta);}
+  .w-panel{display:none;}
+  .w-panel.active{display:block;animation:fadein .4s ease;}
+  @keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .w-panel h4{font-size:18.5px;margin-bottom:6px;}
+  .w-panel .hint{color:var(--ink-60);font-size:13.5px;margin-bottom:20px;}
+  .option-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+  .option-card{border:1.5px solid var(--line);border-radius:12px;padding:15px 14px;font-size:13.5px;font-weight:600;text-align:left;transition:all .2s ease;}
+  .option-card:hover{border-color:var(--terracotta);}
+  .option-card.selected{border-color:var(--terracotta);background:rgba(186,74,47,0.06);color:var(--terracotta-dark);}
+  .form-field{margin-bottom:15px;}
+  .form-field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px;color:var(--charcoal-soft);}
+  .form-field input,.form-field select{width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:14px;transition:border-color .2s ease;}
+  .form-field input:focus,.form-field select:focus{border-color:var(--terracotta);outline:none;}
+  .w-nav{display:flex;justify-content:space-between;align-items:center;margin-top:6px;}
+  .w-back{font-size:13px;font-weight:700;color:var(--ink-60);}
+  .w-summary{background:var(--cream);border-radius:12px;padding:17px;font-size:13px;margin-bottom:18px;}
+  .w-summary div{display:flex;justify-content:space-between;padding:4px 0;color:var(--ink-60);}
+  .w-summary strong{color:var(--charcoal);}
+  .w-success{text-align:center;padding:18px 0;}
+  .w-success .check{width:54px;height:54px;border-radius:50%;background:rgba(143,185,62,0.14);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+  .w-success svg{width:24px;height:24px;stroke:var(--olive-deep);}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--charcoal);color:rgba(255,255,255,0.68);padding-top:76px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:38px;padding-bottom:52px;border-bottom:1px solid var(--line-soft);}
+  .footer-brand p{font-size:13.5px;max-width:270px;margin:15px 0 22px;color:rgba(255,255,255,0.5);}
+  .footer-col h5{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,0.4);margin-bottom:17px;}
+  .footer-col a, .footer-col p{display:block;font-size:13.5px;padding:6px 0;color:rgba(255,255,255,0.62);}
+  .footer-col a:hover{color:var(--mustard);}
+  .newsletter{display:flex;margin-top:6px;border:1px solid var(--line-soft);border-radius:10px;overflow:hidden;}
+  .newsletter input{flex:1;background:transparent;border:none;padding:12px 14px;color:var(--white);font-size:13px;}
+  .newsletter input::placeholder{color:rgba(255,255,255,0.4);}
+  .newsletter button{background:var(--terracotta);color:var(--white);padding:0 16px;font-weight:700;font-size:12.5px;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:26px 0;font-size:12px;color:rgba(255,255,255,0.4);flex-wrap:wrap;gap:12px;}
+  .footer-bottom .legal-links{display:flex;gap:18px;}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:1080px){
+    .service-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px;}
+    .about-layout, .case-study, .contact-layout{grid-template-columns:1fr;}
+    .case-visual{min-height:300px;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:900px){
+    nav.primary-nav{display:none;}
+    .nav-actions .btn-primary{display:none;}
+    .hamburger{display:flex;}
+    .mobile-cta-bar{display:flex;}
+    body{padding-bottom:76px;}
+    .util-bar .wrap{justify-content:space-between;}
+    .util-search{display:none;}
+  }
+  @media (max-width:720px){
+    section{padding:76px 0;}
+    .insight-grid{grid-template-columns:1fr;}
+    .team-grid{grid-template-columns:repeat(3,1fr);}
+    .trust-strip .wrap{justify-content:flex-start;}
+    .option-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:520px){
+    .case-copy, .contact-left, .contact-right{padding:34px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= UTILITY BAR ================= -->
+<div class="util-bar">
+  <div class="wrap">
+    <a href="tel:+421905341382" class="util-phone">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+      +421 905 341 382
+    </a>
+    <div class="util-search">
+      <input type="text" placeholder="hľadať...">
+      <button aria-label="Hľadať"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="wrap">
+    <a href="#top" class="logo">
+      <svg class="mark" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <path d="M14 22 L30 8 L46 22" stroke="#8FB93E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M30 8 L30 2" stroke="#DEB14A" stroke-width="3" stroke-linecap="round"/>
+          <path d="M22 6 L26 10" stroke="#DEB14A" stroke-width="3" stroke-linecap="round"/>
+          <path d="M38 6 L34 10" stroke="#DEB14A" stroke-width="3" stroke-linecap="round"/>
+          <path d="M17 24 L30 34 L43 24" stroke="#719432" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 30 L30 38 L40 30" stroke="#8FB93E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M17 44 L30 34 L43 44 L43 52 L17 52 Z" fill="#BA4A2F"/>
+        </g>
+      </svg>
+      <span class="word"><span class="l1">ENERGIA</span><span class="l2">Jarás</span></span>
+    </a>
+
+    <nav class="primary-nav">
+      <div class="has-mega">
+        <button>Naše služby <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega">
+          <a href="#sluzby"><span class="dot" style="background:var(--mustard)"></span>Solárna energia</a>
+          <a href="#sluzby"><span class="dot" style="background:var(--slate-blue)"></span>Veterná energia</a>
+          <a href="#sluzby"><span class="dot" style="background:var(--olive)"></span>Bioenergia</a>
+          <a href="#sluzby"><span class="dot" style="background:var(--pale-teal)"></span>Vodná energia</a>
+        </div>
+      </div>
+      <a href="#o-nas">Audity budov</a>
+      <a href="#o-nas">En. audity spoločností</a>
+      <a href="#insights">Energetické poradenstvo</a>
+      <a href="#referencie">Referencie</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="#kontakt" class="btn btn-primary">Kontaktujte nás</a>
+      <button class="hamburger" id="hamburger" aria-label="Otvoriť menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sluzby">Naše služby</a>
+  <div class="sub-list">
+    <a href="#sluzby">Solárna energia</a>
+    <a href="#sluzby">Veterná energia</a>
+    <a href="#sluzby">Bioenergia</a>
+    <a href="#sluzby">Vodná energia</a>
+  </div>
+  <a href="#o-nas">Audity budov</a>
+  <a href="#o-nas">En. audity spoločností</a>
+  <a href="#insights">Energetické poradenstvo</a>
+  <a href="#referencie">Referencie</a>
+  <a href="#kontakt">Kontakt</a>
+  <div class="mm-foot">ENERGIA - Jarás, s. r. o. &mdash; energia-jaras.sk</div>
+</div>
+
+<div class="mobile-cta-bar">
+  <a href="tel:+421905341382" class="btn btn-ghost on-light">Zavolať</a>
+  <a href="#kontakt" class="btn btn-primary">Audit zadarmo</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <svg class="hero-panels" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="panelGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#141018" stop-opacity="0.85"/>
+        <stop offset="100%" stop-color="#0B090D" stop-opacity="0.95"/>
+      </linearGradient>
+    </defs>
+    <polygon points="0,200 0,140 1200,90 1200,200" fill="url(#panelGrad)"/>
+    <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
+      <line x1="0" y1="150" x2="1200" y2="100"/>
+      <line x1="0" y1="165" x2="1200" y2="112"/>
+      <line x1="0" y1="180" x2="1200" y2="124"/>
+      <line x1="100" y1="146" x2="60" y2="200"/>
+      <line x1="260" y1="140" x2="220" y2="200"/>
+      <line x1="420" y1="133" x2="390" y2="200"/>
+      <line x1="580" y1="126" x2="560" y2="200"/>
+      <line x1="740" y1="119" x2="730" y2="200"/>
+      <line x1="900" y1="111" x2="900" y2="200"/>
+      <line x1="1060" y1="103" x2="1070" y2="200"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">Priemyselná energetika &middot; Slovensko</p>
+      <h1>Energetické audity a obnoviteľné riešenia pre <em>váš podnik.</em></h1>
+      <p class="lead">Navrhujeme solárne, veterné, bio a vodné riešenia spolu s certifikovanými energetickými auditmi, ktoré znižujú prevádzkové náklady priemyselných budov a spoločností.</p>
+      <div class="hero-ctas">
+        <a href="#kontakt" class="btn btn-primary">Kontaktujte nás</a>
+        <a href="#referencie" class="btn btn-ghost">Pozrieť referencie</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="num">180+</div><div class="lbl">Realizovaných projektov</div></div>
+        <div><div class="num">42 %</div><div class="lbl">Priemerná úspora nákladov</div></div>
+        <div><div class="num">15 rokov</div><div class="lbl">Skúseností v odvetví</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRUST STRIP ================= -->
+<div class="trust-strip">
+  <div class="wrap">
+    <span class="label">Dôveru nám dali</span>
+    <div class="logo-slider">
+      <span class="logo-chip">FerroTech Group</span>
+      <span class="logo-chip">Nitra Industrial</span>
+      <span class="logo-chip">Slovbau a.s.</span>
+      <span class="logo-chip">EcoMetal</span>
+      <span class="logo-chip">Dunaj Logistics</span>
+      <span class="logo-chip">ISO 50001</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<section id="sluzby">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Naše služby</p>
+      <h2>Komplexné energetické riešenia pod jednou strechou</h2>
+      <p>Od návrhu po realizáciu — inžinierske tímy, ktoré rozumejú priemyselnej prevádzke aj energetickej legislatíve.</p>
+    </div>
+
+    <div class="service-grid">
+      <a href="#" class="stile photo-solar"><div class="stile-bg"></div>
+        <div class="stile-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></div>
+        <h3>Solárna energia</h3><p>Fotovoltické systémy pre priemyselné strechy s návratnosťou do 4 rokov.</p>
+      </a>
+      <a href="#" class="stile solid-wind"><div class="stile-bg"></div>
+        <div class="stile-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 12h6M15 12h6M12 3c0 3-2 4-2 6a2 2 0 1 0 4 0M12 21c0-3 2-4 2-6"/></svg></div>
+        <h3>Veterná energia</h3><p>Analýza lokality a výstavba veterných zdrojov pre priemysel.</p>
+      </a>
+      <a href="#" class="stile photo-bio"><div class="stile-bg"></div>
+        <div class="stile-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 2c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11Z"/></svg></div>
+        <h3>Bioenergia</h3><p>Kogeneračné jednotky a spracovanie biomasy pre stabilnú energiu.</p>
+      </a>
+      <a href="#" class="stile solid-water"><div class="stile-bg"></div>
+        <div class="stile-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 9c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg></div>
+        <h3>Vodná energia</h3><p>Malé vodné elektrárne a hydrologické posudky.</p>
+      </a>
+
+      <a href="#" class="stile solid-solar"><div class="stile-bg"></div>
+        <div class="stile-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></div>
+        <h3>Audity budov</h3><p>Certifikované energetické audity podľa STN EN 16247.</p>
+      </a>
+      <a href="#" class="stile photo-wind"><div class="stile-bg"></div>
+        <div class="stile-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke="#3A4B63"><path d="M3 12h6M15 12h6M12 3c0 3-2 4-2 6a2 2 0 1 0 4 0M12 21c0-3 2-4 2-6" stroke="#3A4B63"/></svg></div>
+        <h3 style="color:#2A3446">Semináre ENEF</h3><p style="color:#4A5568">Školenia o energetickej efektívnosti pre podniky.</p>
+      </a>
+      <a href="#" class="stile solid-bio"><div class="stile-bg"></div>
+        <div class="stile-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M12 2c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11Z"/></svg></div>
+        <h3>Energetické poradenstvo</h3><p>Sprievodca dotáciami a technickými riešeniami.</p>
+      </a>
+      <a href="#" class="stile photo-hydro"><div class="stile-bg"></div>
+        <div class="stile-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 9c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg></div>
+        <h3>En. audity spoločností</h3><p>Komplexné audity priemyselných prevádzok.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CASE STUDY ================= -->
+<section id="referencie" class="bg-cream">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Overené výsledky</p>
+      <h2>Vybraný projekt: FerroTech Group</h2>
+    </div>
+
+    <div class="case-study">
+      <div class="case-visual">
+        <div class="case-stats">
+          <div><div class="stat-num">-42 %</div><div class="stat-lbl">Energetické náklady</div></div>
+          <div><div class="stat-num">18 mes.</div><div class="stat-lbl">Návratnosť investície</div></div>
+          <div><div class="stat-num">960 t</div><div class="stat-lbl">CO₂ ušetrené ročne</div></div>
+        </div>
+      </div>
+      <div class="case-copy">
+        <span class="tag">Priemyselná výroba &middot; Nitriansky kraj</span>
+        <h3>Kompletná transformácia energetického hospodárstva výrobného závodu</h3>
+        <p>Navrhli a zrealizovali sme strešnú fotovoltickú elektráreň v kombinácii s kogeneračnou jednotkou na biomasu, čím sme závodu umožnili pokryť väčšinu špičkovej spotreby z vlastných zdrojov.</p>
+        <p class="case-quote">„Spolupráca s ENERGIA - Jarás nám priniesla nielen úsporu, ale aj energetickú nezávislosť, ktorú sme roky hľadali.“
+          <cite>— Prevádzkový riaditeľ, FerroTech Group</cite>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="o-nas">
+  <div class="wrap about-layout">
+    <div class="about-copy">
+      <p class="eyebrow">O spoločnosti</p>
+      <h2>Inžinierska presnosť. Slovenské skúsenosti.</h2>
+      <p>ENERGIA - Jarás pôsobí v priemyselnej energetike už 15 rokov. Náš certifikovaný tím inžinierov navrhuje riešenia, ktoré spĺňajú prísne normy pre obnoviteľné zdroje a energetickú efektivitu.</p>
+      <p>Veríme, že prechod na čistú energiu má byť pre podnik ekonomicky výhodný od prvého dňa — nie kompromis medzi udržateľnosťou a ziskovosťou.</p>
+      <ul class="value-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Certifikovaní energetickí audítori</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Súlad s normou STN EN ISO 50001</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Vlastný realizačný a servisný tím</li>
+      </ul>
+    </div>
+    <div class="team-grid">
+      <div class="team-card"><div><div class="initials">M. J.</div><div class="role">Konateľ</div></div></div>
+      <div class="team-card"><div><div class="initials">P. K.</div><div class="role">Hlavný inžinier</div></div></div>
+      <div class="team-card"><div><div class="initials">L. S.</div><div class="role">Energetický audítor</div></div></div>
+      <div class="team-card"><div><div class="initials">R. V.</div><div class="role">Vedúci realizácie</div></div></div>
+      <div class="team-card"><div><div class="initials">T. H.</div><div class="role">Projektant FVE</div></div></div>
+      <div class="team-card"><div><div class="initials">D. B.</div><div class="role">Obchodný riaditeľ</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INSIGHTS ================= -->
+<section id="insights" class="bg-cream">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Prehľady a poznatky</p>
+      <h2>Aktuálne z priemyselnej energetiky</h2>
+    </div>
+    <div class="insight-grid">
+      <article class="insight-card">
+        <div class="insight-media i1"></div>
+        <div class="insight-body">
+          <span class="insight-tag">Legislatíva</span>
+          <h4>Zmeny v dotačných schémach na FVE pre rok 2026</h4>
+          <p>Prehľad nových podmienok čerpania štátnej podpory pre priemyselné solárne inštalácie.</p>
+          <a href="#" class="read-more">Čítať viac</a>
+        </div>
+      </article>
+      <article class="insight-card">
+        <div class="insight-media i2"></div>
+        <div class="insight-body">
+          <span class="insight-tag">Sprievodca</span>
+          <h4>Ako pripraviť podnik na energetický audit</h4>
+          <p>Praktický postup pre výrobné prevádzky pred certifikovaným energetickým auditom.</p>
+          <a href="#" class="read-more">Čítať viac</a>
+        </div>
+      </article>
+      <article class="insight-card">
+        <div class="insight-media i3"></div>
+        <div class="insight-body">
+          <span class="insight-tag">Analýza</span>
+          <h4>Bioenergia ako stabilný zdroj pre ťažký priemysel</h4>
+          <p>Prečo kombinácia biomasy a kogenerácie rieši problém stability obnoviteľných zdrojov.</p>
+          <a href="#" class="read-more">Čítať viac</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="kontakt">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow">Poďme na to spoločne</p>
+      <h2>Vyžiadajte si nezáväznú konzultáciu</h2>
+      <p>Vyplňte krátky formulár a naši inžinieri vám pripravia orientačný návrh riešenia do 48 hodín.</p>
+    </div>
+
+    <div class="contact-layout">
+      <div class="contact-left">
+        <h3>Priamy kontakt</h3>
+        <p>Sme k dispozícii pracovné dni od 8:00 do 17:00.</p>
+
+        <div class="contact-channel">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          <div><div class="cl">Telefón</div><div class="cv">+421 905 341 382</div></div>
+        </div>
+        <div class="contact-channel">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          <div><div class="cl">E-mail</div><div class="cv">info@energia-jaras.sk</div></div>
+        </div>
+        <div class="contact-channel">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><div class="cl">Prevádzka</div><div class="cv">Priemyselná 12, 949 01 Nitra</div></div>
+        </div>
+
+        <div class="map-box" role="img" aria-label="Mapa s polohou sídla spoločnosti"></div>
+      </div>
+
+      <div class="contact-right">
+        <div class="wizard-steps" aria-hidden="true">
+          <div class="dot active" data-dot="1"></div>
+          <div class="dot" data-dot="2"></div>
+          <div class="dot" data-dot="3"></div>
+          <div class="dot" data-dot="4"></div>
+        </div>
+
+        <form id="wizardForm">
+          <div class="w-panel active" data-panel="1">
+            <h4>V akom odvetví pôsobíte?</h4>
+            <p class="hint">Pomôže nám to pripraviť relevantný návrh.</p>
+            <div class="option-grid" data-group="odvetvie">
+              <button type="button" class="option-card">Strojárenstvo</button>
+              <button type="button" class="option-card">Potravinárstvo</button>
+              <button type="button" class="option-card">Logistika &amp; sklady</button>
+              <button type="button" class="option-card">Iné</button>
+            </div>
+            <div class="w-nav"><span></span><button type="button" class="btn btn-primary" data-next>Pokračovať</button></div>
+          </div>
+
+          <div class="w-panel" data-panel="2">
+            <h4>Aká je vaša ročná spotreba energie?</h4>
+            <p class="hint">Postačí orientačný odhad.</p>
+            <div class="option-grid" data-group="spotreba">
+              <button type="button" class="option-card">do 100 MWh</button>
+              <button type="button" class="option-card">100 – 500 MWh</button>
+              <button type="button" class="option-card">500 – 2 000 MWh</button>
+              <button type="button" class="option-card">nad 2 000 MWh</button>
+            </div>
+            <div class="w-nav"><button type="button" class="w-back" data-back>&larr; Späť</button><button type="button" class="btn btn-primary" data-next>Pokračovať</button></div>
+          </div>
+
+          <div class="w-panel" data-panel="3">
+            <h4>O aké riešenie máte záujem?</h4>
+            <p class="hint">Môžete vybrať viac možností.</p>
+            <div class="option-grid" data-group="riesenie" data-multi="true">
+              <button type="button" class="option-card">Solárna energia</button>
+              <button type="button" class="option-card">Veterná energia</button>
+              <button type="button" class="option-card">Energetický audit</button>
+              <button type="button" class="option-card">Iné / neviem</button>
+            </div>
+            <div class="w-nav"><button type="button" class="w-back" data-back>&larr; Späť</button><button type="button" class="btn btn-primary" data-next>Pokračovať</button></div>
+          </div>
+
+          <div class="w-panel" data-panel="4">
+            <h4>Kam vám máme poslať návrh?</h4>
+            <div class="w-summary" id="wizSummary"></div>
+            <div class="form-field"><label for="fname">Meno a priezvisko</label><input id="fname" type="text" required placeholder="Ján Novák"></div>
+            <div class="form-field"><label for="fcompany">Spoločnosť</label><input id="fcompany" type="text" required placeholder="Názov spoločnosti"></div>
+            <div class="form-field"><label for="femail">E-mail</label><input id="femail" type="email" required placeholder="jan@spolocnost.sk"></div>
+            <div class="w-nav"><button type="button" class="w-back" data-back>&larr; Späť</button><button type="submit" class="btn btn-primary">Odoslať dopyt</button></div>
+          </div>
+
+          <div class="w-panel" data-panel="success">
+            <div class="w-success">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div>
+              <h4>Ďakujeme za váš dopyt</h4>
+              <p class="hint">Ozveme sa vám do 48 hodín s orientačným návrhom riešenia.</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="logo">
+          <svg class="mark" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="width:38px;height:38px;">
+            <path d="M14 22 L30 8 L46 22" stroke="#8FB93E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17 24 L30 34 L43 24" stroke="#719432" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 30 L30 38 L40 30" stroke="#8FB93E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17 44 L30 34 L43 44 L43 52 L17 52 Z" fill="#BA4A2F"/>
+          </svg>
+          <span class="word"><span class="l1" style="color:#DE8A47">ENERGIA</span><span class="l2" style="color:#fff">Jarás</span></span>
+        </a>
+        <p>Priemyselné energetické poradenstvo a realizácia obnoviteľných zdrojov na Slovensku.</p>
+        <div class="newsletter">
+          <input type="email" placeholder="Váš e-mail" aria-label="E-mail pre odber noviniek">
+          <button type="button">Odoberať</button>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Riešenia</h5>
+        <a href="#sluzby">Solárna energia</a>
+        <a href="#sluzby">Veterná energia</a>
+        <a href="#sluzby">Bioenergia</a>
+        <a href="#sluzby">Vodná energia</a>
+      </div>
+      <div class="footer-col">
+        <h5>Spoločnosť</h5>
+        <a href="#o-nas">O nás</a>
+        <a href="#referencie">Referencie</a>
+        <a href="#insights">Prehľady</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <p>Priemyselná 12<br>949 01 Nitra</p>
+        <p>info@energia-jaras.sk</p>
+        <p>+421 905 341 382</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ENERGIA - Jarás, s. r. o. Všetky práva vyhradené.</span>
+      <div class="legal-links">
+        <a href="#">Ochrana osobných údajov</a>
+        <a href="#">GDPR</a>
+        <a href="#">Obchodné podmienky</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var burger = document.getElementById('hamburger');
+  var menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    burger.classList.toggle('active', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      burger.classList.remove('active');
+      burger.setAttribute('aria-expanded','false');
+    });
+  });
+
+  var form = document.getElementById('wizardForm');
+  var panels = form.querySelectorAll('.w-panel');
+  var dots = document.querySelectorAll('.wizard-steps .dot');
+  var state = { odvetvie:null, spotreba:null, riesenie:[] };
+  var current = 1;
+
+  function showPanel(n){
+    panels.forEach(function(p){ p.classList.toggle('active', p.dataset.panel == n); });
+    dots.forEach(function(d){ d.classList.toggle('active', Number(d.dataset.dot) <= n); });
+    if(n === 4){ renderSummary(); }
+  }
+
+  function renderSummary(){
+    var sum = document.getElementById('wizSummary');
+    sum.innerHTML =
+      '<div><span>Odvetvie</span><strong>'+ (state.odvetvie || '—') +'</strong></div>' +
+      '<div><span>Spotreba</span><strong>'+ (state.spotreba || '—') +'</strong></div>' +
+      '<div><span>Záujem</span><strong>'+ (state.riesenie.length ? state.riesenie.join(', ') : '—') +'</strong></div>';
+  }
+
+  form.querySelectorAll('[data-group]').forEach(function(group){
+    var multi = group.dataset.multi === 'true';
+    var key = group.dataset.group;
+    group.querySelectorAll('.option-card').forEach(function(card){
+      card.addEventListener('click', function(){
+        if(multi){
+          card.classList.toggle('selected');
+          var val = card.textContent;
+          var idx = state[key].indexOf(val);
+          if(idx > -1){ state[key].splice(idx,1); } else { state[key].push(val); }
+        } else {
+          group.querySelectorAll('.option-card').forEach(function(c){ c.classList.remove('selected'); });
+          card.classList.add('selected');
+          state[key] = card.textContent;
+        }
+      });
+    });
+  });
+
+  form.querySelectorAll('[data-next]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      current = Math.min(current + 1, 4);
+      showPanel(current);
+    });
+  });
+  form.querySelectorAll('[data-back]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      current = Math.max(current - 1, 1);
+      showPanel(current);
+    });
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    panels.forEach(function(p){ p.classList.toggle('active', p.dataset.panel === 'success'); });
+    dots.forEach(function(d){ d.classList.add('active'); });
+  });
+})();
+</script>
+
+</body>
+</html>
