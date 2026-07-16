@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Screen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@100..900&family=Fira+Code:wght@300..700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    <style type="text/tailwindcss">
+      @import "tailwindcss";
+      @theme inline {
+        --color-background: var(--background);
+        --color-foreground: var(--foreground);
+        --color-primary: var(--primary);
+        --color-primary-foreground: var(--primary-foreground);
+        --color-secondary: var(--secondary);
+        --color-secondary-foreground: var(--secondary-foreground);
+        --color-tertiary: var(--tertiary);
+        --color-muted: var(--muted);
+        --color-muted-foreground: var(--muted-foreground);
+        --color-accent: var(--accent);
+        --color-destructive: var(--destructive);
+        --color-card: var(--card);
+        --color-card-foreground: var(--card-foreground);
+        --color-border: var(--border);
+        --color-input: var(--input);
+        --color-ring: var(--ring);
+        --radius-sm: calc(var(--radius) - 4px);
+        --radius-md: calc(var(--radius) - 2px);
+        --radius-lg: var(--radius);
+        --font-family-sans: var(--font-sans);
+        --font-family-heading: var(--font-heading);
+        --font-family-mono: var(--font-mono);
+      }
+      :root {
+        --background: #F8F9FA;
+        --foreground: #1A202C;
+        --primary: #FBB805;
+        --primary-foreground: #FFFFFF;
+        --secondary: #E2E3E5;
+        --secondary-foreground: #1A202C;
+        --tertiary: #FF6B00;
+        --muted: #E2E3E5;
+        --muted-foreground: #7E8289;
+        --accent: #F9E2D2;
+        --accent-foreground: #1A202C;
+        --card: #FFFFFF;
+        --card-foreground: #1A202C;
+        --destructive: #EF4444;
+        --border: #E2E8F0;
+        --input: #E2E8F0;
+        --ring: #FF6B00;
+        --radius: 0.75rem;
+        --font-sans: Inter, sans-serif;
+        --font-heading: Inter, sans-serif;
+        --font-mono: JetBrains Mono, monospace;
+        --shadow-offset-x: 0;
+        --shadow-offset-y: 10;
+        --shadow-blur: 30;
+        --shadow-spread: -8;
+        --shadow-color: rgba(15, 23, 42, 0.12);
+        }
+    </style>
+    <style>
+      .brand-gradient { background-image: linear-gradient(135deg, var(--primary), var(--accent)); }
+      .shadow-theme {
+        box-shadow:
+          calc(var(--shadow-offset-x, 0) * 1px) calc(var(--shadow-offset-y, 10) * 1px)
+          calc(var(--shadow-blur, 30) * 1px) calc(var(--shadow-spread, -8) * 1px)
+          var(--shadow-color, rgba(15, 23, 42, 0.12));
+      }
+    </style>
+  </head>
+  <body>
+<div class="min-h-screen w-full bg-background text-foreground font-sans flex flex-col relative">
+
+  <!-- STICKY FROSTED HEADER -->
+  <header class="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-xl border-b border-border transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-2">
+        <img src="https://www.diamat.sk/public/img/logos/logo.jpg" alt="Diamat Logo">
+      </a>
+
+      <!-- Desktop Navigation & Mega Menu Trigger -->
+      <nav class="hidden lg:flex items-center gap-8">
+        <div class="relative group py-2">
+          <button class="flex items-center gap-1 font-semibold text-sm hover:text-primary transition-colors">
+            Garážové brány
+            <iconify-icon icon="lucide:chevron-down" class="text-xs"></iconify-icon>
+          </button>
+          <!-- Mega Menu Panel -->
+          <div class="absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-card border border-border rounded-xl shadow-xl p-6 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 grid grid-cols-2 gap-6 z-50">
+            <div>
+              <h4 class="font-bold text-xs uppercase tracking-wider text-muted-foreground mb-3">Pre rodinné domy</h4>
+              <ul class="space-y-3">
+                <li>
+                  <a href="#" class="flex items-center gap-3 p-2 rounded-lg hover:bg-accent transition-colors">
+                    <iconify-icon icon="lucide:house" class="text-primary text-lg"></iconify-icon>
+                    <div>
+                      <div class="font-semibold text-xs">Sekcionálne brány</div>
+                      <div class="text-[11px] text-muted-foreground">Najpopulárnejšie riešenie</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="flex items-center gap-3 p-2 rounded-lg hover:bg-accent transition-colors">
+                    <iconify-icon icon="lucide:refresh-cw" class="text-primary text-lg"></iconify-icon>
+                    <div>
+                      <div class="font-semibold text-xs">Rolovacie brány</div>
+                      <div class="text-[11px] text-muted-foreground">Úspora miesta pod stropom</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-bold text-xs uppercase tracking-wider text-muted-foreground mb-3">Príslušenstvo</h4>
+              <ul class="space-y-3">
+                <li>
+                  <a href="#" class="flex items-center gap-3 p-2 rounded-lg hover:bg-accent transition-colors">
+                    <iconify-icon icon="lucide:zap" class="text-primary text-lg"></iconify-icon>
+                    <div>
+                      <div class="font-semibold text-xs">Pohony a ovládače</div>
+                      <div class="text-[11px] text-muted-foreground">Inteligentné ovládanie Hörmann</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="flex items-center gap-3 p-2 rounded-lg hover:bg-accent transition-colors">
+                    <iconify-icon icon="lucide:shield" class="text-primary text-lg"></iconify-icon>
+                    <div>
+                      <div class="font-semibold text-xs">Bezpečnostné systémy</div>
+                      <div class="text-[11px] text-muted-foreground">Certifikované zabezpečenie</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative group py-2">
+          <button class="flex items-center gap-1 font-semibold text-sm hover:text-primary transition-colors">
+            Priemyselné brány
+            <iconify-icon icon="lucide:chevron-down" class="text-xs"></iconify-icon>
+          </button>
+          <!-- Mega Menu Panel -->
+          <div class="absolute top-full left-1/2 -translate-x-1/2 w-[400px] bg-card border border-border rounded-xl shadow-xl p-4 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 space-y-2 z-50">
+            <a href="#" class="flex items-center gap-3 p-2 rounded-lg hover:bg-accent transition-colors">
+              <iconify-icon icon="lucide:layers" class="text-primary text-lg"></iconify-icon>
+              <div>
+                <div class="font-semibold text-xs">Priemyselné sekcionálne brány</div>
+                <div class="text-[11px] text-muted-foreground">Pre logistické centrá a haly</div>
+              </div>
+            </a>
+            <a href="#" class="flex items-center gap-3 p-2 rounded-lg hover:bg-accent transition-colors">
+              <iconify-icon icon="lucide:flame" class="text-primary text-lg"></iconify-icon>
+              <div>
+                <div class="font-semibold text-xs">Rýchlobežné a protipožiarne</div>
+                <div class="text-[11px] text-muted-foreground">Špeciálne priemyselné požiadavky</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a href="#services" class="font-semibold text-sm hover:text-primary transition-colors">Služby</a>
+        <a href="#blog" class="font-semibold text-sm hover:text-primary transition-colors">Blog</a>
+      </nav>
+
+      <!-- Header CTAs -->
+      <div class="flex items-center gap-4">
+        <a href="tel:+421900000000" class="hidden sm:flex items-center gap-2 text-sm font-semibold hover:text-primary transition-colors">
+          <iconify-icon icon="lucide:phone" class="text-primary"></iconify-icon>
+          <span>+421 900 000 000</span>
+        </a>
+        <a href="#configurator" class="bg-primary text-primary-foreground font-bold text-sm px-5 py-3 rounded-lg hover:bg-primary/90 transition-all duration-200 shadow-md">
+          Nezáväzná cenová ponuka
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTION 1: HERO SECTION -->
+  <section class="relative bg-background overflow-hidden py-12 lg:py-20">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- Left Column: Value Prop -->
+      <div class="lg:col-span-6 space-y-6">
+        <!-- Trust badge -->
+        <div class="inline-flex items-center gap-2 bg-card border border-border px-3 py-1.5 rounded-full shadow-sm">
+          <iconify-icon icon="lucide:shield" class="text-primary text-sm"></iconify-icon>
+          <span class="text-xs font-bold text-foreground">Certifikovaný partner Hörmann</span>
+          <span class="text-xs text-muted-foreground border-l border-border pl-2 flex items-center gap-1">
+            <iconify-icon icon="lucide:star" class="text-primary text-[10px]"></iconify-icon> 4.9/5
+          </span>
+        </div>
+
+        <h1 class="text-4xl lg:text-5xl font-heading font-black tracking-tight text-foreground leading-tight">
+          Prémiové garážové brány a stavebné materiály s nemeckou kvalitou <span class="text-primary">Hörmann</span>
+        </h1>
+
+        <p class="text-muted-foreground text-base max-w-lg">
+          Viac ako 20 rokov skúseností s dodávkou, odbornou montážou a certifikovaným servisom po celom Slovensku. Spoľahnite sa na špičkové technológie pre váš domov i firmu.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4 pt-2">
+          <a href="#configurator" class="bg-primary text-primary-foreground font-bold px-6 py-4 rounded-lg hover:bg-primary/90 transition-all duration-200 flex items-center gap-2 shadow-lg">
+            <iconify-icon icon="lucide:chart-bar" class="text-lg"></iconify-icon>
+            Vypočítať cenu brány
+          </a>
+          <a href="#products" class="bg-card border border-border font-bold px-6 py-4 rounded-lg hover:bg-accent transition-all duration-200 flex items-center gap-2">
+            Prehliadať ponuku
+            <iconify-icon icon="lucide:arrow-right" class="text-sm"></iconify-icon>
+          </a>
+        </div>
+
+        <!-- Mini indicators -->
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-border">
+          <div>
+            <div class="text-2xl font-black text-foreground">20+</div>
+            <div class="text-xs text-muted-foreground">Rokov na trhu</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black text-foreground">100%</div>
+            <div class="text-xs text-muted-foreground">Garancia kvality</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black text-foreground">3000+</div>
+            <div class="text-xs text-muted-foreground">Realizácií</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Media Carousel -->
+      <div class="lg:col-span-6 relative">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-border bg-card">
+          <!-- Main Slide -->
+          <img src="https://uxmagic.blob.core.windows.net/public/agent-images/hero-garage-door-1784197708582-d0bx43pl2qr.png" alt="Sleek Modern Anthracite Garage Door" class="w-full h-[400px] object-cover">
+          
+          <!-- Overlay badge for project location -->
+          <div class="absolute bottom-4 left-4 right-4 bg-background/90 backdrop-blur-md p-4 rounded-xl border border-border flex items-center justify-between">
+            <div>
+              <p class="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Aktuálna realizácia</p>
+              <h4 class="font-bold text-sm text-foreground">Rodinná vila, Bratislava - Záhorská Bystrica</h4>
+            </div>
+            <div class="flex items-center gap-1 bg-primary/10 text-primary px-2 py-1 rounded text-xs font-bold">
+              Hörmann LPU 42
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <div class="absolute top-4 right-4 flex gap-2">
+            <button class="w-10 h-10 rounded-full bg-background/80 hover:bg-background backdrop-blur-sm border border-border flex items-center justify-center text-foreground transition-all">
+              <iconify-icon icon="lucide:arrow-left" class="text-base"></iconify-icon>
+            </button>
+            <button class="w-10 h-10 rounded-full bg-background/80 hover:bg-background backdrop-blur-sm border border-border flex items-center justify-center text-foreground transition-all">
+              <iconify-icon icon="lucide:arrow-right" class="text-base"></iconify-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: CORE SERVICES & PRODUCT CATEGORIES -->
+  <section id="products" class="py-16 lg:py-24 bg-card border-y border-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+        <h2 class="text-xs uppercase tracking-widest text-primary font-extrabold">Naša ponuka</h2>
+        <h3 class="text-3xl lg:text-4xl font-heading font-black text-foreground tracking-tight">
+          Komplexné riešenia pre každú stavbu
+        </h3>
+        <p class="text-muted-foreground text-sm">
+          Vyberte si z našich troch hlavných pilierov služieb a produktov navrhnutých pre maximálnu životnosť, bezpečnosť a dizajn.
+        </p>
+      </div>
+
+      <!-- 3-Column Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Card 1: Garage Doors -->
+        <div class="group bg-background border border-border rounded-xl p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-full h-48 rounded-lg overflow-hidden bg-muted relative">
+              <img src="https://uxmagic.blob.core.windows.net/public/agent-images/hero-garage-door-1784197708582-d0bx43pl2qr.png" alt="Garážové brány" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              <div class="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">
+                Hörmann Partner
+              </div>
+            </div>
+            <h4 class="text-xl font-heading font-bold text-foreground">Garážové a priemyselné brány</h4>
+            <p class="text-muted-foreground text-sm leading-relaxed">
+              Sekcionálne, rolovacie, dvojkrídlové brány a priemyselné bránové systémy najvyššej kvality s profesionálnym pohonom.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-border mt-6 flex items-center justify-between text-primary font-bold text-sm">
+            <span>Zobraziť detaily</span>
+            <iconify-icon icon="lucide:arrow-right" class="text-lg group-hover:translate-x-1 transition-transform"></iconify-icon>
+          </div>
+        </div>
+
+        <!-- Card 2: Construction Materials -->
+        <div class="group bg-background border border-border rounded-xl p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-full h-48 rounded-lg overflow-hidden bg-muted relative">
+              <img src="https://uxmagic.blob.core.windows.net/public/agent-images/construction-materials-1784197726253-4vojpwd5c4.png" alt="Stavebné materiály" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              <div class="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">
+                Skladom
+              </div>
+            </div>
+            <h4 class="text-xl font-heading font-bold text-foreground">Stavebné materiály</h4>
+            <p class="text-muted-foreground text-sm leading-relaxed">
+              Prvotriedne sendvičové panely, oceľové konštrukcie, izolačné materiály a príslušenstvo pre rýchlu a bezpečnú výstavbu.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-border mt-6 flex items-center justify-between text-primary font-bold text-sm">
+            <span>Zobraziť detaily</span>
+            <iconify-icon icon="lucide:arrow-right" class="text-lg group-hover:translate-x-1 transition-transform"></iconify-icon>
+          </div>
+        </div>
+
+        <!-- Card 3: Professional Installation -->
+        <div class="group bg-background border border-border rounded-xl p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-full h-48 rounded-lg overflow-hidden bg-muted relative">
+              <img src="https://uxmagic.blob.core.windows.net/public/agent-images/industrial-gate-1784197717344-wlm6hwoev2.png" alt="Montáž a servis" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              <div class="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">
+                Nonstop Servis
+              </div>
+            </div>
+            <h4 class="text-xl font-heading font-bold text-foreground">Odborná montáž a servis</h4>
+            <p class="text-muted-foreground text-sm leading-relaxed">
+              Certifikovaná inštalácia, pravidelné revízie a rýchly záručný i pozáručný servis pre zaručenie bezproblémového chodu.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-border mt-6 flex items-center justify-between text-primary font-bold text-sm">
+            <span>Zobraziť detaily</span>
+            <iconify-icon icon="lucide:arrow-right" class="text-lg group-hover:translate-x-1 transition-transform"></iconify-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: SOCIAL PROOF & AUTHORITY (THE TRUST ENGINE) -->
+  <section class="py-16 lg:py-24 bg-background overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- Left Column: Stats Block -->
+      <div class="lg:col-span-5 space-y-6">
+        <h2 class="text-xs uppercase tracking-widest text-primary font-extrabold">Prečo DIAMAT?</h2>
+        <h3 class="text-3xl lg:text-4xl font-heading font-black text-foreground tracking-tight">
+          Vaša dôvera je naším najväčším záväzkom
+        </h3>
+        <p class="text-muted-foreground text-sm">
+          Sme stabilná slovenská spoločnosť, ktorá si zakladá na precíznosti, dodržiavaní termínov a nadštandardnom zákazníckom servise.
+        </p>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 gap-6 pt-4">
+          <div class="bg-card border border-border p-5 rounded-xl shadow-sm">
+            <div class="text-3xl font-black text-primary mb-1">15+</div>
+            <div class="text-xs font-bold text-foreground">Rokov skúseností</div>
+            <div class="text-[11px] text-muted-foreground mt-1">Odbornosť v každom detaile</div>
+          </div>
+          <div class="bg-card border border-border p-5 rounded-xl shadow-sm">
+            <div class="text-3xl font-black text-primary mb-1">3000+</div>
+            <div class="text-xs font-bold text-foreground">Realizácií</div>
+            <div class="text-[11px] text-muted-foreground mt-1">Spokojní majitelia a firmy</div>
+          </div>
+          <div class="bg-card border border-border p-5 rounded-xl shadow-sm">
+            <div class="text-3xl font-black text-primary mb-1">100%</div>
+            <div class="text-xs font-bold text-foreground">Záruka kvality</div>
+            <div class="text-[11px] text-muted-foreground mt-1">Používame len overené značky</div>
+          </div>
+          <div class="bg-card border border-border p-5 rounded-xl shadow-sm">
+            <div class="text-3xl font-black text-primary mb-1">24/7</div>
+            <div class="text-xs font-bold text-foreground">Havarijný servis</div>
+            <div class="text-[11px] text-muted-foreground mt-1">Rýchla pomoc pri poruchách</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Testimonials Slider -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="relative bg-card border border-border p-8 rounded-2xl shadow-lg">
+          <!-- Testimonial Navigation -->
+          <div class="absolute top-6 right-6 flex gap-2">
+            <button class="w-8 h-8 rounded-full bg-background hover:bg-accent border border-border flex items-center justify-center text-foreground transition-all">
+              <iconify-icon icon="lucide:arrow-left" class="text-sm"></iconify-icon>
+            </button>
+            <button class="w-8 h-8 rounded-full bg-background hover:bg-accent border border-border flex items-center justify-center text-foreground transition-all">
+              <iconify-icon icon="lucide:arrow-right" class="text-sm"></iconify-icon>
+            </button>
+          </div>
+
+          <!-- Content Slider -->
+          <div class="space-y-6">
+            <div class="flex items-center gap-1 text-primary">
+              <iconify-icon icon="lucide:star" class="text-base"></iconify-icon>
+              <iconify-icon icon="lucide:star" class="text-base"></iconify-icon>
+              <iconify-icon icon="lucide:star" class="text-base"></iconify-icon>
+              <iconify-icon icon="lucide:star" class="text-base"></iconify-icon>
+              <iconify-icon icon="lucide:star" class="text-base"></iconify-icon>
+            </div>
+
+            <p class="text-foreground text-base italic leading-relaxed">
+              "S firmou DIAMAT sme spolupracovali na dodávke garážových brán pre náš nový developerský projekt v Bratislave. Profesionálny prístup od prvotnej kalkulácie až po samotnú montáž. Všetko dodané v dohodnutom termíne a kvalite. Odporúčam všetkým."
+            </p>
+
+            <div class="flex items-center gap-4 pt-4 border-t border-border">
+              <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Ing. Peter Horváth" class="w-12 h-12 rounded-full object-cover border border-border">
+              <div>
+                <h4 class="font-bold text-sm text-foreground">Ing. Peter Horváth</h4>
+                <p class="text-xs text-muted-foreground">Developer, Bratislava</p>
+                <div class="inline-flex items-center gap-1 bg-accent text-primary text-[10px] font-bold px-2 py-0.5 rounded mt-1">
+                  <iconify-icon icon="lucide:circle-check" class="text-xs"></iconify-icon> Overený zákazník
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trusted Partner Brands -->
+        <div class="pt-6">
+          <p class="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-4 text-center lg:text-left">Naši certifikovaní partneri</p>
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-8 opacity-60">
+            <span class="text-xl font-black text-foreground tracking-tight">HÖRMANN</span>
+            <span class="text-xl font-black text-foreground tracking-tight">SOMFY</span>
+            <span class="text-xl font-black text-foreground tracking-tight">ALUTECH</span>
+            <span class="text-xl font-black text-foreground tracking-tight">NICE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: INTERACTIVE QUOTE & LEAD CAPTURE (THE CONVERSION HUB) -->
+  <section id="configurator" class="py-16 lg:py-24 bg-card border-y border-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+        <!-- Left Column: Explanation -->
+        <div class="lg:col-span-5 flex flex-col justify-between space-y-8">
+          <div class="space-y-6">
+            <h2 class="text-xs uppercase tracking-widest text-primary font-extrabold">Cenová ponuka</h2>
+            <h3 class="text-3xl lg:text-4xl font-heading font-black text-foreground tracking-tight">
+              Získajte presnú kalkuláciu v 3 jednoduchých krokoch
+            </h3>
+            <p class="text-muted-foreground text-sm">
+              Vyplňte náš intuitívny konfigurátor a naši špecialisti vám pripravia nezáväznú cenovú ponuku presne na mieru do 24 hodín.
+            </p>
+          </div>
+
+          <!-- Process Steps -->
+          <div class="space-y-6">
+            <div class="flex gap-4 items-start">
+              <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm shrink-0">
+                1
+              </div>
+              <div>
+                <h4 class="font-bold text-sm text-foreground">Výber typu produktu</h4>
+                <p class="text-xs text-muted-foreground">Zvoľte, či máte záujem o garážovú bránu, priemyselnú bránu alebo iné riešenie.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4 items-start">
+              <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm shrink-0">
+                2
+              </div>
+              <div>
+                <h4 class="font-bold text-sm text-foreground">Zadanie rozmerov</h4>
+                <p class="text-xs text-muted-foreground">Zadajte orientačnú šírku a výšku stavebného otvoru v milimetroch.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4 items-start">
+              <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm shrink-0">
+                3
+              </div>
+              <div>
+                <h4 class="font-bold text-sm text-foreground">Kontaktné údaje</h4>
+                <p class="text-xs text-muted-foreground">Zanechajte nám kontakt, prípadne priložte projektovú dokumentáciu pre presnejší výpočet.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trust guarantee -->
+          <div class="bg-background border border-border p-4 rounded-xl flex items-center gap-3">
+            <iconify-icon icon="lucide:shield" class="text-primary text-xl"></iconify-icon>
+            <span class="text-xs text-muted-foreground">
+              Vaše údaje sú v bezpečí a budú použité výhradne na vypracovanie cenovej ponuky.
+            </span>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Configurator -->
+        <div class="lg:col-span-7 bg-background border border-border rounded-2xl p-8 shadow-lg flex flex-col justify-between">
+          <!-- Progress Bar -->
+          <div class="mb-8">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-xs font-bold text-primary uppercase tracking-wider">Krok 1 z 3</span>
+              <span class="text-xs font-bold text-foreground">Výber produktu</span>
+            </div>
+            <div class="w-full h-2 bg-muted rounded-full overflow-hidden">
+              <div class="w-1/3 h-full bg-primary transition-all duration-300"></div>
+            </div>
+          </div>
+
+          <!-- Step 1 Content: Visual Selector -->
+          <div class="space-y-6 flex-grow">
+            <h4 class="font-bold text-base text-foreground">O aký typ produktu máte záujem?</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <button class="border-2 border-primary bg-accent/20 p-5 rounded-xl flex flex-col items-center text-center gap-3 transition-all duration-200">
+                <iconify-icon icon="lucide:house" class="text-3xl text-primary"></iconify-icon>
+                <div>
+                  <div class="font-bold text-xs text-foreground">Garážová brána</div>
+                  <div class="text-[10px] text-muted-foreground mt-0.5">Pre rodinné domy</div>
+                </div>
+              </button>
+
+              <button class="border border-border bg-card hover:border-primary p-5 rounded-xl flex flex-col items-center text-center gap-3 transition-all duration-200">
+                <iconify-icon icon="lucide:layers" class="text-3xl text-muted-foreground group-hover:text-primary"></iconify-icon>
+                <div>
+                  <div class="font-bold text-xs text-foreground">Priemyselná brána</div>
+                  <div class="text-[10px] text-muted-foreground mt-0.5">Pre firmy a haly</div>
+                </div>
+              </button>
+
+              <button class="border border-border bg-card hover:border-primary p-5 rounded-xl flex flex-col items-center text-center gap-3 transition-all duration-200">
+                <iconify-icon icon="lucide:tag" class="text-3xl text-muted-foreground group-hover:text-primary"></iconify-icon>
+                <div>
+                  <div class="font-bold text-xs text-foreground">Iný produkt</div>
+                  <div class="text-[10px] text-muted-foreground mt-0.5">Materiály, servisy</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="pt-8 border-t border-border mt-8 flex justify-between items-center">
+            <button class="text-xs font-bold text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors" disabled>
+              <iconify-icon icon="lucide:arrow-left" class="text-sm"></iconify-icon> Späť
+            </button>
+            <button class="bg-primary text-primary-foreground font-bold text-xs px-6 py-3 rounded-lg hover:bg-primary/90 transition-all duration-200 flex items-center gap-1">
+              Pokračovať <iconify-icon icon="lucide:arrow-right" class="text-sm"></iconify-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: EDITORIAL CONTENT (THE KNOWLEDGE HUB) -->
+  <section id="blog" class="py-16 lg:py-24 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+        <div>
+          <h2 class="text-xs uppercase tracking-widest text-primary font-extrabold mb-3">Blog & Poradňa</h2>
+          <h3 class="text-3xl font-heading font-black text-foreground tracking-tight">
+            Užitočné rady a inšpirácie pre váš projekt
+          </h3>
+        </div>
+        <a href="#" class="bg-card border border-border font-bold text-xs px-5 py-3 rounded-lg hover:bg-accent transition-all duration-200 flex items-center gap-2">
+          Zobraziť všetky články
+          <iconify-icon icon="lucide:arrow-right" class="text-sm"></iconify-icon>
+        </a>
+      </div>
+
+      <!-- 3-Column Blog Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Post 1 -->
+        <article class="bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+          <div class="h-48 overflow-hidden bg-muted">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/hero-garage-door-1784197708582-d0bx43pl2qr.png" alt="Ako vybrať bránu" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="flex items-center justify-between text-xs text-muted-foreground">
+              <span class="bg-accent text-primary font-bold px-2 py-0.5 rounded">Poradňa</span>
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:clock" class="text-[10px]"></iconify-icon> 5 min čítania</span>
+            </div>
+            <h4 class="font-heading font-bold text-base text-foreground leading-snug hover:text-primary transition-colors">
+              <a href="#">Ako si vybrať správnu garážovú bránu v roku 2024?</a>
+            </h4>
+            <p class="text-muted-foreground text-xs line-clamp-2">
+              Prinášame vám kompletného sprievodcu výberom od dizajnu, cez tepelno-izolačné vlastnosti až po inteligentné pohony.
+            </p>
+            <div class="pt-4 border-t border-border flex items-center text-xs font-bold text-primary">
+              Čítať viac <iconify-icon icon="lucide:arrow-right" class="text-xs ml-1"></iconify-icon>
+            </div>
+          </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+          <div class="h-48 overflow-hidden bg-muted">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/industrial-gate-1784197717344-wlm6hwoev2.png" alt="Priemyselné brány" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="flex items-center justify-between text-xs text-muted-foreground">
+              <span class="bg-accent text-primary font-bold px-2 py-0.5 rounded">Priemysel</span>
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:clock" class="text-[10px]"></iconify-icon> 7 min čítania</span>
+            </div>
+            <h4 class="font-heading font-bold text-base text-foreground leading-snug hover:text-primary transition-colors">
+              <a href="#">Bezpečnostné normy pre priemyselné brány</a>
+            </h4>
+            <p class="text-muted-foreground text-xs line-clamp-2">
+              Prehľad legislatívnych požiadaviek a bezpečnostných prvkov, ktoré nesmú chýbať v moderných logistických centrách.
+            </p>
+            <div class="pt-4 border-t border-border flex items-center text-xs font-bold text-primary">
+              Čítať viac <iconify-icon icon="lucide:arrow-right" class="text-xs ml-1"></iconify-icon>
+            </div>
+          </div>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+          <div class="h-48 overflow-hidden bg-muted">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/construction-materials-1784197726253-4vojpwd5c4.png" alt="Starostlivosť" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="flex items-center justify-between text-xs text-muted-foreground">
+              <span class="bg-accent text-primary font-bold px-2 py-0.5 rounded">Údržba</span>
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:clock" class="text-[10px]"></iconify-icon> 4 min čítania</span>
+            </div>
+            <h4 class="font-heading font-bold text-base text-foreground leading-snug hover:text-primary transition-colors">
+              <a href="#">Ako pripraviť garážovú bránu na zimnú sezónu?</a>
+            </h4>
+            <p class="text-muted-foreground text-xs line-clamp-2">
+              Jednoduché kroky a tipy na údržbu tesnení, ložísk a pohonov, ktoré vám ušetria nemalé prostriedky za servis.
+            </p>
+            <div class="pt-4 border-t border-border flex items-center text-xs font-bold text-primary">
+              Čítať viac <iconify-icon icon="lucide:arrow-right" class="text-xs ml-1"></iconify-icon>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: HIGH-UTILITY FOOTER & CONTACT SECTION -->
+  <footer class="bg-foreground text-background pt-16 pb-8 border-t border-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-12 border-b border-muted-foreground/20">
+        <!-- Column 1: Brand Info -->
+        <div class="lg:col-span-3 space-y-4">
+          <span class="text-2xl font-black tracking-tight text-background flex items-center gap-1">
+
+<!--        <img src="https://www.diamat.sk/public/img/logos/logo.jpg" alt="Diamat Logo">-->
+          </span>
+          <p class="text-xs text-muted-foreground leading-relaxed">
+            Slovenský expert na prémiové garážové brány, priemyselné brány a stavebné materiály. Zaručujeme nemeckú kvalitu, spoľahlivú inštaláciu a nonstop odborný servis.
+          </p>
+          <div class="flex gap-3 pt-2">
+            <a href="#" class="w-8 h-8 rounded-full bg-muted-foreground/10 hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-colors">
+              <iconify-icon icon="lucide:globe" class="text-sm"></iconify-icon>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-muted-foreground/10 hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-colors">
+              <iconify-icon icon="lucide:message-circle" class="text-sm"></iconify-icon>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-muted-foreground/10 hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-colors">
+              <iconify-icon icon="lucide:share-2" class="text-sm"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="lg:col-span-2 space-y-4">
+          <h4 class="font-bold text-xs uppercase tracking-wider text-background">Rýchle odkazy</h4>
+          <ul class="space-y-2 text-xs text-muted-foreground">
+            <li><a href="#" class="hover:text-primary transition-colors">Garážové brány</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Priemyselné brány</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Stavebné materiály</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Montáž a servis</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Cenník</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Contact Details -->
+        <div class="lg:col-span-3 space-y-4">
+          <h4 class="font-bold text-xs uppercase tracking-wider text-background">Kontakt & Showroom</h4>
+          <ul class="space-y-3 text-xs text-muted-foreground">
+            <li class="flex items-start gap-2">
+              <iconify-icon icon="lucide:map-pin" class="text-primary text-sm mt-0.5 shrink-0"></iconify-icon>
+              <span>Vajnorská 120, 831 04 Bratislava, Slovensko</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="lucide:phone" class="text-primary text-sm shrink-0"></iconify-icon>
+              <a href="tel:+421900000000" class="hover:text-primary transition-colors">+421 900 000 000</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="lucide:mail" class="text-primary text-sm shrink-0"></iconify-icon>
+              <a href="mailto:info@diamat.sk" class="hover:text-primary transition-colors">info@diamat.sk</a>
+            </li>
+            <li class="flex items-start gap-2">
+              <iconify-icon icon="lucide:clock" class="text-primary text-sm mt-0.5 shrink-0"></iconify-icon>
+              <div>
+                <p>Po - Pia: 8:00 - 17:00</p>
+                <p>So: 9:00 - 12:00 (na objednávku)</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Highly Styled Interactive Map -->
+        <div class="lg:col-span-4 space-y-4">
+          <h4 class="font-bold text-xs uppercase tracking-wider text-background">Kde nás nájdete</h4>
+          <div class="relative rounded-xl overflow-hidden border border-muted-foreground/20 h-40 bg-muted">
+            <!-- Simulated Stylized Map -->
+            <div class="absolute inset-0 bg-neutral-900 flex flex-col items-center justify-center p-4 text-center">
+              <iconify-icon icon="lucide:map-pin" class="text-primary text-3xl mb-2 animate-bounce"></iconify-icon>
+              <p class="text-xs font-bold text-background">DIAMAT Showroom Bratislava</p>
+              <p class="text-[10px] text-muted-foreground">Kliknutím otvoríte Google Mapy</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
+        <div>
+          &copy; 2024 DIAMAT s.r.o. Všetky práva vyhradené. Spoločnosť je zapísaná v Obchodnom registri.
+        </div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-primary transition-colors">Ochrana osobných údajov</a>
+          <a href="#" class="hover:text-primary transition-colors">Všeobecné obchodné podmienky</a>
+          <button class="flex items-center gap-1 hover:text-primary transition-colors">
+            Hore <iconify-icon icon="lucide:arrow-right" class="-rotate-90"></iconify-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body></html>
