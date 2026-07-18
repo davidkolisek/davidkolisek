@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Screen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@100..900&family=Fira+Code:wght@300..700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    <style type="text/tailwindcss">
+      @import "tailwindcss";
+      @theme inline {
+        --color-background: var(--background);
+        --color-foreground: var(--foreground);
+        --color-primary: var(--primary);
+        --color-primary-foreground: var(--primary-foreground);
+        --color-secondary: var(--secondary);
+        --color-secondary-foreground: var(--secondary-foreground);
+        --color-tertiary: var(--tertiary);
+        --color-muted: var(--muted);
+        --color-muted-foreground: var(--muted-foreground);
+        --color-accent: var(--accent);
+        --color-destructive: var(--destructive);
+        --color-card: var(--card);
+        --color-card-foreground: var(--card-foreground);
+        --color-border: var(--border);
+        --color-input: var(--input);
+        --color-ring: var(--ring);
+        --radius-sm: calc(var(--radius) - 4px);
+        --radius-md: calc(var(--radius) - 2px);
+        --radius-lg: var(--radius);
+        --font-family-sans: var(--font-sans);
+        --font-family-heading: var(--font-heading);
+        --font-family-mono: var(--font-mono);
+      }
+      :root {
+        --background: #FAF9F6;
+        --foreground: #1C2833;
+        --primary: #F7B702;
+        --primary-foreground: #FFFFFF;
+        --secondary: #000000;
+        --secondary-foreground: #FFFFFF;
+        --tertiary: #D4A373;
+        --muted: #F2EFE9;
+        --muted-foreground: #5D6D7E;
+        --accent: #D6DCD7;
+        --accent-foreground: #1C2833;
+        --card: #FFFFFF;
+        --card-foreground: #1C2833;
+        --destructive: #C0392B;
+        --border: #E5E7EB;
+        --input: #FFFFFF;
+        --ring: #1B4332;
+        --radius: 0.75rem;
+        --font-sans: Inter, sans-serif;
+        --font-heading: Plus Jakarta Sans, sans-serif;
+        --font-mono: JetBrains Mono, monospace;
+        --shadow-offset-x: 0;
+        --shadow-offset-y: 10;
+        --shadow-blur: 30;
+        --shadow-spread: -8;
+        --shadow-color: rgba(15, 23, 42, 0.12);
+        }
+    </style>
+    <style>
+      .brand-gradient { background-image: linear-gradient(135deg, var(--primary), var(--accent)); }
+      .shadow-theme {
+        box-shadow:
+          calc(var(--shadow-offset-x, 0) * 1px) calc(var(--shadow-offset-y, 10) * 1px)
+          calc(var(--shadow-blur, 30) * 1px) calc(var(--shadow-spread, -8) * 1px)
+          var(--shadow-color, rgba(15, 23, 42, 0.12));
+      }
+    </style>
+  </head>
+  <body>
+<div class="min-h-screen w-full bg-background flex flex-col relative font-sans text-foreground">
+  <!-- Top Bar / Mini-Nav info -->
+  <div class="bg-secondary text-secondary-foreground py-2 px-6 text-xs md:text-sm flex flex-wrap justify-between items-center border-b border-border gap-2">
+    <div class="flex items-center gap-4">
+      <span class="flex items-center gap-1">
+        <iconify-icon icon="lucide:phone" class="text-tertiary"></iconify-icon>
+        <span class="font-medium">+421 905 123 456</span>
+      </span>
+      <span class="hidden md:flex items-center gap-1">
+        <iconify-icon icon="lucide:mail" class="text-tertiary"></iconify-icon>
+        <span>info@belko.sk</span>
+      </span>
+      <span class="hidden lg:flex items-center gap-1">
+        <iconify-icon icon="lucide:clock" class="text-tertiary"></iconify-icon>
+        <span>Po - Pia: 7:00 - 16:00, So: 8:00 - 12:00</span>
+      </span>
+    </div>
+    <div class="flex items-center gap-3">
+      <span class="flex items-center gap-1 text-tertiary font-semibold">
+        <iconify-icon icon="lucide:shield" class="text-sm"></iconify-icon>
+        <span>Certifikovaný predajca</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Main Header Navigation -->
+  <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="./logo.png" alt="Belko" width="100" height="auto">
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#domov" class="text-sm font-semibold hover:text-primary transition-colors text-primary border-b-2 border-primary py-1">Domov</a>
+        <a href="#sluzby" class="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors py-1">Služby a sortiment</a>
+        <a href="#dovera" class="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors py-1">Prečo my</a>
+        <a href="#inspiracie" class="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors py-1">Inšpirácie</a>
+        <a href="#blog" class="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors py-1">Rady a tipy</a>
+        <a href="#kontakt" class="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors py-1">Kontakt</a>
+      </nav>
+
+      <!-- Desktop Header CTA -->
+      <div class="hidden sm:flex items-center gap-4">
+        <a href="#kontakt" class="bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+          <iconify-icon icon="lucide:calculator" class="text-lg"></iconify-icon>
+          <span>Získať cenovú ponuku</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="lg:hidden p-2 rounded-lg hover:bg-muted text-foreground transition-colors" aria-label="Menu">
+        <iconify-icon icon="lucide:menu" class="text-2xl"></iconify-icon>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="domov" class="relative py-12 lg:py-20 bg-gradient-to-b from-muted via-background to-background overflow-hidden">
+    <!-- Decorative organic background shapes -->
+    <div class="absolute inset-0 pointer-events-none opacity-40">
+      <div class="absolute -top-12 -left-12 w-96 h-96 bg-accent/20 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 right-0 w-80 h-80 bg-tertiary/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Hero Text Content -->
+        <div class="lg:col-span-7 flex flex-col justify-center">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6 w-fit">
+            <iconify-icon icon="lucide:sparkles"></iconify-icon>
+            <span>Komplexné riešenia pre exteriér a stavbu</span>
+          </div>
+          
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-foreground tracking-tight leading-none mb-6">
+            Prémiový okrasný kameň & <span class="text-primary">profesionálne zemné práce</span>
+          </h1>
+          
+          <p class="text-lg text-muted-foreground mb-8 max-w-xl leading-relaxed">
+            Sme rodinná firma s dlhoročnou tradíciou. Ponúkame široký sortiment okrasného kameniva, štrkov a pieskov s rýchlym dodaním až k vám, plus špičkové výkopové, zemné a asanačné práce modernou technikou.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 mb-10">
+            <a href="#kontakt" class="bg-primary hover:bg-primary/90 text-primary-foreground text-center px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
+              <iconify-icon icon="lucide:shopping-cart" class="text-xl"></iconify-icon>
+              <span>Objednať / Získať cenu</span>
+            </a>
+            <a href="#sluzby" class="bg-card hover:bg-muted text-foreground border border-border text-center px-8 py-4 rounded-xl font-bold shadow-sm transition-all flex items-center justify-center gap-2">
+              <span>Prezrieť si sortiment</span>
+              <iconify-icon icon="lucide:arrow-right" class="text-lg"></iconify-icon>
+            </a>
+          </div>
+
+          <!-- Trust Badges Grid -->
+          <div class="grid grid-cols-3 gap-4 border-t border-border pt-8">
+            <div class="flex flex-col">
+              <span class="text-3xl font-heading font-black text-primary">15+</span>
+              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">Rokov praxe</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-3xl font-heading font-black text-primary">100%</span>
+              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">Spokojnosť</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-3xl font-heading font-black text-primary">Doprava</span>
+              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">Vlastným autom</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Image Showcase -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-card transform lg:rotate-1 hover:rotate-0 transition-transform duration-500">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/img-hero-stone-1784365928454-wy1f9j98bl.png" alt="Moderná záhrada s okrasným kameňom" class="w-full h-[450px] object-cover" />
+            
+            <!-- Floating accent card -->
+            <div class="absolute bottom-6 left-6 right-6 bg-card/95 backdrop-blur-md p-4 rounded-xl shadow-xl flex items-center gap-4 border border-border/50">
+              <div class="w-12 h-12 rounded-lg bg-tertiary/20 flex items-center justify-center text-primary">
+                <iconify-icon icon="lucide:truck" class="text-2xl"></iconify-icon>
+              </div>
+              <div>
+                <span class="text-sm font-bold block text-foreground">Doručenie priamo k vám</span>
+                <span class="text-xs text-muted-foreground">Máme vlastný vozový park pre sypké materiály.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Services & Products Section -->
+  <section id="sluzby" class="py-20 bg-card">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-tertiary bg-muted px-3 py-1 rounded-full">Naša ponuka</span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-extrabold text-foreground mt-3 mb-4">
+          Čomu sa venujeme a čo dodávame
+        </h2>
+        <p class="text-muted-foreground text-base">
+          Zabezpečujeme kompletné dodávky materiálov pre vašu záhradu či stavbu a zároveň realizujeme profesionálne zemné práce vlastnou špičkovou mechanizáciou.
+        </p>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Service 1: Ornamental Stones -->
+        <div class="bg-background rounded-2xl overflow-hidden border border-border shadow-md hover:shadow-xl transition-all flex flex-col group">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/img-stones-gravel-1784365937118-q4pk5qvfqtf.png" alt="Okrasné kamene a štrky" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute top-4 left-4 bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+              Predaj materiálu
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-heading font-bold text-foreground mb-3">Okrasné kamene, štrky & piesky</h3>
+            <p class="text-muted-foreground text-sm mb-6 flex-1">
+              Široký výber okrasných okruhliakov (taliansky mramor, dunajský štrk), drveného kameniva rôznych frakcií, solitérnych balvanov a pieskov pod dlažbu či na detské ihriská.
+            </p>
+            <ul class="space-y-2 mb-6 text-sm text-foreground/90 font-medium">
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                <span>Taliansky biely mramor (Thassos)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                <span>Drvená žula, andezit, kôra z kameňa</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                <span>Piesky a štrky pre stavebné účely</span>
+              </li>
+            </ul>
+            <a href="#kontakt" class="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-center py-3 rounded-lg font-bold text-sm transition-colors mt-auto block">
+              Zobraziť cenník a ponuku
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 2: Excavation Works -->
+        <div class="bg-background rounded-2xl overflow-hidden border border-border shadow-md hover:shadow-xl transition-all flex flex-col group">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/img-excavation-1784365945021-7kz9pa48j7u.png" alt="Výkopové a zemné práce" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute top-4 left-4 bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+              Zemné práce
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-heading font-bold text-foreground mb-3">Výkopové a zemné práce</h3>
+            <p class="text-muted-foreground text-sm mb-6 flex-1">
+              Profesionálne výkopy základov domov, inžinierskych sietí, bazénov, jazierok a príprava podkladu pre zámkovú dlažbu. Pracujeme rýchlo a s milimetrovou presnosťou.
+            </p>
+            <ul class="space-y-2 mb-6 text-sm text-foreground/90 font-medium">
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                <span>Výkopy základov a inžinierskych sietí</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                <span>Svahovanie a finálne úpravy terénu</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                <span>Hĺbenie bazénov a drenážnych jám</span>
+              </li>
+            </ul>
+            <a href="#kontakt" class="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-center py-3 rounded-lg font-bold text-sm transition-colors mt-auto block">
+              Nezáväzne dopytovať práce
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 3: Demolition & Disposal -->
+        <div class="bg-background rounded-2xl overflow-hidden border border-border shadow-md hover:shadow-xl transition-all flex flex-col group">
+          <div class="relative h-56 overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-secondary to-primary flex items-center justify-center p-6 text-center text-primary-foreground">
+              <div class="flex flex-col items-center gap-3">
+                <iconify-icon icon="lucide:trash-2" class="text-5xl text-tertiary"></iconify-icon>
+                <span class="text-lg font-heading font-bold">Asanácie, búranie a odvoz odpadu</span>
+              </div>
+            </div>
+            <div class="absolute top-4 left-4 bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+              Asanácie
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-heading font-bold text-foreground mb-3">Asanácie a demolácie</h3>
+            <p class="text-muted-foreground text-sm mb-6 flex-1">
+              Bezpečné búranie starých objektov, oplotení, betónových plôch a následný komplexný odvoz stavebnej sute. Zabezpečíme ekologickú likvidáciu a vyčistenie pozemku.
+            </p>
+            <ul class="space-y-2 mb-6 text-sm text-foreground/90 font-medium">
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                <span>Búracie práce a demolácie budov</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                <span>Odvoz sutiny a stavebného odpadu</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <iconify-icon icon="lucide:check" class="text-primary"></iconify-icon>
+                <span>Drvenie a recyklácia betónu</span>
+              </li>
+            </ul>
+            <a href="#kontakt" class="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-center py-3 rounded-lg font-bold text-sm transition-colors mt-auto block">
+              Zistiť viac o asanáciách
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust & Badges / Testimonials Section -->
+  <section id="dovera" class="py-20 bg-muted">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Trust Text & Certificates -->
+        <div class="lg:col-span-5">
+          <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full">Sme stabilný partner</span>
+          <h2 class="text-3xl sm:text-4xl font-heading font-extrabold text-foreground mt-3 mb-6">
+            Záruka kvality, certifikáty a spoľahlivosť
+          </h2>
+          <p class="text-muted-foreground mb-8 leading-relaxed">
+            Zakladáme si na čestnom prístupe, dodržiavaní termínov a najvyššej kvalite materiálov. Každá dodávka okrasného kameňa spĺňa prísne normy a naše služby sú kryté poistením zodpovednosti.
+          </p>
+
+          <!-- Certificates Grid -->
+          <div class="space-y-4">
+            <div class="flex items-start gap-4 p-4 bg-card rounded-xl border border-border/50">
+              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                <iconify-icon icon="lucide:shield" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-foreground">Certifikát zhody a pôvodu</h4>
+                <p class="text-xs text-muted-foreground">Všetky okrasné kamene dovážame priamo z overených európskych lomov s doloženým pôvodom.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-4 bg-card rounded-xl border border-border/50">
+              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                <iconify-icon icon="lucide:circle-check" class="text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-foreground">Ekologická likvidácia odpadu</h4>
+                <p class="text-xs text-muted-foreground">Pri demoláciách a asanáciách zaručujeme 100% legálne a ekologické zhodnotenie odpadu.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonials Grid -->
+        <div class="lg:col-span-7">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Testimonial 1 -->
+            <div class="bg-card p-6 rounded-2xl shadow-sm border border-border flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-1 text-tertiary mb-4">
+                  <iconify-icon icon="lucide:star" class="text-lg"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-lg"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-lg"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-lg"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-lg"></iconify-icon>
+                </div>
+                <p class="text-sm text-foreground/90 italic mb-6 leading-relaxed">
+                  "Od firmy Belko sme objednali biely mramorový štrk Thassos do našej novej predzáhradky. Komunikácia bola skvelá, poradili nám s množstvom a kameň priviezli presne v dohodnutý čas. Vrelo odporúčam!"
+                </p>
+              </div>
+              <div class="flex items-center gap-3 border-t border-border pt-4">
+                <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Peter K." class="w-10 h-10 rounded-full object-cover" />
+                <div>
+                  <span class="text-sm font-bold block text-foreground">Peter K.</span>
+                  <span class="text-xs text-muted-foreground">Majiteľ rodinného domu, Trnava</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="bg-card p-6 rounded-2xl shadow-sm border border-border flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-1 text-tertiary mb-4">
+                  <iconify-icon icon="lucide:star" class="text-lg"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-lg"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-lg"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-lg"></iconify-icon>
+                  <iconify-icon icon="lucide:star" class="text-lg"></iconify-icon>
+                </div>
+                <p class="text-sm text-foreground/90 italic mb-6 leading-relaxed">
+                  "Zemné práce pre základy nášho domu prebehli nad očakávania. Šikovný bagerista vyriešil aj komplikovaný svahovitý terén a hneď nám navozil aj podkladový štrk. Profesionálny prístup."
+                </p>
+              </div>
+              <div class="flex items-center gap-3 border-t border-border pt-4">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marek S." class="w-10 h-10 rounded-full object-cover" />
+                <div>
+                  <span class="text-sm font-bold block text-foreground">Ing. Marek S.</span>
+                  <span class="text-xs text-muted-foreground">Stavebný dozor, Nitra</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery / Inspirations Section -->
+  <section id="inspiracie" class="py-20 bg-background">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-tertiary bg-muted px-3 py-1 rounded-full">Naša práca v praxi</span>
+          <h2 class="text-3xl sm:text-4xl font-heading font-extrabold text-foreground mt-3 mb-2">
+            Inšpirácie z našich realizácií
+          </h2>
+          <p class="text-muted-foreground text-sm max-w-xl">
+            Pozrite sa, ako naše okrasné kamene a profesionálne úpravy terénu dokážu premeniť obyčajnú záhradu na oázu pokoja.
+          </p>
+        </div>
+        
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap gap-2 shrink-0">
+          <button class="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-bold transition-all shadow-sm">Všetko</button>
+          <button class="px-4 py-2 rounded-lg bg-card hover:bg-muted text-foreground text-xs font-bold transition-all border border-border">Okrasné záhrady</button>
+          <button class="px-4 py-2 rounded-lg bg-card hover:bg-muted text-foreground text-xs font-bold transition-all border border-border">Chodníky & príjazdy</button>
+          <button class="px-4 py-2 rounded-lg bg-card hover:bg-muted text-foreground text-xs font-bold transition-all border border-border">Zemné práce</button>
+        </div>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Gallery Item 1 -->
+        <div class="group relative rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all h-72">
+          <img src="https://uxmagic.blob.core.windows.net/public/agent-images/img-hero-stone-1784365928454-wy1f9j98bl.png" alt="Moderná skalka" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span class="text-tertiary text-xs font-bold uppercase">Okrasné záhrady</span>
+            <h4 class="text-primary-foreground font-bold text-base mt-1">Skalka s bielym mramorom Thassos</h4>
+          </div>
+        </div>
+
+        <!-- Gallery Item 2 -->
+        <div class="group relative rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all h-72">
+          <img src="https://uxmagic.blob.core.windows.net/public/agent-images/img-stones-gravel-1784365937118-q4pk5qvfqtf.png" alt="Gabiónový plot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span class="text-tertiary text-xs font-bold uppercase">Chodníky & príjazdy</span>
+            <h4 class="text-primary-foreground font-bold text-base mt-1">Dekoratívny andezitový zásyp</h4>
+          </div>
+        </div>
+
+        <!-- Gallery Item 3 -->
+        <div class="group relative rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all h-72">
+          <img src="https://uxmagic.blob.core.windows.net/public/agent-images/img-excavation-1784365945021-7kz9pa48j7u.png" alt="Výkop bazéna" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span class="text-tertiary text-xs font-bold uppercase">Zemné práce</span>
+            <h4 class="text-primary-foreground font-bold text-base mt-1">Presné hĺbenie bazéna vo svahu</h4>
+          </div>
+        </div>
+
+        <!-- Gallery Item 4 -->
+        <div class="group relative rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all h-72 bg-secondary flex flex-col justify-center items-center p-6 text-center text-primary-foreground">
+          <iconify-icon icon="lucide:image" class="text-4xl text-tertiary mb-3"></iconify-icon>
+          <h4 class="text-lg font-heading font-bold mb-2">Chcete vidieť viac?</h4>
+          <p class="text-xs text-muted-foreground mb-4">Sledujte naše aktuálne realizácie na sociálnych sieťach.</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-8 h-8 rounded-full bg-background/10 hover:bg-background/20 flex items-center justify-center text-primary-foreground transition-colors" aria-label="Facebook">
+              <iconify-icon icon="lucide:facebook"></iconify-icon>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-background/10 hover:bg-background/20 flex items-center justify-center text-primary-foreground transition-colors" aria-label="Instagram">
+              <iconify-icon icon="lucide:instagram"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog & Tips Section -->
+  <section id="blog" class="py-20 bg-muted">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full">Rady a tipy od odborníkov</span>
+        <h2 class="text-3xl sm:text-4xl font-heading font-extrabold text-foreground mt-3 mb-4">
+          Náš odborný blog
+        </h2>
+        <p class="text-muted-foreground text-sm">
+          Prinášame vám užitočné informácie o výbere materiálov, realizácii záhradných projektov a správnej príprave staveniska.
+        </p>
+      </div>
+
+      <!-- Blog Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Blog Post 1 -->
+        <article class="bg-card rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-all flex flex-col">
+          <div class="relative h-48 overflow-hidden bg-primary/10 flex items-center justify-center">
+            <iconify-icon icon="lucide:sparkles" class="text-6xl text-primary/20 absolute"></iconify-icon>
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/img-stones-gravel-1784365937118-q4pk5qvfqtf.png" alt="Okrasný kameň v záhrade" class="w-full h-full object-cover relative z-10" />
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <div class="flex items-center gap-4 text-xs text-muted-foreground mb-3">
+              <span class="flex items-center gap-1">
+                <iconify-icon icon="lucide:calendar" class="text-sm"></iconify-icon>
+                <span>12. Máj 2024</span>
+              </span>
+              <span class="bg-muted px-2 py-0.5 rounded text-foreground font-semibold">Okrasné záhrady</span>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-foreground mb-3 hover:text-primary transition-colors">
+              <a href="#">Ako správne vybrať okrasný kameň do záhrady?</a>
+            </h3>
+            <p class="text-muted-foreground text-sm mb-6 line-clamp-3">
+              Mramor, žula, bridlica či riečne kamene? Každý typ má svoje špecifiká. V našom článku sa dozviete, ktoré kamene sú ideálne do tieňa, a ktoré vydržia priame slnko.
+            </p>
+            <a href="#" class="text-primary hover:text-primary/85 text-sm font-bold flex items-center gap-1 mt-auto">
+              <span>Čítať celý článok</span>
+              <iconify-icon icon="lucide:arrow-right" class="text-sm"></iconify-icon>
+            </a>
+          </div>
+        </article>
+
+        <!-- Blog Post 2 -->
+        <article class="bg-card rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-all flex flex-col">
+          <div class="relative h-48 overflow-hidden bg-primary/10 flex items-center justify-center">
+            <iconify-icon icon="lucide:layers" class="text-6xl text-primary/20 absolute"></iconify-icon>
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/img-hero-stone-1784365928454-wy1f9j98bl.png" alt="Zásyp chodníka" class="w-full h-full object-cover relative z-10" />
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <div class="flex items-center gap-4 text-xs text-muted-foreground mb-3">
+              <span class="flex items-center gap-1">
+                <iconify-icon icon="lucide:calendar" class="text-sm"></iconify-icon>
+                <span>28. Apríl 2024</span>
+              </span>
+              <span class="bg-muted px-2 py-0.5 rounded text-foreground font-semibold">Realizácia</span>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-foreground mb-3 hover:text-primary transition-colors">
+              <a href="#">Postup pri zakladaní chodníka z drveného štrku</a>
+            </h3>
+            <p class="text-muted-foreground text-sm mb-6 line-clamp-3">
+              Krok za krokom k dokonalému záhradnému chodníku. Dozviete sa, akú hĺbku výkopu zvoliť, prečo použiť geotextíliu a ako správne zhutniť podklad.
+            </p>
+            <a href="#" class="text-primary hover:text-primary/85 text-sm font-bold flex items-center gap-1 mt-auto">
+              <span>Čítať celý článok</span>
+              <iconify-icon icon="lucide:arrow-right" class="text-sm"></iconify-icon>
+            </a>
+          </div>
+        </article>
+
+        <!-- Blog Post 3 -->
+        <article class="bg-card rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-all flex flex-col">
+          <div class="relative h-48 overflow-hidden bg-primary/10 flex items-center justify-center">
+            <iconify-icon icon="lucide:activity" class="text-6xl text-primary/20 absolute"></iconify-icon>
+            <img src="https://uxmagic.blob.core.windows.net/public/agent-images/img-excavation-1784365945021-7kz9pa48j7u.png" alt="Výkopové práce bager" class="w-full h-full object-cover relative z-10" />
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <div class="flex items-center gap-4 text-xs text-muted-foreground mb-3">
+              <span class="flex items-center gap-1">
+                <iconify-icon icon="lucide:calendar" class="text-sm"></iconify-icon>
+                <span>15. Apríl 2024</span>
+              </span>
+              <span class="bg-muted px-2 py-0.5 rounded text-foreground font-semibold">Zemné práce</span>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-foreground mb-3 hover:text-primary transition-colors">
+              <a href="#">Na čo nezabudnúť pred začatím výkopových prác</a>
+            </h3>
+            <p class="text-muted-foreground text-sm mb-6 line-clamp-3">
+              Aké inžinierske siete musíte vytýčiť, aké povolenia potrebujete od stavebného úradu a ako pripraviť prístupovú cestu pre ťažkú stavebnú techniku.
+            </p>
+            <a href="#" class="text-primary hover:text-primary/85 text-sm font-bold flex items-center gap-1 mt-auto">
+              <span>Čítať celý článok</span>
+              <iconify-icon icon="lucide:arrow-right" class="text-sm"></iconify-icon>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section with Form & Map -->
+  <section id="kontakt" class="py-20 bg-background">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Contact Info & Map -->
+        <div class="lg:col-span-5 flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full">Sme tu pre vás</span>
+            <h2 class="text-3xl sm:text-4xl font-heading font-extrabold text-foreground mt-3 mb-6">
+              Máte otázky? Kontaktujte nás
+            </h2>
+            <p class="text-muted-foreground mb-8 leading-relaxed">
+              Radi vám poradíme s výberom vhodného kameňa, vypočítame potrebnú frakciu a množstvo, alebo pripravíme nezáväznú kalkuláciu na výkopové a búracie práce.
+            </p>
+
+            <!-- Direct Contact Points -->
+            <div class="space-y-4 mb-8">
+              <div class="flex items-center gap-4">
+                <div class="w-11 h-11 bg-primary text-primary-foreground rounded-lg flex items-center justify-center">
+                  <iconify-icon icon="lucide:phone" class="text-xl"></iconify-icon>
+                </div>
+                <div>
+                  <span class="text-xs text-muted-foreground block">Zavolajte nám</span>
+                  <a href="tel:+421905123456" class="text-sm font-bold text-foreground hover:text-primary transition-colors">+421 905 123 456</a>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-11 h-11 bg-primary text-primary-foreground rounded-lg flex items-center justify-center">
+                  <iconify-icon icon="lucide:mail" class="text-xl"></iconify-icon>
+                </div>
+                <div>
+                  <span class="text-xs text-muted-foreground block">Napíšte nám</span>
+                  <a href="mailto:info@belko.sk" class="text-sm font-bold text-foreground hover:text-primary transition-colors">info@belko.sk</a>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-11 h-11 bg-primary text-primary-foreground rounded-lg flex items-center justify-center">
+                  <iconify-icon icon="lucide:map-pin" class="text-xl"></iconify-icon>
+                </div>
+                <div>
+                  <span class="text-xs text-muted-foreground block">Kde nás nájdete</span>
+                  <span class="text-sm font-bold text-foreground">Kamenárska 45, 917 01 Trnava</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Placeholder / Custom Styled Iframe -->
+          <div class="rounded-xl overflow-hidden border border-border shadow-sm h-64 relative bg-muted">
+            <div class="absolute inset-0 bg-slate-200 flex flex-col items-center justify-center p-6 text-center">
+              <iconify-icon icon="lucide:globe" class="text-4xl text-primary mb-2"></iconify-icon>
+              <span class="text-sm font-bold text-foreground">Interaktívna mapa prevádzky</span>
+              <span class="text-xs text-muted-foreground mt-1">Kamenárska 45, Trnava - Areál stavebnín</span>
+              <a href="https://maps.google.com" target="_blank" class="mt-4 bg-primary text-primary-foreground text-xs font-bold px-4 py-2 rounded-lg shadow hover:bg-primary/90 transition-colors flex items-center gap-1">
+                <span>Otvoriť v Google Maps</span>
+                <iconify-icon icon="lucide:external-link" class="text-xs"></iconify-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- High Conversion Contact Form -->
+        <div class="lg:col-span-7">
+          <div class="bg-card p-8 rounded-2xl shadow-lg border border-border">
+            <h3 class="text-xl font-heading font-bold text-foreground mb-2">Nezáväzný dopytový formulár</h3>
+            <p class="text-xs text-muted-foreground mb-6">Vyplňte formulár a my sa vám ozveme s kalkuláciou do 24 hodín.</p>
+
+            <form class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-foreground uppercase tracking-wider mb-2">Vaše meno</label>
+                  <input type="text" placeholder="napr. Ján Kováč" class="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-foreground uppercase tracking-wider mb-2">Telefónne číslo *</label>
+                  <input type="tel" placeholder="napr. +421 905 111 222" required class="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-foreground uppercase tracking-wider mb-2">E-mailová adresa</label>
+                <input type="email" placeholder="napr. jan.kovac@gmail.com" class="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-foreground uppercase tracking-wider mb-2">O akú službu / produkt máte záujem?</label>
+                <select class="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                  <option>Okrasné štrky a kamene</option>
+                  <option>Stavebné štrky, piesky a kamenivo</option>
+                  <option>Zemné a výkopové práce</option>
+                  <option>Asanácie a demolácie</option>
+                  <option>Iné / Poradenstvo</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-foreground uppercase tracking-wider mb-2">Upresnenie dopytu (množstvo, lokalita, rozmery...)</label>
+                <textarea rows="4" placeholder="Napíšte nám čo najviac detailov, aby sme vám vedeli vypracovať presnú cenovú ponuku..." class="w-full px-4 py-3 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"></textarea>
+              </div>
+
+              <div class="flex items-start gap-2 py-2">
+                <input type="checkbox" id="privacy" required class="mt-1 rounded text-primary focus:ring-primary" />
+                <label for="privacy" class="text-xs text-muted-foreground leading-snug">
+                  Súhlasím so spracovaním osobných údajov pre účely vypracovania cenovej ponuky podľa podmienok ochrany súkromia.
+                </label>
+              </div>
+
+              <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-4 rounded-xl font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-base">
+                <iconify-icon icon="lucide:send" class="text-lg"></iconify-icon>
+                <span>Odoslať nezáväzný dopyt</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-secondary text-secondary-foreground border-t border-border mt-auto pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        
+        <!-- Column 1: Brand & Bio -->
+        <div class="flex flex-col gap-4">
+          <p class="text-xs text-muted-foreground leading-relaxed">
+            Váš spoľahlivý partner pre dodávku prírodného okrasného kameňa, stavebného kameniva a realizáciu kompletných zemných a demolačných prác.
+          </p>
+          <div class="flex gap-3 mt-2">
+            <a href="#" class="w-8 h-8 rounded-full bg-background/5 hover:bg-background/10 flex items-center justify-center text-primary-foreground transition-colors" aria-label="Facebook">
+              <iconify-icon icon="lucide:facebook"></iconify-icon>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-background/5 hover:bg-background/10 flex items-center justify-center text-primary-foreground transition-colors" aria-label="Instagram">
+              <iconify-icon icon="lucide:instagram"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div>
+          <h4 class="text-sm font-bold text-primary-foreground uppercase tracking-wider mb-4">Rýchle odkazy</h4>
+          <ul class="space-y-2.5 text-xs text-muted-foreground">
+            <li><a href="#domov" class="hover:text-primary-foreground transition-colors">Domov</a></li>
+            <li><a href="#sluzby" class="hover:text-primary-foreground transition-colors">Služby a sortiment</a></li>
+            <li><a href="#dovera" class="hover:text-primary-foreground transition-colors">Prečo si vybrať nás</a></li>
+            <li><a href="#inspiracie" class="hover:text-primary-foreground transition-colors">Inšpiratívna galéria</a></li>
+            <li><a href="#blog" class="hover:text-primary-foreground transition-colors">Odborné články</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Services -->
+        <div>
+          <h4 class="text-sm font-bold text-primary-foreground uppercase tracking-wider mb-4">Naše služby</h4>
+          <ul class="space-y-2.5 text-xs text-muted-foreground">
+            <li><a href="#sluzby" class="hover:text-primary-foreground transition-colors">Predaj okrasného štrku</a></li>
+            <li><a href="#sluzby" class="hover:text-primary-foreground transition-colors">Mramorové okruhliaky</a></li>
+            <li><a href="#sluzby" class="hover:text-primary-foreground transition-colors">Výkopy základov domov</a></li>
+            <li><a href="#sluzby" class="hover:text-primary-foreground transition-colors">Terénne úpravy a svahovanie</a></li>
+            <li><a href="#sluzby" class="hover:text-primary-foreground transition-colors">Búranie a odvoz stavebnej sute</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact & Opening -->
+        <div>
+          <h4 class="text-sm font-bold text-primary-foreground uppercase tracking-wider mb-4">Kancelária & Prevádzka</h4>
+          <p class="text-xs text-muted-foreground leading-relaxed mb-4">
+            Kamenárska 45, 917 01 Trnava<br />
+            Slovenská republika
+          </p>
+          <div class="text-xs text-muted-foreground space-y-1">
+            <p><span class="font-semibold text-primary-foreground">Pondelok - Piatok:</span> 7:00 - 16:00</p>
+            <p><span class="font-semibold text-primary-foreground">Sobota:</span> 8:00 - 12:00</p>
+            <p><span class="font-semibold text-primary-foreground">Nedeľa:</span> Zatvorené</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-border/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
+        <p>&copy; 2024 BELKO s.r.o. Všetky práva vyhradené. Vytvorené s dôrazom na UX.</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-primary-foreground transition-colors">Ochrana osobných údajov</a>
+          <a href="#" class="hover:text-primary-foreground transition-colors">Obchodné podmienky</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+</div>
+</body></html>
